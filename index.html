@@ -3,49 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Firomsa Ahmed · Frontend Developer & UI Designer</title>
+  <title>Firomsa Graphics | Frontend Dev & Graphic Designer 🔥</title>
   <!-- Google Fonts + Font Awesome -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* ---------- GLOBAL RESET & STRICT COLOR PALETTE ---------- */
+    /* ---------- GLOBAL RESET & POWER PALETTE (brand: Firomsa Graphics) ---------- */
+    :root {
+      --primary: #0a0c10;
+      --secondary: #2c7da0;    /* trustworthy teal-blue */
+      --accent: #f4a261;        /* warm amber for CTAs & hover */
+      --text-light: #edf2f4;
+      --text-muted: #8d99ae;
+      --card-bg: #1e242c;
+      --border: #2b3b4c;
+      --transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    :root {
-      --dark: #0f172a;        /* main background */
-      --primary: #3b82f6;     /* blue - primary buttons, links */
-      --accent: #22c55e;      /* green - hover, highlights */
-      --text-light: #f8fafc;
-      --text-muted: #94a3b8;
-      --card-bg: #1e293b;
-      --border: #334155;
-      --shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.3);
-      --transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    }
-
-    /* Light mode variant (optional, but stays consistent) */
-    body.light-mode {
-      --dark: #ffffff;
-      --card-bg: #f1f5f9;
-      --text-light: #0f172a;
-      --text-muted: #475569;
-      --border: #e2e8f0;
-      --shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
-    }
-
     body {
       font-family: 'Inter', sans-serif;
-      background-color: var(--dark);
+      background-color: var(--primary);
       color: var(--text-light);
       line-height: 1.5;
       scroll-behavior: smooth;
-      transition: background-color 0.3s, color 0.2s;
+      overflow-x: hidden;
+    }
+
+    /* light mode alternative (modern) */
+    body.light-mode {
+      --primary: #fefcf3;
+      --card-bg: #ffffff;
+      --text-light: #1e2a3e;
+      --text-muted: #4a5b6e;
+      --border: #dce5f0;
     }
 
     .container {
@@ -55,44 +51,50 @@
       padding: 0 1rem;
     }
 
-    /* Section spacing: 80px 20px (vertical padding) */
     section {
-      padding: 80px 20px;
+      padding: 80px 0;
       scroll-margin-top: 80px;
     }
 
-    /* Typography */
-    h1 {
-      font-size: 64px;
-      font-weight: 800;
-      line-height: 1.2;
+    h1, h2, h3 {
+      font-weight: 700;
       letter-spacing: -0.02em;
     }
-    h2 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 3rem;
+
+    h1 {
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      line-height: 1.2;
     }
+
+    h2 {
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
     h2 span {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
-    h3 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
+
+    .section-sub {
+      text-align: center;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: -1rem auto 3rem;
     }
 
-    /* Buttons & hover effects */
+    /* Buttons & CTAs */
     .btn-group {
       display: flex;
-      gap: 1.2rem;
+      gap: 1rem;
       justify-content: center;
       flex-wrap: wrap;
       margin-top: 2rem;
     }
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -100,72 +102,84 @@
       padding: 0.9rem 2rem;
       border-radius: 60px;
       font-weight: 600;
-      font-size: 1rem;
       transition: var(--transition);
       cursor: pointer;
       border: none;
+      font-size: 1rem;
+      text-decoration: none;
     }
+
     .btn-primary {
-      background: var(--primary);
+      background: var(--secondary);
       color: white;
-      box-shadow: 0 6px 14px rgba(59,130,246,0.3);
+      box-shadow: 0 8px 20px -8px rgba(44,125,160,0.4);
     }
+
     .btn-primary:hover {
       background: var(--accent);
       transform: translateY(-4px);
-      box-shadow: 0 12px 20px -8px rgba(34,197,94,0.4);
+      box-shadow: 0 15px 25px -10px rgba(244,162,97,0.5);
     }
+
     .btn-outline {
       background: transparent;
-      border: 2px solid var(--primary);
-      color: var(--primary);
+      border: 2px solid var(--secondary);
+      color: var(--secondary);
     }
+
     .btn-outline:hover {
-      background: var(--primary);
+      background: var(--secondary);
       color: white;
       transform: translateY(-4px);
     }
 
-    /* Sticky Navbar */
+    /* navbar */
     .navbar {
-      background: rgba(15, 23, 42, 0.9);
+      background: rgba(10, 12, 16, 0.92);
       backdrop-filter: blur(14px);
       position: fixed;
       top: 0;
       width: 100%;
       z-index: 1000;
       padding: 1rem 0;
-      border-bottom: 1px solid rgba(59,130,246,0.2);
+      border-bottom: 1px solid rgba(44,125,160,0.3);
       transition: var(--transition);
     }
+
     body.light-mode .navbar {
-      background: rgba(255,255,255,0.9);
-      border-bottom-color: #e2e8f0;
+      background: rgba(254,252,243,0.95);
+      border-bottom-color: #dce5f0;
     }
+
     .nav-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
+
     .logo {
       font-size: 1.8rem;
       font-weight: 800;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
+
     .nav-menu {
       display: flex;
       gap: 2rem;
       list-style: none;
     }
+
     .nav-link {
       color: var(--text-light);
       font-weight: 500;
       transition: var(--transition);
       position: relative;
+      text-decoration: none;
     }
+
     .nav-link::after {
       content: '';
       position: absolute;
@@ -176,9 +190,12 @@
       background: var(--accent);
       transition: 0.3s;
     }
-    .nav-link:hover::after, .nav-link.active::after {
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
       width: 100%;
     }
+
     .theme-toggle {
       background: transparent;
       border: none;
@@ -187,11 +204,13 @@
       color: var(--text-light);
       margin-left: 1rem;
     }
+
     .hamburger {
       display: none;
       flex-direction: column;
       cursor: pointer;
     }
+
     .bar {
       width: 28px;
       height: 3px;
@@ -201,222 +220,339 @@
       border-radius: 6px;
     }
 
-    /* Hero Section (WOW effect, large headline, two CTAs) */
+    /* HERO */
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
-      background: radial-gradient(circle at 20% 30%, rgba(59,130,246,0.12), transparent 70%);
+      background: radial-gradient(circle at 20% 30%, rgba(44,125,160,0.12), transparent 70%);
       padding-top: 5rem;
     }
+
     .hero-content {
       text-align: center;
-      max-width: 900px;
+      max-width: 950px;
       margin: 0 auto;
     }
+
     .hero-badge {
       display: inline-block;
-      background: rgba(59,130,246,0.2);
-      padding: 0.3rem 1.2rem;
-      border-radius: 40px;
+      background: rgba(44,125,160,0.2);
+      padding: 0.4rem 1.2rem;
+      border-radius: 60px;
       font-size: 0.9rem;
+      font-weight: 500;
       margin-bottom: 1.5rem;
-      border: 1px solid rgba(59,130,246,0.4);
+      border: 1px solid rgba(44,125,160,0.5);
     }
-    .hero h1 {
-      margin-bottom: 1rem;
-    }
-    .hero h1 .highlight {
-      color: var(--primary);
-      border-bottom: 4px solid var(--accent);
+
+    .highlight {
+      color: var(--secondary);
+      border-bottom: 3px solid var(--accent);
       display: inline-block;
     }
+
     .hero-description {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       color: var(--text-muted);
-      max-width: 650px;
+      max-width: 700px;
       margin: 1rem auto 0;
     }
+
     .hero-avatar {
-      width: 140px;
-      height: 140px;
-      background: linear-gradient(145deg, var(--primary), var(--accent));
+      width: 150px;
+      height: 150px;
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 2rem auto;
-      font-size: 3rem;
+      font-size: 3.5rem;
       color: white;
-      box-shadow: var(--shadow);
+      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.4);
       transition: var(--transition);
       cursor: pointer;
     }
-    .hero-avatar:hover {
-      transform: scale(1.05) rotate(2deg);
+
+    /* DESIGN GALLERY (MAIN POWER) */
+    .design-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+      margin-top: 1.5rem;
     }
 
-    /* Card Design (projects) */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-      margin-top: 1rem;
-    }
-    .project-card {
+    .design-card {
       background: var(--card-bg);
       border-radius: 20px;
       overflow: hidden;
       transition: var(--transition);
       border: 1px solid var(--border);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
     }
-    .project-card:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--shadow);
-      border-color: var(--primary);
-    }
-    .project-img {
+
+    .design-card img {
       width: 100%;
-      height: 220px;
+      height: 260px;
       object-fit: cover;
       display: block;
-      background: #1e293b;
+      transition: 0.4s ease;
     }
+
+    .design-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--secondary);
+      box-shadow: 0 20px 30px -12px rgba(44,125,160,0.3);
+    }
+
+    .design-card:hover img {
+      transform: scale(1.03);
+    }
+
+    .design-info {
+      padding: 1.2rem;
+      text-align: center;
+    }
+
+    .design-info h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+    }
+
+    /* SERVICES SECTION */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .service-item {
+      background: var(--card-bg);
+      padding: 2rem 1rem;
+      border-radius: 24px;
+      text-align: center;
+      transition: var(--transition);
+      border: 1px solid var(--border);
+    }
+
+    .service-item i {
+      font-size: 2.5rem;
+      color: var(--secondary);
+      margin-bottom: 1rem;
+    }
+
+    .service-item h4 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .service-item p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .service-item:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+    }
+
+    /* CTA BLOCK (Graphic Design CTA) */
+    .cta-block {
+      background: linear-gradient(145deg, var(--card-bg), var(--primary));
+      border-radius: 40px;
+      padding: 3rem 2rem;
+      text-align: center;
+      margin: 40px 0 20px;
+      border: 1px solid var(--border);
+    }
+
+    .cta-block h3 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-block p {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Skills & projects (existing upgrade) */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .skill-card {
+      background: var(--card-bg);
+      padding: 1.8rem 1rem;
+      border-radius: 2rem;
+      transition: var(--transition);
+      border: 1px solid var(--border);
+    }
+
+    .skill-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--secondary);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      transition: var(--transition);
+      border: 1px solid var(--border);
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.4);
+    }
+
+    .project-img {
+      height: 180px;
+      background: linear-gradient(145deg, var(--secondary), #1f5068);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: white;
+    }
+
     .project-content {
       padding: 1.5rem;
     }
-    .project-content h3 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-    .project-content p {
-      color: var(--text-muted);
-      margin-bottom: 1rem;
-    }
+
     .tech-stack {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
       margin: 1rem 0;
     }
+
     .tech-stack span {
-      background: rgba(59,130,246,0.2);
-      padding: 0.25rem 0.8rem;
+      background: rgba(44,125,160,0.2);
+      padding: 0.2rem 0.8rem;
       border-radius: 40px;
       font-size: 0.75rem;
-      font-weight: 500;
-    }
-    .project-links {
-      display: flex;
-      gap: 1.2rem;
-      margin-top: 0.8rem;
-    }
-    .project-links a {
-      color: var(--primary);
-      font-weight: 600;
-      transition: var(--transition);
-      text-decoration: none;
-    }
-    .project-links a:hover {
-      color: var(--accent);
     }
 
-    /* Skills with icons */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 1.8rem;
-      text-align: center;
-    }
-    .skill-card {
-      background: var(--card-bg);
-      padding: 1.5rem 0.5rem;
-      border-radius: 1.5rem;
-      border: 1px solid var(--border);
-      transition: var(--transition);
-    }
-    .skill-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--primary);
-    }
-    .skill-card i {
-      font-size: 2.8rem;
-      color: var(--primary);
-      margin-bottom: 0.8rem;
-    }
-
-    /* About & Contact */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-    .about-text p {
-      color: var(--text-muted);
-      margin-bottom: 1rem;
-    }
+    /* Contact + floating whatsapp */
     .contact-container {
       display: grid;
       grid-template-columns: 1fr 1.2fr;
       gap: 3rem;
     }
+
     .contact-card {
       background: var(--card-bg);
       padding: 1.8rem;
       border-radius: 1.5rem;
       text-align: center;
       border: 1px solid var(--border);
+      transition: var(--transition);
     }
+
+    .contact-card i {
+      font-size: 2rem;
+      color: var(--secondary);
+      margin-bottom: 0.5rem;
+    }
+
     .contact-form {
       background: var(--card-bg);
       padding: 2rem;
       border-radius: 1.5rem;
       border: 1px solid var(--border);
     }
+
     input, textarea {
       width: 100%;
       padding: 1rem;
-      background: var(--dark);
+      background: var(--primary);
       border: 1px solid var(--border);
       border-radius: 1rem;
       color: var(--text-light);
-      margin-bottom: 1rem;
+      font-family: inherit;
     }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--secondary);
+    }
+
+    /* Floating WhatsApp */
+    .float-wa {
+      position: fixed;
+      bottom: 25px;
+      left: 25px;
+      background: #25D366;
+      color: white;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: 0.2s;
+      z-index: 99;
+      text-decoration: none;
+    }
+
+    .float-wa:hover {
+      transform: scale(1.08);
+      background: #20b859;
+    }
+
     footer {
-      background: #020617;
+      background: #05070a;
       padding: 2rem 0;
       text-align: center;
       border-top: 1px solid var(--border);
     }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
     .social-links a {
       color: var(--text-muted);
       font-size: 1.5rem;
-      margin: 0 0.6rem;
       transition: var(--transition);
     }
-    .social-links a:hover {
-      color: var(--primary);
-      transform: translateY(-3px);
-    }
 
-    /* Scroll animation */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(35px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .social-links a:hover {
+      color: var(--secondary);
+      transform: translateY(-3px);
     }
 
     .scroll-top {
       position: fixed;
       bottom: 2rem;
       right: 2rem;
-      background: var(--primary);
+      background: var(--secondary);
       width: 45px;
       height: 45px;
       border-radius: 50%;
@@ -425,14 +561,14 @@
       justify-content: center;
       cursor: pointer;
       opacity: 0;
-      transition: 0.3s;
+      transition: var(--transition);
       z-index: 99;
-      border: none;
-      color: white;
     }
-    .scroll-top.visible { opacity: 1; }
 
-    /* Modal lightbox */
+    .scroll-top.visible {
+      opacity: 1;
+    }
+
     .modal {
       display: none;
       position: fixed;
@@ -441,12 +577,16 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.9);
+      background: rgba(0,0,0,0.92);
       align-items: center;
       justify-content: center;
     }
     .modal.active { display: flex; }
-    .modal-content { max-width: 85vw; border-radius: 1rem; }
+    .modal-content {
+      max-width: 85vw;
+      max-height: 85vh;
+      border-radius: 1rem;
+    }
     .close-modal {
       position: absolute;
       top: 20px;
@@ -456,300 +596,285 @@
       cursor: pointer;
     }
 
-    /* Mobile Responsive */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     @media (max-width: 900px) {
-      .about-grid, .contact-container {
-        grid-template-columns: 1fr;
-      }
-      h1 { font-size: 48px; }
+      .contact-container { grid-template-columns: 1fr; }
+      section { padding: 60px 0; }
     }
     @media (max-width: 768px) {
-      .hamburger {
-        display: flex;
-      }
+      .hamburger { display: flex; }
       .nav-menu {
         position: fixed;
         left: -100%;
         top: 70px;
         flex-direction: column;
-        background: var(--dark);
+        background: var(--primary);
         width: 100%;
         text-align: center;
-        padding: 2rem;
+        padding: 2rem 0;
         gap: 1.5rem;
         transition: 0.3s;
         backdrop-filter: blur(12px);
-        border-bottom: 1px solid var(--border);
       }
-      .nav-menu.active {
-        left: 0;
-      }
-      .container {
-        flex-direction: column;  /* critical mobile fix */
-      }
-      .hero-description {
-        font-size: 1.1rem;
-      }
-      .btn-group {
-        flex-direction: column;
-        align-items: center;
-      }
-      .btn {
-        width: 80%;
-        justify-content: center;
-      }
-      section {
-        padding: 60px 16px;
-      }
-    }
-    @media (max-width: 480px) {
-      h1 { font-size: 36px; }
-      .hero-avatar { width: 110px; height: 110px; font-size: 2.5rem; }
+      .nav-menu.active { left: 0; }
+      .btn-group { flex-direction: column; align-items: center; }
+      .btn { width: 80%; justify-content: center; }
+      .design-grid { gap: 1rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Sticky Navbar -->
-  <nav class="navbar">
-    <div class="container nav-container">
-      <a href="#" class="logo">Firomsa.</a>
-      <ul class="nav-menu" id="nav-menu">
-        <li><a href="#home" class="nav-link active">Home</a></li>
-        <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="#skills" class="nav-link">Skills</a></li>
-        <li><a href="#projects" class="nav-link">Projects</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
-      </ul>
-      <button class="theme-toggle" id="darkModeToggle" aria-label="Dark mode"><i class="fas fa-moon"></i></button>
-      <div class="hamburger" id="hamburger">
-        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-      </div>
+<nav class="navbar">
+  <div class="container nav-container">
+    <a href="#" class="logo">Firomsa Graphics</a>
+    <ul class="nav-menu" id="nav-menu">
+      <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#design" class="nav-link">Design</a></li>
+      <li><a href="#services" class="nav-link">Services</a></li>
+      <li><a href="#projects" class="nav-link">Coding</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+    <button class="theme-toggle" id="darkModeToggle"><i class="fas fa-moon"></i></button>
+    <div class="hamburger" id="hamburger">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <!-- Hero Section (WOW effect, strong headline, two CTAs) -->
-  <section id="home" class="hero">
-    <div class="container hero-content">
-      <div class="hero-badge"><i class="fas fa-code"></i> Available for freelance</div>
-      <h1>Hi, I'm <span class="highlight">Firomsa Ahmed</span></h1>
-      <p class="hero-description">Frontend Developer | I build modern, fast, and responsive websites that users love.</p>
-      <div class="hero-avatar" id="profileAvatar">
-        <i class="fas fa-user-astronaut"></i>
-      </div>
-      <div class="btn-group">
-        <button class="btn btn-primary" id="hireMeBtn"><i class="fas fa-paper-plane"></i> Hire Me</button>
-        <button class="btn btn-outline" id="viewWorkBtn"><i class="fas fa-arrow-down"></i> View My Work</button>
-      </div>
+<!-- Hero Section: Frontend Developer & Graphic Designer -->
+<section id="home" class="hero">
+  <div class="container hero-content">
+    <div class="hero-badge"><i class="fas fa-bolt"></i> Double Power 🔥 | Developer + Designer</div>
+    <h1>I'm <span class="highlight">Firomsa Ahmed</span></h1>
+    <div class="hero-description" style="font-size: 1.4rem; font-weight: 600;">Frontend Developer <span style="color:var(--accent)">&</span> Graphic Designer</div>
+    <div class="hero-description">Crafting pixel-perfect websites & stunning visual identities — code meets creativity.</div>
+    <div class="hero-avatar" id="profileAvatar">
+      <i class="fas fa-pen-fancy"></i>
     </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="container fade-up">
-    <h2><span>About Me</span></h2>
-    <div class="about-grid">
-      <div class="about-text">
-        <p>I'm a passionate frontend developer with 5+ years of experience creating digital experiences that are both beautiful and functional. Based in Ethiopia, I help startups, agencies, and businesses bring their ideas to life with clean code and modern UI.</p>
-        <p>My stack includes HTML5, CSS3, JavaScript, React, and Figma. I believe in writing semantic, accessible code and delivering pixel-perfect designs that work flawlessly on all devices.</p>
-      </div>
-      <div class="about-text">
-        <p><i class="fas fa-quote-left" style="color: var(--primary);"></i> I don't just build websites — I build solutions that drive engagement and conversions. From interactive dashboards to e-commerce platforms, every project is an opportunity to innovate.</p>
-        <p>Outside coding, I mentor junior developers, contribute to open source, and explore UI/UX trends. Let’s collaborate to make something memorable.</p>
-      </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="hireMeBtn"><i class="fas fa-paper-plane"></i> Order Design Now</button>
+      <button class="btn btn-outline" id="viewProjectsBtn"><i class="fas fa-arrow-down"></i> See Design Work</button>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Skills with Icons -->
-  <section id="skills" class="container fade-up">
-    <h2><span>Tech & Tools</span></h2>
-    <div class="skills-grid">
-      <div class="skill-card"><i class="fab fa-html5"></i><h4>HTML5</h4></div>
-      <div class="skill-card"><i class="fab fa-css3-alt"></i><h4>CSS3 / Tailwind</h4></div>
-      <div class="skill-card"><i class="fab fa-js"></i><h4>JavaScript (ES6+)</h4></div>
-      <div class="skill-card"><i class="fab fa-react"></i><h4>React.js</h4></div>
-      <div class="skill-card"><i class="fab fa-figma"></i><h4>Figma</h4></div>
-      <div class="skill-card"><i class="fab fa-git-alt"></i><h4>Git & GitHub</h4></div>
+<!-- About -->
+<section id="about" class="container fade-up">
+  <h2><span>About Me</span></h2>
+  <div class="about-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+    <div class="about-text"><p>⚡ I'm not just a developer — I'm a <strong>graphic designer + frontend developer</strong> combo. I create logos, flyers, posters, brand identities AND turn them into living websites. My superpower: visual storytelling that converts.</p><p>📍 Based in Ethiopia, working globally. 5+ years helping brands stand out with modern design & clean code.</p><div class="about-stats" style="display: flex; gap: 2rem; margin-top: 1.5rem;"><div><span class="number" style="font-size: 2rem; font-weight: 800; color: var(--secondary);">35+</span><br>Design Projects</div><div><span class="number" style="font-size: 2rem; font-weight: 800; color: var(--secondary);">22+</span><br>Happy Clients</div></div></div>
+    <div class="about-text"><p><i class="fas fa-quote-left" style="color: var(--secondary);"></i> I believe design is the soul, code is the body. My mission: deliver both under one roof — Firomsa Graphics. Let's build your brand from concept to launch.</p><p>🏆 Expertise: Branding, UI/UX, responsive frontend, and eye-catching print materials.</p></div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills" class="container fade-up">
+  <h2><span>My Powers</span></h2>
+  <div class="skills-grid">
+    <div class="skill-card"><i class="fab fa-figma"></i><h4>Graphic Design</h4></div>
+    <div class="skill-card"><i class="fab fa-html5"></i><h4>HTML/CSS</h4></div>
+    <div class="skill-card"><i class="fab fa-js"></i><h4>JavaScript</h4></div>
+    <div class="skill-card"><i class="fas fa-paint-brush"></i><h4>Brand Identity</h4></div>
+    <div class="skill-card"><i class="fas fa-adobe"></i><h4>Photoshop/Illustrator</h4></div>
+    <div class="skill-card"><i class="fab fa-react"></i><h4>React.js</h4></div>
+  </div>
+</section>
+
+<!-- 🔥 NEW: My Design Works (GAME CHANGER) -->
+<section id="design" class="container fade-up">
+  <h2><span>My Design Works</span></h2>
+  <div class="section-sub">Posters · Logos · Branding · Social Media Kits</div>
+  <div class="design-grid" id="designGrid">
+    <div class="design-card" data-img="https://placehold.co/600x500/2c3e50/f4a261?text=Poster+Design+%7C+Event">
+      <img src="https://placehold.co/600x500/2c3e50/f4a261?text=Poster+Design+%7C+Event" alt="Poster Design">
+      <div class="design-info"><h4>Event Poster</h4><p>Modern typography / vibrant</p></div>
     </div>
-  </section>
-
-  <!-- Projects Section (Cards with images, description, tech, github & live demo) -->
-  <section id="projects" class="container fade-up">
-    <h2><span>Featured Projects</span></h2>
-    <div class="projects-grid">
-      <div class="project-card">
-        <img class="project-img" src="https://placehold.co/600x400/3b82f6/white?text=TaskFlow+App" alt="TaskFlow project preview">
-        <div class="project-content">
-          <h3>TaskFlow Pro</h3>
-          <p>Productivity app with drag & drop, local storage, dark mode, and real-time filters.</p>
-          <div class="tech-stack"><span>HTML5</span><span>CSS3</span><span>JavaScript</span></div>
-          <div class="project-links"><a href="#"><i class="fab fa-github"></i> GitHub</a><a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a></div>
-        </div>
-      </div>
-      <div class="project-card">
-        <img class="project-img" src="https://placehold.co/600x400/22c55e/white?text=UrbanMart+Store" alt="E-commerce UI">
-        <div class="project-content">
-          <h3>UrbanMart</h3>
-          <p>Fully responsive e‑commerce UI with product grid, cart simulation, and wishlist.</p>
-          <div class="tech-stack"><span>React</span><span>CSS Modules</span><span>Axios</span></div>
-          <div class="project-links"><a href="#"><i class="fab fa-github"></i> GitHub</a><a href="#"><i class="fas fa-external-link-alt"></i> Preview</a></div>
-        </div>
-      </div>
-      <div class="project-card">
-        <img class="project-img" src="https://placehold.co/600x400/3b82f6/white?text=WeatherWise" alt="Weather dashboard">
-        <div class="project-content">
-          <h3>WeatherWise</h3>
-          <p>Real-time weather dashboard using OpenWeather API, animated icons, and geolocation.</p>
-          <div class="tech-stack"><span>JavaScript</span><span>API</span><span>Chart.js</span></div>
-          <div class="project-links"><a href="#"><i class="fab fa-github"></i> GitHub</a><a href="#"><i class="fas fa-external-link-alt"></i> Demo</a></div>
-        </div>
-      </div>
+    <div class="design-card" data-img="https://placehold.co/600x500/1e3a5f/2c7da0?text=Logo+Concept+%7C+Brand">
+      <img src="https://placehold.co/600x500/1e3a5f/2c7da0?text=Logo+Concept+%7C+Brand" alt="Logo Design">
+      <div class="design-info"><h4>Logo Identity</h4><p>Minimalist & timeless</p></div>
     </div>
-  </section>
-
-  <!-- Contact Section with working form UI -->
-  <section id="contact" class="container fade-up">
-    <h2><span>Get In Touch</span></h2>
-    <div class="contact-container">
-      <div class="contact-info">
-        <div class="contact-card"><i class="fas fa-envelope"></i><h3>Email</h3><p>firomsa.ahmed@dev.me</p></div>
-        <div class="contact-card"><i class="fab fa-telegram"></i><h3>Telegram</h3><p>@firomsa_dev</p></div>
-        <div class="contact-card"><i class="fab fa-github"></i><h3>GitHub</h3><p>/firomsa-dev</p></div>
-      </div>
-      <form class="contact-form" id="contactForm">
-        <input type="text" placeholder="Your full name" required>
-        <input type="email" placeholder="Email address" required>
-        <textarea rows="4" placeholder="Tell me about your project or idea..." required></textarea>
-        <button type="submit" class="btn btn-primary" style="width:100%"><i class="fas fa-paper-plane"></i> Send Message</button>
-      </form>
+    <div class="design-card" data-img="https://placehold.co/600x500/2c3e50/e9c46a?text=Social+Media+Banner">
+      <img src="https://placehold.co/600x500/2c3e50/e9c46a?text=Social+Media+Banner" alt="Banner Design">
+      <div class="design-info"><h4>Social Media Kit</h4><p>Engaging & on-brand</p></div>
     </div>
-  </section>
+  </div>
+  <div style="text-align: center; margin-top: 2rem;"><a href="#contact" class="btn btn-outline"><i class="fas fa-eye"></i> Request Custom Design</a></div>
+</section>
 
-  <!-- Footer + Socials -->
-  <footer>
-    <div class="container">
-      <p>© 2026 Firomsa Ahmed — Frontend Developer & UI Designer</p>
-      <div class="social-links">
-        <a href="#"><i class="fab fa-github"></i></a>
-        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#"><i class="fab fa-telegram-plane"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-      </div>
+<!-- Services Section -->
+<section id="services" class="container fade-up">
+  <h2><span>What I Deliver</span></h2>
+  <div class="services-grid">
+    <div class="service-item"><i class="fas fa-pen-nib"></i><h4>Logo Design</h4><p>Unique brand marks</p></div>
+    <div class="service-item"><i class="fas fa-poster"></i><h4>Flyer & Poster</h4><p>Print & digital ready</p></div>
+    <div class="service-item"><i class="fas fa-hashtag"></i><h4>Social Media Design</h4><p>Instagram, FB, TikTok</p></div>
+    <div class="service-item"><i class="fas fa-id-card"></i><h4>Business Card</h4><p>Professional branding</p></div>
+    <div class="service-item"><i class="fas fa-laptop-code"></i><h4>Website Design</h4><p>Responsive & modern</p></div>
+  </div>
+</section>
+
+<!-- Coding Projects -->
+<section id="projects" class="container fade-up">
+  <h2><span>Web Development Work</span></h2>
+  <div class="section-sub">Interactive web apps & responsive frontend</div>
+  <div class="projects-grid">
+    <div class="project-card"><div class="project-img"><i class="fas fa-tasks"></i></div><div class="project-content"><h3>TaskFlow Pro</h3><p>Productivity dashboard with drag & drop</p><div class="tech-stack"><span>React</span><span>Tailwind</span></div><div class="project-links"><a href="#"><i class="fab fa-github"></i> GitHub</a></div></div></div>
+    <div class="project-card"><div class="project-img"><i class="fas fa-store"></i></div><div class="project-content"><h3>UrbanMart UI</h3><p>E‑commerce concept with cart</p><div class="tech-stack"><span>JS</span><span>CSS Grid</span></div><div class="project-links"><a href="#"><i class="fab fa-github"></i> GitHub</a></div></div></div>
+    <div class="project-card"><div class="project-img"><i class="fas fa-cloud-sun"></i></div><div class="project-content"><h3>WeatherWise</h3><p>Real-time weather API</p><div class="tech-stack"><span>API</span><span>Chart.js</span></div><div class="project-links"><a href="#"><i class="fab fa-github"></i> GitHub</a></div></div></div>
+  </div>
+</section>
+
+<!-- 🔥 CTA for Graphic Design (Need Graphic Design?) -->
+<div class="container fade-up">
+  <div class="cta-block">
+    <h3>🎨 Need Graphic Design?</h3>
+    <p>I design logos, flyers, posters, social media kits & more — professional, fast & Ethiopian-friendly.</p>
+    <div class="cta-buttons">
+      <a href="#contact" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Order Now</a>
+      <a href="https://wa.me/251946004640" class="btn btn-outline" target="_blank"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
     </div>
-  </footer>
+  </div>
+</div>
 
-  <div class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></div>
-  <div id="imageModal" class="modal"><span class="close-modal">&times;</span><img class="modal-content" id="modalImage"></div>
+<!-- Contact + Real links (Telegram, WhatsApp, Behance) -->
+<section id="contact" class="container fade-up">
+  <h2><span>Let's Create</span></h2>
+  <div class="contact-container">
+    <div class="contact-info">
+      <div class="contact-card"><i class="fab fa-telegram"></i><h3>Telegram</h3><p><a href="https://t.me/firomsa_graphics" target="_blank" style="color: var(--secondary);">@firomsa_graphics</a></p></div>
+      <div class="contact-card"><i class="fab fa-whatsapp"></i><h3>WhatsApp</h3><p><a href="https://wa.me/251946004640" target="_blank" style="color: var(--secondary);">+251 94 600 4640</a></p></div>
+      <div class="contact-card"><i class="fab fa-behance"></i><h3>Behance</h3><p><a href="#" target="_blank" style="color: var(--secondary);">/firomsa-designs</a></p></div>
+      <div class="contact-card"><i class="fab fa-github"></i><h3>GitHub</h3><p><a href="#" target="_blank" style="color: var(--secondary);">/firomsa-dev</a></p></div>
+    </div>
+    <form class="contact-form" id="contactForm">
+      <div class="form-group"><input type="text" placeholder="Your name" required></div>
+      <div class="form-group"><input type="email" placeholder="Email address" required></div>
+      <div class="form-group"><textarea rows="4" placeholder="Tell me about your design or dev project..." required></textarea></div>
+      <button type="submit" class="btn btn-primary" style="width:100%"><i class="fas fa-paper-plane"></i> Send Message</button>
+    </form>
+  </div>
+</section>
 
-  <script>
-    (function() {
-      // Dark mode toggle with consistent palette
-      const toggleBtn = document.getElementById('darkModeToggle');
-      const icon = toggleBtn.querySelector('i');
-      if (localStorage.getItem('theme') === 'light') {
-        document.body.classList.add('light-mode');
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
+<footer>
+  <div class="container">
+    <p>© 2026 Firomsa Graphics — Developer & Designer Combo 🔥</p>
+    <div class="social-links">
+      <a href="https://github.com/firomsa-dev" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://t.me/firomsa_graphics" target="_blank"><i class="fab fa-telegram"></i></a>
+      <a href="https://wa.me/251946004640" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-behance"></i></a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/251946004640" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<div class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></div>
+<div id="imageModal" class="modal"><span class="close-modal">&times;</span><img class="modal-content" id="modalImage"></div>
+
+<script>
+  (function(){
+    // Theme toggle
+    const toggleBtn = document.getElementById('darkModeToggle');
+    const iconToggle = toggleBtn.querySelector('i');
+    if(localStorage.getItem('theme') === 'light') {
+      document.body.classList.add('light-mode');
+      iconToggle.classList.remove('fa-moon');
+      iconToggle.classList.add('fa-sun');
+    }
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('light-mode');
+      if(document.body.classList.contains('light-mode')) {
+        localStorage.setItem('theme', 'light');
+        iconToggle.classList.remove('fa-moon');
+        iconToggle.classList.add('fa-sun');
+      } else {
+        localStorage.setItem('theme', 'dark');
+        iconToggle.classList.remove('fa-sun');
+        iconToggle.classList.add('fa-moon');
       }
-      toggleBtn.addEventListener('click', () => {
-        document.body.classList.toggle('light-mode');
-        if (document.body.classList.contains('light-mode')) {
-          localStorage.setItem('theme', 'light');
-          icon.classList.remove('fa-moon');
-          icon.classList.add('fa-sun');
-        } else {
-          localStorage.setItem('theme', 'dark');
-          icon.classList.remove('fa-sun');
-          icon.classList.add('fa-moon');
+    });
+
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
+    document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', () => navMenu.classList.remove('active')));
+
+    // Active nav highlight
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        if(scrollY >= sectionTop) current = section.getAttribute('id');
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if(link.getAttribute('href') === '#' + current) link.classList.add('active');
+      });
+    });
+
+    // fade-up observer
+    const fadeElements = document.querySelectorAll('.fade-up');
+    const observerFade = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.2 });
+    fadeElements.forEach(el => observerFade.observe(el));
+
+    // Scroll top
+    const scrollBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 500) scrollBtn.classList.add('visible');
+      else scrollBtn.classList.remove('visible');
+    });
+    scrollBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+    // Buttons scroll
+    document.getElementById('hireMeBtn')?.addEventListener('click', () => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }));
+    document.getElementById('viewProjectsBtn')?.addEventListener('click', () => document.getElementById('design').scrollIntoView({ behavior: 'smooth' }));
+
+    // Contact form alert
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('✨ Thank you! I’ll reply within 24 hours (design or dev).');
+      e.target.reset();
+    });
+
+    // Modal lightbox for design works & avatar
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const closeModal = document.querySelector('.close-modal');
+    const designCards = document.querySelectorAll('.design-card');
+    designCards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        const img = card.querySelector('img');
+        if(img) {
+          modal.classList.add('active');
+          modalImg.src = img.src;
         }
       });
-
-      // Mobile menu toggle
-      const hamburger = document.getElementById('hamburger');
-      const navMenu = document.getElementById('nav-menu');
-      hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => navMenu.classList.remove('active'));
-      });
-
-      // Smooth scroll for all anchor links (including buttons)
-      document.querySelectorAll('a[href^="#"], .btn-primary, .btn-outline').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-          const targetId = this.getAttribute('href');
-          if (targetId && targetId.startsWith('#')) {
-            e.preventDefault();
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-              targetElement.scrollIntoView({ behavior: 'smooth' });
-            }
-          }
-        });
-      });
-
-      // Specific buttons: Hire Me and View My Work
-      document.getElementById('hireMeBtn')?.addEventListener('click', () => {
-        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-      });
-      document.getElementById('viewWorkBtn')?.addEventListener('click', () => {
-        document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
-      });
-
-      // Active nav highlight on scroll
-      const sections = document.querySelectorAll('section[id]');
-      const navLinks = document.querySelectorAll('.nav-link');
-      window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop - 100;
-          if (scrollY >= sectionTop) current = section.getAttribute('id');
-        });
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === '#' + current) link.classList.add('active');
-        });
-      });
-
-      // Scroll animation (fade-up)
-      const fadeElements = document.querySelectorAll('.fade-up');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      }, { threshold: 0.2 });
-      fadeElements.forEach(el => observer.observe(el));
-
-      // Scroll to top button
-      const scrollBtn = document.getElementById('scrollTop');
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 500) scrollBtn.classList.add('visible');
-        else scrollBtn.classList.remove('visible');
-      });
-      scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-      // Contact form demo alert
-      const contactForm = document.getElementById('contactForm');
-      contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('✨ Thank you for reaching out! I will respond within 24 hours.');
-        contactForm.reset();
-      });
-
-      // Modal for avatar click (lightbox)
-      const modal = document.getElementById('imageModal');
-      const modalImg = document.getElementById('modalImage');
-      const avatarDiv = document.getElementById('profileAvatar');
-      const closeModal = document.querySelector('.close-modal');
-      if (avatarDiv) {
-        avatarDiv.addEventListener('click', () => {
-          modal.classList.add('active');
-          modalImg.src = 'https://ui-avatars.com/api/?background=3b82f6&color=fff&name=Firomsa+Ahmed&size=200';
-        });
-      }
-      closeModal.addEventListener('click', () => modal.classList.remove('active'));
-      modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
-
-      // additional hover effect ensured via CSS
-      console.log('Portfolio ready — strict palette, project images, smooth scroll');
-    })();
-  </script>
+    });
+    const avatarDiv = document.getElementById('profileAvatar');
+    if(avatarDiv) avatarDiv.addEventListener('click', () => {
+      modal.classList.add('active');
+      modalImg.src = 'https://placehold.co/400x400/2c7da0/white?text=Firomsa+Graphics';
+    });
+    closeModal.addEventListener('click', () => modal.classList.remove('active'));
+    modal.addEventListener('click', (e) => { if(e.target === modal) modal.classList.remove('active'); });
+  })();
+</script>
 </body>
 </html>
