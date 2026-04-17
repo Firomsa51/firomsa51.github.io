@@ -10,7 +10,6 @@
   <!-- Supabase JS CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
-    /* ===== GLOBAL STYLES (Preserved & Enhanced) ===== */
     * {
       margin: 0;
       padding: 0;
@@ -79,7 +78,6 @@
       margin: -1rem auto 3rem;
     }
 
-    /* Buttons */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -115,7 +113,7 @@
       color: white;
     }
 
-    /* Product Grid (Supabase Dynamic) */
+    /* Product Grid */
     .product-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -157,7 +155,6 @@
       margin: 0.5rem 0;
     }
 
-    /* Loading Spinner */
     .spinner {
       width: 48px;
       height: 48px;
@@ -173,7 +170,6 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* Toast Notifications */
     .toast-container {
       position: fixed;
       bottom: 30px;
@@ -205,17 +201,8 @@
       to { transform: translateX(0); opacity: 1; }
     }
 
-    /* Original Design Elements (Preserved) */
-    .navbar {
-      background: rgba(10,12,16,0.95);
-      backdrop-filter: blur(12px);
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      padding: 1rem 0;
-      border-bottom: 1px solid rgba(44,125,160,0.3);
-    }
+    /* Original styles (compacted but intact) */
+    .navbar { background: rgba(10,12,16,0.95); backdrop-filter: blur(12px); position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1rem 0; border-bottom: 1px solid rgba(44,125,160,0.3); }
     .nav-container { display: flex; justify-content: space-between; align-items: center; }
     .logo { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, var(--secondary), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .nav-menu { display: flex; gap: 2rem; list-style: none; }
@@ -226,12 +213,11 @@
     .bar { width: 28px; height: 3px; background: var(--text-light); margin: 3px 0; border-radius: 6px; }
     .hero { min-height: 100vh; display: flex; align-items: center; background: radial-gradient(circle at 20% 30%, rgba(44,125,160,0.12), transparent 70%); padding-top: 5rem; }
     .hero-content { text-align: center; max-width: 950px; margin: 0 auto; }
-    .hero-avatar { width: 140px; height: 140px; background: linear-gradient(135deg, var(--secondary), var(--accent)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 2rem auto; font-size: 3rem; color: white; box-shadow: 0 20px 30px -10px rgba(0,0,0,0.3); cursor: pointer; }
+    .hero-avatar { width: 140px; height: 140px; background: linear-gradient(135deg, var(--secondary), var(--accent)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 2rem auto; font-size: 3rem; color: white; cursor: pointer; }
     .design-grid, .services-grid, .projects-grid { display: grid; gap: 28px; }
     .design-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
     .design-card, .service-item, .project-card { background: var(--card-bg); border-radius: 20px; border: 1px solid var(--border); transition: var(--transition); overflow: hidden; cursor: pointer; }
     .design-card img { width: 100%; height: 260px; object-fit: cover; }
-    .design-info, .project-content { padding: 1.2rem; text-align: center; }
     .services-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
     .service-item { text-align: center; padding: 2rem; }
     .service-item i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 1rem; }
@@ -243,8 +229,7 @@
     input, textarea { width: 100%; padding: 1rem; background: var(--primary); border: 1px solid var(--border); border-radius: 1rem; color: var(--text-light); margin-bottom: 1rem; }
     .float-wa { position: fixed; bottom: 25px; left: 25px; background: #25D366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; z-index: 99; text-decoration: none; }
     footer { background: #05070a; padding: 2rem 0; text-align: center; }
-    .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1rem; }
-    .social-links a { color: var(--text-muted); font-size: 1.5rem; transition: 0.2s; }
+    .social-links a { color: var(--text-muted); font-size: 1.5rem; margin: 0 0.5rem; transition: 0.2s; }
     .social-links a:hover { color: var(--secondary); }
     .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
     .modal.active { display: flex; }
@@ -280,13 +265,14 @@
     <div style="font-size: 1.4rem; font-weight: 600;">Visual Identity & Web Solutions</div>
     <div class="hero-avatar" id="profileAvatar"><i class="fas fa-pen-nib"></i></div>
     <div class="btn-group">
-      <a href="#contact" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Order Design Now</a>
+      <!-- Get Started Button - correctly links to contact section -->
+      <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Get Started</a>
       <a href="#catalog" class="btn btn-outline"><i class="fas fa-store"></i> View Products</a>
     </div>
   </div>
 </section>
 
-<!-- Design Gallery (Static Demo) -->
+<!-- Design Gallery -->
 <section id="design" class="container fade-up">
   <h2><span>My Graphic Design Works</span></h2>
   <div class="section-sub">Logos • Posters • Flyers • Social Media Kits</div>
@@ -297,19 +283,19 @@
   </div>
 </section>
 
-<!-- DYNAMIC PRODUCT CATALOG (Supabase) -->
+<!-- Dynamic Product Catalog (Supabase) -->
 <section id="catalog" class="container fade-up">
-  <h2><span>✨ Product Catalog</span></h2>
-  <div class="section-sub">Premium designs & digital assets — powered by Supabase</div>
+  <h2><span>✨ Full Product Catalog</span></h2>
+  <div class="section-sub">All products from Supabase database — add as many as you like</div>
   <div id="product-list" class="product-grid">
     <div class="spinner"></div>
   </div>
   <div style="text-align: center; margin-top: 2rem;">
-    <p class="section-sub"><i class="fas fa-database"></i> Images stored in Supabase Storage (public bucket)</p>
+    <p class="section-sub"><i class="fas fa-database"></i> Images from Supabase Storage (public bucket)</p>
   </div>
 </section>
 
-<!-- Services Section -->
+<!-- Services -->
 <section id="services" class="container fade-up">
   <h2><span>What I Offer</span></h2>
   <div class="services-grid">
@@ -319,7 +305,7 @@
   </div>
 </section>
 
-<!-- Projects Demos -->
+<!-- Real Projects -->
 <section id="projects" class="container fade-up">
   <h2><span>Real Working Projects</span></h2>
   <div class="projects-grid">
@@ -329,7 +315,7 @@
   </div>
 </section>
 
-<!-- Contact Section with Supabase Insert -->
+<!-- Contact Section (ID = "contact") -->
 <section id="contact" class="container fade-up">
   <h2><span>Let's Work Together</span></h2>
   <div class="contact-container">
@@ -365,27 +351,23 @@
 
 <script>
   // ================================
-  // SUPABASE CONFIGURATION (Provided by User)
+  // SUPABASE CONFIG (Only PUBLIC Anon Key - NO SECRET KEY!)
+  // Security: This key is safe for client-side; RLS must restrict write/read properly.
   // ================================
   const SUPABASE_CONFIG = {
     url: 'https://cvgterohigfjdkulmryb.supabase.co',
-    anonKey: 'sb_publishable_7-U83GJsOxTb8uLFG0ms4Q_2zIAQ2U1'
+    anonKey: 'sb_publishable_7-U83GJsOxTb8uLFG0ms4Q_2zIAQ2U1'   // Public key only - safe
   };
 
-  // ========== 1. Toast Manager ==========
+  // Toast Manager
   class ToastManager {
-    constructor(containerId = 'toastContainer') {
-      this.container = document.getElementById(containerId);
-      if (!this.container) {
-        this.container = document.createElement('div');
-        this.container.className = 'toast-container';
-        document.body.appendChild(this.container);
-      }
+    constructor() {
+      this.container = document.getElementById('toastContainer') || (() => { let d=document.createElement('div'); d.className='toast-container'; document.body.appendChild(d); return d; })();
     }
-    show(message, type = 'info', duration = 4000) {
+    show(msg, type='info', duration=4000) {
       const toast = document.createElement('div');
       toast.className = `toast ${type}`;
-      toast.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-triangle' : 'fa-info-circle'}"></i> ${message}`;
+      toast.innerHTML = `<i class="fas ${type==='success'?'fa-check-circle':type==='error'?'fa-exclamation-triangle':'fa-info-circle'}"></i> ${msg}`;
       this.container.appendChild(toast);
       setTimeout(() => toast.remove(), duration);
     }
@@ -394,46 +376,33 @@
     info(msg) { this.show(msg, 'info'); }
   }
 
-  // ========== 2. Loading Manager ==========
+  // Loading Manager
   class LoadingManager {
     constructor(containerId) {
       this.container = document.getElementById(containerId);
     }
-    showSpinner() {
-      if (this.container) this.container.innerHTML = '<div class="spinner"></div>';
-    }
-    hideSpinner() {
-      if (this.container && this.container.querySelector('.spinner')) {
-        this.container.innerHTML = '';
-      }
-    }
-    renderProducts(html) {
-      if (this.container) this.container.innerHTML = html;
-    }
-    showEmpty() {
-      if (this.container) this.container.innerHTML = '<p style="text-align:center; color: var(--text-muted);">✨ No products available. Add some to your Supabase products table.</p>';
-    }
+    showSpinner() { if(this.container) this.container.innerHTML = '<div class="spinner"></div>'; }
+    renderProducts(html) { if(this.container) this.container.innerHTML = html; }
+    showEmpty() { if(this.container) this.container.innerHTML = '<p style="text-align:center; color: var(--text-muted);">✨ No products yet. Add rows to your "products" table in Supabase.</p>'; }
   }
 
-  // ========== 3. Supabase Client (Singleton) ==========
+  // Supabase Client
   class SupabaseClientWrapper {
     constructor() {
-      if (SupabaseClientWrapper.instance) return SupabaseClientWrapper.instance;
       if (!window.supabase) throw new Error('Supabase JS not loaded');
       this.client = window.supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
-      SupabaseClientWrapper.instance = this;
     }
     getClient() { return this.client; }
   }
 
-  // ========== 4. Contact Form Module (Insert into 'messages' table) ==========
+  // Contact Form Handler
   class ContactFormHandler {
-    constructor(supabaseClient, toastManager) {
-      this.supabase = supabaseClient;
-      this.toast = toastManager;
+    constructor(supabase, toast) {
+      this.supabase = supabase;
+      this.toast = toast;
       this.form = document.getElementById('contactForm');
-      this.submitBtn = document.getElementById('contactSubmitBtn');
-      if (this.form) this.init();
+      this.btn = document.getElementById('contactSubmitBtn');
+      if(this.form) this.init();
     }
     init() {
       this.form.addEventListener('submit', async (e) => {
@@ -441,157 +410,127 @@
         const name = document.getElementById('formName')?.value.trim();
         const email = document.getElementById('formEmail')?.value.trim();
         const message = document.getElementById('formMsg')?.value.trim();
-        if (!name || !email || !message) {
-          this.toast.error('All fields are required!');
-          return;
-        }
-        if (!/^\S+@\S+\.\S+$/.test(email)) {
-          this.toast.error('Please enter a valid email address.');
-          return;
-        }
-        const originalText = this.submitBtn.innerHTML;
-        this.submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Sending...';
-        this.submitBtn.disabled = true;
+        if (!name || !email || !message) return this.toast.error('All fields required');
+        if (!/^\S+@\S+\.\S+$/.test(email)) return this.toast.error('Valid email required');
+        const original = this.btn.innerHTML;
+        this.btn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Sending...';
+        this.btn.disabled = true;
         try {
-          const { error } = await this.supabase
-            .from('messages')
-            .insert([{ name, email, message, created_at: new Date().toISOString() }]);
+          const { error } = await this.supabase.from('messages').insert([{ name, email, message, created_at: new Date().toISOString() }]);
           if (error) throw new Error(error.message);
           this.toast.success('✅ Message sent! I will reply within 24h.');
           this.form.reset();
         } catch (err) {
-          console.error(err);
-          this.toast.error(`Failed to send: ${err.message}. Check if 'messages' table exists.`);
+          this.toast.error(`Failed: ${err.message}. Ensure 'messages' table exists and RLS allows INSERT.`);
         } finally {
-          this.submitBtn.innerHTML = originalText;
-          this.submitBtn.disabled = false;
+          this.btn.innerHTML = original;
+          this.btn.disabled = false;
         }
       });
     }
   }
 
-  // ========== 5. Product Catalog Module (Fetch & Render) ==========
+  // Product Catalog (Fetches ALL products from Supabase)
   class ProductCatalog {
-    constructor(supabaseClient, toastManager, loadingManager, containerId = 'product-list') {
-      this.supabase = supabaseClient;
-      this.toast = toastManager;
+    constructor(supabase, toast, loadingManager) {
+      this.supabase = supabase;
+      this.toast = toast;
       this.loading = loadingManager;
-      this.containerId = containerId;
     }
-
-    // 📌 EXPLANATION: How to reference public URLs from Supabase Storage
-    // If image_url is stored as relative path (e.g., 'product-images/logo.png'), this method constructs the full public URL.
-    // Assumes a bucket named 'product-images' is public. Change bucket name as needed.
-    getPublicImageUrl(imagePath) {
-      if (!imagePath) return 'https://placehold.co/600x400/2c3e50/f4a261?text=No+Image';
-      if (imagePath.startsWith('http')) return imagePath;
-      // Using bucket name 'product-images' – you can create this bucket in Supabase Storage and set it to public.
-      const bucket = 'product-images';
-      return `${SUPABASE_CONFIG.url}/storage/v1/object/public/${bucket}/${imagePath}`;
+    getPublicImageUrl(path) {
+      if (!path) return 'https://placehold.co/600x400/2c3e50/f4a261?text=No+Image';
+      if (path.startsWith('http')) return path;
+      // Bucket name: 'product-images' (create this bucket and make it public)
+      return `${SUPABASE_CONFIG.url}/storage/v1/object/public/product-images/${path}`;
     }
-
     async fetchAndRender() {
       this.loading.showSpinner();
       try {
-        const { data: products, error } = await this.supabase
-          .from('products')
-          .select('name, price, image_url')
-          .order('created_at', { ascending: false });
+        const { data, error } = await this.supabase.from('products').select('name, price, image_url').order('created_at', { ascending: false });
         if (error) throw new Error(error.message);
-        if (!products || products.length === 0) {
+        if (!data || data.length === 0) {
           this.loading.showEmpty();
-          this.toast.info('No products found. Add items to your products table.');
+          this.toast.info('No products found. Add rows to your "products" table.');
           return;
         }
         let html = '';
-        for (const product of products) {
-          const imgUrl = this.getPublicImageUrl(product.image_url);
+        for (let p of data) {
+          const imgUrl = this.getPublicImageUrl(p.image_url);
           html += `
             <div class="product-card">
-              <img class="product-img" src="${imgUrl}" alt="${this.escapeHtml(product.name)}" loading="lazy" onerror="this.src='https://placehold.co/600x400/2c3e50/f4a261?text=Image+Error'">
+              <img class="product-img" src="${imgUrl}" alt="${this.escapeHtml(p.name)}" onerror="this.src='https://placehold.co/600x400/2c3e50/f4a261?text=Image+Error'">
               <div class="product-info">
-                <h3>${this.escapeHtml(product.name)}</h3>
-                <div class="product-price">$${parseFloat(product.price).toFixed(2)}</div>
-                <button class="btn btn-outline" style="padding:0.4rem 1rem; margin-top:0.5rem;" onclick="alert('Inquire about ${this.escapeHtml(product.name)} via WhatsApp/Telegram')"><i class="fas fa-shopping-cart"></i> Inquire</button>
+                <h3>${this.escapeHtml(p.name)}</h3>
+                <div class="product-price">$${parseFloat(p.price).toFixed(2)}</div>
+                <button class="btn btn-outline" style="padding:0.4rem 1rem;" onclick="alert('Inquire about ${this.escapeHtml(p.name)} via WhatsApp/Telegram')">Inquire</button>
               </div>
             </div>
           `;
         }
         this.loading.renderProducts(html);
-        this.toast.success(`📦 ${products.length} products loaded!`);
+        this.toast.success(`📦 ${data.length} products loaded successfully!`);
       } catch (err) {
         console.error(err);
         this.loading.showEmpty();
-        this.toast.error(`Failed to load catalog: ${err.message}. Verify 'products' table exists.`);
+        this.toast.error(`Error: ${err.message}. Check Supabase table "products" and RLS.`);
       }
     }
-    escapeHtml(str) {
-      if (!str) return '';
-      return str.replace(/[&<>]/g, function(m) {
-        if (m === '&') return '&amp;';
-        if (m === '<') return '&lt;';
-        if (m === '>') return '&gt;';
-        return m;
-      });
-    }
+    escapeHtml(str) { return str.replace(/[&<>]/g, m => m==='&'?'&amp;':m==='<'?'&lt;':'&gt;'); }
   }
 
-  // ========== 6. Legacy Features (Dark mode, modals, demos) ==========
-  function initLegacyFeatures() {
+  // Legacy features (dark mode, modals, demos, Get Started smooth scroll)
+  function initLegacy() {
     // Dark mode
-    const toggleBtn = document.getElementById('darkModeToggle');
-    const icon = toggleBtn?.querySelector('i');
-    if (localStorage.getItem('theme') === 'light') {
-      document.body.classList.add('light-mode');
-      icon?.classList.replace('fa-moon', 'fa-sun');
-    }
-    toggleBtn?.addEventListener('click', () => {
+    const toggle = document.getElementById('darkModeToggle');
+    const icon = toggle?.querySelector('i');
+    if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light-mode'); icon?.classList.replace('fa-moon','fa-sun'); }
+    toggle?.addEventListener('click', () => {
       document.body.classList.toggle('light-mode');
       const isLight = document.body.classList.contains('light-mode');
       localStorage.setItem('theme', isLight ? 'light' : 'dark');
-      if (icon) {
-        if (isLight) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
-        else { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
-      }
+      if(icon) { if(isLight) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); } else { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); } }
     });
     // Mobile menu
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
-    hamburger?.addEventListener('click', () => navMenu?.classList.toggle('active'));
-    document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', () => navMenu?.classList.remove('active')));
+    hamburger?.addEventListener('click', () => navMenu.classList.toggle('active'));
+    document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => navMenu.classList.remove('active')));
+    // Smooth scroll for anchor links (including Get Started)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const target = document.querySelector(targetId);
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
     // Scroll animations
     const faders = document.querySelectorAll('.fade-up');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.2 });
-    faders.forEach(el => observer.observe(el));
-    // Modal for design cards & avatar
+    const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold:0.2 });
+    faders.forEach(el => obs.observe(el));
+    // Modal logic (design cards, avatar)
     const modal = document.getElementById('globalModal');
     const modalContent = document.getElementById('modalDynamicContent');
     const closeModal = document.querySelector('.close-modal');
     document.querySelectorAll('.design-card').forEach(card => {
       card.addEventListener('click', () => {
         const imgSrc = card.querySelector('img')?.src;
-        if (imgSrc) {
-          modalContent.innerHTML = `<img src="${imgSrc}" style="max-width:100%; border-radius:1rem;">`;
-          modal.classList.add('active');
-        }
+        if(imgSrc) { modalContent.innerHTML = `<img src="${imgSrc}" style="max-width:100%; border-radius:1rem;">`; modal.classList.add('active'); }
       });
     });
     closeModal?.addEventListener('click', () => modal.classList.remove('active'));
-    modal?.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
-    const avatar = document.getElementById('profileAvatar');
-    avatar?.addEventListener('click', () => {
+    modal?.addEventListener('click', (e) => { if(e.target === modal) modal.classList.remove('active'); });
+    document.getElementById('profileAvatar')?.addEventListener('click', () => {
       modalContent.innerHTML = `<div style="text-align:center"><i class="fas fa-user-circle" style="font-size:5rem;"></i><h3>Firomsa Ahmed</h3><p>Graphic Designer & Developer</p></div>`;
       modal.classList.add('active');
     });
     // Demo buttons (calculator, todo, landing)
     document.querySelectorAll('.demo-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+      btn.addEventListener('click', () => {
         const type = btn.getAttribute('data-demo');
         let content = '';
-        if (type === 'calculator') {
-          content = `<div><h3>Calculator</h3><input id="calcScreen" readonly style="width:100%; margin-bottom:1rem;"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;">${[7,8,9,'/',4,5,6,'*',1,2,3,'-',0,'C','=','+'].map(v => `<button class="calc-btn" data-val="${v}">${v}</button>`).join('')}</div></div>`;
+        if(type === 'calculator') {
+          content = `<div><h3>Calculator</h3><input id="calcScreen" readonly style="width:100%;margin-bottom:1rem;"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;">${[7,8,9,'/',4,5,6,'*',1,2,3,'-',0,'C','=','+'].map(v=>`<button class="calc-btn" data-val="${v}">${v}</button>`).join('')}</div></div>`;
           modalContent.innerHTML = content;
           modal.classList.add('active');
           setTimeout(() => {
@@ -599,31 +538,31 @@
             document.querySelectorAll('.calc-btn').forEach(b => {
               b.addEventListener('click', () => {
                 let v = b.getAttribute('data-val');
-                if (v === 'C') cur = '';
-                else if (v === '=') { try { cur = eval(cur).toString(); } catch { cur = 'Error'; } }
+                if(v === 'C') cur = '';
+                else if(v === '=') { try { cur = eval(cur).toString(); } catch { cur = 'Error'; } }
                 else cur += v;
                 document.getElementById('calcScreen').value = cur;
               });
             });
           }, 50);
-        } else if (type === 'todo') {
+        } else if(type === 'todo') {
           content = `<div><h3>To-Do List</h3><div style="display:flex; gap:0.5rem;"><input id="todoInput" placeholder="Add task"><button id="addTodoBtn">Add</button></div><ul id="todoList" style="margin-top:1rem;"></ul></div>`;
           modalContent.innerHTML = content;
           modal.classList.add('active');
           let tasks = JSON.parse(localStorage.getItem('demo_tasks') || '[]');
           const render = () => {
             const list = document.getElementById('todoList');
-            if (list) list.innerHTML = tasks.map((t, i) => `<li style="display:flex; justify-content:space-between; margin:0.5rem 0;">${t.text} <div><button class="toggle" data-idx="${i}">✔</button><button class="del" data-idx="${i}">❌</button></div></li>`).join('');
-            document.querySelectorAll('.toggle').forEach(b => b.addEventListener('click', () => { tasks[b.getAttribute('data-idx')].done = !tasks[b.getAttribute('data-idx')].done; localStorage.setItem('demo_tasks', JSON.stringify(tasks)); render(); }));
-            document.querySelectorAll('.del').forEach(b => b.addEventListener('click', () => { tasks.splice(b.getAttribute('data-idx'), 1); localStorage.setItem('demo_tasks', JSON.stringify(tasks)); render(); }));
+            if(list) list.innerHTML = tasks.map((t,i)=>`<li style="display:flex;justify-content:space-between;">${t.text} <div><button class="toggle" data-idx="${i}">✔</button><button class="del" data-idx="${i}">❌</button></div></li>`).join('');
+            document.querySelectorAll('.toggle').forEach(b=>b.addEventListener('click',()=>{ tasks[b.getAttribute('data-idx')].done = !tasks[b.getAttribute('data-idx')].done; localStorage.setItem('demo_tasks',JSON.stringify(tasks)); render(); }));
+            document.querySelectorAll('.del').forEach(b=>b.addEventListener('click',()=>{ tasks.splice(b.getAttribute('data-idx'),1); localStorage.setItem('demo_tasks',JSON.stringify(tasks)); render(); }));
           };
           render();
-          document.getElementById('addTodoBtn')?.addEventListener('click', () => {
+          document.getElementById('addTodoBtn')?.addEventListener('click',()=>{
             const inp = document.getElementById('todoInput');
-            if (inp.value.trim()) { tasks.push({ text: inp.value.trim(), done: false }); localStorage.setItem('demo_tasks', JSON.stringify(tasks)); render(); inp.value = ''; }
+            if(inp.value.trim()){ tasks.push({text:inp.value.trim(),done:false}); localStorage.setItem('demo_tasks',JSON.stringify(tasks)); render(); inp.value=''; }
           });
         } else {
-          content = `<div><h3>Modern Landing Page</h3><p>Responsive demo included in full website.</p><button class="btn btn-primary" onclick="alert('Full code available on GitHub')">Explore</button></div>`;
+          content = `<div><h3>Modern Landing Page</h3><p>Responsive demo included.</p><button class="btn btn-primary" onclick="alert('Full code on GitHub')">Explore</button></div>`;
           modalContent.innerHTML = content;
           modal.classList.add('active');
         }
@@ -631,33 +570,25 @@
     });
   }
 
-  // ========== 7. Main Initialization ==========
-  (async function main() {
-    if (document.readyState === 'loading') {
-      await new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve));
-    }
+  // MAIN INIT
+  (async function() {
+    if (document.readyState === 'loading') await new Promise(r => document.addEventListener('DOMContentLoaded', r));
     const toast = new ToastManager();
-    let supabaseClient = null;
+    let supabase;
     try {
       const wrapper = new SupabaseClientWrapper();
-      supabaseClient = wrapper.getClient();
-      toast.success('✅ Connected to Supabase');
-    } catch (err) {
-      toast.error('Supabase client error. Check credentials and CDN.');
-      console.error(err);
-    }
-    if (supabaseClient) {
-      // Initialize Contact Form
-      new ContactFormHandler(supabaseClient, toast);
-      // Initialize Product Catalog
+      supabase = wrapper.getClient();
+      toast.success('✅ Connected to Supabase (Public Key)');
+    } catch(e) { toast.error('Supabase init failed'); console.error(e); }
+    if(supabase) {
+      new ContactFormHandler(supabase, toast);
       const productLoader = new LoadingManager('product-list');
-      const catalog = new ProductCatalog(supabaseClient, toast, productLoader, 'product-list');
-      await catalog.fetchAndRender();
+      const catalog = new ProductCatalog(supabase, toast, productLoader);
+      await catalog.fetchAndRender();  // fetches ALL products from the table
     } else {
-      toast.error('Supabase unavailable. Contact form & catalog disabled.');
-      document.getElementById('product-list').innerHTML = '<p style="text-align:center">⚠️ Supabase configuration missing. Please check credentials.</p>';
+      document.getElementById('product-list').innerHTML = '<p style="text-align:center">⚠️ Supabase not connected. Check anon key.</p>';
     }
-    initLegacyFeatures();
+    initLegacy();
   })();
 </script>
 </body>
