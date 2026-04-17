@@ -283,11 +283,11 @@
   <div class="container hero-content">
     <div class="hero-badge"><i class="fas fa-bolt"></i> Graphic Designer + Frontend Dev 🔥</div>
     <h1>I'm <span class="highlight">Firomsa Ahmed</span></h1>
-    <!-- Subtitle changed to "Graphic Designer & Developer" -->
+    <!-- Subtitle: Graphic Designer & Developer -->
     <div style="font-size: 1.4rem; font-weight: 600;">Graphic Designer & Developer</div>
-    <!-- Real image avatar: Replace 'assets/firomsa.jpg' with your actual image path -->
+    <!-- Avatar image using user's provided link "Furooo.png" -->
     <div class="hero-avatar" id="profileAvatar">
-      <img src="assets/firomsa.jpg" alt="Firomsa Ahmed" onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fas fa-user-circle\' style=\'font-size:4rem; color:var(--secondary);\'></i>';">
+      <img src="Furooo.png" alt="Firomsa Ahmed" onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fas fa-user-circle\' style=\'font-size:4rem; color:var(--secondary);\'></i>';">
     </div>
     <div class="btn-group">
       <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Get Started</a>
@@ -500,7 +500,7 @@
     escapeHtml(str) { return str.replace(/[&<>]/g, m => m==='&'?'&amp;':m==='<'?'&lt;':'&gt;'); }
   }
 
-  // Legacy features (dark mode, modals, demos, Get Started smooth scroll)
+  // Legacy features (dark mode, modals, demos, smooth scroll)
   function initLegacy() {
     // Dark mode
     const toggle = document.getElementById('darkModeToggle');
@@ -542,7 +542,7 @@
     });
     closeModal?.addEventListener('click', () => modal.classList.remove('active'));
     modal?.addEventListener('click', (e) => { if(e.target === modal) modal.classList.remove('active'); });
-    // Avatar click to show bigger image (or fallback)
+    // Avatar click to show bigger image
     const avatarDiv = document.getElementById('profileAvatar');
     if(avatarDiv) {
       avatarDiv.addEventListener('click', () => {
