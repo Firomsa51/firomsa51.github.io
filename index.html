@@ -201,6 +201,28 @@
       to { transform: translateX(0); opacity: 1; }
     }
 
+    /* Hero Avatar with Real Image */
+    .hero-avatar {
+      width: 160px;
+      height: 160px;
+      margin: 2rem auto;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid var(--secondary);
+      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .hero-avatar:hover {
+      transform: scale(1.02);
+    }
+    .hero-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     /* Original styles (compacted but intact) */
     .navbar { background: rgba(10,12,16,0.95); backdrop-filter: blur(12px); position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1rem 0; border-bottom: 1px solid rgba(44,125,160,0.3); }
     .nav-container { display: flex; justify-content: space-between; align-items: center; }
@@ -213,7 +235,6 @@
     .bar { width: 28px; height: 3px; background: var(--text-light); margin: 3px 0; border-radius: 6px; }
     .hero { min-height: 100vh; display: flex; align-items: center; background: radial-gradient(circle at 20% 30%, rgba(44,125,160,0.12), transparent 70%); padding-top: 5rem; }
     .hero-content { text-align: center; max-width: 950px; margin: 0 auto; }
-    .hero-avatar { width: 140px; height: 140px; background: linear-gradient(135deg, var(--secondary), var(--accent)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 2rem auto; font-size: 3rem; color: white; cursor: pointer; }
     .design-grid, .services-grid, .projects-grid { display: grid; gap: 28px; }
     .design-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
     .design-card, .service-item, .project-card { background: var(--card-bg); border-radius: 20px; border: 1px solid var(--border); transition: var(--transition); overflow: hidden; cursor: pointer; }
@@ -262,10 +283,13 @@
   <div class="container hero-content">
     <div class="hero-badge"><i class="fas fa-bolt"></i> Graphic Designer + Frontend Dev 🔥</div>
     <h1>I'm <span class="highlight">Firomsa Ahmed</span></h1>
-    <div style="font-size: 1.4rem; font-weight: 600;">Visual Identity & Web Solutions</div>
-    <div class="hero-avatar" id="profileAvatar"><i class="fas fa-pen-nib"></i></div>
+    <!-- Subtitle changed to "Graphic Designer & Developer" -->
+    <div style="font-size: 1.4rem; font-weight: 600;">Graphic Designer & Developer</div>
+    <!-- Real image avatar: Replace 'assets/firomsa.jpg' with your actual image path -->
+    <div class="hero-avatar" id="profileAvatar">
+      <img src="assets/firomsa.jpg" alt="Firomsa Ahmed" onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fas fa-user-circle\' style=\'font-size:4rem; color:var(--secondary);\'></i>';">
+    </div>
     <div class="btn-group">
-      <!-- Get Started Button - correctly links to contact section -->
       <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Get Started</a>
       <a href="#catalog" class="btn btn-outline"><i class="fas fa-store"></i> View Products</a>
     </div>
@@ -351,12 +375,11 @@
 
 <script>
   // ================================
-  // SUPABASE CONFIG (Only PUBLIC Anon Key - NO SECRET KEY!)
-  // Security: This key is safe for client-side; RLS must restrict write/read properly.
+  // SUPABASE CONFIG (Only PUBLIC Anon Key)
   // ================================
   const SUPABASE_CONFIG = {
     url: 'https://cvgterohigfjdkulmryb.supabase.co',
-    anonKey: 'sb_publishable_7-U83GJsOxTb8uLFG0ms4Q_2zIAQ2U1'   // Public key only - safe
+    anonKey: 'sb_publishable_7-U83GJsOxTb8uLFG0ms4Q_2zIAQ2U1'
   };
 
   // Toast Manager
@@ -440,7 +463,6 @@
     getPublicImageUrl(path) {
       if (!path) return 'https://placehold.co/600x400/2c3e50/f4a261?text=No+Image';
       if (path.startsWith('http')) return path;
-      // Bucket name: 'product-images' (create this bucket and make it public)
       return `${SUPABASE_CONFIG.url}/storage/v1/object/public/product-images/${path}`;
     }
     async fetchAndRender() {
@@ -495,7 +517,7 @@
     const navMenu = document.getElementById('nav-menu');
     hamburger?.addEventListener('click', () => navMenu.classList.toggle('active'));
     document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => navMenu.classList.remove('active')));
-    // Smooth scroll for anchor links (including Get Started)
+    // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const targetId = this.getAttribute('href');
@@ -520,10 +542,19 @@
     });
     closeModal?.addEventListener('click', () => modal.classList.remove('active'));
     modal?.addEventListener('click', (e) => { if(e.target === modal) modal.classList.remove('active'); });
-    document.getElementById('profileAvatar')?.addEventListener('click', () => {
-      modalContent.innerHTML = `<div style="text-align:center"><i class="fas fa-user-circle" style="font-size:5rem;"></i><h3>Firomsa Ahmed</h3><p>Graphic Designer & Developer</p></div>`;
-      modal.classList.add('active');
-    });
+    // Avatar click to show bigger image (or fallback)
+    const avatarDiv = document.getElementById('profileAvatar');
+    if(avatarDiv) {
+      avatarDiv.addEventListener('click', () => {
+        const img = avatarDiv.querySelector('img');
+        if(img && img.src && !img.src.includes('data:') && !img.getAttribute('onerror')?.includes('innerHTML')) {
+          modalContent.innerHTML = `<img src="${img.src}" style="max-width:100%; border-radius:1rem;">`;
+        } else {
+          modalContent.innerHTML = `<div style="text-align:center"><i class="fas fa-user-circle" style="font-size:5rem;"></i><h3>Firomsa Ahmed</h3><p>Graphic Designer & Developer</p></div>`;
+        }
+        modal.classList.add('active');
+      });
+    }
     // Demo buttons (calculator, todo, landing)
     document.querySelectorAll('.demo-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -584,7 +615,7 @@
       new ContactFormHandler(supabase, toast);
       const productLoader = new LoadingManager('product-list');
       const catalog = new ProductCatalog(supabase, toast, productLoader);
-      await catalog.fetchAndRender();  // fetches ALL products from the table
+      await catalog.fetchAndRender();
     } else {
       document.getElementById('product-list').innerHTML = '<p style="text-align:center">⚠️ Supabase not connected. Check anon key.</p>';
     }
