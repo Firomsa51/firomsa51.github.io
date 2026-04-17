@@ -10,7 +10,7 @@
   <!-- Supabase JS CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
-    /* ===== GLOBAL & RESET (preserving original design with enhancements) ===== */
+    /* ===== GLOBAL STYLES (Preserved & Enhanced) ===== */
     * {
       margin: 0;
       padding: 0;
@@ -79,7 +79,7 @@
       margin: -1rem auto 3rem;
     }
 
-    /* Buttons & cards (original style preserved) */
+    /* Buttons */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -115,10 +115,10 @@
       color: white;
     }
 
-    /* product catalog grid (new) */
+    /* Product Grid (Supabase Dynamic) */
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 28px;
       margin-top: 2rem;
     }
@@ -140,7 +140,7 @@
 
     .product-img {
       width: 100%;
-      height: 200px;
+      height: 220px;
       object-fit: cover;
       background: #2c3e4f;
     }
@@ -157,7 +157,7 @@
       margin: 0.5rem 0;
     }
 
-    /* Loading spinner */
+    /* Loading Spinner */
     .spinner {
       width: 48px;
       height: 48px;
@@ -173,7 +173,7 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* Toast notifications */
+    /* Toast Notifications */
     .toast-container {
       position: fixed;
       bottom: 30px;
@@ -205,29 +205,54 @@
       to { transform: translateX(0); opacity: 1; }
     }
 
-    /* keep original styles for navbar, hero, design gallery etc (condensed for brevity, but functional) */
-    .navbar { background: rgba(10,12,16,0.95); backdrop-filter: blur(12px); position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1rem 0; border-bottom: 1px solid rgba(44,125,160,0.3); }
+    /* Original Design Elements (Preserved) */
+    .navbar {
+      background: rgba(10,12,16,0.95);
+      backdrop-filter: blur(12px);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(44,125,160,0.3);
+    }
     .nav-container { display: flex; justify-content: space-between; align-items: center; }
     .logo { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, var(--secondary), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .nav-menu { display: flex; gap: 2rem; list-style: none; }
-    .nav-link { color: var(--text-light); font-weight: 500; text-decoration: none; }
-    .theme-toggle { background: transparent; border: none; font-size: 1.4rem; cursor: pointer; color: var(--text-light); }
+    .nav-link { color: var(--text-light); font-weight: 500; text-decoration: none; transition: 0.2s; }
+    .nav-link:hover { color: var(--accent); }
+    .theme-toggle { background: transparent; border: none; font-size: 1.4rem; cursor: pointer; color: var(--text-light); margin-left: 1rem; }
     .hamburger { display: none; flex-direction: column; cursor: pointer; }
     .bar { width: 28px; height: 3px; background: var(--text-light); margin: 3px 0; border-radius: 6px; }
     .hero { min-height: 100vh; display: flex; align-items: center; background: radial-gradient(circle at 20% 30%, rgba(44,125,160,0.12), transparent 70%); padding-top: 5rem; }
+    .hero-content { text-align: center; max-width: 950px; margin: 0 auto; }
+    .hero-avatar { width: 140px; height: 140px; background: linear-gradient(135deg, var(--secondary), var(--accent)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 2rem auto; font-size: 3rem; color: white; box-shadow: 0 20px 30px -10px rgba(0,0,0,0.3); cursor: pointer; }
     .design-grid, .services-grid, .projects-grid { display: grid; gap: 28px; }
     .design-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-    .design-card, .service-item, .project-card { background: var(--card-bg); border-radius: 20px; border: 1px solid var(--border); transition: var(--transition); cursor: pointer; overflow: hidden; }
+    .design-card, .service-item, .project-card { background: var(--card-bg); border-radius: 20px; border: 1px solid var(--border); transition: var(--transition); overflow: hidden; cursor: pointer; }
+    .design-card img { width: 100%; height: 260px; object-fit: cover; }
+    .design-info, .project-content { padding: 1.2rem; text-align: center; }
+    .services-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    .service-item { text-align: center; padding: 2rem; }
+    .service-item i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 1rem; }
+    .projects-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    .project-img { height: 160px; background: linear-gradient(145deg, var(--secondary), #1f5068); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white; }
     .contact-container { display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; }
-    .contact-form, .contact-card { background: var(--card-bg); padding: 1.8rem; border-radius: 1.5rem; border: 1px solid var(--border); }
+    .contact-card, .contact-form { background: var(--card-bg); padding: 1.8rem; border-radius: 1.5rem; border: 1px solid var(--border); text-align: center; }
+    .contact-card a { color: var(--secondary); text-decoration: none; }
     input, textarea { width: 100%; padding: 1rem; background: var(--primary); border: 1px solid var(--border); border-radius: 1rem; color: var(--text-light); margin-bottom: 1rem; }
     .float-wa { position: fixed; bottom: 25px; left: 25px; background: #25D366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; z-index: 99; text-decoration: none; }
     footer { background: #05070a; padding: 2rem 0; text-align: center; }
+    .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1rem; }
+    .social-links a { color: var(--text-muted); font-size: 1.5rem; transition: 0.2s; }
+    .social-links a:hover { color: var(--secondary); }
     .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
     .modal.active { display: flex; }
+    .modal-content { max-width: 90vw; max-height: 85vh; background: var(--card-bg); border-radius: 1.5rem; padding: 2rem; overflow: auto; }
+    .close-modal { position: absolute; top: 20px; right: 40px; font-size: 40px; color: white; cursor: pointer; }
     .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
-    @media (max-width: 768px) { .hamburger { display: flex; } .nav-menu { position: fixed; left: -100%; top: 70px; flex-direction: column; background: var(--primary); width: 100%; text-align: center; transition: 0.3s; } .nav-menu.active { left: 0; } .contact-container { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) { .hamburger { display: flex; } .nav-menu { position: fixed; left: -100%; top: 70px; flex-direction: column; background: var(--primary); width: 100%; text-align: center; padding: 2rem 0; transition: 0.3s; } .nav-menu.active { left: 0; } .contact-container { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -238,7 +263,7 @@
     <ul class="nav-menu" id="nav-menu">
       <li><a href="#home" class="nav-link">Home</a></li>
       <li><a href="#design" class="nav-link">Design</a></li>
-      <li><a href="#products" class="nav-link">Catalog</a></li>
+      <li><a href="#catalog" class="nav-link">Catalog</a></li>
       <li><a href="#projects" class="nav-link">Coding</a></li>
       <li><a href="#contact" class="nav-link">Contact</a></li>
     </ul>
@@ -247,46 +272,71 @@
   </div>
 </nav>
 
-<!-- Hero Section (shortened) -->
+<!-- Hero Section -->
 <section id="home" class="hero">
-  <div class="container hero-content" style="text-align:center">
+  <div class="container hero-content">
     <div class="hero-badge"><i class="fas fa-bolt"></i> Graphic Designer + Frontend Dev 🔥</div>
     <h1>I'm <span class="highlight">Firomsa Ahmed</span></h1>
-    <div class="hero-avatar" id="profileAvatar" style="margin:1rem auto"><i class="fas fa-pen-nib"></i></div>
-    <div class="btn-group"><a href="#contact" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Order Design Now</a></div>
+    <div style="font-size: 1.4rem; font-weight: 600;">Visual Identity & Web Solutions</div>
+    <div class="hero-avatar" id="profileAvatar"><i class="fas fa-pen-nib"></i></div>
+    <div class="btn-group">
+      <a href="#contact" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Order Design Now</a>
+      <a href="#catalog" class="btn btn-outline"><i class="fas fa-store"></i> View Products</a>
+    </div>
   </div>
 </section>
 
-<!-- Design Gallery (original) -->
+<!-- Design Gallery (Static Demo) -->
 <section id="design" class="container fade-up">
   <h2><span>My Graphic Design Works</span></h2>
-  <div class="design-grid" id="designGrid">...</div>
+  <div class="section-sub">Logos • Posters • Flyers • Social Media Kits</div>
+  <div class="design-grid" id="designGrid">
+    <div class="design-card"><img src="https://placehold.co/600x500/2c3e50/f4a261?text=Logo+Design" alt="Logo"><div class="design-info"><h4>Logo Identity</h4><p>Minimalist brand marks</p></div></div>
+    <div class="design-card"><img src="https://placehold.co/600x500/1e3a5f/2c7da0?text=Event+Poster" alt="Poster"><div class="design-info"><h4>Event Poster</h4><p>High impact & typography</p></div></div>
+    <div class="design-card"><img src="https://placehold.co/600x500/283b4c/f4a261?text=Social+Media" alt="Social"><div class="design-info"><h4>Social Media Kit</h4><p>Instagram, Facebook posts</p></div></div>
+  </div>
 </section>
 
-<!-- ========== NEW PRODUCT CATALOG SECTION (Supabase Dynamic) ========== -->
-<section id="products" class="container fade-up">
+<!-- DYNAMIC PRODUCT CATALOG (Supabase) -->
+<section id="catalog" class="container fade-up">
   <h2><span>✨ Product Catalog</span></h2>
   <div class="section-sub">Premium designs & digital assets — powered by Supabase</div>
   <div id="product-list" class="product-grid">
-    <!-- loading indicator injected here -->
-    <div class="spinner" id="productSpinner"></div>
+    <div class="spinner"></div>
+  </div>
+  <div style="text-align: center; margin-top: 2rem;">
+    <p class="section-sub"><i class="fas fa-database"></i> Images stored in Supabase Storage (public bucket)</p>
   </div>
 </section>
 
-<!-- Services (original) -->
-<section id="services" class="container fade-up">...</section>
+<!-- Services Section -->
+<section id="services" class="container fade-up">
+  <h2><span>What I Offer</span></h2>
+  <div class="services-grid">
+    <div class="service-item"><i class="fas fa-pen-fancy"></i><h4>Graphic Design</h4><p>Logos, flyers, branding</p></div>
+    <div class="service-item"><i class="fas fa-laptop-code"></i><h4>Website Design</h4><p>Responsive, modern frontend</p></div>
+    <div class="service-item"><i class="fas fa-chalkboard-user"></i><h4>Brand Identity</h4><p>Complete visual language</p></div>
+  </div>
+</section>
 
-<!-- Projects (original) -->
-<section id="projects" class="container fade-up">...</section>
+<!-- Projects Demos -->
+<section id="projects" class="container fade-up">
+  <h2><span>Real Working Projects</span></h2>
+  <div class="projects-grid">
+    <div class="project-card"><div class="project-img"><i class="fas fa-calculator"></i></div><div class="project-content"><h3>Smart Calculator</h3><button class="demo-btn" data-demo="calculator">Live Demo</button></div></div>
+    <div class="project-card"><div class="project-img"><i class="fas fa-check-circle"></i></div><div class="project-content"><h3>To-Do List App</h3><button class="demo-btn" data-demo="todo">Live Demo</button></div></div>
+    <div class="project-card"><div class="project-img"><i class="fas fa-landmark"></i></div><div class="project-content"><h3>Modern Landing Page</h3><button class="demo-btn" data-demo="landing">Live Demo</button></div></div>
+  </div>
+</section>
 
-<!-- Contact Section (UPGRADED: Supabase Insert) -->
+<!-- Contact Section with Supabase Insert -->
 <section id="contact" class="container fade-up">
   <h2><span>Let's Work Together</span></h2>
   <div class="contact-container">
     <div class="contact-info">
       <div class="contact-card"><i class="fas fa-envelope"></i><h3>Email</h3><p><a href="mailto:firomsaahmed51@gmail.com">firomsaahmed51@gmail.com</a></p></div>
-      <div class="contact-card"><i class="fab fa-telegram"></i><h3>Telegram</h3><p><a href="https://t.me/Fira385508">@Fira385508</a></p></div>
-      <div class="contact-card"><i class="fab fa-whatsapp"></i><h3>WhatsApp</h3><p><a href="https://wa.me/251946004640">+251 94 600 4640</a></p></div>
+      <div class="contact-card"><i class="fab fa-telegram"></i><h3>Telegram</h3><p><a href="https://t.me/Fira385508" target="_blank">@Fira385508</a></p></div>
+      <div class="contact-card"><i class="fab fa-whatsapp"></i><h3>WhatsApp</h3><p><a href="https://wa.me/251946004640" target="_blank">+251 94 600 4640</a></p></div>
     </div>
     <form class="contact-form" id="contactForm">
       <input type="text" placeholder="Your name" id="formName" required>
@@ -298,25 +348,31 @@
   </div>
 </section>
 
-<footer>...</footer>
+<footer>
+  <div class="container">
+    <p>© 2026 Firomsa Ahmed | All Rights Reserved</p>
+    <div class="social-links">
+      <a href="https://github.com/firomsa-dev" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://t.me/Fira385508" target="_blank"><i class="fab fa-telegram"></i></a>
+      <a href="https://wa.me/251946004640" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </div>
+</footer>
+
 <a href="https://wa.me/251946004640" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
 <div id="globalModal" class="modal"><span class="close-modal">&times;</span><div class="modal-content" id="modalDynamicContent"></div></div>
 <div id="toastContainer" class="toast-container"></div>
 
 <script>
   // ================================
-  // PRODUCTION-READY MODULAR SUPABASE INTEGRATION (ES6+)
-  // Features: Contact Form Insert, Product Catalog Fetch, Image Storage URL, Loading & Toast
+  // SUPABASE CONFIGURATION (Provided by User)
   // ================================
-  
-  // ---------- CONFIGURATION ----------
-  // ⚠️ REPLACE WITH YOUR SUPABASE PROJECT CREDENTIALS (from https://supabase.com)
   const SUPABASE_CONFIG = {
-    url: 'https://cvgterohigfjdkulmryb.supabase.co', 
-    anonKey: 'sb_publishable_7-U83GJsOxTb8uLFG0ms4Q_2zIAQ2U1' // ISA KANA QOFA GALCHI
+    url: 'https://cvgterohigfjdkulmryb.supabase.co',
+    anonKey: 'sb_publishable_7-U83GJsOxTb8uLFG0ms4Q_2zIAQ2U1'
   };
-  
-  // ========== 1. Toast Notification Module ==========
+
+  // ========== 1. Toast Manager ==========
   class ToastManager {
     constructor(containerId = 'toastContainer') {
       this.container = document.getElementById(containerId);
@@ -331,14 +387,14 @@
       toast.className = `toast ${type}`;
       toast.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-triangle' : 'fa-info-circle'}"></i> ${message}`;
       this.container.appendChild(toast);
-      setTimeout(() => { toast.remove(); }, duration);
+      setTimeout(() => toast.remove(), duration);
     }
     success(msg) { this.show(msg, 'success'); }
     error(msg) { this.show(msg, 'error'); }
     info(msg) { this.show(msg, 'info'); }
   }
-  
-  // ========== 2. Loading Spinner Helper ==========
+
+  // ========== 2. Loading Manager ==========
   class LoadingManager {
     constructor(containerId) {
       this.container = document.getElementById(containerId);
@@ -346,18 +402,20 @@
     showSpinner() {
       if (this.container) this.container.innerHTML = '<div class="spinner"></div>';
     }
-    hideSpinner(showEmptyMessage = false) {
+    hideSpinner() {
       if (this.container && this.container.querySelector('.spinner')) {
-        if (showEmptyMessage) this.container.innerHTML = '<p style="text-align:center; color: var(--text-muted);">✨ No products available yet.</p>';
-        else this.container.innerHTML = '';
+        this.container.innerHTML = '';
       }
     }
-    clearAndRender(htmlContent) {
-      if (this.container) this.container.innerHTML = htmlContent;
+    renderProducts(html) {
+      if (this.container) this.container.innerHTML = html;
+    }
+    showEmpty() {
+      if (this.container) this.container.innerHTML = '<p style="text-align:center; color: var(--text-muted);">✨ No products available. Add some to your Supabase products table.</p>';
     }
   }
-  
-  // ========== 3. Supabase Client Wrapper (Singleton) ==========
+
+  // ========== 3. Supabase Client (Singleton) ==========
   class SupabaseClientWrapper {
     constructor() {
       if (SupabaseClientWrapper.instance) return SupabaseClientWrapper.instance;
@@ -367,7 +425,7 @@
     }
     getClient() { return this.client; }
   }
-  
+
   // ========== 4. Contact Form Module (Insert into 'messages' table) ==========
   class ContactFormHandler {
     constructor(supabaseClient, toastManager) {
@@ -375,10 +433,9 @@
       this.toast = toastManager;
       this.form = document.getElementById('contactForm');
       this.submitBtn = document.getElementById('contactSubmitBtn');
-      this.init();
+      if (this.form) this.init();
     }
     init() {
-      if (!this.form) return;
       this.form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const name = document.getElementById('formName')?.value.trim();
@@ -392,7 +449,6 @@
           this.toast.error('Please enter a valid email address.');
           return;
         }
-        // UI loading state on button
         const originalText = this.submitBtn.innerHTML;
         this.submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Sending...';
         this.submitBtn.disabled = true;
@@ -401,11 +457,11 @@
             .from('messages')
             .insert([{ name, email, message, created_at: new Date().toISOString() }]);
           if (error) throw new Error(error.message);
-          this.toast.success('✅ Message sent! I will get back to you soon.');
+          this.toast.success('✅ Message sent! I will reply within 24h.');
           this.form.reset();
         } catch (err) {
-          console.error('Contact insert error:', err);
-          this.toast.error(`Failed to send: ${err.message}. Check Supabase table "messages".`);
+          console.error(err);
+          this.toast.error(`Failed to send: ${err.message}. Check if 'messages' table exists.`);
         } finally {
           this.submitBtn.innerHTML = originalText;
           this.submitBtn.disabled = false;
@@ -413,32 +469,28 @@
       });
     }
   }
-  
-  // ========== 5. Product Catalog Module (Dynamic Fetch + Image URL) ==========
+
+  // ========== 5. Product Catalog Module (Fetch & Render) ==========
   class ProductCatalog {
     constructor(supabaseClient, toastManager, loadingManager, containerId = 'product-list') {
       this.supabase = supabaseClient;
       this.toast = toastManager;
       this.loading = loadingManager;
-      this.container = document.getElementById(containerId);
-      if (!this.container) console.warn('Product container missing');
+      this.containerId = containerId;
     }
-    
-    // 📌 Explanation: How to reference public URLs from Supabase Storage
-    // If image_url stored as relative path e.g., 'products/logo123.png', use:
-    // const { data } = supabase.storage.from('your-bucket').getPublicUrl(image_url);
-    // Or construct full URL: `${SUPABASE_CONFIG.url}/storage/v1/object/public/bucket-name/${image_url}`
-    // This function ensures correct public URL even if stored as full URL or relative.
+
+    // 📌 EXPLANATION: How to reference public URLs from Supabase Storage
+    // If image_url is stored as relative path (e.g., 'product-images/logo.png'), this method constructs the full public URL.
+    // Assumes a bucket named 'product-images' is public. Change bucket name as needed.
     getPublicImageUrl(imagePath) {
       if (!imagePath) return 'https://placehold.co/600x400/2c3e50/f4a261?text=No+Image';
-      if (imagePath.startsWith('http')) return imagePath; // already full URL
-      // Assuming bucket name is 'product-images' and path is relative. Adjust bucket as needed.
+      if (imagePath.startsWith('http')) return imagePath;
+      // Using bucket name 'product-images' – you can create this bucket in Supabase Storage and set it to public.
       const bucket = 'product-images';
       return `${SUPABASE_CONFIG.url}/storage/v1/object/public/${bucket}/${imagePath}`;
     }
-    
+
     async fetchAndRender() {
-      if (!this.container) return;
       this.loading.showSpinner();
       try {
         const { data: products, error } = await this.supabase
@@ -447,138 +499,166 @@
           .order('created_at', { ascending: false });
         if (error) throw new Error(error.message);
         if (!products || products.length === 0) {
-          this.loading.hideSpinner(true);
-          this.toast.info('No products found. Add some items to your products table.');
+          this.loading.showEmpty();
+          this.toast.info('No products found. Add items to your products table.');
           return;
         }
-        // generate product cards HTML
         let html = '';
         for (const product of products) {
           const imgUrl = this.getPublicImageUrl(product.image_url);
           html += `
             <div class="product-card">
-              <img class="product-img" src="${imgUrl}" alt="${escapeHtml(product.name)}" loading="lazy" onerror="this.src='https://placehold.co/600x400/2c3e50/f4a261?text=Image+Error'">
+              <img class="product-img" src="${imgUrl}" alt="${this.escapeHtml(product.name)}" loading="lazy" onerror="this.src='https://placehold.co/600x400/2c3e50/f4a261?text=Image+Error'">
               <div class="product-info">
-                <h3>${escapeHtml(product.name)}</h3>
+                <h3>${this.escapeHtml(product.name)}</h3>
                 <div class="product-price">$${parseFloat(product.price).toFixed(2)}</div>
-                <button class="btn btn-outline" style="padding:0.4rem 1rem; margin-top:0.5rem;" onclick="alert('Inquiry for ${escapeHtml(product.name)} – contact via WhatsApp/Telegram')"><i class="fas fa-shopping-cart"></i> Inquire</button>
+                <button class="btn btn-outline" style="padding:0.4rem 1rem; margin-top:0.5rem;" onclick="alert('Inquire about ${this.escapeHtml(product.name)} via WhatsApp/Telegram')"><i class="fas fa-shopping-cart"></i> Inquire</button>
               </div>
             </div>
           `;
         }
-        this.loading.clearAndRender(html);
+        this.loading.renderProducts(html);
         this.toast.success(`📦 ${products.length} products loaded!`);
       } catch (err) {
-        console.error('Product fetch error:', err);
-        this.loading.hideSpinner(true);
-        this.toast.error(`Failed to load catalog: ${err.message}. Verify Supabase products table.`);
+        console.error(err);
+        this.loading.showEmpty();
+        this.toast.error(`Failed to load catalog: ${err.message}. Verify 'products' table exists.`);
       }
     }
-    
-    // helper to escape HTML
-    escapeHtml(str) { return str.replace(/[&<>]/g, function(m){if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+    escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/[&<>]/g, function(m) {
+        if (m === '&') return '&amp;';
+        if (m === '<') return '&lt;';
+        if (m === '>') return '&gt;';
+        return m;
+      });
+    }
   }
-  
-  // ========== Helper: preserve existing website features (modals, dark mode, etc) ==========
+
+  // ========== 6. Legacy Features (Dark mode, modals, demos) ==========
   function initLegacyFeatures() {
     // Dark mode
     const toggleBtn = document.getElementById('darkModeToggle');
     const icon = toggleBtn?.querySelector('i');
-    if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light-mode'); icon?.classList.replace('fa-moon','fa-sun'); }
-    toggleBtn?.addEventListener('click',()=>{
+    if (localStorage.getItem('theme') === 'light') {
+      document.body.classList.add('light-mode');
+      icon?.classList.replace('fa-moon', 'fa-sun');
+    }
+    toggleBtn?.addEventListener('click', () => {
       document.body.classList.toggle('light-mode');
       const isLight = document.body.classList.contains('light-mode');
       localStorage.setItem('theme', isLight ? 'light' : 'dark');
-      if(icon) {
-        if(isLight){ icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+      if (icon) {
+        if (isLight) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
         else { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
       }
     });
     // Mobile menu
-    const hamburger = document.getElementById('hamburger'), navMenu = document.getElementById('nav-menu');
-    hamburger?.addEventListener('click',()=>navMenu?.classList.toggle('active'));
-    document.querySelectorAll('.nav-link').forEach(link=>link.addEventListener('click',()=>navMenu?.classList.remove('active')));
-    // fade-up scroll observer
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    hamburger?.addEventListener('click', () => navMenu?.classList.toggle('active'));
+    document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', () => navMenu?.classList.remove('active')));
+    // Scroll animations
     const faders = document.querySelectorAll('.fade-up');
-    const observer = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold:0.2 });
-    faders.forEach(el=>observer.observe(el));
-    // design gallery modal
-    const modal = document.getElementById('globalModal'), modalContent = document.getElementById('modalDynamicContent'), closeModal = document.querySelector('.close-modal');
-    document.querySelectorAll('.design-card').forEach(card=>{ card.addEventListener('click',()=>{ const imgSrc = card.querySelector('img')?.src; if(imgSrc){ modalContent.innerHTML = `<img src="${imgSrc}" style="max-width:100%; border-radius:1rem;">`; modal.classList.add('active'); } }); });
-    closeModal?.addEventListener('click',()=>modal.classList.remove('active'));
-    modal?.addEventListener('click',(e)=> { if(e.target===modal) modal.classList.remove('active'); });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.2 });
+    faders.forEach(el => observer.observe(el));
+    // Modal for design cards & avatar
+    const modal = document.getElementById('globalModal');
+    const modalContent = document.getElementById('modalDynamicContent');
+    const closeModal = document.querySelector('.close-modal');
+    document.querySelectorAll('.design-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const imgSrc = card.querySelector('img')?.src;
+        if (imgSrc) {
+          modalContent.innerHTML = `<img src="${imgSrc}" style="max-width:100%; border-radius:1rem;">`;
+          modal.classList.add('active');
+        }
+      });
+    });
+    closeModal?.addEventListener('click', () => modal.classList.remove('active'));
+    modal?.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
     const avatar = document.getElementById('profileAvatar');
-    avatar?.addEventListener('click',()=>{ modalContent.innerHTML = `<div style="text-align:center"><i class="fas fa-user-circle" style="font-size:5rem;"></i><h3>Firomsa Ahmed</h3><p>Graphic Designer & Developer</p></div>`; modal.classList.add('active'); });
-    // demo projects buttons (calculator, todo) keep original interactive demos
-    document.querySelectorAll('.demo-btn').forEach(btn=>{
-      btn.addEventListener('click',(e)=>{
+    avatar?.addEventListener('click', () => {
+      modalContent.innerHTML = `<div style="text-align:center"><i class="fas fa-user-circle" style="font-size:5rem;"></i><h3>Firomsa Ahmed</h3><p>Graphic Designer & Developer</p></div>`;
+      modal.classList.add('active');
+    });
+    // Demo buttons (calculator, todo, landing)
+    document.querySelectorAll('.demo-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
         const type = btn.getAttribute('data-demo');
-        let content='';
-        if(type==='calculator') content=`<div><h3>Calculator</h3><input id="calcScreen" readonly><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;">${[7,8,9,'/',4,5,6,'*',1,2,3,'-',0,'C','=','+'].map(v=>`<button class="calc-btn" data-val="${v}">${v}</button>`).join('')}</div></div>`;
-        else if(type==='todo') content=`<div><h3>Todo List</h3><input id="todoInput"><button id="addTodoBtn">Add</button><ul id="todoList"></ul></div>`;
-        else content=`<div><h3>Modern Landing Preview</h3><p>Responsive demo included in full site.</p></div>`;
-        modalContent.innerHTML = content;
-        modal.classList.add('active');
-        if(type==='calculator') setTimeout(()=>{ let cur=''; document.querySelectorAll('.calc-btn').forEach(b=>{ b.addEventListener('click',()=>{ let v=b.getAttribute('data-val'); if(v==='C') cur=''; else if(v==='=') cur=eval(cur).toString(); else cur+=v; document.getElementById('calcScreen').value=cur; }); }); },50);
-        if(type==='todo') setTimeout(()=>{ let tasks=JSON.parse(localStorage.getItem('demo_tasks')||'[]'); const render=()=>{ const list=document.getElementById('todoList'); if(list) list.innerHTML=tasks.map((t,i)=>`<li>${t.text} <button class="toggle" data-idx="${i}">✔</button><button class="del" data-idx="${i}">❌</button></li>`).join(''); document.querySelectorAll('.toggle').forEach(b=>b.addEventListener('click',()=>{ tasks[b.getAttribute('data-idx')].done=!tasks[b.getAttribute('data-idx')].done; localStorage.setItem('demo_tasks',JSON.stringify(tasks)); render(); })); document.querySelectorAll('.del').forEach(b=>b.addEventListener('click',()=>{ tasks.splice(b.getAttribute('data-idx'),1); localStorage.setItem('demo_tasks',JSON.stringify(tasks)); render(); })); }; render(); document.getElementById('addTodoBtn')?.addEventListener('click',()=>{ const inp=document.getElementById('todoInput'); if(inp.value.trim()){ tasks.push({text:inp.value.trim(),done:false}); localStorage.setItem('demo_tasks',JSON.stringify(tasks)); render(); inp.value=''; } }); },50);
+        let content = '';
+        if (type === 'calculator') {
+          content = `<div><h3>Calculator</h3><input id="calcScreen" readonly style="width:100%; margin-bottom:1rem;"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;">${[7,8,9,'/',4,5,6,'*',1,2,3,'-',0,'C','=','+'].map(v => `<button class="calc-btn" data-val="${v}">${v}</button>`).join('')}</div></div>`;
+          modalContent.innerHTML = content;
+          modal.classList.add('active');
+          setTimeout(() => {
+            let cur = '';
+            document.querySelectorAll('.calc-btn').forEach(b => {
+              b.addEventListener('click', () => {
+                let v = b.getAttribute('data-val');
+                if (v === 'C') cur = '';
+                else if (v === '=') { try { cur = eval(cur).toString(); } catch { cur = 'Error'; } }
+                else cur += v;
+                document.getElementById('calcScreen').value = cur;
+              });
+            });
+          }, 50);
+        } else if (type === 'todo') {
+          content = `<div><h3>To-Do List</h3><div style="display:flex; gap:0.5rem;"><input id="todoInput" placeholder="Add task"><button id="addTodoBtn">Add</button></div><ul id="todoList" style="margin-top:1rem;"></ul></div>`;
+          modalContent.innerHTML = content;
+          modal.classList.add('active');
+          let tasks = JSON.parse(localStorage.getItem('demo_tasks') || '[]');
+          const render = () => {
+            const list = document.getElementById('todoList');
+            if (list) list.innerHTML = tasks.map((t, i) => `<li style="display:flex; justify-content:space-between; margin:0.5rem 0;">${t.text} <div><button class="toggle" data-idx="${i}">✔</button><button class="del" data-idx="${i}">❌</button></div></li>`).join('');
+            document.querySelectorAll('.toggle').forEach(b => b.addEventListener('click', () => { tasks[b.getAttribute('data-idx')].done = !tasks[b.getAttribute('data-idx')].done; localStorage.setItem('demo_tasks', JSON.stringify(tasks)); render(); }));
+            document.querySelectorAll('.del').forEach(b => b.addEventListener('click', () => { tasks.splice(b.getAttribute('data-idx'), 1); localStorage.setItem('demo_tasks', JSON.stringify(tasks)); render(); }));
+          };
+          render();
+          document.getElementById('addTodoBtn')?.addEventListener('click', () => {
+            const inp = document.getElementById('todoInput');
+            if (inp.value.trim()) { tasks.push({ text: inp.value.trim(), done: false }); localStorage.setItem('demo_tasks', JSON.stringify(tasks)); render(); inp.value = ''; }
+          });
+        } else {
+          content = `<div><h3>Modern Landing Page</h3><p>Responsive demo included in full website.</p><button class="btn btn-primary" onclick="alert('Full code available on GitHub')">Explore</button></div>`;
+          modalContent.innerHTML = content;
+          modal.classList.add('active');
+        }
       });
     });
   }
-  
-  // ========== MAIN INITIALIZATION (all modules together) ==========
+
+  // ========== 7. Main Initialization ==========
   (async function main() {
-    // Wait for DOM
     if (document.readyState === 'loading') {
       await new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve));
     }
-    // Global helpers
     const toast = new ToastManager();
-    // Check Supabase credentials placeholder warning
-    if (SUPABASE_CONFIG.url === 'https://YOUR_PROJECT.supabase.co' || SUPABASE_CONFIG.anonKey === 'YOUR_ANON_KEY') {
-      toast.error('⚠️ Supabase: Please replace SUPABASE_CONFIG.url & anonKey with your actual project credentials (see HTML script).', 8000);
-      console.warn('Supabase not configured correctly. Insert placeholders.');
-    }
     let supabaseClient = null;
     try {
-      const supabaseWrapper = new SupabaseClientWrapper();
-      supabaseClient = supabaseWrapper.getClient();
+      const wrapper = new SupabaseClientWrapper();
+      supabaseClient = wrapper.getClient();
+      toast.success('✅ Connected to Supabase');
     } catch (err) {
-      toast.error('Supabase client initialization failed. Check CDN & config.');
+      toast.error('Supabase client error. Check credentials and CDN.');
       console.error(err);
     }
     if (supabaseClient) {
-      // 1. Contact form module
+      // Initialize Contact Form
       new ContactFormHandler(supabaseClient, toast);
-      // 2. Product catalog module with loading manager
+      // Initialize Product Catalog
       const productLoader = new LoadingManager('product-list');
-      const productCatalog = new ProductCatalog(supabaseClient, toast, productLoader, 'product-list');
-      await productCatalog.fetchAndRender(); // dynamic fetch & inject into DOM
+      const catalog = new ProductCatalog(supabaseClient, toast, productLoader, 'product-list');
+      await catalog.fetchAndRender();
     } else {
       toast.error('Supabase unavailable. Contact form & catalog disabled.');
-      const productContainer = document.getElementById('product-list');
-      if(productContainer) productContainer.innerHTML = '<p style="text-align:center">⚠️ Supabase not configured. Please set valid credentials.</p>';
+      document.getElementById('product-list').innerHTML = '<p style="text-align:center">⚠️ Supabase configuration missing. Please check credentials.</p>';
     }
-    // legacy features (modals, dark mode, demo projects)
     initLegacyFeatures();
-    // Insert design-grid dummy content if missing (preserve original look)
-    const designGrid = document.getElementById('designGrid');
-    if(designGrid && designGrid.children.length === 0){
-      designGrid.innerHTML = `<div class="design-card"><img src="https://placehold.co/600x500/2c3e50/f4a261?text=Logo+Design"><div class="design-info"><h4>Logo Identity</h4></div></div>
-      <div class="design-card"><img src="https://placehold.co/600x500/1e3a5f/2c7da0?text=Poster"><div class="design-info"><h4>Poster Design</h4></div></div>
-      <div class="design-card"><img src="https://placehold.co/600x500/283b4c/f4a261?text=Social+Media"><div class="design-info"><h4>Social Media Kit</h4></div></div>`;
-    }
-    const servicesGrid = document.querySelector('.services-grid');
-    if(servicesGrid && servicesGrid.children.length===0){
-      servicesGrid.innerHTML = `<div class="service-item"><i class="fas fa-pen-fancy"></i><h4>Graphic Design</h4></div><div class="service-item"><i class="fas fa-laptop-code"></i><h4>Web Design</h4></div>`;
-    }
-    const projectsGrid = document.querySelector('.projects-grid');
-    if(projectsGrid && projectsGrid.children.length===0){
-      projectsGrid.innerHTML = `<div class="project-card"><div class="project-img"><i class="fas fa-calculator"></i></div><div class="project-content"><h3>Smart Calculator</h3><button class="demo-btn" data-demo="calculator">Demo</button></div></div>`;
-    }
   })();
-  
-  // Helper to escape HTML
-  function escapeHtml(str) { if(!str) return ''; return str.replace(/[&<>]/g, function(m){if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
 </script>
 </body>
 </html>
