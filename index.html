@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Firomsa Ahmed — The Digital Singularity</title>
-    <!-- Google Fonts: Exo 2 + Space Grotesk for futuristic vibe -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Exo+2:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>FIROMSA • THE UNSEEN DIMENSION</title>
+    <!-- Fonts: Exo & Clash Display for futuristic tone -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
+        /* RESET & GLOBAL — NO MOBILE ADAPTATION, DESKTOP FIRST */
         * {
             margin: 0;
             padding: 0;
@@ -19,13 +20,123 @@
         body {
             background: #000000;
             font-family: 'Space Grotesk', sans-serif;
-            color: #ffffff;
             overflow-x: hidden;
-            overflow-y: scroll;
+            color: #ffffff;
+            position: relative;
         }
 
-        /* CANVAS BACKGROUND (WebGL Particle Field) */
-        #bg-canvas {
+        /* DYNAMIC MESH GRADIENT + NOISE OVERLAY */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), 
+                        rgba(0, 255, 255, 0.2), 
+                        rgba(255, 0, 255, 0.1), 
+                        rgba(20, 20, 40, 0.9));
+            z-index: -2;
+            pointer-events: none;
+            transition: background 0.08s linear;
+        }
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.07'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            pointer-events: none;
+            z-index: -1;
+            mix-blend-mode: overlay;
+        }
+
+        /* CUSTOM CURSOR (EXPANDING ON HOVER) */
+        .cursor-follower {
+            position: fixed;
+            width: 32px;
+            height: 32px;
+            border: 2px solid #0ff;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transition: width 0.25s ease, height 0.25s ease, background 0.2s, border-color 0.2s;
+            transform: translate(-50%, -50%);
+            backdrop-filter: blur(4px);
+            box-shadow: 0 0 12px cyan;
+        }
+        .cursor-dot {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: #ff3366;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10001;
+            transform: translate(-50%, -50%);
+            transition: 0.05s linear;
+        }
+        .cursor-hover {
+            width: 80px !important;
+            height: 80px !important;
+            background: rgba(0, 255, 255, 0.15);
+            border-color: #ff44cc;
+            backdrop-filter: blur(8px);
+        }
+
+        /* PRELOADER - EPIC SEQUENCE */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            z-index: 11000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            backdrop-filter: blur(20px);
+            transition: opacity 1s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .preloader h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, cyan, magenta, white);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: pulseGlow 0.9s infinite alternate;
+        }
+        @keyframes pulseGlow {
+            0% { text-shadow: 0 0 0px cyan; opacity: 0.7; transform: scale(1);}
+            100% { text-shadow: 0 0 30px magenta; opacity: 1; transform: scale(1.05);}
+        }
+        .loader-bar {
+            width: 200px;
+            height: 3px;
+            background: rgba(255,255,255,0.2);
+            margin-top: 30px;
+            overflow: hidden;
+        }
+        .loader-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, cyan, magenta);
+            animation: loadFill 1.8s ease forwards;
+        }
+        @keyframes loadFill {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* 3D CANVAS BACKGROUND (HYPERSPHERE) */
+        #three-canvas {
             position: fixed;
             top: 0;
             left: 0;
@@ -35,80 +146,23 @@
             pointer-events: none;
         }
 
-        /* preloader epic animation */
-        .preloader-epic {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000000;
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(20px);
-            transition: opacity 1.2s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        .preloader-text {
-            font-family: 'Exo 2', monospace;
-            font-weight: 800;
-            font-size: 4rem;
-            background: linear-gradient(135deg, #ffffff, #00e0ff, #ff3366);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            animation: glitch 1.2s infinite alternate;
-            letter-spacing: 8px;
-        }
-        @keyframes glitch {
-            0% { text-shadow: -2px 0 red, 2px 0 blue; opacity: 0.8; }
-            100% { text-shadow: 2px 0 cyan, -2px 0 magenta; opacity: 1; transform: scale(1.02);}
-        }
-
-        /* custom cursor */
-        .cursor-follower {
-            width: 60px;
-            height: 60px;
-            border: 2px solid rgba(0, 255, 255, 0.7);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: 0.1s linear;
-            transform: translate(-50%, -50%);
-            backdrop-filter: blur(4px);
-            box-shadow: 0 0 15px cyan;
-        }
-        .cursor-dot {
-            width: 6px;
-            height: 6px;
-            background: #ff3366;
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 10000;
-            transition: 0.05s linear;
-            transform: translate(-50%, -50%);
-        }
-
-        /* Main container - desktop only, full wide */
-        .master-container {
+        /* MAIN LAYOUT - FULL IMMERSION */
+        .master {
             position: relative;
             z-index: 10;
-            max-width: 1600px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 5%;
+            padding: 0 60px;
         }
 
-        /* glassmorphic navbar */
-        .navbar {
+        /* GLASS NAVIGATION */
+        .glass-nav {
             position: fixed;
-            top: 20px;
+            top: 30px;
             left: 5%;
             right: 5%;
             width: 90%;
-            background: rgba(0, 0, 0, 0.55);
+            background: rgba(10, 15, 25, 0.6);
             backdrop-filter: blur(20px);
             border-radius: 80px;
             padding: 0.8rem 2rem;
@@ -116,17 +170,17 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            border: 1px solid rgba(0, 255, 255, 0.3);
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.4);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
         }
         .logo {
-            font-family: 'Exo 2', sans-serif;
             font-size: 2rem;
             font-weight: 800;
             background: linear-gradient(120deg, cyan, magenta);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
+            letter-spacing: -0.02em;
         }
         .nav-links {
             display: flex;
@@ -134,18 +188,17 @@
         }
         .nav-links a {
             text-decoration: none;
-            color: white;
+            color: #fff;
             font-weight: 500;
             transition: 0.2s;
             font-size: 1rem;
-            letter-spacing: 1px;
         }
         .nav-links a:hover {
             color: cyan;
             text-shadow: 0 0 8px cyan;
         }
 
-        /* Hero Section - INSANE 3D Text */
+        /* HERO SECTION - 3D TYPOGRAPHY */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -154,129 +207,118 @@
             text-align: center;
             position: relative;
         }
-        .hero-content h1 {
-            font-size: clamp(4rem, 10vw, 8rem);
-            font-family: 'Exo 2', monospace;
+        .hero h1 {
+            font-size: 7rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #ffffff, #00ffff, #ff44cc);
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #ffffff, cyan, #ff44cc);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            animation: textPulse 3s infinite;
+            animation: textWave 3s infinite alternate;
         }
-        @keyframes textPulse {
-            0% { filter: drop-shadow(0 0 0px cyan);}
-            50% { filter: drop-shadow(0 0 20px magenta);}
-            100% { filter: drop-shadow(0 0 0px cyan);}
+        @keyframes textWave {
+            0% { letter-spacing: -2px; filter: drop-shadow(0 0 5px magenta);}
+            100% { letter-spacing: 6px; filter: drop-shadow(0 0 20px cyan);}
         }
-        .hero-glow {
-            font-size: 1.8rem;
-            letter-spacing: 0.2em;
-            font-weight: 300;
+        .sub {
+            font-size: 1.4rem;
+            letter-spacing: 4px;
         }
 
-        /* Bento Grid (epic visual) */
-        .bento-master {
+        /* BENTO GRID (MODERN LAYOUT) */
+        .bento {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 30px;
-            margin: 100px 0;
+            margin: 120px 0;
         }
-        .glass-tile {
-            background: rgba(10, 20, 30, 0.5);
-            backdrop-filter: blur(15px);
+        .bento-item {
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(14px);
             border-radius: 40px;
             padding: 2rem;
             border: 1px solid rgba(0, 255, 255, 0.3);
-            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            transform: translateY(0);
+            transition: all 0.4s cubic-bezier(0.2, 0.95, 0.4, 1.1);
         }
-        .glass-tile:hover {
-            transform: translateY(-15px) scale(1.02);
+        .bento-item:hover {
+            transform: translateY(-20px);
             border-color: cyan;
-            box-shadow: 0 25px 45px rgba(0, 255, 255, 0.2);
+            box-shadow: 0 20px 35px rgba(0, 255, 255, 0.2);
         }
-        .tile-icon {
+        .bento-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
             color: cyan;
         }
 
-        /* Products Gallery - big cards */
-        .product-galaxy {
+        /* PRODUCT GALLERY (PARALLAX CARDS) */
+        .catalog-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
             gap: 40px;
             margin: 60px 0;
         }
-        .cosmic-card {
-            background: rgba(0, 0, 0, 0.65);
+        .product-card {
+            background: rgba(8, 12, 22, 0.7);
             backdrop-filter: blur(12px);
             border-radius: 48px;
             overflow: hidden;
             border: 1px solid rgba(0, 255, 255, 0.4);
             transition: 0.3s;
+            transform-style: preserve-3d;
         }
-        .cosmic-card img {
+        .product-card:hover {
+            transform: translateY(-15px);
+            border-color: magenta;
+        }
+        .product-img {
             width: 100%;
             height: 280px;
             object-fit: cover;
-            transition: transform 0.6s;
         }
-        .cosmic-card:hover img {
-            transform: scale(1.05);
-        }
-        .card-info {
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        /* filter bar */
-        .search-bar {
+        .filter-bar {
             display: flex;
             justify-content: center;
-            margin: 30px 0;
+            margin: 40px 0;
         }
-        .glow-input {
-            background: rgba(0, 0, 0, 0.7);
+        .glow-search {
+            background: rgba(0,0,0,0.6);
             border: 1px solid cyan;
             border-radius: 60px;
             padding: 14px 30px;
-            width: 400px;
+            width: 380px;
             color: white;
             font-size: 1rem;
         }
 
-        /* Buttons magnetic & interactive */
-        .magnetic-btn {
-            display: inline-block;
-            padding: 14px 38px;
-            background: linear-gradient(90deg, #00c6ff, #0072ff);
+        /* MAGNETIC BUTTONS */
+        .mag-btn {
+            background: linear-gradient(90deg, #0072ff, #00c6ff);
             border: none;
+            padding: 12px 32px;
             border-radius: 60px;
             font-weight: bold;
-            font-size: 1rem;
             transition: 0.2s;
-            color: white;
             cursor: pointer;
-            box-shadow: 0 0 12px cyan;
+            color: white;
         }
 
-        /* Telegram Bot Terminal Showcase */
-        .terminal-glow {
-            background: #0a0f1c;
+        /* TELEGRAM BOT TERMINAL */
+        .bot-terminal {
+            background: #050a12;
             border-radius: 32px;
             padding: 2rem;
             border: 1px solid magenta;
-            box-shadow: 0 0 25px rgba(255, 51, 102, 0.3);
-            margin: 60px 0;
+            margin: 80px 0;
+            box-shadow: 0 0 30px rgba(255, 51, 102, 0.3);
         }
 
-        /* Scroll reveals */
+        /* SCROLL REVEAL */
         .reveal {
             opacity: 0;
-            transform: translateY(60px);
-            transition: all 1.2s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+            transform: translateY(50px);
+            transition: all 1s cubic-bezier(0.2, 0.9, 0.4, 1.2);
         }
         .revealed {
             opacity: 1;
@@ -284,322 +326,340 @@
         }
 
         footer {
-            padding: 50px 0;
             text-align: center;
-            border-top: 1px solid rgba(0, 255, 255, 0.3);
+            padding: 50px;
+            border-top: 1px solid rgba(0,255,255,0.2);
             margin-top: 80px;
-        }
-
-        /* no mobile responsiveness - desktop only, no media queries for smaller screens */
-        /* but ensure horizontal scroll doesn't break */
-        body {
-            overflow-x: hidden;
-        }
-        .cursor-follower, .cursor-dot {
-            display: block;
         }
     </style>
 </head>
 <body>
 
-<div class="preloader-epic" id="preloaderEpic">
-    <div class="preloader-text">⟁ FIROMSA.AI ⟁</div>
+<div class="preloader" id="preloader">
+    <h1>⟁ FIROMSA.X ⟁</h1>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+    <p style="margin-top: 20px;">LOADING UNSEEN DIMENSIONS</p>
 </div>
 
-<canvas id="bg-canvas"></canvas>
+<canvas id="three-canvas"></canvas>
 
-<div class="cursor-follower" id="cursorOut"></div>
+<div class="cursor-follower" id="cursorOutline"></div>
 <div class="cursor-dot" id="cursorDot"></div>
 
-<nav class="navbar">
-    <div class="logo">✦ FIROMSA X ✦</div>
+<nav class="glass-nav">
+    <div class="logo">✦ FIROMSA.AI ✦</div>
     <div class="nav-links">
-        <a href="#home">HOM3</a>
-        <a href="#design">DESIGN</a>
-        <a href="#catalog">CATALOG</a>
-        <a href="#botverse">BOT_VERSE</a>
-        <a href="#contact">NEXUS</a>
+        <a href="#home">CORE</a>
+        <a href="#design">VISIONS</a>
+        <a href="#catalog">NEXUS</a>
+        <a href="#botverse">BOTVERSE</a>
+        <a href="#contact">CONTACT</a>
     </div>
 </nav>
 
-<div class="master-container">
+<div class="master">
     <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="hero-glow">[ GRAPHIC DESIGNER + BOT ARCHITECT ]</div>
+        <div>
+            <div class="sub">[ GRAPHIC DESIGNER • BOT ARCHITECT • 3D ARTIST ]</div>
             <h1>Firomsa Ahmed</h1>
-            <p style="font-size: 1.5rem; margin-top: 20px;">Crafting digital souls & immersive realities</p>
-            <div style="margin-top: 40px;">
-                <button class="magnetic-btn" id="exploreBtn">EXPLORE THE VOID →</button>
-            </div>
+            <p style="font-size: 1.3rem; margin-top: 20px;">Engineering digital souls & immersive realities</p>
+            <button class="mag-btn" id="exploreBtn" style="margin-top: 40px;">⟁ EXPLORE THE VOID ⟁</button>
         </div>
     </section>
 
-    <!-- Bento Grid Skills -->
-    <div class="bento-master reveal">
-        <div class="glass-tile"><div class="tile-icon"><i class="fas fa-cube"></i></div><h3>3D / WebGL</h3><p>Three.js / React Three Fiber mastery — immersive web experiences, real-time particles.</p></div>
-        <div class="glass-tile"><div class="tile-icon"><i class="fas fa-pen-fancy"></i></div><h3>Graphic Identity</h3><p>Logos, visual languages, motion branding that resonate in the digital age.</p></div>
-        <div class="glass-tile"><div class="tile-icon"><i class="fab fa-telegram"></i></div><h3>Telegram Bots</h3><p>Mini Apps, AI chatbots, automation ecosystems — scale your community.</p></div>
-        <div class="glass-tile"><div class="tile-icon"><i class="fas fa-database"></i></div><h3>Supabase Power</h3><p>Real-time backends, serverless functions, instant APIs.</p></div>
+    <!-- BENTO SKILLS / TOOLS -->
+    <div class="bento reveal">
+        <div class="bento-item"><div class="bento-icon"><i class="fas fa-cube"></i></div><h3>THREE.JS MASTERY</h3><p>Real-time 3D immersive experiences, interactive shaders, and particle cosmos.</p></div>
+        <div class="bento-item"><div class="bento-icon"><i class="fas fa-paintbrush"></i></div><h3>GRAPHIC IDENTITY</h3><p>Logos, visual languages, and futuristic brand ecosystems.</p></div>
+        <div class="bento-item"><div class="bento-icon"><i class="fab fa-telegram"></i></div><h3>TELEGRAM BOTS</h3><p>Mini Apps, AI automation, crypto bots, and community engines.</p></div>
+        <div class="bento-item"><div class="bento-icon"><i class="fas fa-database"></i></div><h3>SUPABASE REALMS</h3><p>Real-time backends, row-level security, instant APIs.</p></div>
     </div>
 
-    <!-- Design Gallery -->
+    <!-- DESIGN GALLERY -->
     <section id="design" class="reveal">
         <h2 style="font-size: 3rem; text-align: center; margin-bottom: 20px;">✦ VISUAL ALCHEMY ✦</h2>
-        <div class="product-galaxy">
-            <div class="cosmic-card"><img src="https://placehold.co/800x600/0a0f1a/cyan?text=BRAND+IDENTITY" alt="brand"><div class="card-info"><h3>Epic Branding</h3><p>Minimalist yet powerful</p></div></div>
-            <div class="cosmic-card"><img src="https://placehold.co/800x600/1a0f2a/magenta?text=POSTER+SERIES" alt="poster"><div class="card-info"><h3>Cinematic Posters</h3><p>High contrast storytelling</p></div></div>
-            <div class="cosmic-card"><img src="https://placehold.co/800x600/0f1f2a/cyan?text=SOCIAL+KIT" alt="social"><div class="card-info"><h3>Viral Assets</h3><p>Social media domination</p></div></div>
+        <div class="catalog-grid">
+            <div class="product-card"><img class="product-img" src="https://placehold.co/800x600/001122/cyan?text=BRAND+ECLIPSE" alt="brand"><div class="card-info" style="padding:1.2rem;"><h3>Neon Identity</h3><p>Cyberpunk aesthetics</p></div></div>
+            <div class="product-card"><img class="product-img" src="https://placehold.co/800x600/220011/magenta?text=POSTER+VOID" alt="poster"><div class="card-info" style="padding:1.2rem;"><h3>Poster Surrealism</h3><p>High contrast meta narratives</p></div></div>
+            <div class="product-card"><img class="product-img" src="https://placehold.co/800x600/112200/cyan?text=SOCIAL+KIT" alt="social"><div class="card-info" style="padding:1.2rem;"><h3>Viral Assets</h3><p>Social media domination kits</p></div></div>
         </div>
     </section>
 
-    <!-- PRODUCT CATALOG with Supabase + Likes / Filter (real-time) -->
+    <!-- SUPABASE CATALOG (REAL-TIME FILTER + LIKES) -->
     <section id="catalog" class="reveal">
-        <h2 style="font-size: 3rem; text-align: center;">✨ COSMIC MARKET ✨</h2>
-        <div class="search-bar"><input type="text" id="filterSearch" class="glow-input" placeholder="🔍 Filter artifacts..."></div>
-        <div id="productContainer" class="product-galaxy"><div style="text-align:center; padding: 60px;">🌀 LOADING NEBULA...</div></div>
+        <h2 style="font-size: 3rem; text-align: center;">✨ QUANTUM MARKET ✨</h2>
+        <div class="filter-bar"><input type="text" id="searchProducts" class="glow-search" placeholder="🔍 Filter artifacts..."></div>
+        <div id="productContainer" class="catalog-grid"><div style="text-align:center; padding:60px;">🌀 LOADING COSMIC INVENTORY...</div></div>
     </section>
 
-    <!-- TELEGRAM BOT SHOWCASE (Interactive Terminal) -->
+    <!-- TELEGRAM BOT TERMINAL + MINI APP DEMO -->
     <section id="botverse" class="reveal">
-        <div class="terminal-glow">
-            <h2 style="font-size: 2.5rem;"><i class="fab fa-telegram"></i> BOT TERMINAL // TELEGRAM MINI APP</h2>
-            <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
-                <div style="flex: 1;">
-                    <p style="margin: 20px 0;">⚡ My portfolio runs as a Telegram Mini App — seamless WebApp integration.<br>
-                    🔮 Real‑time bot commands: /skills, /resume, /portfolio, /contact</p>
-                    <button id="twaDemoBtn" class="magnetic-btn">🚀 Launch Mini App Preview</button>
-                </div>
-                <div style="flex: 1; background: #03060c; padding: 20px; border-radius: 28px;">
-                    <div><i class="fas fa-terminal"></i> BOT COMMAND LINE</div>
-                    <div id="terminalResponse" style="background:#000000; padding: 15px; margin: 15px 0; border-radius: 20px; font-family: monospace; border-left: 4px solid cyan;">> type /help</div>
-                    <div style="display: flex; gap: 10px;"><input type="text" id="botCmdInput" placeholder="/resume" class="glow-input" style="flex:1;"><button id="runCmdBtn" class="magnetic-btn" style="padding: 8px 20px;">EXEC</button></div>
+        <div class="bot-terminal">
+            <h2 style="font-size: 2rem;"><i class="fab fa-telegram"></i> BOT VERSE :: TELEGRAM MINI APP</h2>
+            <div style="display: flex; gap: 30px; margin-top: 25px; flex-wrap: wrap;">
+                <div style="flex:1"><p>🌌 My portfolio works as a Telegram Mini App — seamless WebApp integration.<br>🔮 Command Line Interface: </p>
+                <button id="twaMockBtn" class="mag-btn">🚀 LAUNCH MINI APP</button></div>
+                <div style="flex:1; background:#020408; border-radius: 28px; padding: 20px;">
+                    <div><i class="fas fa-terminal"></i> BOT_TERMINAL v2.0</div>
+                    <div id="terminalResponse" style="background:#000; padding: 15px; margin: 15px 0; border-radius: 20px; font-family: monospace; border-left: 3px solid cyan;">> type /help</div>
+                    <div style="display: flex; gap:10px;"><input type="text" id="botCmdInput" placeholder="/resume" class="glow-search" style="flex:1;"><button id="execCmdBtn" class="mag-btn">EXECUTE</button></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact / Nexus -->
+    <!-- CONTACT / ENERGY NEXUS -->
     <section id="contact" class="reveal">
-        <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 30px; margin: 60px 0;">
-            <div class="glass-tile"><i class="fas fa-envelope fa-2x"></i><h3>Email</h3><a href="mailto:firomsaahmed51@gmail.com" style="color: cyan;">firomsaahmed51@gmail.com</a></div>
-            <div class="glass-tile"><i class="fab fa-telegram fa-2x"></i><h3>Telegram</h3><a href="https://t.me/Fira385508" style="color: cyan;">@Fira385508</a></div>
-            <div class="glass-tile"><i class="fab fa-whatsapp fa-2x"></i><h3>WhatsApp</h3><a href="https://wa.me/251946004640" style="color: cyan;">+251 946 004 640</a></div>
+        <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 30px; margin: 70px 0;">
+            <div class="bento-item"><i class="fas fa-envelope fa-2x"></i><h3>Email</h3><a href="mailto:firomsaahmed51@gmail.com" style="color:cyan;">firomsaahmed51@gmail.com</a></div>
+            <div class="bento-item"><i class="fab fa-telegram fa-2x"></i><h3>Telegram</h3><a href="https://t.me/Fira385508" style="color:cyan;">@Fira385508</a></div>
+            <div class="bento-item"><i class="fab fa-whatsapp fa-2x"></i><h3>WhatsApp</h3><a href="https://wa.me/251946004640" style="color:cyan;">+251 946 004 640</a></div>
         </div>
-        <div style="background: rgba(0,0,0,0.6); backdrop-filter: blur(20px); border-radius: 48px; padding: 40px; border: 1px solid cyan; max-width: 700px; margin: 0 auto;">
-            <h3 style="text-align: center;">SEND A SIGNAL</h3>
-            <form id="contactSuperForm">
-                <input type="text" id="contactName" placeholder="Your identity" class="glow-input" style="width:100%; margin: 10px 0;">
-                <input type="email" id="contactEmail" placeholder="Quantum mail" class="glow-input" style="width:100%; margin: 10px 0;">
-                <textarea id="contactMsg" rows="4" placeholder="Manifest your vision..." class="glow-input" style="width:100%; margin: 10px 0; border-radius: 32px;"></textarea>
-                <button type="submit" class="magnetic-btn" style="width:100%;">⟁ TRANSMIT ⟁</button>
+        <div style="background: rgba(0,0,0,0.5); backdrop-filter: blur(20px); border-radius: 48px; padding: 40px; border: 1px solid cyan; max-width: 600px; margin: 0 auto;">
+            <h3 style="text-align: center;">⟁ SEND A SIGNAL ⟁</h3>
+            <form id="contactQuantumForm">
+                <input type="text" id="contactName" placeholder="Your name" class="glow-search" style="width:100%; margin: 12px 0;">
+                <input type="email" id="contactEmail" placeholder="Your email" class="glow-search" style="width:100%; margin: 12px 0;">
+                <textarea id="contactMsg" rows="4" placeholder="Describe your vision..." class="glow-search" style="width:100%; margin: 12px 0; border-radius: 32px;"></textarea>
+                <button type="submit" class="mag-btn" style="width:100%;">⟁ TRANSMIT ⟁</button>
             </form>
         </div>
     </section>
-    <footer>© 2026 Firomsa Ahmed — The Singularity Portfolio | Immersive Design & AI Bots</footer>
+    <footer>© 2026 FIROMSA AHMED — THE UNSEEN DIMENSION | AWWWARDS LEVEL</footer>
 </div>
 
-<script type="module">
-    import * as THREE from 'https://unpkg.com/three@0.128.0/build/three.module.js';
+<script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
+        }
+    }
+</script>
 
-    // --- BACKGROUND PARTICLE GALAXY (EPIC) ---
-    const canvasBg = document.getElementById('bg-canvas');
+<script type="module">
+    import * as THREE from 'three';
+
+    // ---- THREE.JS HYPERSPHERE (REACTIVE TO MOUSE) ----
+    const canvas3D = document.getElementById('three-canvas');
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 30;
-    const renderer = new THREE.WebGLRenderer({ canvas: canvasBg, alpha: true });
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 18;
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas3D, alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
-    
-    const particleCount = 4000;
-    const geometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(particleCount * 3);
-    const colors = new Float32Array(particleCount * 3);
-    for (let i = 0; i < particleCount; i++) {
-        positions[i*3] = (Math.random() - 0.5) * 200;
-        positions[i*3+1] = (Math.random() - 0.5) * 100;
-        positions[i*3+2] = (Math.random() - 0.5) * 80 - 40;
-        colors[i*3] = Math.random() * 0.5 + 0.5;
-        colors[i*3+1] = Math.random() * 0.3 + 0.7;
-        colors[i*3+2] = Math.random() * 0.8 + 0.2;
-    }
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-    const particleMat = new THREE.PointsMaterial({ size: 0.25, vertexColors: true, transparent: true, opacity: 0.7, blending: THREE.AdditiveBlending });
-    const particles = new THREE.Points(geometry, particleMat);
-    scene.add(particles);
-    
-    const starField = new THREE.Points(new THREE.BufferGeometry(), new THREE.PointsMaterial({ color: 0xffffff, size: 0.1 }));
-    const starPos = [];
-    for (let i=0;i<2000;i++) { starPos.push((Math.random()-0.5)*400, (Math.random()-0.5)*200, (Math.random()-0.5)*150-50); }
-    starField.geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(starPos), 3));
-    scene.add(starField);
-    
-    function animateBg() {
-        requestAnimationFrame(animateBg);
-        particles.rotation.y += 0.0005;
-        particles.rotation.x += 0.0003;
-        starField.rotation.y -= 0.0002;
-        camera.position.x += (0 - camera.position.x) * 0.02;
-        camera.position.y += (0 - camera.position.y) * 0.02;
+
+    // main abstract shape: TorusKnot + Icosahedron glow
+    const geometry = new THREE.TorusKnotGeometry(2.5, 0.6, 200, 32, 3, 4);
+    const material = new THREE.MeshStandardMaterial({ color: 0x00aaff, emissive: 0x004466, roughness: 0.2, metalness: 0.8, wireframe: false });
+    const knot = new THREE.Mesh(geometry, material);
+    scene.add(knot);
+
+    const wireGeo = new THREE.IcosahedronGeometry(3.2, 0);
+    const wireMat = new THREE.MeshBasicMaterial({ color: 0xff44aa, wireframe: true, transparent: true, opacity: 0.35 });
+    const wireIco = new THREE.Mesh(wireGeo, wireMat);
+    scene.add(wireIco);
+
+    const ambientLight = new THREE.AmbientLight(0x222222);
+    scene.add(ambientLight);
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+    dirLight.position.set(5, 10, 7);
+    scene.add(dirLight);
+    const backLight = new THREE.PointLight(0x3366ff, 0.5);
+    backLight.position.set(-3, 2, -5);
+    scene.add(backLight);
+
+    let mouseX = 0, mouseY = 0;
+    document.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+        // update mesh gradient background variable
+        document.body.style.setProperty('--mx', (e.clientX / window.innerWidth) * 100 + '%');
+        document.body.style.setProperty('--my', (e.clientY / window.innerHeight) * 100 + '%');
+    });
+
+    function animate3D() {
+        requestAnimationFrame(animate3D);
+        knot.rotation.x += 0.005;
+        knot.rotation.y += 0.008;
+        wireIco.rotation.x = knot.rotation.x * 0.8;
+        wireIco.rotation.y = knot.rotation.y * 0.9;
+        // cursor-reactive tilt
+        knot.rotation.z += 0.003 + mouseX * 0.02;
+        wireIco.rotation.z = knot.rotation.z * 0.5;
         renderer.render(scene, camera);
     }
-    animateBg();
+    animate3D();
     window.addEventListener('resize', () => {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
     });
-    
-    // --- Cursor animation & magnetic buttons
-    const cursorOut = document.getElementById('cursorOut');
+
+    // ---- CUSTOM CURSOR + HOVER INTERACTION ----
+    const cursorOutline = document.getElementById('cursorOutline');
     const cursorDot = document.getElementById('cursorDot');
     document.addEventListener('mousemove', (e) => {
-        cursorOut.style.left = e.clientX + 'px';
-        cursorOut.style.top = e.clientY + 'px';
+        cursorOutline.style.left = e.clientX + 'px';
+        cursorOutline.style.top = e.clientY + 'px';
         cursorDot.style.left = e.clientX + 'px';
         cursorDot.style.top = e.clientY + 'px';
     });
-    const btns = document.querySelectorAll('.magnetic-btn, .cosmic-card, .glass-tile');
-    btns.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursorOut.style.width = '90px';
-            cursorOut.style.height = '90px';
-            cursorOut.style.borderColor = '#ff3366';
-            cursorOut.style.background = 'rgba(255,51,102,0.2)';
-        });
-        el.addEventListener('mouseleave', () => {
-            cursorOut.style.width = '60px';
-            cursorOut.style.height = '60px';
-            cursorOut.style.borderColor = 'cyan';
-            cursorOut.style.background = 'transparent';
-        });
+    const hoverables = document.querySelectorAll('a, button, .bento-item, .product-card, .mag-btn');
+    hoverables.forEach(el => {
+        el.addEventListener('mouseenter', () => cursorOutline.classList.add('cursor-hover'));
+        el.addEventListener('mouseleave', () => cursorOutline.classList.remove('cursor-hover'));
     });
-    
-    // --- Preloader removal ---
+
+    // ---- PRELOADER REMOVAL ----
     setTimeout(() => {
-        const pre = document.getElementById('preloaderEpic');
-        pre.style.opacity = '0';
-        setTimeout(() => pre.remove(), 1500);
-    }, 2000);
-    
-    // --- SUPABASE CONFIG + Product Catalog with LIKES/Filter
+        const preloader = document.getElementById('preloader');
+        preloader.style.opacity = '0';
+        setTimeout(() => preloader.remove(), 1200);
+    }, 2100);
+
+    // ---- SUPABASE CONFIG & REAL-TIME CATALOG ----
     const SUPABASE_URL = 'https://cvgterohigfjdkulmryb.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_7-U83GJsOxTb8uLFG0ms4Q_2zIAQ2U1';
-    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-    
-    let currentProducts = [];
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    let productsData = [];
     const productContainer = document.getElementById('productContainer');
-    const filterInput = document.getElementById('filterSearch');
-    
-    async function loadProducts() {
-        const { data, error } = await supabaseClient.from('products').select('*');
+    const searchInput = document.getElementById('searchProducts');
+
+    async function fetchProducts() {
+        const { data, error } = await supabase.from('products').select('*');
         if (error) {
-            productContainer.innerHTML = '<div class="glass-tile">⚠️ Database error. Add "products" table.</div>';
+            productContainer.innerHTML = '<div class="bento-item">⚠️ Add "products" table in Supabase</div>';
             return [];
         }
-        currentProducts = data || [];
-        renderProducts(currentProducts);
-        return currentProducts;
+        productsData = data || [];
+        renderProducts(productsData);
+        return productsData;
     }
-    
+
     function renderProducts(products) {
         if (!products.length) {
-            productContainer.innerHTML = '<div class="glass-tile">✨ No products yet. Insert rows in Supabase.</div>';
+            productContainer.innerHTML = '<div class="bento-item">✨ No artifacts yet. Insert rows in Supabase.</div>';
             return;
         }
         productContainer.innerHTML = products.map(p => `
-            <div class="cosmic-card" data-id="${p.id}">
-                <img src="${p.image_url || 'https://placehold.co/800x600/0a0f1a/cyan?text=ARTIFACT'}" onerror="this.src='https://placehold.co/800x600/0a0f1a/cyan?text=VOID'">
-                <div class="card-info">
+            <div class="product-card" data-id="${p.id}">
+                <img class="product-img" src="${p.image_url || 'https://placehold.co/800x600/0a0f1a/cyan?text=DIMENSIONAL+ARTIFACT'}" onerror="this.src='https://placehold.co/800x600/0a0f1a/cyan?text=VOID'">
+                <div style="padding:1.2rem;">
                     <h3>${escapeHtml(p.name)}</h3>
-                    <p style="font-size: 1.5rem; color: cyan;">$${parseFloat(p.price).toFixed(2)}</p>
-                    <button class="like-btn-custom magnetic-btn" style="margin: 10px; background: transparent; border:1px solid magenta;" data-id="${p.id}">❤️ ${p.likes || 0} likes</button>
-                    <button class="inquiry-btn magnetic-btn" style="background: transparent; border:1px solid cyan;">✨ Inquire</button>
+                    <p style="font-size: 1.5rem; color:cyan;">$${parseFloat(p.price).toFixed(2)}</p>
+                    <button class="like-btn mag-btn" data-id="${p.id}" style="background:transparent; border:1px solid magenta; margin-right:10px;">❤️ ${p.likes || 0} likes</button>
+                    <button class="inquiry-btn mag-btn" style="background:transparent; border:1px solid cyan;">✨ Inquire</button>
                 </div>
             </div>
         `).join('');
         
-        document.querySelectorAll('.like-btn-custom').forEach(btn => {
+        document.querySelectorAll('.like-btn').forEach(btn => {
             btn.addEventListener('click', async (e) => {
                 e.stopPropagation();
                 const pid = btn.getAttribute('data-id');
-                const product = currentProducts.find(p => p.id == pid);
+                const product = productsData.find(p => p.id == pid);
                 const newLikes = (product.likes || 0) + 1;
-                const { error } = await supabaseClient.from('products').update({ likes: newLikes }).eq('id', pid);
+                const { error } = await supabase.from('products').update({ likes: newLikes }).eq('id', pid);
                 if (!error) {
                     product.likes = newLikes;
-                    renderProducts(currentProducts.filter(p => p.name.toLowerCase().includes(filterInput?.value.toLowerCase() || '')));
-                    showToast('❤️ Liked!');
+                    renderProducts(productsData.filter(p => p.name.toLowerCase().includes(searchInput.value.toLowerCase())));
+                    showToast('❤️ Energy transferred (liked)');
                 } else showToast('Error', 'error');
             });
         });
-        document.querySelectorAll('.inquiry-btn').forEach(btn => btn.addEventListener('click', () => alert('📡 Send message via Telegram / WhatsApp to claim this piece')));
+        document.querySelectorAll('.inquiry-btn').forEach(btn => btn.addEventListener('click', () => alert('📡 Send a message via Telegram/WhatsApp to claim this artifact')));
     }
-    
+
     function escapeHtml(str) { return str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m])); }
-    function showToast(msg) { const t = document.createElement('div'); t.innerText = msg; t.style.position='fixed'; t.style.bottom='30px'; t.style.right='30px'; t.style.background='rgba(0,0,0,0.8)'; t.style.padding='12px 24px'; t.style.borderRadius='40px'; t.style.backdropFilter='blur(10px)'; t.style.border='1px solid cyan'; t.style.zIndex='10000'; document.body.appendChild(t); setTimeout(()=>t.remove(),2500); }
-    
-    filterInput.addEventListener('input', (e) => {
+    function showToast(msg) {
+        const div = document.createElement('div');
+        div.innerText = msg;
+        div.style.position = 'fixed';
+        div.style.bottom = '30px';
+        div.style.right = '30px';
+        div.style.background = 'rgba(0,0,0,0.8)';
+        div.style.padding = '12px 24px';
+        div.style.borderRadius = '40px';
+        div.style.border = '1px solid cyan';
+        div.style.zIndex = '10000';
+        div.style.backdropFilter = 'blur(10px)';
+        document.body.appendChild(div);
+        setTimeout(() => div.remove(), 2800);
+    }
+
+    searchInput.addEventListener('input', (e) => {
         const term = e.target.value.toLowerCase();
-        const filtered = currentProducts.filter(p => p.name.toLowerCase().includes(term));
+        const filtered = productsData.filter(p => p.name.toLowerCase().includes(term));
         renderProducts(filtered);
     });
-    
-    loadProducts();
-    
-    // --- Contact Form with Supabase messages
-    const contactForm = document.getElementById('contactSuperForm');
+
+    fetchProducts();
+
+    // ---- CONTACT FORM (SUPABASE messages) ----
+    const contactForm = document.getElementById('contactQuantumForm');
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const name = document.getElementById('contactName').value;
         const email = document.getElementById('contactEmail').value;
         const message = document.getElementById('contactMsg').value;
-        if (!name || !email || !message) return showToast('Fill all fields');
-        const { error } = await supabaseClient.from('messages').insert([{ name, email, message, created_at: new Date() }]);
-        if (error) showToast('Error transmitting', 'error');
-        else { showToast('✅ Signal sent! I will contact you within 24h'); contactForm.reset(); }
+        if (!name || !email || !message) return showToast('All fields required');
+        const { error } = await supabase.from('messages').insert([{ name, email, message, created_at: new Date() }]);
+        if (error) showToast('Transmission failed', 'error');
+        else { showToast('✅ Signal received — I will reply within 24h'); contactForm.reset(); }
     });
-    
-    // --- TELEGRAM BOT TERMINAL SIMULATION
+
+    // ---- TELEGRAM BOT TERMINAL (INTERACTIVE) ----
     const botInput = document.getElementById('botCmdInput');
-    const runBtn = document.getElementById('runCmdBtn');
+    const execBtn = document.getElementById('execCmdBtn');
     const terminalResp = document.getElementById('terminalResponse');
-    function processBotCommand(cmd) {
-        let resp = '';
+    function processBotCmd(cmd) {
+        let response = '';
         switch(cmd.trim().toLowerCase()) {
-            case '/resume': resp = '📄 Firomsa Ahmed: 7+ years in creative direction, Telegram bot development, Three.js immersive experiences. Clients worldwide.'; break;
-            case '/skills': resp = '🎨 Design: Adobe Suite, Figma. Dev: React, Node, Three.js, Supabase, Python. Bots: Telegram API, AI integration.'; break;
-            case '/portfolio': resp = '🌟 50+ design projects, 15+ web apps, custom Telegram bots for finance, communities, and e-commerce.'; break;
-            case '/contact': resp = '📬 Email firomsaahmed51@gmail.com | Telegram @Fira385508 | WhatsApp +251946004640'; break;
-            case '/help': resp = '⚡ Commands: /resume , /skills , /portfolio , /contact , /twa'; break;
-            case '/twa': resp = '📱 Telegram Mini App ready! Open t.me/Fira385508?startapp=portfolio to launch WebApp version.'; break;
-            default: resp = '❓ Unknown command. Try /help';
+            case '/resume': response = '📄 Firomsa Ahmed: 8+ years creative direction, full‑stack dev, Telegram bot architect, 3D web experiences.'; break;
+            case '/skills': response = '🎨 Graphic Design (Figma, PS), Frontend (Three.js, React), Backend (Supabase, Node.js), Bots (Python, Telegram API).'; break;
+            case '/portfolio': response = '🌟 40+ design projects, 20+ web apps, custom telegram bots for fintech, communities, and e‑commerce.'; break;
+            case '/contact': response = '📬 firomsaahmed51@gmail.com | Telegram @Fira385508 | WhatsApp +251946004640'; break;
+            case '/twa': response = '📱 Telegram Mini App ready! @Fira385508 WebApp available.'; break;
+            case '/help': response = 'Commands: /resume, /skills, /portfolio, /contact, /twa'; break;
+            default: response = '❓ Unknown command. Type /help';
         }
-        terminalResp.innerHTML = `> ${cmd}<br><span style="color: #0ff;">${resp}</span>`;
+        terminalResp.innerHTML = `> ${cmd}<br><span style="color:#0ff;">${response}</span>`;
     }
-    runBtn.addEventListener('click', () => { if(botInput.value) processBotCommand(botInput.value); });
-    botInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') processBotCommand(botInput.value); });
+    execBtn.addEventListener('click', () => { if(botInput.value) processBotCmd(botInput.value); });
+    botInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') processBotCmd(botInput.value); });
     
-    const twaBtn = document.getElementById('twaDemoBtn');
-    twaBtn.addEventListener('click', () => alert('🌟 Launching Telegram Mini App: t.me/Fira385508?startapp=portfolio — copy link and open in Telegram!'));
-    
-    // --- scroll reveal observer
+    const twaMock = document.getElementById('twaMockBtn');
+    twaMock.addEventListener('click', () => alert('🌟 Telegram Mini App: t.me/Fira385508?startapp=portfolio — paste in Telegram to launch immersive WebApp!'));
+
+    // ---- SCROLL REVEAL + PARALLAX EFFECT ----
     const reveals = document.querySelectorAll('.reveal');
-    const scrollObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('revealed'); });
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('revealed'); });
     }, { threshold: 0.2 });
-    reveals.forEach(el => scrollObserver.observe(el));
-    
-    // Smooth anchor
-    document.querySelectorAll('.nav-links a').forEach(anchor => anchor.addEventListener('click', function(e){
+    reveals.forEach(r => obs.observe(r));
+
+    // Smooth scrolling nav
+    document.querySelectorAll('.nav-links a').forEach(anchor => anchor.addEventListener('click', function(e) {
         const targetId = this.getAttribute('href');
-        if(targetId && targetId !== '#') {
+        if (targetId && targetId !== '#') {
             e.preventDefault();
             const target = document.querySelector(targetId);
-            if(target) target.scrollIntoView({ behavior: 'smooth' });
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
         }
     }));
     document.getElementById('exploreBtn').addEventListener('click', () => document.querySelector('#design').scrollIntoView({ behavior: 'smooth' }));
+    
+    // ---- PARALLAX SCROLLING FOR CARDS ----
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        document.querySelectorAll('.product-card').forEach((card, idx) => {
+            const speed = 0.08;
+            const yOffset = scrolled * speed * (idx % 2 === 0 ? 0.5 : -0.3);
+            if (window.innerWidth > 1000) card.style.transform = `translateY(${yOffset}px)`;
+        });
+    });
+    
+    console.log('UNSEEN DIMENSION ACTIVATED');
 </script>
 </body>
 </html>
