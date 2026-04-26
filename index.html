@@ -1,509 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Firomsa Ahmed | Graphic Designer + Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --primary: #0a0c10;
-      --secondary: #2c7da0;
-      --accent: #f4a261;
-      --text-light: #edf2f4;
-      --text-muted: #8d99ae;
-      --card-bg: #1e242c;
-      --border: #2b3b4c;
-      --transition: all 0.3s cubic-bezier(0.2,0.9,0.4,1.1);
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--primary);
-      color: var(--text-light);
-      line-height: 1.5;
-      scroll-behavior: smooth;
-    }
-    body.light-mode {
-      --primary: #fefcf3;
-      --card-bg: #ffffff;
-      --text-light: #1e2a3e;
-      --text-muted: #4a5b6e;
-      --border: #dce5f0;
-    }
-    .container { width: 90%; max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
-    section { padding: 80px 0; scroll-margin-top: 80px; }
-    h2 { font-size: clamp(2rem,5vw,2.8rem); margin-bottom: 2rem; text-align: center; }
-    h2 span { background: linear-gradient(135deg, var(--secondary), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .section-sub { text-align: center; color: var(--text-muted); max-width: 700px; margin: -1rem auto 3rem; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.9rem 2rem;
-      border-radius: 60px; font-weight: 600; transition: var(--transition); cursor: pointer;
-      border: none; font-size: 1rem; text-decoration: none;
-    }
-    .btn-primary { background: var(--secondary); color: white; }
-    .btn-primary:hover { background: var(--accent); transform: translateY(-4px); }
-    .btn-outline { background: transparent; border: 2px solid var(--secondary); color: var(--secondary); }
-    .btn-outline:hover { background: var(--secondary); color: white; }
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 28px;
-      margin-top: 2rem;
-    }
-    .product-card {
-      background: var(--card-bg);
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      transition: var(--transition);
-      display: flex;
-      flex-direction: column;
-    }
-    .product-card:hover { transform: translateY(-6px); border-color: var(--secondary); }
-    .product-img { width: 100%; height: 220px; object-fit: cover; background: #2c3e4f; }
-    .product-info { padding: 1.2rem; text-align: center; }
-    .product-price { color: var(--accent); font-weight: 700; font-size: 1.3rem; margin: 0.5rem 0; }
-    .spinner {
-      width: 48px; height: 48px; border: 5px solid var(--border);
-      border-top: 5px solid var(--secondary); border-radius: 50%;
-      animation: spin 1s linear infinite; margin: 2rem auto;
-    }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    .toast-container {
-      position: fixed; bottom: 30px; right: 30px; z-index: 9999;
-      display: flex; flex-direction: column; gap: 12px;
-    }
-    .toast {
-      background: var(--card-bg); backdrop-filter: blur(12px); padding: 1rem 1.8rem;
-      border-radius: 60px; font-weight: 500; box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      border-left: 5px solid; animation: slideIn 0.3s ease forwards; color: var(--text-light);
-    }
-    .toast.success { border-left-color: #2e7d64; }
-    .toast.error { border-left-color: #c44536; }
-    @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-    .hero-avatar {
-      width: 160px; height: 160px; margin: 2rem auto; border-radius: 50%; overflow: hidden;
-      border: 4px solid var(--secondary); box-shadow: 0 20px 30px -10px rgba(0,0,0,0.3);
-      cursor: pointer; transition: transform 0.3s ease;
-    }
-    .hero-avatar:hover { transform: scale(1.02); }
-    .hero-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .navbar { background: rgba(10,12,16,0.95); backdrop-filter: blur(12px); position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1rem 0; border-bottom: 1px solid rgba(44,125,160,0.3); }
-    .nav-container { display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, var(--secondary), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .nav-menu { display: flex; gap: 2rem; list-style: none; }
-    .nav-link { color: var(--text-light); font-weight: 500; text-decoration: none; transition: 0.2s; }
-    .nav-link:hover { color: var(--accent); }
-    .theme-toggle { background: transparent; border: none; font-size: 1.4rem; cursor: pointer; color: var(--text-light); margin-left: 1rem; }
-    .hamburger { display: none; flex-direction: column; cursor: pointer; }
-    .bar { width: 28px; height: 3px; background: var(--text-light); margin: 3px 0; border-radius: 6px; }
-    .hero { min-height: 100vh; display: flex; align-items: center; background: radial-gradient(circle at 20% 30%, rgba(44,125,160,0.12), transparent 70%); padding-top: 5rem; }
-    .hero-content { text-align: center; max-width: 950px; margin: 0 auto; }
-    .design-grid, .projects-grid { display: grid; gap: 28px; margin-top: 1.5rem; }
-    .design-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-    .projects-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-    .design-card, .project-card {
-      background: var(--card-bg); border-radius: 20px; border: 1px solid var(--border);
-      overflow: hidden; transition: var(--transition); cursor: pointer;
-    }
-    .design-card:hover, .project-card:hover { transform: translateY(-6px); border-color: var(--secondary); }
-    .design-card img, .project-card img {
-      width: 100%; height: 220px; object-fit: cover; display: block;
-    }
-    .design-info, .project-content { padding: 1.2rem; text-align: center; }
-    .project-content .demo-btn {
-      background: var(--accent); border: none; padding: 0.5rem 1rem; border-radius: 40px;
-      color: #1e2a3e; font-weight: 600; cursor: pointer; margin-top: 0.8rem;
-      transition: 0.2s;
-    }
-    .project-content .demo-btn:hover { background: var(--secondary); color: white; }
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 28px; }
-    .service-item { background: var(--card-bg); padding: 2rem; border-radius: 24px; text-align: center; border: 1px solid var(--border); }
-    .service-item i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 1rem; }
-    .contact-container { display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; }
-    .contact-card, .contact-form { background: var(--card-bg); padding: 1.8rem; border-radius: 1.5rem; border: 1px solid var(--border); text-align: center; }
-    .contact-card a { color: var(--secondary); text-decoration: none; }
-    input, textarea { width: 100%; padding: 1rem; background: var(--primary); border: 1px solid var(--border); border-radius: 1rem; color: var(--text-light); margin-bottom: 1rem; }
-    .float-wa { position: fixed; bottom: 25px; left: 25px; background: #25D366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; z-index: 99; text-decoration: none; }
-    footer { background: #05070a; padding: 2rem 0; text-align: center; }
-    .social-links a { color: var(--text-muted); font-size: 1.5rem; margin: 0 0.5rem; transition: 0.2s; }
-    .social-links a:hover { color: var(--secondary); }
-    .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
-    .modal.active { display: flex; }
-    .modal-content { max-width: 90vw; max-height: 85vh; background: var(--card-bg); border-radius: 1.5rem; padding: 2rem; overflow: auto; }
-    .close-modal { position: absolute; top: 20px; right: 40px; font-size: 40px; color: white; cursor: pointer; }
-    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
-    @media (max-width: 768px) {
-      .hamburger { display: flex; }
-      .nav-menu { position: fixed; left: -100%; top: 70px; flex-direction: column; background: var(--primary); width: 100%; text-align: center; padding: 2rem 0; transition: 0.3s; }
-      .nav-menu.active { left: 0; }
-      .contact-container { grid-template-columns: 1fr; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firomsa Ahmed | Digital Architect & Visionary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #050505; /* Deep Black for Premium Look */
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Mesh */
+        .mesh-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #1a365d 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, #2d3748 0%, transparent 40%);
+            z-index: -1;
+            filter: blur(80px);
+            opacity: 0.5;
+        }
+
+        /* Glassmorphism Card Style */
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            transition: all 0.4s ease;
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #3b82f6;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        /* Neon Glow Text */
+        .neon-text {
+            background: linear-gradient(to right, #60a5fa, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .float { animation: float 6s ease-in-out infinite; }
+    </style>
 </head>
 <body>
 
-<nav class="navbar">
-  <div class="container nav-container">
-    <a href="#" class="logo">Firomsa Graphics</a>
-    <ul class="nav-menu" id="nav-menu">
-      <li><a href="#home" class="nav-link">Home</a></li>
-      <li><a href="#design" class="nav-link">Design</a></li>
-      <li><a href="#catalog" class="nav-link">Catalog</a></li>
-      <li><a href="#projects" class="nav-link">Coding</a></li>
-      <li><a href="#contact" class="nav-link">Contact</a></li>
-    </ul>
-    <button class="theme-toggle" id="darkModeToggle"><i class="fas fa-moon"></i></button>
-    <div class="hamburger" id="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
-  </div>
-</nav>
+    <div class="mesh-bg"></div>
 
-<!-- Hero Section -->
-<section id="home" class="hero">
-  <div class="container hero-content">
-    <div class="hero-badge"><i class="fas fa-bolt"></i> Graphic Designer + Frontend Dev 🔥</div>
-    <h1>I'm <span class="highlight">Firomsa Ahmed</span></h1>
-    <div style="font-size: 1.4rem; font-weight: 600;">Graphic Designer & Developer</div>
-    <div class="hero-avatar" id="profileAvatar">
-      <img src="Furooo.png" alt="Firomsa Ahmed" onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fas fa-user-circle\' style=\'font-size:4rem; color:var(--secondary);\'></i>';">
-    </div>
-    <div class="btn-group">
-      <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Get Started</a>
-      <a href="#catalog" class="btn btn-outline"><i class="fas fa-store"></i> View Products</a>
-    </div>
-  </div>
-</section>
+    <nav class="fixed top-0 w-full z-50 p-6 flex justify-between items-center px-12 backdrop-blur-md border-b border-white/5">
+        <div class="text-xl font-extrabold tracking-tighter">FIROMSA <span class="text-blue-500">.</span></div>
+        <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest text-gray-400">
+            <a href="#home" class="hover:text-white transition">Home</a>
+            <a href="#services" class="hover:text-white transition">Expertise</a>
+            <a href="#projects" class="hover:text-white transition">Gallery</a>
+            <a href="#contact" class="hover:text-white transition">Connect</a>
+        </div>
+        <a href="https://wa.me/251946004640" class="glass-card px-6 py-2 text-sm font-bold border border-white/10 hover:bg-white hover:text-black transition duration-500">
+            HIRE VISIONARY
+        </a>
+    </nav>
 
-<!-- Design Gallery with Guaranteed Working Images -->
-<section id="design" class="container fade-up">
-  <h2><span>My Graphic Design Works</span></h2>
-  <div class="section-sub">Professional logos • high‑impact posters • engaging social media kits</div>
-  <div class="design-grid">
-    <div class="design-card">
-      <img src="https://placehold.co/600x500/2c3e50/f4a261?text=Logo+Identity" alt="Logo Design">
-      <div class="design-info"><h4>Logo Identity</h4><p>Minimalist brand marks</p></div>
-    </div>
-    <div class="design-card">
-      <img src="https://placehold.co/600x500/1e3a5f/2c7da0?text=Event+Poster" alt="Event Poster">
-      <div class="design-info"><h4>Event Poster</h4><p>High impact & typography</p></div>
-    </div>
-    <div class="design-card">
-      <img src="https://placehold.co/600x500/283b4c/f4a261?text=Social+Media+Kit" alt="Social Media Kit">
-      <div class="design-info"><h4>Social Media Kit</h4><p>Instagram, Facebook posts</p></div>
-    </div>
-  </div>
-</section>
+    <section id="home" class="relative min-h-screen flex flex-col items-center justify-center text-center px-6">
+        <div class="absolute -top-20 float opacity-20">
+            <i class="fas fa-code text-[300px] text-blue-500 blur-3xl"></i>
+        </div>
 
-<!-- Dynamic Product Catalog (Supabase) -->
-<section id="catalog" class="container fade-up">
-  <h2><span>✨ Full Product Catalog</span></h2>
-  <div class="section-sub">All products from Supabase database — add as many as you like</div>
-  <div id="product-list" class="product-grid"><div class="spinner"></div></div>
-</section>
+        <h1 class="text-6xl md:text-8xl font-black mb-6 tracking-tight">
+            Designing The <br> <span class="neon-text underline">Future</span> of Web.
+        </h1>
+        <p class="text-gray-400 max-w-xl text-lg mb-10">
+            Firomsa Ahmed — A multidisciplinary Digital Architect specializing in 
+            Web, Apps, AI Bots, and High-End Graphics.
+        </p>
+        
+        <div class="flex space-x-4">
+            <a href="#projects" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full font-bold transition shadow-lg shadow-blue-500/20">Explore Projects</a>
+            <a href="#contact" class="glass-card px-8 py-4 rounded-full font-bold hover:bg-white/10 transition">Let's Talk</a>
+        </div>
+    </section>
 
-<!-- Services -->
-<section id="services" class="container fade-up">
-  <h2><span>What I Offer</span></h2>
-  <div class="services-grid">
-    <div class="service-item"><i class="fas fa-pen-fancy"></i><h4>Graphic Design</h4><p>Logos, flyers, branding</p></div>
-    <div class="service-item"><i class="fas fa-laptop-code"></i><h4>Website Design</h4><p>Responsive, modern frontend</p></div>
-    <div class="service-item"><i class="fas fa-chalkboard-user"></i><h4>Brand Identity</h4><p>Complete visual language</p></div>
-  </div>
-</section>
-
-<!-- Real Working Projects with Reliable Images -->
-<section id="projects" class="container fade-up">
-  <h2><span>Real Working Projects</span></h2>
-  <div class="section-sub">Fully interactive demos – click to try</div>
-  <div class="projects-grid">
-    <div class="project-card">
-      <img src="https://placehold.co/600x400/2c3e50/f4a261?text=Smart+Calculator" alt="Calculator UI">
-      <div class="project-content"><h3>Smart Calculator</h3><button class="demo-btn" data-demo="calculator">Live Demo</button></div>
-    </div>
-    <div class="project-card">
-      <img src="https://placehold.co/600x400/1e3a5f/2c7da0?text=To-Do+List+App" alt="To-Do List">
-      <div class="project-content"><h3>To-Do List App</h3><button class="demo-btn" data-demo="todo">Live Demo</button></div>
-    </div>
-    <div class="project-card">
-      <img src="https://placehold.co/600x400/283b4c/f4a261?text=Modern+Landing+Page" alt="Landing Page">
-      <div class="project-content"><h3>Modern Landing Page</h3><button class="demo-btn" data-demo="landing">Live Demo</button></div>
-    </div>
-  </div>
-</section>
-
-<!-- Contact Section -->
-<section id="contact" class="container fade-up">
-  <h2><span>Let's Work Together</span></h2>
-  <div class="contact-container">
-    <div class="contact-info">
-      <div class="contact-card"><i class="fas fa-envelope"></i><h3>Email</h3><p><a href="mailto:firomsaahmed51@gmail.com">firomsaahmed51@gmail.com</a></p></div>
-      <div class="contact-card"><i class="fab fa-telegram"></i><h3>Telegram</h3><p><a href="https://t.me/Fira385508" target="_blank">@Fira385508</a></p></div>
-      <div class="contact-card"><i class="fab fa-whatsapp"></i><h3>WhatsApp</h3><p><a href="https://wa.me/251946004640" target="_blank">+251 94 600 4640</a></p></div>
-    </div>
-    <form class="contact-form" id="contactForm">
-      <input type="text" placeholder="Your name" id="formName" required>
-      <input type="email" placeholder="Your email" id="formEmail" required>
-      <textarea rows="4" placeholder="Tell me about your design or development project..." id="formMsg" required></textarea>
-      <button type="submit" class="btn btn-primary" style="width:100%" id="contactSubmitBtn"><i class="fas fa-paper-plane"></i> Send Message</button>
-      <p style="font-size:0.8rem; margin-top:1rem;">✅ Message saved to Supabase (messages table). I'll reply within 24h.</p>
-    </form>
-  </div>
-</section>
-
-<footer>
-  <div class="container">
-    <p>© 2026 Firomsa Ahmed | All Rights Reserved</p>
-    <div class="social-links">
-      <a href="https://github.com/firomsa-dev" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://t.me/Fira385508" target="_blank"><i class="fab fa-telegram"></i></a>
-      <a href="https://wa.me/251946004640" target="_blank"><i class="fab fa-whatsapp"></i></a>
-    </div>
-  </div>
-</footer>
-
-<a href="https://wa.me/251946004640" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
-<div id="globalModal" class="modal"><span class="close-modal">&times;</span><div class="modal-content" id="modalDynamicContent"></div></div>
-<div id="toastContainer" class="toast-container"></div>
-
-<script>
-  // Supabase config (public anon key only)
-  const SUPABASE_CONFIG = {
-    url: 'https://cvgterohigfjdkulmryb.supabase.co',
-    anonKey: 'sb_publishable_7-U83GJsOxTb8uLFG0ms4Q_2zIAQ2U1'
-  };
-
-  class ToastManager {
-    constructor() {
-      this.container = document.getElementById('toastContainer') || (() => { let d=document.createElement('div'); d.className='toast-container'; document.body.appendChild(d); return d; })();
-    }
-    show(msg, type='info', duration=4000) {
-      const toast = document.createElement('div');
-      toast.className = `toast ${type}`;
-      toast.innerHTML = `<i class="fas ${type==='success'?'fa-check-circle':type==='error'?'fa-exclamation-triangle':'fa-info-circle'}"></i> ${msg}`;
-      this.container.appendChild(toast);
-      setTimeout(() => toast.remove(), duration);
-    }
-    success(msg) { this.show(msg, 'success'); }
-    error(msg) { this.show(msg, 'error'); }
-    info(msg) { this.show(msg, 'info'); }
-  }
-
-  class LoadingManager {
-    constructor(containerId) {
-      this.container = document.getElementById(containerId);
-    }
-    showSpinner() { if(this.container) this.container.innerHTML = '<div class="spinner"></div>'; }
-    renderProducts(html) { if(this.container) this.container.innerHTML = html; }
-    showEmpty() { if(this.container) this.container.innerHTML = '<p style="text-align:center; color: var(--text-muted);">✨ No products yet. Add rows to your "products" table in Supabase.</p>'; }
-  }
-
-  class SupabaseClientWrapper {
-    constructor() {
-      if (!window.supabase) throw new Error('Supabase JS not loaded');
-      this.client = window.supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
-    }
-    getClient() { return this.client; }
-  }
-
-  class ContactFormHandler {
-    constructor(supabase, toast) {
-      this.supabase = supabase;
-      this.toast = toast;
-      this.form = document.getElementById('contactForm');
-      this.btn = document.getElementById('contactSubmitBtn');
-      if(this.form) this.init();
-    }
-    init() {
-      this.form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const name = document.getElementById('formName')?.value.trim();
-        const email = document.getElementById('formEmail')?.value.trim();
-        const message = document.getElementById('formMsg')?.value.trim();
-        if (!name || !email || !message) return this.toast.error('All fields required');
-        if (!/^\S+@\S+\.\S+$/.test(email)) return this.toast.error('Valid email required');
-        const original = this.btn.innerHTML;
-        this.btn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Sending...';
-        this.btn.disabled = true;
-        try {
-          const { error } = await this.supabase.from('messages').insert([{ name, email, message, created_at: new Date().toISOString() }]);
-          if (error) throw new Error(error.message);
-          this.toast.success('✅ Message sent! I will reply within 24h.');
-          this.form.reset();
-        } catch (err) {
-          this.toast.error(`Failed: ${err.message}. Ensure 'messages' table exists and RLS allows INSERT.`);
-        } finally {
-          this.btn.innerHTML = original;
-          this.btn.disabled = false;
-        }
-      });
-    }
-  }
-
-  class ProductCatalog {
-    constructor(supabase, toast, loadingManager) {
-      this.supabase = supabase;
-      this.toast = toast;
-      this.loading = loadingManager;
-    }
-    getPublicImageUrl(path) {
-      if (!path) return 'https://placehold.co/600x400/2c3e50/f4a261?text=No+Image';
-      if (path.startsWith('http')) return path;
-      return `${SUPABASE_CONFIG.url}/storage/v1/object/public/product-images/${path}`;
-    }
-    async fetchAndRender() {
-      this.loading.showSpinner();
-      try {
-        const { data, error } = await this.supabase.from('products').select('name, price, image_url').order('created_at', { ascending: false });
-        if (error) throw new Error(error.message);
-        if (!data || data.length === 0) {
-          this.loading.showEmpty();
-          this.toast.info('No products found. Add rows to your "products" table.');
-          return;
-        }
-        let html = '';
-        for (let p of data) {
-          const imgUrl = this.getPublicImageUrl(p.image_url);
-          html += `
-            <div class="product-card">
-              <img class="product-img" src="${imgUrl}" alt="${this.escapeHtml(p.name)}" onerror="this.src='https://placehold.co/600x400/2c3e50/f4a261?text=Image+Error'">
-              <div class="product-info">
-                <h3>${this.escapeHtml(p.name)}</h3>
-                <div class="product-price">$${parseFloat(p.price).toFixed(2)}</div>
-                <button class="btn btn-outline" style="padding:0.4rem 1rem;" onclick="alert('Inquire about ${this.escapeHtml(p.name)} via WhatsApp/Telegram')">Inquire</button>
-              </div>
+    <section id="services" class="py-32 px-12">
+        <h2 class="text-center text-4xl font-bold mb-20 uppercase tracking-tighter">My Core <span class="text-blue-500">Specialties</span></h2>
+        <div class="grid md:grid-cols-4 gap-6">
+            <div class="glass-card p-10 group">
+                <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-500 transition duration-500">
+                    <i class="fas fa-layer-group text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4">Web Ecosystems</h3>
+                <p class="text-gray-500 leading-relaxed">Developing high-speed, scalable web architectures with global standards.</p>
             </div>
-          `;
-        }
-        this.loading.renderProducts(html);
-        this.toast.success(`📦 ${data.length} products loaded!`);
-      } catch (err) {
-        console.error(err);
-        this.loading.showEmpty();
-        this.toast.error(`Error: ${err.message}. Check Supabase table "products".`);
-      }
-    }
-    escapeHtml(str) { return str.replace(/[&<>]/g, m => m==='&'?'&amp;':m==='<'?'&lt;':'&gt;'); }
-  }
+            <div class="glass-card p-10 group">
+                <div class="w-16 h-16 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-purple-500 transition duration-500">
+                    <i class="fas fa-mobile-screen"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4">Native Apps</h3>
+                <p class="text-gray-500 leading-relaxed">Building seamless mobile experiences for modern iOS and Android users.</p>
+            </div>
+            <div class="glass-card p-10 group">
+                <div class="w-16 h-16 bg-green-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-green-500 transition duration-500">
+                    <i class="fab fa-telegram-plane"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4">AI Bot Systems</h3>
+                <p class="text-gray-500 leading-relaxed">Advanced automation and Telegram bot systems for modern enterprises.</p>
+            </div>
+            <div class="glass-card p-10 group">
+                <div class="w-16 h-16 bg-pink-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-pink-500 transition duration-500">
+                    <i class="fas fa-bezier-curve"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4">Visual Branding</h3>
+                <p class="text-gray-500 leading-relaxed">Crafting high-end visual identities that stand out in a crowded market.</p>
+            </div>
+        </div>
+    </section>
 
-  function initLegacy() {
-    // Dark mode
-    const toggle = document.getElementById('darkModeToggle');
-    const icon = toggle?.querySelector('i');
-    if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light-mode'); icon?.classList.replace('fa-moon','fa-sun'); }
-    toggle?.addEventListener('click', () => {
-      document.body.classList.toggle('light-mode');
-      const isLight = document.body.classList.contains('light-mode');
-      localStorage.setItem('theme', isLight ? 'light' : 'dark');
-      if(icon) { if(isLight) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); } else { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); } }
-    });
-    // Mobile menu
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('nav-menu');
-    hamburger?.addEventListener('click', () => navMenu.classList.toggle('active'));
-    document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => navMenu.classList.remove('active')));
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        const target = document.querySelector(targetId);
-        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-      });
-    });
-    // Scroll animations
-    const faders = document.querySelectorAll('.fade-up');
-    const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold:0.2 });
-    faders.forEach(el => obs.observe(el));
-    // Modal
-    const modal = document.getElementById('globalModal');
-    const modalContent = document.getElementById('modalDynamicContent');
-    const closeModal = document.querySelector('.close-modal');
-    document.querySelectorAll('.design-card').forEach(card => {
-      card.addEventListener('click', () => {
-        const imgSrc = card.querySelector('img')?.src;
-        if(imgSrc) { modalContent.innerHTML = `<img src="${imgSrc}" style="max-width:100%; border-radius:1rem;">`; modal.classList.add('active'); }
-      });
-    });
-    closeModal?.addEventListener('click', () => modal.classList.remove('active'));
-    modal?.addEventListener('click', (e) => { if(e.target === modal) modal.classList.remove('active'); });
-    const avatarDiv = document.getElementById('profileAvatar');
-    if(avatarDiv) {
-      avatarDiv.addEventListener('click', () => {
-        const img = avatarDiv.querySelector('img');
-        if(img && img.src && !img.src.includes('data:')) modalContent.innerHTML = `<img src="${img.src}" style="max-width:100%; border-radius:1rem;">`;
-        else modalContent.innerHTML = `<div style="text-align:center"><i class="fas fa-user-circle" style="font-size:5rem;"></i><h3>Firomsa Ahmed</h3><p>Graphic Designer & Developer</p></div>`;
-        modal.classList.add('active');
-      });
-    }
-    // Demo buttons
-    document.querySelectorAll('.demo-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const type = btn.getAttribute('data-demo');
-        let content = '';
-        if(type === 'calculator') {
-          content = `<div><h3>Calculator</h3><input id="calcScreen" readonly style="width:100%;margin-bottom:1rem;"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;">${[7,8,9,'/',4,5,6,'*',1,2,3,'-',0,'C','=','+'].map(v=>`<button class="calc-btn" data-val="${v}">${v}</button>`).join('')}</div></div>`;
-          modalContent.innerHTML = content;
-          modal.classList.add('active');
-          setTimeout(() => {
-            let cur = '';
-            document.querySelectorAll('.calc-btn').forEach(b => {
-              b.addEventListener('click', () => {
-                let v = b.getAttribute('data-val');
-                if(v === 'C') cur = '';
-                else if(v === '=') { try { cur = eval(cur).toString(); } catch { cur = 'Error'; } }
-                else cur += v;
-                document.getElementById('calcScreen').value = cur;
-              });
+    <footer id="contact" class="py-20 border-t border-white/5 bg-black/50 backdrop-blur-xl">
+        <div class="container mx-auto text-center">
+            <h2 class="text-5xl font-black mb-8 neon-text">Ready to Build Something Extraordinary?</h2>
+            <p class="text-gray-400 mb-12">I'm currently available for global freelance opportunities.</p>
+            
+            <div class="flex justify-center space-x-8 text-3xl mb-12">
+                <a href="https://t.me/Fira385508" class="hover:text-blue-400 transition"><i class="fab fa-telegram"></i></a>
+                <a href="https://wa.me/251946004640" class="hover:text-green-400 transition"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://github.com/firomsa51" class="hover:text-white transition"><i class="fab fa-github"></i></a>
+            </div>
+
+            <p class="text-xs text-gray-600 uppercase tracking-widest">© 2026 FIROMSA AHMED. THE FUTURE IS DIGITAL.</p>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
             });
-          }, 50);
-        } else if(type === 'todo') {
-          content = `<div><h3>To-Do List</h3><div style="display:flex; gap:0.5rem;"><input id="todoInput" placeholder="Add task"><button id="addTodoBtn">Add</button></div><ul id="todoList" style="margin-top:1rem;"></ul></div>`;
-          modalContent.innerHTML = content;
-          modal.classList.add('active');
-          let tasks = JSON.parse(localStorage.getItem('demo_tasks') || '[]');
-          const render = () => {
-            const list = document.getElementById('todoList');
-            if(list) list.innerHTML = tasks.map((t,i)=>`<li style="display:flex;justify-content:space-between;">${t.text} <div><button class="toggle" data-idx="${i}">✔</button><button class="del" data-idx="${i}">❌</button></div></li>`).join('');
-            document.querySelectorAll('.toggle').forEach(b=>b.addEventListener('click',()=>{ tasks[b.getAttribute('data-idx')].done = !tasks[b.getAttribute('data-idx')].done; localStorage.setItem('demo_tasks',JSON.stringify(tasks)); render(); }));
-            document.querySelectorAll('.del').forEach(b=>b.addEventListener('click',()=>{ tasks.splice(b.getAttribute('data-idx'),1); localStorage.setItem('demo_tasks',JSON.stringify(tasks)); render(); }));
-          };
-          render();
-          document.getElementById('addTodoBtn')?.addEventListener('click',()=>{
-            const inp = document.getElementById('todoInput');
-            if(inp.value.trim()){ tasks.push({text:inp.value.trim(),done:false}); localStorage.setItem('demo_tasks',JSON.stringify(tasks)); render(); inp.value=''; }
-          });
-        } else {
-          content = `<div><h3>Modern Landing Page</h3><p>Responsive demo included.</p><button class="btn btn-primary" onclick="alert('Full code on GitHub')">Explore</button></div>`;
-          modalContent.innerHTML = content;
-          modal.classList.add('active');
-        }
-      });
-    });
-  }
+        });
 
-  (async function() {
-    if (document.readyState === 'loading') await new Promise(r => document.addEventListener('DOMContentLoaded', r));
-    const toast = new ToastManager();
-    let supabase;
-    try {
-      const wrapper = new SupabaseClientWrapper();
-      supabase = wrapper.getClient();
-      toast.success('✅ Connected to Supabase');
-    } catch(e) { toast.error('Supabase init failed'); console.error(e); }
-    if(supabase) {
-      new ContactFormHandler(supabase, toast);
-      const productLoader = new LoadingManager('product-list');
-      const catalog = new ProductCatalog(supabase, toast, productLoader);
-      await catalog.fetchAndRender();
-    } else {
-      document.getElementById('product-list').innerHTML = '<p style="text-align:center">⚠️ Supabase not connected.</p>';
-    }
-    initLegacy();
-  })();
-</script>
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.style.opacity = "0";
+            card.style.transform = "translateY(30px)";
+            card.style.transition = "all 0.8s ease-out";
+            observer.observe(card);
+        });
+    </script>
 </body>
 </html>
