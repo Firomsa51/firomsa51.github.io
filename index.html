@@ -2,763 +2,604 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Firomsa Ahmed | World-Class Creative Developer</title>
-    
-    <!-- Google Fonts: Plus Jakarta Sans (Variable) -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Firomsa Ahmed — The Digital Singularity</title>
+    <!-- Google Fonts: Exo 2 + Space Grotesk for futuristic vibe -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Exo+2:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Supabase JS -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <!-- Three.js Core -->
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
-            }
-        }
-    </script>
-    
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: none; /* hide default cursor for custom one */
-        }
-
-        :root {
-            --bg-dark: #05070a;
-            --glass-bg: rgba(15, 25, 35, 0.55);
-            --glass-border: rgba(44, 125, 160, 0.35);
-            --primary-glow: #2c7da0;
-            --accent-glow: #f4a261;
-            --text-light: #edf2f4;
-            --text-muted: #b0c4de;
-            --card-glass: rgba(20, 30, 40, 0.65);
-            --transition-smooth: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            --shadow-glass: 0 15px 35px rgba(0,0,0,0.3);
-            --noise-opacity: 0.045;
+            cursor: none;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: radial-gradient(circle at 50% 0%, #0a121c, #03060a);
-            color: var(--text-light);
-            line-height: 1.5;
+            background: #000000;
+            font-family: 'Space Grotesk', sans-serif;
+            color: #ffffff;
             overflow-x: hidden;
-            transition: background 0.3s ease;
+            overflow-y: scroll;
         }
 
-        /* Dynamic Mesh Gradient + Noise Overlay */
-        body::before {
-            content: "";
+        /* CANVAS BACKGROUND (WebGL Particle Field) */
+        #bg-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(44,125,160,0.2), rgba(244,162,97,0.08) 60%, transparent);
-            pointer-events: none;
             z-index: 0;
-            transition: background 0.05s linear;
+            pointer-events: none;
         }
-        
-        body::after {
-            content: "";
+
+        /* preloader epic animation */
+        .preloader-epic {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.045'/%3E%3C/svg%3E");
-            background-repeat: repeat;
-            pointer-events: none;
-            z-index: 1;
-            opacity: var(--noise-opacity);
-            mix-blend-mode: overlay;
+            background: #000000;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(20px);
+            transition: opacity 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .preloader-text {
+            font-family: 'Exo 2', monospace;
+            font-weight: 800;
+            font-size: 4rem;
+            background: linear-gradient(135deg, #ffffff, #00e0ff, #ff3366);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: glitch 1.2s infinite alternate;
+            letter-spacing: 8px;
+        }
+        @keyframes glitch {
+            0% { text-shadow: -2px 0 red, 2px 0 blue; opacity: 0.8; }
+            100% { text-shadow: 2px 0 cyan, -2px 0 magenta; opacity: 1; transform: scale(1.02);}
         }
 
-        /* custom cursor styling */
-        .cursor-dot, .cursor-outline {
-            position: fixed;
-            top: 0;
-            left: 0;
+        /* custom cursor */
+        .cursor-follower {
+            width: 60px;
+            height: 60px;
+            border: 2px solid rgba(0, 255, 255, 0.7);
             border-radius: 50%;
+            position: fixed;
             pointer-events: none;
             z-index: 9999;
-            transition: transform 0.2s ease, width 0.3s, height 0.3s, background 0.2s;
+            transition: 0.1s linear;
             transform: translate(-50%, -50%);
+            backdrop-filter: blur(4px);
+            box-shadow: 0 0 15px cyan;
         }
         .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--accent-glow);
-            box-shadow: 0 0 8px rgba(244,162,97,0.8);
-        }
-        .cursor-outline {
-            width: 32px;
-            height: 32px;
-            border: 2px solid var(--primary-glow);
-            background: rgba(44,125,160,0.15);
-            backdrop-filter: blur(2px);
-            transition: width 0.3s, height 0.3s, border 0.2s;
-        }
-        .cursor-hover {
-            width: 56px !important;
-            height: 56px !important;
-            background: rgba(44,125,160,0.25);
-            border-color: var(--accent-glow);
-            mix-blend-mode: difference;
-        }
-        .cursor-dot-hover {
-            width: 12px;
-            height: 12px;
-            background: #ffffff;
-        }
-
-        /* Glassmorphic global container */
-        .container {
-            width: 90%;
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 5;
-        }
-
-        section {
-            padding: 100px 0;
-            scroll-margin-top: 90px;
-        }
-
-        /* Glass Navbar */
-        .navbar {
-            background: rgba(5, 7, 10, 0.7);
-            backdrop-filter: blur(18px);
-            border-bottom: 1px solid var(--glass-border);
+            width: 6px;
+            height: 6px;
+            background: #ff3366;
+            border-radius: 50%;
             position: fixed;
-            width: 100%;
-            z-index: 1000;
-            padding: 1rem 0;
+            pointer-events: none;
+            z-index: 10000;
+            transition: 0.05s linear;
+            transform: translate(-50%, -50%);
         }
-        .nav-container {
+
+        /* Main container - desktop only, full wide */
+        .master-container {
+            position: relative;
+            z-index: 10;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        /* glassmorphic navbar */
+        .navbar {
+            position: fixed;
+            top: 20px;
+            left: 5%;
+            right: 5%;
+            width: 90%;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(20px);
+            border-radius: 80px;
+            padding: 0.8rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            z-index: 1000;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
         }
         .logo {
-            font-size: 1.8rem;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 2rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #2c7da0, #f4a261);
-            -webkit-background-clip: text;
+            background: linear-gradient(120deg, cyan, magenta);
             background-clip: text;
+            -webkit-background-clip: text;
             color: transparent;
-            letter-spacing: -0.02em;
         }
-        .nav-menu {
+        .nav-links {
             display: flex;
-            gap: 2.5rem;
-            list-style: none;
+            gap: 3rem;
         }
-        .nav-link {
-            font-weight: 600;
+        .nav-links a {
             text-decoration: none;
-            color: var(--text-light);
+            color: white;
+            font-weight: 500;
             transition: 0.2s;
             font-size: 1rem;
-            letter-spacing: 0.3px;
+            letter-spacing: 1px;
         }
-        .nav-link:hover { color: var(--accent-glow); }
-
-        .theme-toggle {
-            background: transparent;
-            border: none;
-            font-size: 1.4rem;
-            cursor: pointer;
-            color: var(--text-light);
-            margin-left: 1rem;
-        }
-        .hamburger { display: none; flex-direction: column; cursor: pointer; }
-        .bar { width: 28px; height: 3px; background: var(--text-light); margin: 3px 0; }
-
-        /* Typography */
-        h1 {
-            font-size: clamp(3rem, 8vw, 5.5rem);
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #fff, #2c7da0, #f4a261);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-        h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-        .section-sub {
-            text-align: center;
-            color: var(--text-muted);
-            max-width: 700px;
-            margin: -0.5rem auto 3rem;
+        .nav-links a:hover {
+            color: cyan;
+            text-shadow: 0 0 8px cyan;
         }
 
-        /* Glass Cards + Bento Grid */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 24px;
-            margin-top: 2rem;
-        }
-        .bento-card {
-            background: var(--card-glass);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 32px;
-            padding: 1.8rem;
-            text-align: center;
-            transition: var(--transition-smooth);
-            box-shadow: 0 10px 25px -10px rgba(0,0,0,0.3);
-        }
-        .bento-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary-glow);
-            box-shadow: 0 20px 35px -10px rgba(44,125,160,0.4);
-        }
-        .bento-card i {
-            font-size: 2.5rem;
-            color: var(--accent-glow);
-            margin-bottom: 1rem;
-        }
-
-        /* Product Grid & Cards */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-            gap: 30px;
-            margin-top: 2rem;
-        }
-        .product-card, .design-card, .project-card {
-            background: var(--card-glass);
-            backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
-            border-radius: 28px;
-            overflow: hidden;
-            transition: transform 0.4s cubic-bezier(0.2,0.9,0.4,1.1), border-color 0.3s;
-            transform: translateY(0);
-        }
-        .product-card:hover, .design-card:hover, .project-card:hover {
-            transform: translateY(-12px) scale(1.01);
-            border-color: var(--primary-glow);
-        }
-        .product-img, .design-card img, .project-card img {
-            width: 100%;
-            height: 240px;
-            object-fit: cover;
-            transition: transform 0.6s;
-        }
-        .product-card:hover img { transform: scale(1.03); }
-        .product-info { padding: 1.2rem; text-align: center; }
-        .like-btn {
-            background: none;
-            border: 1px solid var(--glass-border);
-            border-radius: 40px;
-            padding: 6px 16px;
-            margin-top: 12px;
-            color: #ff7b89;
-            font-weight: 600;
-            transition: 0.2s;
-            cursor: pointer;
-        }
-        .like-btn:hover { background: rgba(244,162,97,0.2); transform: scale(0.96); }
-
-        /* Filter input */
-        .filter-bar {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-        .search-input {
-            background: rgba(20,30,40,0.7);
-            backdrop-filter: blur(8px);
-            border: 1px solid var(--glass-border);
-            padding: 12px 24px;
-            border-radius: 60px;
-            color: white;
-            width: 280px;
-            font-family: inherit;
-        }
-
-        /* Buttons with magnetic effect */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 0.9rem 2rem;
-            border-radius: 60px;
-            font-weight: 700;
-            transition: all 0.25s ease;
-            cursor: pointer;
-            border: none;
-            font-size: 1rem;
-            text-decoration: none;
-            backdrop-filter: blur(4px);
-        }
-        .btn-primary {
-            background: linear-gradient(105deg, var(--primary-glow), #1f5e7a);
-            color: white;
-            box-shadow: 0 5px 15px rgba(44,125,160,0.3);
-        }
-        .btn-primary:hover { transform: translateY(-3px); filter: brightness(1.05); }
-        .btn-outline {
-            background: transparent;
-            border: 1.5px solid var(--primary-glow);
-            color: var(--primary-glow);
-        }
-
-        /* Preloader */
-        .preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #03060a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 99999;
-            transition: opacity 0.8s ease, visibility 0.8s;
-        }
-        .preloader.fade-out {
-            opacity: 0;
-            visibility: hidden;
-        }
-        .preloader-logo {
-            font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(45deg, #2c7da0, #f4a261);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            animation: pulseLogo 1.2s infinite alternate;
-        }
-        @keyframes pulseLogo {
-            0% { opacity: 0.6; text-shadow: 0 0 5px #2c7da0; transform: scale(1);}
-            100% { opacity: 1; text-shadow: 0 0 20px #f4a261; transform: scale(1.08);}
-        }
-
-        /* skeleton */
-        .skeleton-card {
-            background: rgba(30,40,50,0.5);
-            border-radius: 28px;
-            height: 320px;
-            animation: shimmer 1.5s infinite linear;
-        }
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-
-        /* parallax movement (js) */
-        .parallax-item {
-            will-change: transform;
-            transition: transform 0.1s linear;
-        }
-
-        /* Scroll fade-up animation */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* 3D canvas container */
-        #hero-3d-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: 2;
-            pointer-events: none;
-        }
+        /* Hero Section - INSANE 3D Text */
         .hero {
-            position: relative;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 10;
-            background: transparent;
-        }
-        .hero-content {
             text-align: center;
             position: relative;
-            z-index: 15;
+        }
+        .hero-content h1 {
+            font-size: clamp(4rem, 10vw, 8rem);
+            font-family: 'Exo 2', monospace;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffffff, #00ffff, #ff44cc);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: textPulse 3s infinite;
+        }
+        @keyframes textPulse {
+            0% { filter: drop-shadow(0 0 0px cyan);}
+            50% { filter: drop-shadow(0 0 20px magenta);}
+            100% { filter: drop-shadow(0 0 0px cyan);}
+        }
+        .hero-glow {
+            font-size: 1.8rem;
+            letter-spacing: 0.2em;
+            font-weight: 300;
         }
 
-        /* Telegram terminal */
-        .terminal {
-            background: #0a0f16;
-            border-radius: 24px;
+        /* Bento Grid (epic visual) */
+        .bento-master {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin: 100px 0;
+        }
+        .glass-tile {
+            background: rgba(10, 20, 30, 0.5);
+            backdrop-filter: blur(15px);
+            border-radius: 40px;
+            padding: 2rem;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transform: translateY(0);
+        }
+        .glass-tile:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: cyan;
+            box-shadow: 0 25px 45px rgba(0, 255, 255, 0.2);
+        }
+        .tile-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: cyan;
+        }
+
+        /* Products Gallery - big cards */
+        .product-galaxy {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+        .cosmic-card {
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(12px);
+            border-radius: 48px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 255, 255, 0.4);
+            transition: 0.3s;
+        }
+        .cosmic-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+        .cosmic-card:hover img {
+            transform: scale(1.05);
+        }
+        .card-info {
             padding: 1.5rem;
-            font-family: monospace;
-            border: 1px solid var(--glass-border);
+            text-align: center;
         }
-        .terminal-output { color: #6eff9e; min-height: 100px; margin-top: 1rem; }
 
-        /* responsive */
-        @media (max-width: 768px) {
-            .hamburger { display: flex; }
-            .nav-menu {
-                position: fixed;
-                left: -100%;
-                top: 70px;
-                flex-direction: column;
-                background: rgba(0,0,0,0.9);
-                backdrop-filter: blur(20px);
-                width: 100%;
-                text-align: center;
-                padding: 2rem;
-                transition: 0.3s;
-            }
-            .nav-menu.active { left: 0; }
-            .cursor-dot, .cursor-outline { display: none; }
-            body { cursor: auto; }
-            * { cursor: auto; }
+        /* filter bar */
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
         }
-        footer { background: rgba(0,0,0,0.6); backdrop-filter: blur(12px); padding: 2rem 0; text-align: center; border-top: 1px solid var(--glass-border);}
-        .float-wa { position: fixed; bottom: 25px; left: 25px; background: #25D366; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 99; text-decoration: none; font-size: 2rem; color: white; }
-        .toast-container { position: fixed; bottom: 30px; right: 30px; z-index: 9999; display: flex; flex-direction: column; gap: 12px; }
-        .toast { background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); padding: 0.8rem 1.5rem; border-radius: 40px; border-left: 4px solid var(--accent-glow); color: white; }
+        .glow-input {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid cyan;
+            border-radius: 60px;
+            padding: 14px 30px;
+            width: 400px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        /* Buttons magnetic & interactive */
+        .magnetic-btn {
+            display: inline-block;
+            padding: 14px 38px;
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            border: none;
+            border-radius: 60px;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: 0.2s;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 0 12px cyan;
+        }
+
+        /* Telegram Bot Terminal Showcase */
+        .terminal-glow {
+            background: #0a0f1c;
+            border-radius: 32px;
+            padding: 2rem;
+            border: 1px solid magenta;
+            box-shadow: 0 0 25px rgba(255, 51, 102, 0.3);
+            margin: 60px 0;
+        }
+
+        /* Scroll reveals */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 1.2s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+        }
+        .revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        footer {
+            padding: 50px 0;
+            text-align: center;
+            border-top: 1px solid rgba(0, 255, 255, 0.3);
+            margin-top: 80px;
+        }
+
+        /* no mobile responsiveness - desktop only, no media queries for smaller screens */
+        /* but ensure horizontal scroll doesn't break */
+        body {
+            overflow-x: hidden;
+        }
+        .cursor-follower, .cursor-dot {
+            display: block;
+        }
     </style>
 </head>
 <body>
 
-<div class="preloader" id="preloader">
-    <div class="preloader-logo">FIROMSA<span style="color:#f4a261;">.</span></div>
+<div class="preloader-epic" id="preloaderEpic">
+    <div class="preloader-text">⟁ FIROMSA.AI ⟁</div>
 </div>
 
+<canvas id="bg-canvas"></canvas>
+
+<div class="cursor-follower" id="cursorOut"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
 <nav class="navbar">
-    <div class="container nav-container">
-        <a href="#" class="logo">Firomsa Graphics</a>
-        <ul class="nav-menu" id="nav-menu">
-            <li><a href="#home" class="nav-link">Home</a></li>
-            <li><a href="#design" class="nav-link">Design</a></li>
-            <li><a href="#catalog" class="nav-link">Products</a></li>
-            <li><a href="#skills" class="nav-link">Skills</a></li>
-            <li><a href="#telegram-bot" class="nav-link">Bot</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
-        <button class="theme-toggle" id="darkModeToggle"><i class="fas fa-moon"></i></button>
-        <div class="hamburger" id="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+    <div class="logo">✦ FIROMSA X ✦</div>
+    <div class="nav-links">
+        <a href="#home">HOM3</a>
+        <a href="#design">DESIGN</a>
+        <a href="#catalog">CATALOG</a>
+        <a href="#botverse">BOT_VERSE</a>
+        <a href="#contact">NEXUS</a>
     </div>
 </nav>
 
-<!-- Hero Section with 3D Canvas -->
-<section id="home" class="hero">
-    <canvas id="hero-3d-canvas"></canvas>
-    <div class="container hero-content">
-        <div class="hero-badge"><i class="fas fa-crown"></i> Graphic Designer + Bot Dev</div>
-        <h1>Firomsa Ahmed</h1>
-        <p style="font-size: 1.5rem; font-weight: 500;">Crafting digital dimensions & intelligent bots</p>
-        <div class="btn-group" style="margin-top: 2rem;">
-            <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Collaborate</a>
-            <a href="#catalog" class="btn btn-outline"><i class="fas fa-store"></i> Explore Work</a>
+<div class="master-container">
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-glow">[ GRAPHIC DESIGNER + BOT ARCHITECT ]</div>
+            <h1>Firomsa Ahmed</h1>
+            <p style="font-size: 1.5rem; margin-top: 20px;">Crafting digital souls & immersive realities</p>
+            <div style="margin-top: 40px;">
+                <button class="magnetic-btn" id="exploreBtn">EXPLORE THE VOID →</button>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Design Gallery -->
-<section id="design" class="container fade-up">
-    <h2><span style="background: linear-gradient(135deg,#2c7da0,#f4a261); background-clip:text; -webkit-background-clip:text; color:transparent;">Graphic Design Alchemy</span></h2>
-    <div class="section-sub">Identity, Posters, Social Media — Emotional design</div>
-    <div class="product-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px,1fr));">
-        <div class="design-card"><img src="https://placehold.co/600x500/2c3e50/f4a261?text=Logo+Mastery" alt="Logo"><div class="design-info"><h4>Brand Identity</h4><p>Minimalist & timeless</p></div></div>
-        <div class="design-card"><img src="https://placehold.co/600x500/1e3a5f/2c7da0?text=Poster+Series" alt="Poster"><div class="design-info"><h4>Event Posters</h4><p>Dynamic typography</p></div></div>
-        <div class="design-card"><img src="https://placehold.co/600x500/283b4c/f4a261?text=Social+Assets" alt="SMM"><div class="design-info"><h4>Social media kits</h4><p>Viral ready</p></div></div>
+    <!-- Bento Grid Skills -->
+    <div class="bento-master reveal">
+        <div class="glass-tile"><div class="tile-icon"><i class="fas fa-cube"></i></div><h3>3D / WebGL</h3><p>Three.js / React Three Fiber mastery — immersive web experiences, real-time particles.</p></div>
+        <div class="glass-tile"><div class="tile-icon"><i class="fas fa-pen-fancy"></i></div><h3>Graphic Identity</h3><p>Logos, visual languages, motion branding that resonate in the digital age.</p></div>
+        <div class="glass-tile"><div class="tile-icon"><i class="fab fa-telegram"></i></div><h3>Telegram Bots</h3><p>Mini Apps, AI chatbots, automation ecosystems — scale your community.</p></div>
+        <div class="glass-tile"><div class="tile-icon"><i class="fas fa-database"></i></div><h3>Supabase Power</h3><p>Real-time backends, serverless functions, instant APIs.</p></div>
     </div>
-</section>
 
-<!-- BENTO GRID Skills & Tools -->
-<section id="skills" class="container fade-up">
-    <h2>⚡ Full‑stack <span style="color:#f4a261;">Toolkit</span></h2>
-    <div class="bento-grid">
-        <div class="bento-card"><i class="fab fa-figma"></i><h3>Design Core</h3><p>Figma, Photoshop, Illustrator, After Effects</p></div>
-        <div class="bento-card"><i class="fab fa-js"></i><h3>Frontend Magic</h3><p>React, Vue, Tailwind, Three.js, GSAP</p></div>
-        <div class="bento-card"><i class="fas fa-robot"></i><h3>Bot Engineer</h3><p>Telegram API, Python, Node.js, WebApp Integrations</p></div>
-        <div class="bento-card"><i class="fas fa-database"></i><h3>Backend</h3><p>Supabase, PostgreSQL, Real‑time</p></div>
-    </div>
-</section>
-
-<!-- Dynamic Product Catalog + Filter & Likes -->
-<section id="catalog" class="container fade-up">
-    <h2><span>✨ Interactive Catalog</span></h2>
-    <div class="filter-bar">
-        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Filter products...">
-    </div>
-    <div id="product-list" class="product-grid"><div class="skeleton-card" style="height:300px;"></div><div class="skeleton-card"></div><div class="skeleton-card"></div></div>
-</section>
-
-<!-- Real projects (interactive demos) -->
-<section id="projects" class="container fade-up">
-    <h2>🧠 Interactive <span>Playground</span></h2>
-    <div class="product-grid">
-        <div class="project-card"><img src="https://placehold.co/600x400/2c3e50/f4a261?text=Smart+Calc" alt="calc"><div class="project-content"><h3>Smart Calculator</h3><button class="demo-btn btn-primary" data-demo="calculator" style="padding:0.4rem 1rem;">Live Demo</button></div></div>
-        <div class="project-card"><img src="https://placehold.co/600x400/1e3a5f/2c7da0?text=To-Do+Flow" alt="todo"><div class="project-content"><h3>To‑Do Flow</h3><button class="demo-btn btn-primary" data-demo="todo">Try Now</button></div></div>
-        <div class="project-card"><img src="https://placehold.co/600x400/283b4c/f4a261?text=Landing+3D" alt="landing"><div class="project-content"><h3>Modern Landing</h3><button class="demo-btn btn-primary" data-demo="landing">Explore</button></div></div>
-    </div>
-</section>
-
-<!-- Telegram Bot Showcase + Terminal -->
-<section id="telegram-bot" class="container fade-up">
-    <h2>🤖 Bot <span>Automation</span> & Mini Apps</h2>
-    <div class="bento-grid" style="grid-template-columns: 1fr 1fr;">
-        <div class="bento-card">
-            <i class="fab fa-telegram"></i>
-            <h3>Telegram Mini App</h3>
-            <p>My portfolio runs inside Telegram — Instant WebApp integration. Seamless UX.</p>
-            <button class="btn btn-outline" id="twaMockBtn">Launch Mini App Preview</button>
+    <!-- Design Gallery -->
+    <section id="design" class="reveal">
+        <h2 style="font-size: 3rem; text-align: center; margin-bottom: 20px;">✦ VISUAL ALCHEMY ✦</h2>
+        <div class="product-galaxy">
+            <div class="cosmic-card"><img src="https://placehold.co/800x600/0a0f1a/cyan?text=BRAND+IDENTITY" alt="brand"><div class="card-info"><h3>Epic Branding</h3><p>Minimalist yet powerful</p></div></div>
+            <div class="cosmic-card"><img src="https://placehold.co/800x600/1a0f2a/magenta?text=POSTER+SERIES" alt="poster"><div class="card-info"><h3>Cinematic Posters</h3><p>High contrast storytelling</p></div></div>
+            <div class="cosmic-card"><img src="https://placehold.co/800x600/0f1f2a/cyan?text=SOCIAL+KIT" alt="social"><div class="card-info"><h3>Viral Assets</h3><p>Social media domination</p></div></div>
         </div>
-        <div class="bento-card terminal">
-            <h3><i class="fas fa-terminal"></i> Bot Terminal</h3>
-            <div>Type <span style="color:#f4a261;">/resume</span> , <span style="color:#f4a261;">/skills</span> , <span style="color:#f4a261;">/portfolio</span></div>
-            <div class="terminal-output" id="terminalOutput">> Ready. Try a command.</div>
-            <div style="display:flex; gap:0.5rem; margin-top:1rem;"><input type="text" id="botCommand" placeholder="/help" class="search-input" style="flex:1;"><button id="sendCmd" class="btn-primary" style="padding:0.5rem 1rem;">Run</button></div>
+    </section>
+
+    <!-- PRODUCT CATALOG with Supabase + Likes / Filter (real-time) -->
+    <section id="catalog" class="reveal">
+        <h2 style="font-size: 3rem; text-align: center;">✨ COSMIC MARKET ✨</h2>
+        <div class="search-bar"><input type="text" id="filterSearch" class="glow-input" placeholder="🔍 Filter artifacts..."></div>
+        <div id="productContainer" class="product-galaxy"><div style="text-align:center; padding: 60px;">🌀 LOADING NEBULA...</div></div>
+    </section>
+
+    <!-- TELEGRAM BOT SHOWCASE (Interactive Terminal) -->
+    <section id="botverse" class="reveal">
+        <div class="terminal-glow">
+            <h2 style="font-size: 2.5rem;"><i class="fab fa-telegram"></i> BOT TERMINAL // TELEGRAM MINI APP</h2>
+            <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                <div style="flex: 1;">
+                    <p style="margin: 20px 0;">⚡ My portfolio runs as a Telegram Mini App — seamless WebApp integration.<br>
+                    🔮 Real‑time bot commands: /skills, /resume, /portfolio, /contact</p>
+                    <button id="twaDemoBtn" class="magnetic-btn">🚀 Launch Mini App Preview</button>
+                </div>
+                <div style="flex: 1; background: #03060c; padding: 20px; border-radius: 28px;">
+                    <div><i class="fas fa-terminal"></i> BOT COMMAND LINE</div>
+                    <div id="terminalResponse" style="background:#000000; padding: 15px; margin: 15px 0; border-radius: 20px; font-family: monospace; border-left: 4px solid cyan;">> type /help</div>
+                    <div style="display: flex; gap: 10px;"><input type="text" id="botCmdInput" placeholder="/resume" class="glow-input" style="flex:1;"><button id="runCmdBtn" class="magnetic-btn" style="padding: 8px 20px;">EXEC</button></div>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Contact Section -->
-<section id="contact" class="container fade-up">
-    <h2><span>Let's create impact</span></h2>
-    <div class="bento-grid" style="grid-template-columns: repeat(auto-fit,minmax(260px,1fr));">
-        <div class="bento-card"><i class="fas fa-envelope"></i><h3>Email</h3><a href="mailto:firomsaahmed51@gmail.com" style="color:#f4a261;">firomsaahmed51@gmail.com</a></div>
-        <div class="bento-card"><i class="fab fa-telegram"></i><h3>Telegram</h3><a href="https://t.me/Fira385508" style="color:#f4a261;">@Fira385508</a></div>
-        <div class="bento-card"><i class="fab fa-whatsapp"></i><h3>WhatsApp</h3><a href="https://wa.me/251946004640">+251946004640</a></div>
-    </div>
-    <form id="contactForm" style="max-width:600px; margin:2rem auto; background: var(--card-glass); backdrop-filter: blur(12px); padding: 2rem; border-radius: 32px;">
-        <input type="text" id="formName" placeholder="Your name" style="width:100%; margin-bottom:1rem; background:rgba(0,0,0,0.4); border:1px solid var(--glass-border); border-radius: 60px; padding:12px 20px; color:white;">
-        <input type="email" id="formEmail" placeholder="Your email" style="width:100%; margin-bottom:1rem; background:rgba(0,0,0,0.4); border-radius: 60px; padding:12px 20px;">
-        <textarea id="formMsg" rows="4" placeholder="Describe your vision..." style="width:100%; border-radius: 24px; background:rgba(0,0,0,0.4); padding:12px;"></textarea>
-        <button type="submit" class="btn btn-primary" style="width:100%">Send ✨</button>
-    </form>
-</section>
-
-<footer><div class="container"><p>© 2026 Firomsa Ahmed — Immersive Design & Code</p></div></footer>
-<a href="https://wa.me/251946004640" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
-<div id="globalModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10000; align-items:center; justify-content:center;"><div class="modal-content" style="background: #0f1720; padding:2rem; border-radius: 2rem; max-width: 90vw;"></div><span id="closeModal" style="position:absolute; top:20px; right:40px; font-size:40px; color:white; cursor:pointer;">&times;</span></div>
-<div id="toastContainer" class="toast-container"></div>
+    <!-- Contact / Nexus -->
+    <section id="contact" class="reveal">
+        <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 30px; margin: 60px 0;">
+            <div class="glass-tile"><i class="fas fa-envelope fa-2x"></i><h3>Email</h3><a href="mailto:firomsaahmed51@gmail.com" style="color: cyan;">firomsaahmed51@gmail.com</a></div>
+            <div class="glass-tile"><i class="fab fa-telegram fa-2x"></i><h3>Telegram</h3><a href="https://t.me/Fira385508" style="color: cyan;">@Fira385508</a></div>
+            <div class="glass-tile"><i class="fab fa-whatsapp fa-2x"></i><h3>WhatsApp</h3><a href="https://wa.me/251946004640" style="color: cyan;">+251 946 004 640</a></div>
+        </div>
+        <div style="background: rgba(0,0,0,0.6); backdrop-filter: blur(20px); border-radius: 48px; padding: 40px; border: 1px solid cyan; max-width: 700px; margin: 0 auto;">
+            <h3 style="text-align: center;">SEND A SIGNAL</h3>
+            <form id="contactSuperForm">
+                <input type="text" id="contactName" placeholder="Your identity" class="glow-input" style="width:100%; margin: 10px 0;">
+                <input type="email" id="contactEmail" placeholder="Quantum mail" class="glow-input" style="width:100%; margin: 10px 0;">
+                <textarea id="contactMsg" rows="4" placeholder="Manifest your vision..." class="glow-input" style="width:100%; margin: 10px 0; border-radius: 32px;"></textarea>
+                <button type="submit" class="magnetic-btn" style="width:100%;">⟁ TRANSMIT ⟁</button>
+            </form>
+        </div>
+    </section>
+    <footer>© 2026 Firomsa Ahmed — The Singularity Portfolio | Immersive Design & AI Bots</footer>
+</div>
 
 <script type="module">
-    import * as THREE from 'three';
-    
-    // ---------- 3D Hero Setup ----------
-    const canvas = document.getElementById('hero-3d-canvas');
+    import * as THREE from 'https://unpkg.com/three@0.128.0/build/three.module.js';
+
+    // --- BACKGROUND PARTICLE GALAXY (EPIC) ---
+    const canvasBg = document.getElementById('bg-canvas');
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 5;
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 30;
+    const renderer = new THREE.WebGLRenderer({ canvas: canvasBg, alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
     
-    const geometry = new THREE.IcosahedronGeometry(1.2, 0);
-    const material = new THREE.MeshStandardMaterial({ color: 0x2c7da0, roughness: 0.3, metalness: 0.7, wireframe: false, emissive: 0x0a2a33 });
-    const mesh = new THREE.Mesh(geometry, material);
-    const wireframeMat = new THREE.MeshBasicMaterial({ color: 0xf4a261, wireframe: true });
-    const wireframeMesh = new THREE.Mesh(geometry, wireframeMat);
-    mesh.add(wireframeMesh);
-    scene.add(mesh);
+    const particleCount = 4000;
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+    const colors = new Float32Array(particleCount * 3);
+    for (let i = 0; i < particleCount; i++) {
+        positions[i*3] = (Math.random() - 0.5) * 200;
+        positions[i*3+1] = (Math.random() - 0.5) * 100;
+        positions[i*3+2] = (Math.random() - 0.5) * 80 - 40;
+        colors[i*3] = Math.random() * 0.5 + 0.5;
+        colors[i*3+1] = Math.random() * 0.3 + 0.7;
+        colors[i*3+2] = Math.random() * 0.8 + 0.2;
+    }
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    const particleMat = new THREE.PointsMaterial({ size: 0.25, vertexColors: true, transparent: true, opacity: 0.7, blending: THREE.AdditiveBlending });
+    const particles = new THREE.Points(geometry, particleMat);
+    scene.add(particles);
     
-    const light = new THREE.DirectionalLight(0xffffff, 1);
-    light.position.set(2, 3, 4);
-    scene.add(light);
-    const ambient = new THREE.AmbientLight(0x404060);
-    scene.add(ambient);
+    const starField = new THREE.Points(new THREE.BufferGeometry(), new THREE.PointsMaterial({ color: 0xffffff, size: 0.1 }));
+    const starPos = [];
+    for (let i=0;i<2000;i++) { starPos.push((Math.random()-0.5)*400, (Math.random()-0.5)*200, (Math.random()-0.5)*150-50); }
+    starField.geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(starPos), 3));
+    scene.add(starField);
     
-    function animate3D() {
-        requestAnimationFrame(animate3D);
-        mesh.rotation.x += 0.005;
-        mesh.rotation.y += 0.008;
-        wireframeMesh.rotation.x += 0.003;
-        wireframeMesh.rotation.y -= 0.005;
+    function animateBg() {
+        requestAnimationFrame(animateBg);
+        particles.rotation.y += 0.0005;
+        particles.rotation.x += 0.0003;
+        starField.rotation.y -= 0.0002;
+        camera.position.x += (0 - camera.position.x) * 0.02;
+        camera.position.y += (0 - camera.position.y) * 0.02;
         renderer.render(scene, camera);
     }
-    animate3D();
-    window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
+    animateBg();
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
     
-    // --- mouse reactive 3D tilt ---
+    // --- Cursor animation & magnetic buttons
+    const cursorOut = document.getElementById('cursorOut');
+    const cursorDot = document.getElementById('cursorDot');
     document.addEventListener('mousemove', (e) => {
-        const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-        const mouseY = (e.clientY / window.innerHeight) * 2 - 1;
-        mesh.rotation.y = mouseX * 0.5;
-        mesh.rotation.x = mouseY * 0.3;
+        cursorOut.style.left = e.clientX + 'px';
+        cursorOut.style.top = e.clientY + 'px';
+        cursorDot.style.left = e.clientX + 'px';
+        cursorDot.style.top = e.clientY + 'px';
     });
-    
-    // ---- CUSTOM CURSOR ----
-    const cursorDot = document.createElement('div'); cursorDot.className = 'cursor-dot';
-    const cursorOutline = document.createElement('div'); cursorOutline.className = 'cursor-outline';
-    document.body.appendChild(cursorDot); document.body.appendChild(cursorOutline);
-    document.addEventListener('mousemove', (e) => {
-        cursorDot.style.left = e.clientX + 'px'; cursorDot.style.top = e.clientY + 'px';
-        cursorOutline.style.left = e.clientX + 'px'; cursorOutline.style.top = e.clientY + 'px';
-    });
-    const interactiveElements = document.querySelectorAll('a, button, .btn, .product-card, .design-card, .project-card');
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => { cursorOutline.classList.add('cursor-hover'); cursorDot.classList.add('cursor-dot-hover'); });
-        el.addEventListener('mouseleave', () => { cursorOutline.classList.remove('cursor-hover'); cursorDot.classList.remove('cursor-dot-hover'); });
-    });
-    
-    // ---- Mesh gradient background mouse move ----
-    document.body.addEventListener('mousemove', (e) => {
-        document.body.style.setProperty('--mouse-x', (e.clientX / window.innerWidth) * 100 + '%');
-        document.body.style.setProperty('--mouse-y', (e.clientY / window.innerHeight) * 100 + '%');
-    });
-    
-    // ---- Parallax scroll effect ----
-    window.addEventListener('scroll', () => {
-        const scrolled = window.scrollY;
-        document.querySelectorAll('.product-card, .design-card').forEach((card, idx) => {
-            const speed = 0.05;
-            const yPos = scrolled * speed * (idx % 2 === 0 ? 1 : -0.5);
-            if (window.innerWidth > 768) card.style.transform = `translateY(${yPos * 0.3}px)`;
+    const btns = document.querySelectorAll('.magnetic-btn, .cosmic-card, .glass-tile');
+    btns.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursorOut.style.width = '90px';
+            cursorOut.style.height = '90px';
+            cursorOut.style.borderColor = '#ff3366';
+            cursorOut.style.background = 'rgba(255,51,102,0.2)';
+        });
+        el.addEventListener('mouseleave', () => {
+            cursorOut.style.width = '60px';
+            cursorOut.style.height = '60px';
+            cursorOut.style.borderColor = 'cyan';
+            cursorOut.style.background = 'transparent';
         });
     });
     
-    // ---- Intersection Observer Staggered ----
-    const fadeElements = document.querySelectorAll('.fade-up');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: 0.2 });
-    fadeElements.forEach(el => observer.observe(el));
+    // --- Preloader removal ---
+    setTimeout(() => {
+        const pre = document.getElementById('preloaderEpic');
+        pre.style.opacity = '0';
+        setTimeout(() => pre.remove(), 1500);
+    }, 2000);
     
-    // --- Supabase & Catalog (Likes + Filter) ---
-    const supabaseUrl = 'https://cvgterohigfjdkulmryb.supabase.co';
-    const supabaseKey = 'sb_publishable_7-U83GJsOxTb8uLFG0ms4Q_2zIAQ2U1';
-    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-    const productContainer = document.getElementById('product-list');
-    let allProducts = [];
+    // --- SUPABASE CONFIG + Product Catalog with LIKES/Filter
+    const SUPABASE_URL = 'https://cvgterohigfjdkulmryb.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_7-U83GJsOxTb8uLFG0ms4Q_2zIAQ2U1';
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    
+    let currentProducts = [];
+    const productContainer = document.getElementById('productContainer');
+    const filterInput = document.getElementById('filterSearch');
     
     async function loadProducts() {
-        const { data, error } = await supabase.from('products').select('*');
-        if(error) { productContainer.innerHTML = '<p>Error loading catalog</p>'; return []; }
-        allProducts = data || [];
-        renderProducts(allProducts);
-        return allProducts;
+        const { data, error } = await supabaseClient.from('products').select('*');
+        if (error) {
+            productContainer.innerHTML = '<div class="glass-tile">⚠️ Database error. Add "products" table.</div>';
+            return [];
+        }
+        currentProducts = data || [];
+        renderProducts(currentProducts);
+        return currentProducts;
     }
     
     function renderProducts(products) {
-        if(!products.length) { productContainer.innerHTML = '<p>✨ No products found</p>'; return; }
+        if (!products.length) {
+            productContainer.innerHTML = '<div class="glass-tile">✨ No products yet. Insert rows in Supabase.</div>';
+            return;
+        }
         productContainer.innerHTML = products.map(p => `
-            <div class="product-card" data-id="${p.id}">
-                <img class="product-img" src="${p.image_url || 'https://placehold.co/600x400/2c3e50/f4a261?text=Product'}" onerror="this.src='https://placehold.co/600x400/2c3e50/f4a261?text=No+Image'">
-                <div class="product-info">
+            <div class="cosmic-card" data-id="${p.id}">
+                <img src="${p.image_url || 'https://placehold.co/800x600/0a0f1a/cyan?text=ARTIFACT'}" onerror="this.src='https://placehold.co/800x600/0a0f1a/cyan?text=VOID'">
+                <div class="card-info">
                     <h3>${escapeHtml(p.name)}</h3>
-                    <div class="product-price">$${parseFloat(p.price).toFixed(2)}</div>
-                    <button class="like-btn" data-id="${p.id}">❤️  ${p.likes || 0} likes</button>
-                    <button class="btn-outline inquire-btn" style="margin-top:8px; padding:4px 12px;">Inquire</button>
+                    <p style="font-size: 1.5rem; color: cyan;">$${parseFloat(p.price).toFixed(2)}</p>
+                    <button class="like-btn-custom magnetic-btn" style="margin: 10px; background: transparent; border:1px solid magenta;" data-id="${p.id}">❤️ ${p.likes || 0} likes</button>
+                    <button class="inquiry-btn magnetic-btn" style="background: transparent; border:1px solid cyan;">✨ Inquire</button>
                 </div>
             </div>
         `).join('');
-        document.querySelectorAll('.like-btn').forEach(btn => {
+        
+        document.querySelectorAll('.like-btn-custom').forEach(btn => {
             btn.addEventListener('click', async (e) => {
                 e.stopPropagation();
-                const productId = btn.getAttribute('data-id');
-                const product = allProducts.find(p => p.id == productId);
+                const pid = btn.getAttribute('data-id');
+                const product = currentProducts.find(p => p.id == pid);
                 const newLikes = (product.likes || 0) + 1;
-                const { error } = await supabase.from('products').update({ likes: newLikes }).eq('id', productId);
-                if(!error) { product.likes = newLikes; renderProducts(allProducts.filter(p => p.name.toLowerCase().includes(document.getElementById('searchInput')?.value.toLowerCase() || ''))); toast('Liked!', 'success'); }
-                else toast('Like error', 'error');
+                const { error } = await supabaseClient.from('products').update({ likes: newLikes }).eq('id', pid);
+                if (!error) {
+                    product.likes = newLikes;
+                    renderProducts(currentProducts.filter(p => p.name.toLowerCase().includes(filterInput?.value.toLowerCase() || '')));
+                    showToast('❤️ Liked!');
+                } else showToast('Error', 'error');
             });
         });
-        document.querySelectorAll('.inquire-btn').forEach(btn => btn.addEventListener('click', () => alert('📩 Contact me via Telegram/WhatsApp for custom orders!')));
+        document.querySelectorAll('.inquiry-btn').forEach(btn => btn.addEventListener('click', () => alert('📡 Send message via Telegram / WhatsApp to claim this piece')));
     }
     
     function escapeHtml(str) { return str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m])); }
-    function toast(msg, type) { const t = document.createElement('div'); t.className = `toast`; t.innerHTML = msg; document.getElementById('toastContainer').appendChild(t); setTimeout(()=>t.remove(), 3000); }
+    function showToast(msg) { const t = document.createElement('div'); t.innerText = msg; t.style.position='fixed'; t.style.bottom='30px'; t.style.right='30px'; t.style.background='rgba(0,0,0,0.8)'; t.style.padding='12px 24px'; t.style.borderRadius='40px'; t.style.backdropFilter='blur(10px)'; t.style.border='1px solid cyan'; t.style.zIndex='10000'; document.body.appendChild(t); setTimeout(()=>t.remove(),2500); }
     
-    document.getElementById('searchInput')?.addEventListener('input', (e) => {
+    filterInput.addEventListener('input', (e) => {
         const term = e.target.value.toLowerCase();
-        const filtered = allProducts.filter(p => p.name.toLowerCase().includes(term));
+        const filtered = currentProducts.filter(p => p.name.toLowerCase().includes(term));
         renderProducts(filtered);
     });
     
-    // --- Contact Form & Catalog Init ---
-    async function init() {
-        await loadProducts();
-        document.getElementById('preloader')?.classList.add('fade-out');
-        setTimeout(() => document.getElementById('preloader')?.remove(), 800);
-    }
-    init();
+    loadProducts();
     
-    document.getElementById('contactForm')?.addEventListener('submit', async (e) => {
+    // --- Contact Form with Supabase messages
+    const contactForm = document.getElementById('contactSuperForm');
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const name = document.getElementById('formName').value, email = document.getElementById('formEmail').value, message = document.getElementById('formMsg').value;
-        if(!name || !email || !message) return toast('Fill all fields', 'error');
-        const { error } = await supabase.from('messages').insert([{ name, email, message, created_at: new Date() }]);
-        if(error) toast('Error sending', 'error');
-        else { toast('✨ Message sent! I reply within 24h.', 'success'); e.target.reset(); }
+        const name = document.getElementById('contactName').value;
+        const email = document.getElementById('contactEmail').value;
+        const message = document.getElementById('contactMsg').value;
+        if (!name || !email || !message) return showToast('Fill all fields');
+        const { error } = await supabaseClient.from('messages').insert([{ name, email, message, created_at: new Date() }]);
+        if (error) showToast('Error transmitting', 'error');
+        else { showToast('✅ Signal sent! I will contact you within 24h'); contactForm.reset(); }
     });
     
-    // -------------- Bot Terminal Simulation --------------
-    const terminalOutput = document.getElementById('terminalOutput');
-    function processCommand(cmd) {
+    // --- TELEGRAM BOT TERMINAL SIMULATION
+    const botInput = document.getElementById('botCmdInput');
+    const runBtn = document.getElementById('runCmdBtn');
+    const terminalResp = document.getElementById('terminalResponse');
+    function processBotCommand(cmd) {
         let resp = '';
         switch(cmd.trim().toLowerCase()) {
-            case '/resume': resp = '📄 Senior Creative Dev: 5+ years, worked with global brands, Telegram bot expert, UI/UX specialist.'; break;
-            case '/skills': resp = '🎨 Graphic Design, Three.js, React, Supabase, Telegram Bot API, Python, Framer Motion.'; break;
-            case '/portfolio': resp = '✨ 30+ design projects, 10+ web apps, custom bot solutions for businesses.'; break;
-            case '/help': resp = 'Commands: /resume , /skills , /portfolio , /contact'; break;
-            default: resp = `❓ Unknown command. Try /help`; 
+            case '/resume': resp = '📄 Firomsa Ahmed: 7+ years in creative direction, Telegram bot development, Three.js immersive experiences. Clients worldwide.'; break;
+            case '/skills': resp = '🎨 Design: Adobe Suite, Figma. Dev: React, Node, Three.js, Supabase, Python. Bots: Telegram API, AI integration.'; break;
+            case '/portfolio': resp = '🌟 50+ design projects, 15+ web apps, custom Telegram bots for finance, communities, and e-commerce.'; break;
+            case '/contact': resp = '📬 Email firomsaahmed51@gmail.com | Telegram @Fira385508 | WhatsApp +251946004640'; break;
+            case '/help': resp = '⚡ Commands: /resume , /skills , /portfolio , /contact , /twa'; break;
+            case '/twa': resp = '📱 Telegram Mini App ready! Open t.me/Fira385508?startapp=portfolio to launch WebApp version.'; break;
+            default: resp = '❓ Unknown command. Try /help';
         }
-        terminalOutput.innerHTML = `> ${cmd}<br>👉 ${resp}`;
+        terminalResp.innerHTML = `> ${cmd}<br><span style="color: #0ff;">${resp}</span>`;
     }
-    document.getElementById('sendCmd')?.addEventListener('click', () => {
-        const input = document.getElementById('botCommand');
-        if(input.value) processCommand(input.value);
-    });
-    document.getElementById('twaMockBtn')?.addEventListener('click', () => alert('📱 Telegram Mini App version ready! Open Telegram: @Fira385508 to launch WebApp instantly.'));
+    runBtn.addEventListener('click', () => { if(botInput.value) processBotCommand(botInput.value); });
+    botInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') processBotCommand(botInput.value); });
     
-    // --- modal for demos & legacy interaction ---
-    const modalDiv = document.getElementById('globalModal');
-    const modalContent = modalDiv.querySelector('.modal-content');
-    const closeModalBtn = document.getElementById('closeModal');
-    window.showDemo = (type) => {
-        if(type === 'calculator') modalContent.innerHTML = `<div><h3>Smart Calculator</h3><input id="calcScreen" readonly><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;">${[7,8,9,'/',4,5,6,'*',1,2,3,'-',0,'C','=','+'].map(v=>`<button class="calc-btn" data-val="${v}">${v}</button>`).join('')}</div></div>`;
-        else if(type === 'todo') modalContent.innerHTML = `<div><h3>To-Do List</h3><div><input id="todoInput"><button id="addTodoBtn">Add</button></div><ul id="todoList"></ul></div>`;
-        else modalContent.innerHTML = `<div><h3>Modern Landing Mockup</h3><p>Full interactive components ready for production.</p><button class="btn-primary">Explore</button></div>`;
-        modalDiv.style.display = 'flex';
-        if(type === 'calculator') setTimeout(() => { let cur=''; document.querySelectorAll('.calc-btn').forEach(b=>b.onclick=()=>{ let v=b.dataset.val; if(v==='C') cur=''; else if(v==='=') cur=eval(cur).toString(); else cur+=v; document.getElementById('calcScreen').value=cur; }); },50);
-        if(type === 'todo') setTimeout(()=>{ let tasks=[]; function renderTodo(){ document.getElementById('todoList').innerHTML=tasks.map((t,i)=>`<li>${t} <button data-idx="${i}">❌</button></li>`).join(''); document.querySelectorAll('[data-idx]').forEach(btn=>btn.onclick=()=>{ tasks.splice(btn.dataset.idx,1); renderTodo(); }); } document.getElementById('addTodoBtn').onclick=()=>{ let inp=document.getElementById('todoInput'); if(inp.value) tasks.push(inp.value); renderTodo(); inp.value=''; }; renderTodo(); },50);
-    };
-    document.querySelectorAll('.demo-btn').forEach(btn => btn.addEventListener('click', () => showDemo(btn.getAttribute('data-demo'))));
-    closeModalBtn.onclick = () => modalDiv.style.display = 'none';
-    modalDiv.onclick = (e) => { if(e.target === modalDiv) modalDiv.style.display = 'none'; };
+    const twaBtn = document.getElementById('twaDemoBtn');
+    twaBtn.addEventListener('click', () => alert('🌟 Launching Telegram Mini App: t.me/Fira385508?startapp=portfolio — copy link and open in Telegram!'));
     
-    // Dark mode persistence
-    const toggleBtn = document.getElementById('darkModeToggle');
-    toggleBtn?.addEventListener('click', () => { document.body.classList.toggle('light-mode'); });
+    // --- scroll reveal observer
+    const reveals = document.querySelectorAll('.reveal');
+    const scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('revealed'); });
+    }, { threshold: 0.2 });
+    reveals.forEach(el => scrollObserver.observe(el));
     
-    // Mobile menu
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('nav-menu');
-    hamburger?.addEventListener('click', () => navMenu.classList.toggle('active'));
-    document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => navMenu.classList.remove('active')));
-    new IntersectionObserver((entries,obs)=>entries.forEach(e=>e.isIntersecting&&e.target.classList.add('visible')),{threshold:0.2}).observe(document.querySelectorAll('.fade-up'));
-    
-    // Smooth scroll anchors
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => anchor.addEventListener('click', function(e){ const target=document.querySelector(this.hash); if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth'}); } }));
-    
-    console.log('World-Class Portfolio Ready');
+    // Smooth anchor
+    document.querySelectorAll('.nav-links a').forEach(anchor => anchor.addEventListener('click', function(e){
+        const targetId = this.getAttribute('href');
+        if(targetId && targetId !== '#') {
+            e.preventDefault();
+            const target = document.querySelector(targetId);
+            if(target) target.scrollIntoView({ behavior: 'smooth' });
+        }
+    }));
+    document.getElementById('exploreBtn').addEventListener('click', () => document.querySelector('#design').scrollIntoView({ behavior: 'smooth' }));
 </script>
 </body>
 </html>
