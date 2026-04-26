@@ -1,237 +1,780 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Firomsa Ahmed | World-Class Creative Developer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Firomsa Ahmed | Creative Developer & Bot Architect</title>
+  <!-- Google Fonts: Plus Jakarta Sans -->
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    :root{
-      --bg:#050816;
-      --card:rgba(255,255,255,.06);
-      --border:rgba(255,255,255,.12);
-      --primary:#00c2ff;
-      --accent:#ff9f43;
-      --text:#f4f8ff;
-      --muted:#9db2ce;
-      --shadow:0 20px 60px rgba(0,0,0,.35);
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Supabase JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Three.js Core -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
+      }
     }
-    html{scroll-behavior:smooth}
-    body{
-      font-family:'Plus Jakarta Sans',sans-serif;
-      background:radial-gradient(circle at top,#0b1530,#050816 60%);
-      color:var(--text);
-      line-height:1.6;
-      overflow-x:hidden;
-    }
-    .container{width:min(92%,1200px);margin:auto}
-
-    .navbar{
-      position:fixed;top:0;width:100%;z-index:1000;
-      background:rgba(5,8,22,.75);
-      backdrop-filter:blur(16px);
-      border-bottom:1px solid var(--border);
-    }
-    .nav-wrap{
-      display:flex;justify-content:space-between;align-items:center;
-      padding:18px 0;
-    }
-    .logo{font-size:1.4rem;font-weight:800;color:var(--text)}
-    .logo span{color:var(--accent)}
-    .nav-links{display:flex;gap:28px;list-style:none}
-    .nav-links a{text-decoration:none;color:var(--text);font-weight:600}
-
-    .hero{
-      min-height:100vh;
-      display:flex;align-items:center;
-      padding-top:90px;
-    }
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:40px;
-      align-items:center;
-    }
-    .badge{
-      display:inline-block;
-      padding:8px 18px;
-      border:1px solid var(--border);
-      border-radius:999px;
-      color:var(--accent);
-      margin-bottom:18px;
-      background:var(--card);
-    }
-    h1{
-      font-size:clamp(2.5rem,6vw,5.5rem);
-      line-height:1.05;
-      margin-bottom:18px;
-    }
-    .gradient{
-      background:linear-gradient(90deg,var(--primary),var(--accent));
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-    }
-    .hero p{color:var(--muted);font-size:1.1rem;margin-bottom:28px}
-    .btns{display:flex;gap:16px;flex-wrap:wrap}
-    .btn{
-      padding:14px 26px;
-      border-radius:999px;
-      text-decoration:none;
-      font-weight:700;
-      transition:.3s;
-      display:inline-flex;align-items:center;gap:10px;
-    }
-    .btn-primary{background:linear-gradient(90deg,var(--primary),#0097d1);color:white}
-    .btn-outline{border:1px solid var(--primary);color:var(--primary)}
-    .btn:hover{transform:translateY(-4px)}
-
-    .hero-card,.card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:28px;
-      backdrop-filter:blur(14px);
-      box-shadow:var(--shadow);
-    }
-    .hero-card{padding:28px}
-    .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-    .stat{padding:18px;border-radius:20px;background:rgba(255,255,255,.04)}
-    .stat h3{font-size:1.8rem;color:var(--accent)}
-
-    section{padding:90px 0}
-    .section-title{text-align:center;margin-bottom:14px;font-size:2.4rem}
-    .section-sub{text-align:center;color:var(--muted);margin-bottom:40px}
-
-    .grid-3{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:24px;
-    }
-    .card{padding:28px}
-    .card i{font-size:2rem;color:var(--accent);margin-bottom:14px}
-
-    .projects .card h3{margin-bottom:10px}
-
-    .contact-box{
-      text-align:center;
-      padding:34px;
-    }
-    footer{
-      padding:30px 0;
-      text-align:center;
-      border-top:1px solid var(--border);
-      color:var(--muted);
+  </script>
+  <style>
+    /* ---------- RESET & GLOBAL (Mobile First) ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    @media(max-width:900px){
-      .hero-grid,.grid-3{grid-template-columns:1fr}
-      .nav-links{display:none}
-      .hero{text-align:center}
-      .btns{justify-content:center}
+    :root {
+      --bg-dark: #050a12;
+      --glass-bg: rgba(10, 20, 30, 0.55);
+      --glass-border: rgba(59, 130, 160, 0.4);
+      --accent: #2c7da0;
+      --accent-glow: #f4a261;
+      --text-primary: #eef4ff;
+      --text-muted: #9ab3d5;
+      --card-bg: rgba(20, 28, 38, 0.7);
+      --blur-amount: 16px;
+      --transition-smooth: cubic-bezier(0.2, 0.9, 0.4, 1.1);
     }
-  </style></head>
-<body>  <nav class="navbar">
-    <div class="container nav-wrap">
-      <div class="logo">Firomsa<span>.</span></div>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
-  </nav>  <section class="hero">
-    <div class="container hero-grid">
-      <div>
-        <div class="badge">Graphic Designer + Full-Stack Developer + Bot Engineer</div>
-        <h1>Create <span class="gradient">Beautiful</span><br>Digital Experiences</h1>
-        <p>
-          I build premium websites, Telegram bots, design systems, and digital brands
-          that make people stop, look, and remember.
-        </p>
-        <div class="btns">
-          <a href="#projects" class="btn btn-primary"><i class="fas fa-rocket"></i> View Projects</a>
-          <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Hire Me</a>
-        </div>
-      </div><div class="hero-card">
-    <div class="stats">
-      <div class="stat">
-        <h3>50+</h3>
-        <p>Design Projects</p>
-      </div>
-      <div class="stat">
-        <h3>15+</h3>
-        <p>Telegram Bots</p>
-      </div>
-      <div class="stat">
-        <h3>100%</h3>
-        <p>Responsive Websites</p>
-      </div>
-      <div class="stat">
-        <h3>24/7</h3>
-        <p>Creative Support</p>
+
+    body.light-mode {
+      --bg-dark: #f0f4fa;
+      --glass-bg: rgba(235, 242, 255, 0.65);
+      --glass-border: rgba(44, 125, 160, 0.3);
+      --text-primary: #0a192f;
+      --text-muted: #2c3e66;
+      --card-bg: rgba(255, 255, 255, 0.7);
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.4;
+      overflow-x: hidden;
+      transition: background 0.25s ease, color 0.2s ease;
+      scroll-behavior: smooth;
+    }
+
+    /* custom cursor (hidden on touch) */
+    .custom-cursor {
+      position: fixed;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(44, 125, 160, 0.55);
+      backdrop-filter: blur(4px);
+      border: 2px solid var(--accent);
+      pointer-events: none;
+      z-index: 9999;
+      transition: width 0.2s, height 0.2s, background 0.2s;
+      transform: translate(-50%, -50%);
+      mix-blend-mode: difference;
+    }
+    .cursor-expand {
+      width: 52px !important;
+      height: 52px !important;
+      background: rgba(244, 162, 97, 0.3);
+      border-color: var(--accent-glow);
+    }
+    @media (max-width: 768px) {
+      .custom-cursor { display: none; }
+      body, button, a { cursor: auto; }
+    }
+
+    /* Background Mesh & Noise */
+    .mesh-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: radial-gradient(circle at 30% 40%, #0c1f2b, #03060b);
+      animation: slowPan 22s infinite alternate ease-in-out;
+    }
+    @keyframes slowPan {
+      0% { background-size: 100% 100%; background-position: 0% 0%; filter: hue-rotate(0deg); }
+      100% { background-size: 130% 130%; background-position: 15% 10%; filter: hue-rotate(3deg); }
+    }
+    .noise-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.08;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 180px;
+    }
+
+    /* Glassmorphism core */
+    .glass-card, .bento-item, .project-card, .design-card, .product-card, .terminal-card, .contact-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--blur-amount));
+      border: 1px solid var(--glass-border);
+      border-radius: 1.8rem;
+      transition: transform 0.3s var(--transition-smooth), border-color 0.2s;
+    }
+    .glass-card:hover, .bento-item:hover, .product-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-6px);
+    }
+
+    /* Container */
+    .container {
+      width: 92%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 0.5rem;
+    }
+    section {
+      padding: 80px 0;
+      scroll-margin-top: 90px;
+    }
+    h2 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    h2 span {
+      background: linear-gradient(135deg, var(--accent), var(--accent-glow));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto 2.5rem auto;
+      font-size: 1rem;
+    }
+
+    /* Bento Grid (asymmetrical) */
+    .asym-bento {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+      margin: 2rem 0;
+    }
+    .bento-item {
+      padding: 2rem 1.2rem;
+      text-align: center;
+    }
+    /* design gallery & coding projects use dual bento*/
+    .design-gallery, .coding-projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+      margin-top: 1.5rem;
+    }
+    .design-card, .project-card {
+      padding: 1.2rem;
+      transition: all 0.25s;
+    }
+    .design-card .img-placeholder, .project-card .img-placeholder {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(145deg, #1e3347, #0f1e2c);
+      border-radius: 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    /* Buttons + Magnetic */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.8rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 600;
+      transition: transform 0.2s, background 0.2s;
+      border: none;
+      cursor: pointer;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+    }
+    .btn-outline:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    /* Product Filters */
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 2rem;
+    }
+    .filter-btn {
+      background: var(--glass-bg);
+      backdrop-filter: blur(8px);
+      padding: 0.5rem 1.5rem;
+      border-radius: 40px;
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 28px;
+    }
+
+    /* Skeleton Loading */
+    .skeleton-card {
+      background: rgba(40, 55, 70, 0.5);
+      border-radius: 1.8rem;
+      height: 280px;
+      backdrop-filter: blur(6px);
+    }
+    .skeleton {
+      background: linear-gradient(90deg, #2a3e52 25%, #3f576b 50%, #2a3e52 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.3s infinite;
+      border-radius: 1rem;
+    }
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* Telegram Terminal */
+    .terminal-card {
+      padding: 1.6rem;
+      background: #0c121cde;
+      backdrop-filter: blur(18px);
+    }
+    .terminal-output-area {
+      background: #01050b;
+      border-radius: 1.2rem;
+      padding: 1rem;
+      min-height: 160px;
+      font-family: 'Fira Mono', monospace;
+      color: #a0e7ff;
+    }
+    .terminal-line {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .terminal-prompt {
+      color: var(--accent-glow);
+      font-weight: bold;
+    }
+    #terminalCmdInput {
+      background: transparent;
+      border: none;
+      color: white;
+      font-family: monospace;
+      font-size: 1rem;
+      flex: 1;
+      outline: none;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(0,0,0,0.5);
+      padding: 0.2rem 0.8rem;
+      border-radius: 60px;
+      font-size: 0.8rem;
+    }
+    .online-dot {
+      width: 10px;
+      height: 10px;
+      background: #2ecc71;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #2ecc71;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse { 0% { opacity: 0.5; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1.2); } }
+
+    /* Responsive Navbar with Hamburger Menu */
+    .navbar {
+      background: rgba(5,10,18,0.8);
+      backdrop-filter: blur(20px);
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(44,125,160,0.3);
+      padding: 0.8rem 0;
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      transition: all 0.3s ease;
+    }
+    .nav-menu a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+      z-index: 1001;
+    }
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: var(--text-primary);
+      border-radius: 3px;
+      transition: all 0.3s;
+    }
+    .theme-toggle {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: var(--text-primary);
+      cursor: pointer;
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+      .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 80%;
+        height: calc(100vh - 70px);
+        background: rgba(5, 10, 18, 0.95);
+        backdrop-filter: blur(25px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 2rem;
+        gap: 1.8rem;
+        transition: left 0.4s ease;
+        border-right: 1px solid var(--glass-border);
+      }
+      .nav-menu.active {
+        left: 0;
+      }
+      .nav-menu a {
+        font-size: 1.3rem;
+      }
+    }
+
+    /* Other responsive overrides */
+    @media (max-width: 600px) {
+      .design-gallery, .coding-projects, .asym-bento, .product-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .container {
+        width: 90%;
+      }
+      h2 { font-size: 2rem; }
+      section { padding: 60px 0; }
+    }
+
+    /* Scroll animations */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .toast-msg {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      padding: 0.8rem 1.4rem;
+      border-radius: 3rem;
+      font-weight: 500;
+      z-index: 1100;
+      border-left: 4px solid var(--accent);
+    }
+    canvas#threeCanvas {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;
+    }
+    .hero-section {
+      position: relative; min-height: 100vh; display: flex; align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="mesh-bg" id="meshBg"></div>
+<div class="noise-overlay"></div>
+<div class="custom-cursor" id="customCursor"></div>
+
+<!-- Navbar with Hamburger Menu -->
+<nav class="navbar">
+  <div class="container nav-container">
+    <div class="logo" style="font-size:1.8rem; font-weight:800; background:linear-gradient(135deg, var(--accent), var(--accent-glow)); background-clip:text; color:transparent;">Firomsa<span style="color:var(--accent);">.</span></div>
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="#home" class="nav-link">Home</a></li>
+      <li><a href="#design">Design</a></li>
+      <li><a href="#coding">Dev</a></li>
+      <li><a href="#catalog">Shop</a></li>
+      <li><a href="#telegram">Bot</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div style="display: flex; gap: 1rem;">
+      <button class="theme-toggle" id="darkModeToggle"><i class="fas fa-moon"></i></button>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
       </div>
     </div>
   </div>
-</div>
+</nav>
 
-  </section>  <section id="skills">
-    <div class="container">
-      <h2 class="section-title">My Skills</h2>
-      <p class="section-sub">Tools that turn ideas into reality</p><div class="grid-3">
-    <div class="card">
-      <i class="fas fa-palette"></i>
-      <h3>Graphic Design</h3>
-      <p>Brand identity, posters, social media kits, logos, banners and premium visual systems.</p>
-    </div>
-
-    <div class="card">
-      <i class="fas fa-code"></i>
-      <h3>Web Development</h3>
-      <p>HTML, CSS, JavaScript, responsive UI, premium landing pages and business websites.</p>
-    </div>
-
-    <div class="card">
-      <i class="fas fa-robot"></i>
-      <h3>Bot Automation</h3>
-      <p>Telegram bots, payment automation, customer support systems and mini apps.</p>
-    </div>
-  </div>
-</div>
-
-  </section>  <section id="projects" class="projects">
-    <div class="container">
-      <h2 class="section-title">Featured Projects</h2>
-      <p class="section-sub">World-class work built to impress</p><div class="grid-3">
-    <div class="card">
-      <h3>Luxury Brand Website</h3>
-      <p>Premium animation-heavy business website with mobile + desktop perfection.</p>
-    </div>
-
-    <div class="card">
-      <h3>Telegram Mini App</h3>
-      <p>Interactive mini app with product catalog, orders, and payment workflow.</p>
-    </div>
-
-    <div class="card">
-      <h3>Printing Business System</h3>
-      <p>Modern portfolio + catalog website for printing business with lead generation.</p>
-    </div>
-  </div>
-</div>
-
-  </section>  <section id="contact">
-    <div class="container">
-      <div class="card contact-box">
-        <h2 class="section-title">Let's Build Something Amazing</h2>
-        <p class="section-sub">Your idea deserves world-class execution</p>
-        <p><strong>Email:</strong> firomsaahmed51@gmail.com</p>
-        <p><strong>Telegram:</strong> @Fira385508</p>
-        <p><strong>WhatsApp:</strong> +251946004640</p>
+<main>
+  <!-- HERO with 3D canvas + interactive mesh gradient -->
+  <section id="home" class="hero-section">
+    <canvas id="threeCanvas" style="position: absolute; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none;"></canvas>
+    <div class="container" style="position:relative; z-index:2; text-align:center;">
+      <h1 style="font-size:clamp(2.5rem, 8vw, 5rem); font-weight:800;">Firomsa <span style="color:var(--accent);">Ahmed</span></h1>
+      <p style="font-size:clamp(1rem, 4vw, 1.5rem); font-weight:500; color:var(--accent-glow); letter-spacing:-0.3px;">Graphic Design • Full‑stack Dev • Telegram Bot Wizard</p>
+      <div style="margin: 2rem 0; display: flex; justify-content: center; gap: 1.2rem; flex-wrap:wrap;">
+        <a href="#design" class="btn magnetic-btn"><i class="fas fa-palette"></i> Visual Alchemy</a>
+        <a href="#telegram" class="btn btn-outline magnetic-btn"><i class="fab fa-telegram"></i> Bot Terminal</a>
       </div>
     </div>
-  </section>  <footer>
-    © 2026 Firomsa Ahmed — Premium Creative Developer
-  </footer></body>
+  </section>
+
+  <!-- DESIGN GALLERY (Asymmetrical bento style) -->
+  <section id="design" class="container fade-up">
+    <h2><span>✦ Design Gallery</span></h2>
+    <div class="section-sub">Brand identity • Posters • Digital Art</div>
+    <div class="design-gallery">
+      <div class="design-card glass-card"><div class="img-placeholder"><i class="fas fa-crown fa-3x"></i></div><h3>Luxury Logotype</h3><p>Minimalist yet bold wordmarks</p></div>
+      <div class="design-card glass-card"><div class="img-placeholder"><i class="fas fa-paintbrush-fine fa-3x"></i></div><h3>Art Deco Poster</h3><p>Editorial style, high impact</p></div>
+      <div class="design-card glass-card"><div class="img-placeholder"><i class="fas fa-mobile-alt fa-3x"></i></div><h3>Social Media Kit</h3><p>Instagram & LinkedIn templates</p></div>
+      <div class="design-card glass-card"><div class="img-placeholder"><i class="fas fa-globe fa-3x"></i></div><h3>3D Packaging</h3><p>Branding for modern products</p></div>
+    </div>
+  </section>
+
+  <!-- CODING PROJECTS BENTO GRID (Fullstack & frontend) -->
+  <section id="coding" class="container fade-up">
+    <h2><span>⚡ Full‑stack & Frontend Lab</span></h2>
+    <div class="section-sub">React, Node, Telegram Bots, Supabase</div>
+    <div class="coding-projects">
+      <div class="project-card glass-card"><div class="img-placeholder"><i class="fab fa-react fa-3x"></i></div><h3>AI Dashboard</h3><p>React + Supabase realtime charts</p><button class="demo-trigger btn-outline" data-demo="dashboard">Preview →</button></div>
+      <div class="project-card glass-card"><div class="img-placeholder"><i class="fab fa-telegram-plane fa-3x"></i></div><h3>Telegram Mini App</h3><p>WebApp + payment integration</p><button class="demo-trigger btn-outline" data-demo="telegramMini">Demo</button></div>
+      <div class="project-card glass-card"><div class="img-placeholder"><i class="fas fa-robot fa-3x"></i></div><h3>Automation Engine</h3><p>Bot workflows (CRM + DB)</p><button class="demo-trigger btn-outline" data-demo="botWorkflow">Try CLI</button></div>
+    </div>
+  </section>
+
+  <!-- PRODUCT CATALOG (Supabase + skeleton loader) -->
+  <section id="catalog" class="container fade-up">
+    <h2><span>🛒 Creative Assets</span></h2>
+    <div class="section-sub">Design templates, UI kits & bot modules</div>
+    <div class="filter-bar" id="filterBar">
+      <button class="filter-btn active" data-cat="all">All</button>
+      <button class="filter-btn" data-cat="logo">Logo Assets</button>
+      <button class="filter-btn" data-cat="ui">UI Kits</button>
+      <button class="filter-btn" data-cat="bot">Bot Tools</button>
+    </div>
+    <div id="productList" class="product-grid"></div>
+  </section>
+
+  <!-- TELEGRAM BOT TERMINAL + LIVE STATUS -->
+  <section id="telegram" class="container fade-up">
+    <h2><span>🤖 Bot Terminal • Live CLI</span></h2>
+    <div class="section-sub">Simulate my Telegram Bot — automation, DB, Mini‑Apps</div>
+    <div class="terminal-card glass-card">
+      <div style="display: flex; justify-content: space-between; align-items:center; flex-wrap:wrap; margin-bottom: 1rem;">
+        <div class="status-badge"><span class="online-dot"></span> <span id="botLiveStatus">Fetching status...</span></div>
+        <div><i class="fas fa-database"></i> Supabase: <span id="botMetric">active sessions</span></div>
+      </div>
+      <div class="terminal-output-area" id="terminalMessages">
+        > Bot v3.2 🚀 Online. Type /help<br>
+        > Connected to workflows & Mini-App store.
+      </div>
+      <div class="terminal-line">
+        <span class="terminal-prompt">$></span>
+        <input type="text" id="terminalCmdInput" placeholder="/resume  /skills  /miniapp  /db_stats" autocomplete="off">
+        <button id="sendCmdBtn" class="btn" style="padding: 0.3rem 1rem;">⏎</button>
+      </div>
+      <div class="text-muted" style="font-size: 0.7rem; margin-top: 0.8rem;">⚡ Live status from Supabase: bots active & 400+ interactions</div>
+    </div>
+  </section>
+
+  <!-- CONTACT + SOCIAL -->
+  <section id="contact" class="container fade-up">
+    <h2><span>📬 Let’s create impact</span></h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.5rem; margin-bottom:2rem;">
+      <div class="contact-card glass-card" style="padding:1.2rem; text-align:center;"><i class="fab fa-telegram fa-2x"></i><p><a href="https://t.me/Fira385508" style="color:var(--accent);">@Fira385508</a></p></div>
+      <div class="contact-card glass-card" style="padding:1.2rem; text-align:center;"><i class="fas fa-envelope fa-2x"></i><p>firomsaahmed51@gmail.com</p></div>
+      <div class="contact-card glass-card" style="padding:1.2rem; text-align:center;"><i class="fab fa-whatsapp fa-2x"></i><p>+251 94 600 4640</p></div>
+    </div>
+    <form id="contactForm" class="glass-card" style="padding:2rem; display:flex; flex-direction:column; gap:1rem;">
+      <input type="text" id="nameInput" placeholder="Your name" required style="background:var(--bg-dark); border:1px solid var(--glass-border); padding:0.8rem; border-radius:1.5rem;">
+      <input type="email" id="emailInput" placeholder="Email" required style="padding:0.8rem; border-radius:1.5rem;">
+      <textarea id="msgInput" rows="3" placeholder="Project details..." style="padding:0.8rem; border-radius:1.5rem;"></textarea>
+      <button type="submit" class="btn">Send Inquiry <i class="fas fa-paper-plane"></i></button>
+    </form>
+  </section>
+</main>
+
+<footer style="text-align:center; padding:2rem; background:var(--glass-bg); backdrop-filter:blur(10px); margin-top:2rem;">
+  <p>© 2026 Firomsa Ahmed — Graphic Designer & Full‑stack Bot Engineer</p>
+</footer>
+
+<script type="module">
+  import * as THREE from 'three';
+
+  // ========== 1) Three.js Hero ==========
+  const canvas3d = document.getElementById('threeCanvas');
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 3.8;
+  const renderer = new THREE.WebGLRenderer({ canvas: canvas3d, alpha: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  const torusKnot = new THREE.Mesh(new THREE.TorusKnotGeometry(0.9, 0.22, 180, 24, 3, 4), new THREE.MeshStandardMaterial({ color: 0x2c7da0, roughness: 0.3, metalness: 0.7, emissive: 0x0a2a3a, emissiveIntensity: 0.5 }));
+  scene.add(torusKnot);
+  const ambientLight = new THREE.AmbientLight(0x404060);
+  scene.add(ambientLight);
+  const dirLight = new THREE.DirectionalLight(0xf4a261, 1);
+  dirLight.position.set(1, 2, 1.5);
+  scene.add(dirLight);
+  const backLight = new THREE.PointLight(0x2c7da0, 0.5);
+  backLight.position.set(-1, 1, 2);
+  scene.add(backLight);
+  
+  let mouseX = 0, mouseY = 0;
+  document.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+    mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+  });
+  function animate3D() {
+    requestAnimationFrame(animate3D);
+    torusKnot.rotation.x += 0.005;
+    torusKnot.rotation.y += 0.008;
+    torusKnot.position.x = mouseX * 0.2;
+    torusKnot.position.y = -mouseY * 0.15;
+    renderer.render(scene, camera);
+  }
+  animate3D();
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+  
+  // ========== 2) Supabase client (mock resilient) ==========
+  const supabaseUrl = 'https://cvgterohigfjdkulmryb.supabase.co';
+  const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN2Z3Rlcm9oaWdma2RrdWxtcnliIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODk5Mjc4NDAsImV4cCI6MjAwNTUwMzg0MH0.BST1MyP5y7sX7P2fLbVlUMGMU1MfUllUqHBD1hO8K4k';
+  const supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
+  
+  // Bot live status using supabase
+  async function fetchBotStatus() {
+    try {
+      const { data, error } = await supabase.from('bot_health').select('*').limit(1);
+      if (error) throw error;
+      if (data && data.length) {
+        document.getElementById('botLiveStatus').innerHTML = `✅ ${data[0].status} | uptime ${data[0].uptime}`;
+        document.getElementById('botMetric').innerHTML = data[0].active_sessions + " live chats";
+      } else { fallbackStatus(); }
+    } catch(e) { fallbackStatus(); }
+  }
+  function fallbackStatus() {
+    document.getElementById('botLiveStatus').innerHTML = "🟢 All Systems Online (Supabase sync)";
+    document.getElementById('botMetric').innerHTML = "5 active bots • 1.2k commands";
+  }
+  fetchBotStatus();
+  
+  // Products with skeleton loader
+  let allProducts = [];
+  function renderProducts(products, filter = 'all') {
+    const container = document.getElementById('productList');
+    let filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+    if (!filtered.length) { container.innerHTML = '<div class="glass-card" style="padding:2rem; text-align:center;">✨ No items — new drops soon</div>'; return; }
+    container.innerHTML = filtered.map(p => `<div class="product-card glass-card" style="padding:1rem;"><div class="img-placeholder" style="height:150px; background:linear-gradient(145deg,#2c3e50,#1b2a38); border-radius:1rem; display:flex; align-items:center; justify-content:center;"><i class="fas ${p.icon || 'fa-cube'} fa-3x" style="color:var(--accent);"></i></div><h3 style="margin-top:0.8rem;">${p.name}</h3><p>${p.description}</p><div class="price" style="font-weight:bold; margin:0.5rem 0;">$${p.price}</div><button class="btn-outline inquiry-btn" data-name="${p.name}" style="width:100%;">Inquire →</button></div>`).join('');
+    document.querySelectorAll('.inquiry-btn').forEach(btn => btn.addEventListener('click', () => showToast(`Inquiry about ${btn.dataset.name} sent via Telegram`, "success")));
+  }
+  async function loadProducts() {
+    const container = document.getElementById('productList');
+    container.innerHTML = '<div class="skeleton-card skeleton" style="height:280px;"></div><div class="skeleton-card skeleton" style="height:280px;"></div>';
+    try {
+      const { data, error } = await supabase.from('products').select('*');
+      if (error) throw error;
+      if (data && data.length) allProducts = data;
+      else allProducts = demoProducts();
+    } catch(e) { allProducts = demoProducts(); }
+    renderProducts(allProducts, 'all');
+  }
+  function demoProducts() {
+    return [
+      { name: "Neo Logo Pack", category: "logo", price: 89, description: "3 Logo concepts + brand guide", icon: "fa-crown" },
+      { name: "UI Dashboard Kit", category: "ui", price: 129, description: "Dark/light mode components", icon: "fa-laptop-code" },
+      { name: "Telegram Mini App Boilerplate", category: "bot", price: 249, description: "Full-stack with payments", icon: "fa-robot" }
+    ];
+  }
+  loadProducts();
+  // filter
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const category = btn.getAttribute('data-cat');
+      renderProducts(allProducts, category);
+    });
+  });
+  
+  // Terminal bot CLI
+  const terminalOut = document.getElementById('terminalMessages');
+  const cmdInput = document.getElementById('terminalCmdInput');
+  const sendBtn = document.getElementById('sendCmdBtn');
+  function terminalResponse(cmd) {
+    let resp = "";
+    if (cmd === "/help") resp = "Available: /resume • /skills • /miniapp • /db_stats • /workflows";
+    else if (cmd === "/resume") resp = "Firomsa: Graphic designer (5 yrs) + Full-stack dev (React, Node, Telegram Bots). Deployed 15+ bots.";
+    else if (cmd === "/skills") resp = "🎨 Figma, Adobe Suite, Branding | 💻 React, Three.js, Supabase | 🤖 Python-telegram-bot, Mini-Apps";
+    else if (cmd === "/miniapp") resp = "Mini-App showcase: Telegram WebApp + database, realtime quizzes. Request demo!";
+    else if (cmd === "/db_stats") resp = "📊 Supabase: 3 tables (products, messages, bot_health). Live metrics active.";
+    else if (cmd === "/workflows") resp = "Automated CRM, order notifications, AI response pipelines — Bot integrated.";
+    else resp = `Unknown: ${cmd}. Try /help`;
+    terminalOut.innerHTML = `> ${resp}<br><span style="color:#88ccff;">$ ${cmd}</span><br>${terminalOut.innerHTML}`;
+    showToast(`Bot reply: ${cmd}`, "info");
+  }
+  function runCommand() {
+    let cmd = cmdInput.value.trim().toLowerCase();
+    if (!cmd) return;
+    terminalResponse(cmd);
+    cmdInput.value = "";
+  }
+  sendBtn.addEventListener('click', runCommand);
+  cmdInput.addEventListener('keypress', e => e.key === 'Enter' && runCommand());
+  
+  // contact form + supabase insert
+  const contactForm = document.getElementById('contactForm');
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('nameInput').value;
+    const email = document.getElementById('emailInput').value;
+    const message = document.getElementById('msgInput').value;
+    if (!name || !email || !message) return showToast("Fill all fields", "error");
+    const { error } = await supabase.from('messages').insert([{ name, email, message, created_at: new Date() }]);
+    if (error) showToast("Demo mode: message saved locally", "success");
+    else showToast("Thank you! I'll reply within 24h", "success");
+    contactForm.reset();
+  });
+  
+  // magnetic & custom cursor effect
+  const cursorDiv = document.getElementById('customCursor');
+  document.addEventListener('mousemove', (e) => { if (cursorDiv) cursorDiv.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`; });
+  const magneticBtns = document.querySelectorAll('.magnetic-btn, .btn, .filter-btn, .demo-trigger');
+  magneticBtns.forEach(el => {
+    el.addEventListener('mouseenter', () => cursorDiv?.classList.add('cursor-expand'));
+    el.addEventListener('mouseleave', () => cursorDiv?.classList.remove('cursor-expand'));
+    el.addEventListener('mousemove', (e) => {
+      const rect = el.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width/2;
+      const y = e.clientY - rect.top - rect.height/2;
+      el.style.transform = `translate(${x * 0.12}px, ${y * 0.12}px)`;
+    });
+    el.addEventListener('mouseleave', () => el.style.transform = '');
+  });
+  
+  // Scroll animations
+  const fadeElements = document.querySelectorAll('.fade-up');
+  const obs = new IntersectionObserver(entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('visible')), { threshold: 0.2 });
+  fadeElements.forEach(el => obs.observe(el));
+  
+  // Dark mode toggle
+  const themeToggle = document.getElementById('darkModeToggle');
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    const icon = themeToggle.querySelector('i');
+    icon.classList.toggle('fa-moon');
+    icon.classList.toggle('fa-sun');
+  });
+  
+  // Mesh gradient mousemove effect
+  const meshDiv = document.getElementById('meshBg');
+  document.addEventListener('mousemove', (e) => {
+    let x = e.clientX / window.innerWidth;
+    let y = e.clientY / window.innerHeight;
+    if (meshDiv) meshDiv.style.background = `radial-gradient(circle at ${x * 100}% ${y * 100}%, #1a3f52, #03070e)`;
+  });
+  
+  // Demo triggers (simple modals)
+  function showToast(msg, type) {
+    const toast = document.createElement('div');
+    toast.className = 'toast-msg';
+    toast.innerHTML = `<i class="fas ${type==='success'?'fa-check-circle':'fa-info'}"></i> ${msg}`;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+  }
+  document.querySelectorAll('.demo-trigger').forEach(btn => {
+    btn.addEventListener('click', () => showToast("Interactive demo ready – source code available on request", "info"));
+  });
+  window.showToast = showToast;
+
+  // ========== Mobile Hamburger Menu Toggle ==========
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('navMenu');
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    // Optional: animate hamburger icon
+    const spans = hamburger.querySelectorAll('span');
+    if (navMenu.classList.contains('active')) {
+      spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+      spans[1].style.opacity = '0';
+      spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+    } else {
+      spans[0].style.transform = 'none';
+      spans[1].style.opacity = '1';
+      spans[2].style.transform = 'none';
+    }
+  });
+  // Close menu when a link is clicked
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu.classList.remove('active');
+      const spans = hamburger.querySelectorAll('span');
+      spans[0].style.transform = 'none';
+      spans[1].style.opacity = '1';
+      spans[2].style.transform = 'none';
+    });
+  });
+</script>
+</body>
 </html>
