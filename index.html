@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Firomsa Ahmed | Visionary Design & Code</title>
-  <!-- Google Fonts + Enhanced Fonts -->
+  <title>Firomsa Ahmed | Futuristic Design · Dev · Bots</title>
+  <!-- Premium Fonts + Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Lenis for Ultra Smooth Scrolling (Cinematic) -->
+  <!-- Lenis for ultra smooth cinematic scroll -->
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
@@ -15,485 +15,390 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
     :root {
-      --bg-dark: #05070A;
-      --surface-dark: #0F1217;
-      --card-dark: #14181F;
-      --border-dark: rgba(255,255,255,0.08);
-      --text-dark-primary: #FFFFFF;
-      --text-dark-secondary: #A0AAB5;
-      --accent-blue: #0A84FF;
-      --accent-gold: #FFD966;
-      --accent-glow: rgba(10,132,255,0.4);
-      
-      --bg-light: #FBFBFD;
-      --surface-light: #FFFFFF;
-      --card-light: #FFFFFF;
-      --border-light: rgba(0,0,0,0.1);
-      --text-light-primary: #1D1D1F;
-      --text-light-secondary: #6E6E73;
-      
-      --transition-smooth: cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      --shadow-elevation: 0 25px 35px -12px rgba(0,0,0,0.25);
-      --glass-blur: blur(20px);
+      --bg-deep: #05070A;
+      --surface-deep: #0E1118;
+      --card-deep: #131823;
+      --border-subtle: rgba(255,255,255,0.06);
+      --text-primary: #FFFFFF;
+      --text-secondary: #A3B3C4;
+      --accent-cyan: #0A84FF;
+      --accent-amber: #FFD966;
+      --accent-glow: rgba(10,132,255,0.25);
+      --transition-spring: cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      --glass-backdrop: blur(18px);
+      --card-radius: 2rem;
     }
-    
+
+    body.light-mode {
+      --bg-deep: #FAFAFC;
+      --surface-deep: #FFFFFF;
+      --card-deep: #FFFFFF;
+      --border-subtle: rgba(0,0,0,0.08);
+      --text-primary: #1D1D1F;
+      --text-secondary: #6E6E73;
+      --accent-cyan: #0071e3;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--text-dark-primary);
-      line-height: 1.4;
+      background-color: var(--bg-deep);
+      color: var(--text-primary);
+      line-height: 1.5;
       overflow-x: hidden;
     }
-    
-    body.light-mode {
-      --bg-dark: var(--bg-light);
-      --surface-dark: var(--surface-light);
-      --card-dark: var(--card-light);
-      --border-dark: var(--border-light);
-      --text-dark-primary: var(--text-light-primary);
-      --text-dark-secondary: var(--text-light-secondary);
-    }
-    
-    /* Smooth scrolling & lenis optimization */
+
+    /* Lenis smooth */
     html.lenis {
       height: auto;
     }
     .lenis.lenis-smooth {
       scroll-behavior: auto;
     }
-    
-    /* Global Styling */
+
     .container {
       width: 90%;
       max-width: 1400px;
       margin: 0 auto;
       padding: 0 24px;
     }
-    
+
     section {
       padding: 120px 0;
       scroll-margin-top: 100px;
-      position: relative;
-      z-index: 2;
     }
-    
-    /* Apple-style Typography */
+
+    /* Typography - Visual Hierarchy */
     h1, h2, h3 {
       font-weight: 700;
       letter-spacing: -0.02em;
     }
-    
+
     h2 {
-      font-size: clamp(2.8rem, 6vw, 4.2rem);
-      margin-bottom: 1.5rem;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin-bottom: 1.25rem;
       text-align: center;
-      background: linear-gradient(135deg, #fff 30%, var(--accent-blue) 80%);
+      background: linear-gradient(135deg, var(--text-primary) 30%, var(--accent-cyan) 80%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
-    
+
     .section-sub {
       text-align: center;
-      color: var(--text-dark-secondary);
-      font-size: 1.2rem;
-      max-width: 720px;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 680px;
       margin: -0.5rem auto 3rem;
       font-weight: 400;
     }
-    
-    /* Premium Glass Navbar */
+
+    /* Glass Navbar */
     .navbar {
       position: fixed;
       top: 0;
       width: 100%;
-      z-index: 1000;
+      z-index: 1100;
       padding: 1rem 0;
-      background: rgba(var(--bg-dark-rgb), 0.75);
-      backdrop-filter: var(--glass-blur);
-      border-bottom: 1px solid var(--border-dark);
-      transition: var(--transition-smooth);
+      background: rgba(var(--bg-deep-rgb), 0.7);
+      backdrop-filter: var(--glass-backdrop);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: 0.2s;
     }
-    
     .nav-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    
     .logo {
       font-size: 1.9rem;
       font-weight: 800;
-      background: linear-gradient(135deg, var(--accent-blue), var(--accent-gold));
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-amber));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
       letter-spacing: -0.02em;
     }
-    
     .nav-menu {
       display: flex;
-      gap: 2.8rem;
+      gap: 2.6rem;
       list-style: none;
     }
-    
     .nav-link {
-      color: var(--text-dark-primary);
+      color: var(--text-primary);
       font-weight: 500;
       text-decoration: none;
       transition: 0.2s ease;
       font-size: 1rem;
     }
-    
-    .nav-link:hover {
-      color: var(--accent-blue);
-    }
-    
+    .nav-link:hover { color: var(--accent-cyan); }
     .theme-toggle {
       background: transparent;
       border: none;
       font-size: 1.5rem;
       cursor: pointer;
-      color: var(--text-dark-primary);
+      color: var(--text-primary);
       margin-left: 1rem;
       transition: transform 0.2s;
     }
-    
-    /* Hero Section - Apple meets Tesla */
+    /* Hero Section - Minimalist Luxury */
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
       position: relative;
-      overflow: hidden;
+      isolation: isolate;
     }
-    
-    .hero::before {
+    .hero::after {
       content: "";
       position: absolute;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at 30% 20%, rgba(10,132,255,0.15), transparent 70%);
+      inset: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(10,132,255,0.12), transparent 75%);
       pointer-events: none;
+      z-index: -1;
     }
-    
     .hero-content {
       text-align: center;
       max-width: 1100px;
       margin: 0 auto;
     }
-    
     .hero-badge {
       display: inline-block;
-      background: rgba(10,132,255,0.15);
+      background: rgba(10,132,255,0.12);
       backdrop-filter: blur(4px);
-      padding: 0.5rem 1.2rem;
+      padding: 0.4rem 1.2rem;
       border-radius: 60px;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 500;
       margin-bottom: 2rem;
       border: 1px solid rgba(10,132,255,0.3);
     }
-    
     .hero h1 {
-      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-size: clamp(3rem, 8vw, 5.8rem);
       font-weight: 800;
       letter-spacing: -0.03em;
     }
-    
     .highlight {
-      background: linear-gradient(135deg, var(--accent-blue), var(--accent-gold));
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-amber));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
-    
     .hero-avatar {
-      width: 140px;
-      height: 140px;
-      margin: 2rem auto;
+      width: 130px;
+      height: 130px;
+      margin: 1.8rem auto;
       border-radius: 50%;
       overflow: hidden;
-      border: 3px solid var(--accent-blue);
-      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
-      transition: all 0.4s var(--transition-smooth);
+      border: 2.5px solid var(--accent-cyan);
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.4);
+      transition: transform 0.3s var(--transition-spring);
       cursor: pointer;
     }
-    
-    .hero-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    
+    .hero-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-avatar:hover { transform: scale(1.02); }
     .btn-group {
       display: flex;
       gap: 1.2rem;
       justify-content: center;
       flex-wrap: wrap;
-      margin-top: 1.5rem;
+      margin-top: 1.8rem;
     }
-    
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      padding: 1rem 2rem;
+      padding: 0.9rem 2rem;
       border-radius: 60px;
       font-weight: 600;
-      transition: all 0.3s var(--transition-smooth);
+      transition: all 0.3s var(--transition-spring);
       text-decoration: none;
       font-size: 1rem;
       cursor: pointer;
       border: none;
     }
-    
     .btn-primary {
-      background: var(--accent-blue);
+      background: var(--accent-cyan);
       color: white;
       box-shadow: 0 4px 12px rgba(10,132,255,0.3);
     }
-    
-    .btn-primary:hover {
-      transform: translateY(-4px);
-      background: #0071e3;
-      box-shadow: 0 12px 25px rgba(10,132,255,0.4);
-    }
-    
+    .btn-primary:hover { transform: translateY(-4px); background: #0071e3; box-shadow: 0 12px 22px rgba(10,132,255,0.35); }
     .btn-outline {
       background: transparent;
-      border: 1.5px solid var(--accent-blue);
-      color: var(--accent-blue);
+      border: 1.5px solid var(--accent-cyan);
+      color: var(--accent-cyan);
       backdrop-filter: blur(4px);
     }
-    
-    .btn-outline:hover {
-      background: var(--accent-blue);
-      color: white;
-      transform: translateY(-4px);
-    }
-    
-    /* Cinematic Grids + Luxury Product Style */
-    .product-grid {
+    .btn-outline:hover { background: var(--accent-cyan); color: white; transform: translateY(-4px); }
+
+    /* Skills Grid (Web Dev + Telegram Bot) */
+    .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
       margin-top: 2rem;
     }
-    
-    .product-card {
-      background: var(--card-dark);
-      border-radius: 32px;
-      overflow: hidden;
-      border: 1px solid var(--border-dark);
-      transition: all 0.5s cubic-bezier(0.2, 0.95, 0.4, 1.1);
-      transform: translateY(60px) scale(0.96);
-      opacity: 0;
-      will-change: transform, opacity;
+    .skill-card {
+      background: var(--card-deep);
+      border-radius: var(--card-radius);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border: 1px solid var(--border-subtle);
+      transition: all 0.3s var(--transition-spring);
       backdrop-filter: blur(2px);
     }
-    
+    .skill-card:hover { transform: translateY(-8px); border-color: var(--accent-cyan); box-shadow: 0 20px 35px -12px rgba(0,0,0,0.2); }
+    .skill-card i { font-size: 2.8rem; color: var(--accent-cyan); margin-bottom: 1.2rem; }
+    .skill-card h3 { font-size: 1.8rem; margin-bottom: 0.75rem; }
+    .skill-card p { color: var(--text-secondary); font-size: 0.95rem; }
+
+    /* Product Luxury Grid (cinematic reveal) */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2.2rem;
+      margin-top: 2rem;
+    }
+    .product-card {
+      background: var(--card-deep);
+      border-radius: 2rem;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      transition: transform 0.5s var(--transition-spring), box-shadow 0.4s;
+      transform: translateY(50px);
+      opacity: 0;
+    }
     .product-card.card--visible {
-      transform: translateY(0) scale(1);
+      transform: translateY(0);
       opacity: 1;
     }
-    
-    .product-card:hover {
-      transform: translateY(-12px) scale(1.02);
-      border-color: var(--accent-blue);
-      box-shadow: 0 30px 40px -20px rgba(0,0,0,0.5);
-    }
-    
+    .product-card:hover { transform: translateY(-8px) scale(1.01); border-color: var(--accent-cyan); box-shadow: 0 28px 35px -18px rgba(0,0,0,0.4); }
     .product-img {
-      width: 100%;
-      height: 280px;
-      object-fit: cover;
-      transition: transform 1.2s var(--transition-smooth);
-    }
-    
-    .product-card:hover .product-img {
-      transform: scale(1.05);
-    }
-    
-    .product-info {
-      padding: 1.8rem;
-      text-align: center;
-    }
-    
-    .product-info h3 {
-      font-size: 1.6rem;
-      font-weight: 600;
-    }
-    
-    .product-price {
-      font-size: 1.7rem;
-      font-weight: 800;
-      margin: 0.7rem 0;
-      color: var(--accent-gold);
-    }
-    
-    /* Design Gallery and Projects - premium cards */
-    .design-grid, .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 32px;
-      margin-top: 1.5rem;
-    }
-    
-    .design-card, .project-card {
-      background: var(--card-dark);
-      border-radius: 28px;
-      border: 1px solid var(--border-dark);
-      overflow: hidden;
-      transition: all 0.4s var(--transition-smooth);
-      cursor: pointer;
-    }
-    
-    .design-card:hover, .project-card:hover {
-      transform: translateY(-10px);
-      border-color: var(--accent-blue);
-      box-shadow: var(--shadow-elevation);
-    }
-    
-    .design-card img, .project-card img {
       width: 100%;
       height: 260px;
       object-fit: cover;
-      transition: transform 0.7s;
+      transition: transform 0.7s ease;
     }
-    
-    .design-card:hover img, .project-card:hover img {
-      transform: scale(1.03);
-    }
-    
-    .services-grid {
+    .product-card:hover .product-img { transform: scale(1.04); }
+    .product-info { padding: 1.5rem; text-align: center; }
+    .product-price { font-size: 1.6rem; font-weight: 800; color: var(--accent-amber); margin: 0.5rem 0; }
+
+    /* Design Gallery + Projects */
+    .design-grid, .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
     }
-    
-    .service-item {
-      background: var(--card-dark);
-      padding: 2rem;
-      border-radius: 28px;
-      text-align: center;
-      border: 1px solid var(--border-dark);
-      backdrop-filter: blur(5px);
+    .design-card, .project-card {
+      background: var(--card-deep);
+      border-radius: 1.8rem;
+      border: 1px solid var(--border-subtle);
+      overflow: hidden;
+      transition: 0.3s var(--transition-spring);
+      cursor: pointer;
     }
-    
-    .service-item i {
-      font-size: 2.8rem;
-      color: var(--accent-blue);
-      margin-bottom: 1rem;
+    .design-card:hover, .project-card:hover { transform: translateY(-8px); border-color: var(--accent-cyan); }
+    .design-card img, .project-card img { width: 100%; height: 240px; object-fit: cover; transition: transform 0.5s; }
+    .design-card:hover img, .project-card:hover img { transform: scale(1.02); }
+    .design-info, .project-content { padding: 1.2rem; text-align: center; }
+    .demo-btn {
+      background: var(--accent-cyan);
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      margin-top: 0.8rem;
+      cursor: pointer;
+      color: white;
+      transition: 0.2s;
     }
-    
-    /* Contact form glassmorphic */
+    .demo-btn:hover { background: var(--accent-amber); color: #1d1d1f; }
+
+    /* Contact + Glass */
     .contact-container {
       display: grid;
       grid-template-columns: 1fr 1.3fr;
-      gap: 40px;
+      gap: 2.5rem;
     }
-    
     .contact-card, .contact-form {
-      background: var(--card-dark);
+      background: var(--card-deep);
       padding: 2rem;
-      border-radius: 32px;
-      border: 1px solid var(--border-dark);
+      border-radius: 2rem;
+      border: 1px solid var(--border-subtle);
       text-align: center;
-      backdrop-filter: blur(4px);
     }
-    
     input, textarea {
       width: 100%;
       padding: 1rem;
-      background: var(--bg-dark);
-      border: 1px solid var(--border-dark);
+      background: var(--bg-deep);
+      border: 1px solid var(--border-subtle);
       border-radius: 1.2rem;
-      color: var(--text-dark-primary);
+      color: var(--text-primary);
       margin-bottom: 1rem;
       font-family: inherit;
       transition: 0.2s;
     }
-    
-    input:focus, textarea:focus {
-      outline: none;
-      border-color: var(--accent-blue);
-      box-shadow: 0 0 0 3px rgba(10,132,255,0.2);
-    }
-    
+    input:focus, textarea:focus { outline: none; border-color: var(--accent-cyan); box-shadow: 0 0 0 3px rgba(10,132,255,0.2); }
+
     .float-wa {
       position: fixed;
-      bottom: 30px;
-      left: 30px;
+      bottom: 28px;
+      left: 28px;
       background: #25D366;
-      color: white;
-      width: 58px;
-      height: 58px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
+      font-size: 1.9rem;
+      color: white;
       z-index: 99;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      transition: transform 0.2s;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.3);
+      transition: 0.2s;
+      text-decoration: none;
     }
-    
-    .float-wa:hover {
-      transform: scale(1.08);
-    }
-    
-    /* Footer */
+    .float-wa:hover { transform: scale(1.08); }
+
     footer {
-      background: rgba(0,0,0,0.5);
-      padding: 2.5rem 0;
+      background: rgba(0,0,0,0.3);
+      padding: 2rem 0;
       text-align: center;
-      border-top: 1px solid var(--border-dark);
+      border-top: 1px solid var(--border-subtle);
     }
-    
     .social-links a {
-      color: var(--text-dark-secondary);
-      font-size: 1.5rem;
-      margin: 0 0.6rem;
+      color: var(--text-secondary);
+      font-size: 1.4rem;
+      margin: 0 0.7rem;
       transition: 0.2s;
     }
-    
-    .social-links a:hover {
-      color: var(--accent-blue);
-    }
-    
-    /* Modal cinematic */
+    .social-links a:hover { color: var(--accent-cyan); }
+
+    /* Modal */
     .modal {
       display: none;
       position: fixed;
       z-index: 2000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.85);
-      backdrop-filter: blur(15px);
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(20px);
       align-items: center;
       justify-content: center;
     }
-    
-    .modal.active {
-      display: flex;
-    }
-    
+    .modal.active { display: flex; }
     .modal-content {
-      max-width: 80vw;
+      max-width: 85vw;
       max-height: 85vh;
-      background: var(--card-dark);
-      border-radius: 32px;
+      background: var(--card-deep);
+      border-radius: 2rem;
       padding: 2rem;
       overflow: auto;
-      border: 1px solid rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.15);
     }
-    
     .toast-container {
       position: fixed;
       bottom: 30px;
@@ -503,102 +408,71 @@
       flex-direction: column;
       gap: 12px;
     }
-    
     .toast {
-      background: var(--card-dark);
+      background: var(--card-deep);
       backdrop-filter: blur(12px);
-      padding: 1rem 1.8rem;
+      padding: 0.8rem 1.8rem;
       border-radius: 60px;
       font-weight: 500;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      border-left: 5px solid;
+      border-left: 5px solid var(--accent-cyan);
     }
-    
-    /* Spinner & Responsiveness */
     .spinner {
-      width: 50px;
-      height: 50px;
-      border: 4px solid rgba(10,132,255,0.2);
-      border-top: 4px solid var(--accent-blue);
+      width: 48px;
+      height: 48px;
+      border: 3px solid var(--border-subtle);
+      border-top: 3px solid var(--accent-cyan);
       border-radius: 50%;
-      animation: spin 1s infinite linear;
+      animation: spin 0.9s linear infinite;
       margin: 2rem auto;
     }
-    
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* fade-up animations */
     .fade-up {
       opacity: 0;
       transform: translateY(40px);
-      transition: opacity 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     }
-    
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
     @media (max-width: 768px) {
       .nav-menu {
         position: fixed;
         left: -100%;
-        top: 80px;
+        top: 75px;
         flex-direction: column;
-        background: var(--card-dark);
+        background: var(--card-deep);
         width: 100%;
         text-align: center;
         padding: 2rem;
-        gap: 1.5rem;
+        gap: 1.6rem;
         transition: 0.3s;
         backdrop-filter: blur(20px);
       }
-      .nav-menu.active {
-        left: 0;
-      }
+      .nav-menu.active { left: 0; }
       .hamburger {
         display: flex;
         flex-direction: column;
         cursor: pointer;
         margin-left: 1rem;
       }
-      .bar {
-        width: 28px;
-        height: 3px;
-        background: var(--text-dark-primary);
-        margin: 3px 0;
-        border-radius: 6px;
-      }
-      .contact-container {
-        grid-template-columns: 1fr;
-      }
-      section {
-        padding: 80px 0;
-      }
+      .bar { width: 28px; height: 2px; background: var(--text-primary); margin: 4px 0; border-radius: 4px; }
+      .contact-container { grid-template-columns: 1fr; }
+      section { padding: 80px 0; }
     }
-    
-    /* custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--bg-dark);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--accent-blue);
-      border-radius: 10px;
-    }
+    @media (min-width: 769px) { .hamburger { display: none; } }
   </style>
 </head>
 <body>
 
 <nav class="navbar">
   <div class="container nav-container">
-    <a href="#" class="logo">Firomsa ◇ Studio</a>
+    <a href="#" class="logo">Firomsa ◇ Nexus</a>
     <ul class="nav-menu" id="nav-menu">
       <li><a href="#home" class="nav-link">Home</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
       <li><a href="#design" class="nav-link">Design</a></li>
-      <li><a href="#catalog" class="nav-link">Cinema Catalog</a></li>
-      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#catalog" class="nav-link">Luxury Shop</a></li>
       <li><a href="#contact" class="nav-link">Contact</a></li>
     </ul>
     <button class="theme-toggle" id="darkModeToggle"><i class="fas fa-moon"></i></button>
@@ -606,210 +480,194 @@
   </div>
 </nav>
 
-<!-- Hero Section -->
+<!-- Hero section -->
 <section id="home" class="hero">
   <div class="container hero-content">
-    <div class="hero-badge"><i class="fas fa-bolt"></i> 3D Vision • Cinematic Design</div>
-    <h1>I'm <span class="highlight">Firomsa Ahmed</span></h1>
-    <div style="font-size: 1.6rem; font-weight: 500; margin-bottom: 1rem;">Graphic Designer & Futuristic Developer</div>
+    <div class="hero-badge"><i class="fas fa-bolt"></i> Full‑Stack Craft · AI Bots · Cinematic UI</div>
+    <h1>Firomsa <span class="highlight">Ahmed</span></h1>
+    <div style="font-size: 1.5rem; font-weight: 500; margin-bottom: 0.5rem;">Graphic Designer & Futuristic Developer</div>
     <div class="hero-avatar" id="profileAvatar">
-      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=300&fit=crop" alt="Firomsa Avatar">
+      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=300&fit=crop" alt="Firomsa">
     </div>
     <div class="btn-group">
-      <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Start a Vision</a>
-      <a href="#catalog" class="btn btn-outline"><i class="fas fa-crown"></i> Explore Luxury</a>
+      <a href="#contact" class="btn btn-primary"><i class="fas fa-comment-dots"></i> Start Project</a>
+      <a href="#catalog" class="btn btn-outline"><i class="fas fa-gem"></i> Explore Collection</a>
     </div>
   </div>
 </section>
 
-<!-- Design Gallery (Premium) -->
-<section id="design" class="container fade-up">
-  <h2>Visual <span>Alchemy</span></h2>
-  <div class="section-sub">Exquisite brand identities • cinematic posters • immersive social assets</div>
-  <div class="design-grid">
-    <div class="design-card"><img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&h=500&fit=crop" alt="Logo"><div class="design-info"><h3>Nebula Identity</h3><p>Minimalist & Luxe</p></div></div>
-    <div class="design-card"><img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=600&h=500&fit=crop" alt="Poster"><div class="design-info"><h3>Cinematic Event</h3><p>High impact typography</p></div></div>
-    <div class="design-card"><img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&h=500&fit=crop" alt="Social"><div class="design-info"><h3>Social Kit Future</h3><p>AI-enhanced visuals</p></div></div>
+<!-- Skills: Web Dev + Telegram Bot + Full skills -->
+<section id="skills" class="container fade-up">
+  <h2>Mastery <span>Ecosystem</span></h2>
+  <div class="section-sub">Specialized in modern web development, AI-driven Telegram bots & premium design</div>
+  <div class="skills-grid">
+    <div class="skill-card"><i class="fab fa-js"></i><h3>Web Development</h3><p>React, Node, Tailwind, Supabase, full‑stack architecture, performance tuning & cinematic frontend.</p></div>
+    <div class="skill-card"><i class="fab fa-telegram"></i><h3>Telegram Bot Dev</h3><p>Smart bots with AI, payments, automation, admin panels & interactive keyboards. (Python/Node.js)</p></div>
+    <div class="skill-card"><i class="fas fa-paintbrush"></i><h3>Graphic Design</h3><p>Logo design, 3D brand assets, social kits, UI/UX, motion graphics that convert.</p></div>
+    <div class="skill-card"><i class="fas fa-cloud-moon"></i><h3>Cinematic UX</h3><p>Micro-interactions, scroll-triggered animations, Intersection Observer & Lenis smoothness.</p></div>
   </div>
 </section>
 
-<!-- Luxury Cinematic Product Catalog with Supabase + Fallback -->
+<!-- Design Gallery (Visual work) -->
+<section id="design" class="container fade-up">
+  <h2>Visual <span>Horizons</span></h2>
+  <div class="section-sub">Minimalist, bold, iconic — design that tells stories</div>
+  <div class="design-grid">
+    <div class="design-card"><img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=600&h=500&fit=crop" alt="Brand"><div class="design-info"><h3>Logo | Nebula Core</h3><p>Abstract identity</p></div></div>
+    <div class="design-card"><img src="https://images.unsplash.com/photo-1545987796-200677ee1011?w=600&h=500&fit=crop" alt="Poster"><div class="design-info"><h3>Event Cinematic</h3><p>High impact print</p></div></div>
+    <div class="design-card"><img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=600&h=500&fit=crop" alt="Social Kit"><div class="design-info"><h3>Social Media Kit</h3><p>Instagram, TikTok ready</p></div></div>
+  </div>
+</section>
+
+<!-- Dynamic product catalog (Supabase + Fallback) Premium cinematic reveal -->
 <section id="catalog" class="container fade-up">
   <h2><span>✦ Cinema Collection ✦</span></h2>
   <div class="section-sub">Each product reveals like a film frame — scroll to experience luxury immersion</div>
   <div id="product-list" class="product-grid"><div class="spinner"></div></div>
 </section>
 
-<!-- Services -->
-<section id="services" class="container fade-up">
-  <h2>Exceptional <span>Expertise</span></h2>
-  <div class="services-grid">
-    <div class="service-item"><i class="fas fa-gem"></i><h3>Luxury Branding</h3><p>Identity that resonates</p></div>
-    <div class="service-item"><i class="fas fa-vr-cardboard"></i><h3>Immersive Web</h3><p>3D & cinematic UI</p></div>
-    <div class="service-item"><i class="fas fa-chart-line"></i><h3>Creative Direction</h3><p>Vision to execution</p></div>
-  </div>
-</section>
-
-<!-- Real Working Projects -->
+<!-- Projects interactive demos (Calculator/Todo/Landing) -->
 <section id="projects" class="container fade-up">
-  <h2>Interactive <span>Innovations</span></h2>
-  <div class="section-sub">Live demos — premium micro-apps</div>
+  <h2>Live <span>Innovations</span></h2>
+  <div class="section-sub">Interactive micro-apps — proof of craftsmanship</div>
   <div class="projects-grid">
-    <div class="project-card"><img src="https://images.unsplash.com/photo-1587145828966-31c4271e5ca4?w=600&h=400&fit=crop" alt="Calculator"><div class="project-content"><h3>Neo Calculator</h3><button class="demo-btn" data-demo="calculator">Launch Demo</button></div></div>
-    <div class="project-card"><img src="https://images.unsplash.com/photo-1540350394557-8d14678e7f91?w=600&h=400&fit=crop" alt="Todo"><div class="project-content"><h3>FlowSpace Todo</h3><button class="demo-btn" data-demo="todo">Launch Demo</button></div></div>
-    <div class="project-card"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" alt="Landing"><div class="project-content"><h3>Aether Landing</h3><button class="demo-btn" data-demo="landing">Launch Demo</button></div></div>
+    <div class="project-card"><img src="https://images.unsplash.com/photo-1587145828966-31c4271e5ca4?w=600&h=400&fit=crop" alt="Calculator"><div class="project-content"><h3>NEO Calculator</h3><button class="demo-btn" data-demo="calculator">Launch Experience</button></div></div>
+    <div class="project-card"><img src="https://images.unsplash.com/photo-1540350394557-8d14678e7f91?w=600&h=400&fit=crop" alt="Todo"><div class="project-content"><h3>FlowSpace Todo</h3><button class="demo-btn" data-demo="todo">Launch Experience</button></div></div>
+    <div class="project-card"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" alt="Landing"><div class="project-content"><h3>Aether Landing</h3><button class="demo-btn" data-demo="landing">Launch Experience</button></div></div>
   </div>
 </section>
 
 <!-- Contact Section -->
 <section id="contact" class="container fade-up">
-  <h2>Collide <span>Creativity</span></h2>
+  <h2>Let's <span>Create</span> Future</h2>
   <div class="contact-container">
     <div>
-      <div class="contact-card"><i class="fas fa-envelope fa-2x"></i><h3>Email</h3><p><a href="mailto:firomsaahmed51@gmail.com" style="color: var(--accent-blue);">firomsaahmed51@gmail.com</a></p></div>
-      <div class="contact-card"><i class="fab fa-telegram fa-2x"></i><h3>Telegram</h3><p><a href="https://t.me/Fira385508" target="_blank">@Fira385508</a></p></div>
+      <div class="contact-card"><i class="fas fa-envelope fa-2x"></i><h3>Email</h3><p><a href="mailto:firomsaahmed51@gmail.com" style="color:var(--accent-cyan);">firomsaahmed51@gmail.com</a></p></div>
+      <div class="contact-card"><i class="fab fa-telegram fa-2x"></i><h3>Telegram Bot</h3><p><a href="https://t.me/Fira385508" target="_blank">@Fira385508</a> | Custom bots ready</p></div>
       <div class="contact-card"><i class="fab fa-whatsapp fa-2x"></i><h3>WhatsApp</h3><p><a href="https://wa.me/251946004640">+251 94 600 4640</a></p></div>
     </div>
     <form class="contact-form" id="contactForm">
-      <input type="text" placeholder="Full name" id="formName" required>
+      <input type="text" placeholder="Your name" id="formName" required>
       <input type="email" placeholder="Email address" id="formEmail" required>
-      <textarea rows="4" placeholder="Describe your visionary project..." id="formMsg" required></textarea>
+      <textarea rows="4" placeholder="Tell me about your vision (website, bot, design) ..." id="formMsg" required></textarea>
       <button type="submit" class="btn btn-primary" style="width:100%" id="contactSubmitBtn"><i class="fas fa-paper-plane"></i> Send Message</button>
     </form>
   </div>
 </section>
 
 <footer>
-  <div class="container"><p>© 2026 Firomsa Ahmed — Futuristic Design & Engineering</p>
-  <div class="social-links"><a href="#"><i class="fab fa-github"></i></a><a href="#"><i class="fab fa-telegram"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div></div>
+  <div class="container">
+    <p>© 2026 Firomsa Ahmed — Web Dev · Telegram Bots · Cinema Design</p>
+    <div class="social-links"><a href="#"><i class="fab fa-github"></i></a><a href="#"><i class="fab fa-telegram"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div>
+  </div>
 </footer>
 
 <a href="https://wa.me/251946004640" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
-<div id="globalModal" class="modal"><span class="close-modal" style="position:absolute;top:20px;right:35px;font-size:40px;cursor:pointer;color:white;">&times;</span><div class="modal-content" id="modalDynamicContent"></div></div>
+<div id="globalModal" class="modal"><span class="close-modal" style="position:absolute;top:24px;right:32px;font-size:40px;cursor:pointer;color:white;">&times;</span><div class="modal-content" id="modalDynamicContent"></div></div>
 <div id="toastContainer" class="toast-container"></div>
 
 <script>
-  // ========== Supabase Config ==========
-  const SUPABASE_CONFIG = {
-    url: 'https://cvgterohigfjdkulmryb.supabase.co',
-    anonKey: 'sb_publishable_7-U83GJsOxTb8uLFG0ms4Q_2zIAQ2U1'
-  };
-  
-  // Utilities
-  const toastManager = {
+  // Supabase configuration
+  const SUPABASE_URL = 'https://cvgterohigfjdkulmryb.supabase.co';
+  const SUPABASE_ANON = 'sb_publishable_7-U83GJsOxTb8uLFG0ms4Q_2zIAQ2U1';
+  let supabase = null;
+  try { supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON); } catch(e) { console.warn(e); }
+
+  // Toast
+  const toast = {
     container: document.getElementById('toastContainer'),
-    show(msg, type='info', duration=4000) {
-      const toast = document.createElement('div');
-      toast.className = `toast ${type}`;
-      toast.innerHTML = `<i class="fas ${type==='success'?'fa-check-circle':'fa-info-circle'}"></i> ${msg}`;
-      this.container.appendChild(toast);
-      setTimeout(() => toast.remove(), duration);
-    },
-    success(msg){ this.show(msg, 'success'); },
-    error(msg){ this.show(msg, 'error'); }
+    show(msg, type = 'info') {
+      const el = document.createElement('div');
+      el.className = `toast`;
+      el.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-info-circle'}"></i> ${msg}`;
+      this.container.appendChild(el);
+      setTimeout(() => el.remove(), 3800);
+    }, success(msg) { this.show(msg, 'success'); }, error(msg) { this.show(msg, 'error'); }
   };
-  
-  let supabaseClient;
-  try { supabaseClient = window.supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey); } catch(e){ console.warn(e); }
-  
-  // Luxury fallback products if Supabase empty or error
-  const FALLBACK_LUXURY_PRODUCTS = [
-    { name: "Horizon Chronograph", price: 1899, image_url: "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?w=600&h=500&fit=crop" },
-    { name: "Minimalist SoundWave", price: 499, image_url: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=500&fit=crop" },
-    { name: "Aether Backpack", price: 329, image_url: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&h=500&fit=crop" },
-    { name: "Lunar Glass Edition", price: 799, image_url: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&h=500&fit=crop" },
-    { name: "Carbon Fiber Frame", price: 2450, image_url: "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=600&h=500&fit=crop" },
-    { name: "Neon Kinetic Sculpture", price: 1299, image_url: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=500&fit=crop" }
+
+  // Luxury fallback products (high-end)
+  const FALLBACK_PRODUCTS = [
+    { name: "Aether Chrono", price: 2499, image_url: "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?w=600&h=500&fit=crop" },
+    { name: "Sonic Wave Pro", price: 599, image_url: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=500&fit=crop" },
+    { name: "Orion Backpack", price: 389, image_url: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&h=500&fit=crop" },
+    { name: "LunarGlass", price: 899, image_url: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&h=500&fit=crop" }
   ];
-  
-  async function renderProducts() {
+
+  async function loadProducts() {
     const container = document.getElementById('product-list');
     if (!container) return;
     container.innerHTML = '<div class="spinner"></div>';
     let products = [];
     try {
-      if (supabaseClient) {
-        const { data, error } = await supabaseClient.from('products').select('name, price, image_url').order('created_at', { ascending: false });
+      if (supabase) {
+        const { data, error } = await supabase.from('products').select('name, price, image_url').order('created_at', { ascending: false });
         if (!error && data && data.length) products = data;
-        else throw new Error('fallback');
-      } else throw new Error('no supabase');
-    } catch(e) {
-      products = FALLBACK_LUXURY_PRODUCTS;
-      toastManager.success("✨ Showcasing luxury collection (cinema preview)");
-    }
-    if (!products.length) products = FALLBACK_LUXURY_PRODUCTS;
-    
+        else products = FALLBACK_PRODUCTS;
+      } else { products = FALLBACK_PRODUCTS; }
+    } catch(e) { products = FALLBACK_PRODUCTS; }
+    if (!products.length) products = FALLBACK_PRODUCTS;
     let html = '';
     products.forEach(p => {
-      let imgUrl = p.image_url || 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=600&h=500&fit=crop';
-      if (imgUrl && !imgUrl.startsWith('http')) imgUrl = `${SUPABASE_CONFIG.url}/storage/v1/object/public/product-images/${imgUrl}`;
-      html += `<div class="product-card"><img class="product-img" src="${imgUrl}" alt="${escapeHtml(p.name)}" onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=500&fit=crop'"><div class="product-info"><h3>${escapeHtml(p.name)}</h3><div class="product-price">$${parseFloat(p.price).toFixed(2)}</div><button class="btn btn-outline" style="padding:0.4rem 1.2rem;" onclick="alert('Inquire about ${escapeHtml(p.name)} via WhatsApp/Telegram')">Inquire</button></div></div>`;
+      let img = p.image_url || 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=600&h=500&fit=crop';
+      if (img && !img.startsWith('http')) img = `${SUPABASE_URL}/storage/v1/object/public/product-images/${img}`;
+      html += `<div class="product-card"><img class="product-img" src="${img}" alt="${escapeHtml(p.name)}" onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=500&fit=crop'"><div class="product-info"><h3>${escapeHtml(p.name)}</h3><div class="product-price">$${parseFloat(p.price).toFixed(2)}</div><button class="btn btn-outline" style="padding:0.3rem 1rem;" onclick="alert('Inquire via WhatsApp/Telegram to own this piece')">Inquire</button></div></div>`;
     });
     container.innerHTML = html;
-    observeCinematicCards();
-    toastManager.success(`🎬 ${products.length} cinematic products loaded`);
+    observeProductCards();
+    toast.success(`✨ ${products.length} luxury pieces loaded`);
   }
-  
-  function observeCinematicCards() {
+
+  function observeProductCards() {
     const cards = document.querySelectorAll('.product-card');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('card--visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2, rootMargin: "0px 0px -40px 0px" });
-    cards.forEach(card => observer.observe(card));
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('card--visible'); obs.unobserve(entry.target); } });
+    }, { threshold: 0.15 });
+    cards.forEach(c => obs.observe(c));
   }
-  
+
   function escapeHtml(str) { return String(str).replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'})[m]); }
-  
-  // Contact form handler
+
+  // Contact form
   async function initContact() {
     const form = document.getElementById('contactForm');
-    if (!form || !supabaseClient) return;
+    if (!form || !supabase) return;
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const name = document.getElementById('formName')?.value.trim();
-      const email = document.getElementById('formEmail')?.value.trim();
-      const message = document.getElementById('formMsg')?.value.trim();
-      if (!name || !email || !message) return toastManager.error("All fields required");
+      const name = document.getElementById('formName').value.trim();
+      const email = document.getElementById('formEmail').value.trim();
+      const msg = document.getElementById('formMsg').value.trim();
+      if (!name || !email || !msg) return toast.error('Fill all fields');
       const btn = document.getElementById('contactSubmitBtn');
       const original = btn.innerHTML;
       btn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Sending...';
       btn.disabled = true;
       try {
-        const { error } = await supabaseClient.from('messages').insert([{ name, email, message, created_at: new Date().toISOString() }]);
+        const { error } = await supabase.from('messages').insert([{ name, email, message: msg, created_at: new Date().toISOString() }]);
         if (error) throw new Error(error.message);
-        toastManager.success("✅ Visionary message delivered!");
+        toast.success('Message delivered! I will reply swiftly.');
         form.reset();
-      } catch (err) { toastManager.error(`Error: ${err.message}`); }
+      } catch(err) { toast.error(`Error: ${err.message}`); }
       finally { btn.innerHTML = original; btn.disabled = false; }
     });
   }
-  
-  // LENIS smooth scroll (cinematic)
-  const lenis = new Lenis({ lerp: 0.08, wheelMultiplier: 1.2, smoothWheel: true });
+
+  // Lenis smooth + scroll animations
+  const lenis = new Lenis({ lerp: 0.08, wheelMultiplier: 1.1, smoothWheel: true });
   function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
   requestAnimationFrame(raf);
-  
-  // Intersection observer for fade-up sections
   const faders = document.querySelectorAll('.fade-up');
-  const sectionObserver = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  faders.forEach(el => sectionObserver.observe(el));
-  
-  // Dark mode & mobile menu
+  const fadeObserver = new IntersectionObserver(entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('visible')), { threshold: 0.1 });
+  faders.forEach(el => fadeObserver.observe(el));
+
+  // Dark Mode, mobile menu
   const toggle = document.getElementById('darkModeToggle');
-  const icon = toggle?.querySelector('i');
-  if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light-mode'); icon?.classList.replace('fa-moon','fa-sun'); }
+  const iconMoon = toggle?.querySelector('i');
+  if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light-mode'); iconMoon?.classList.replace('fa-moon','fa-sun'); }
   toggle?.addEventListener('click', () => {
     document.body.classList.toggle('light-mode');
     const isLight = document.body.classList.contains('light-mode');
     localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    if (icon) icon.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
+    if(iconMoon) iconMoon.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
   });
   const hamburger = document.getElementById('hamburger');
   const navMenu = document.getElementById('nav-menu');
@@ -817,36 +675,35 @@
   document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => navMenu.classList.remove('active')));
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
-      const id = this.getAttribute('href');
-      if (id === '#') return;
-      const target = document.querySelector(id);
-      if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -80 }); }
+      const hash = this.getAttribute('href');
+      if (hash === '#') return;
+      const target = document.querySelector(hash);
+      if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -70 }); }
     });
   });
-  
-  // MODAL & DEMO logic
+
+  // Modal logic
   const modal = document.getElementById('globalModal');
   const modalContent = document.getElementById('modalDynamicContent');
   const closeModal = document.querySelector('.close-modal');
-  const openModal = (content) => { modalContent.innerHTML = content; modal.classList.add('active'); };
+  function openModalContent(html) { modalContent.innerHTML = html; modal.classList.add('active'); }
   closeModal?.addEventListener('click', () => modal.classList.remove('active'));
   modal?.addEventListener('click', (e) => { if(e.target === modal) modal.classList.remove('active'); });
-  
-  document.querySelectorAll('.design-card, .project-card img').forEach(card => {
-    card.addEventListener('click', (e) => {
-      const img = card.querySelector('img');
-      if(img) openModal(`<img src="${img.src}" style="width:100%; border-radius:28px;">`);
+  document.querySelectorAll('.design-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const imgSrc = card.querySelector('img')?.src;
+      if(imgSrc) openModalContent(`<img src="${imgSrc}" style="width:100%; border-radius:1rem;">`);
     });
   });
   document.getElementById('profileAvatar')?.addEventListener('click', () => {
-    openModal(`<div style="text-align:center"><i class="fas fa-user-astronaut" style="font-size:4rem; color:var(--accent-blue);"></i><h2>Firomsa Ahmed</h2><p>Visionary Designer & Futurist Developer</p></div>`);
+    openModalContent(`<div style="text-align:center"><i class="fas fa-robot" style="font-size:5rem; color:var(--accent-cyan);"></i><h2>Firomsa Ahmed</h2><p>Full‑stack dev · Telegram Bot Architect · Cinematic UI</p><p style="margin-top:0.5rem;">✨ Available for collaborations</p></div>`);
   });
-  
+  // Demo buttons for projects
   document.querySelectorAll('.demo-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const type = btn.getAttribute('data-demo');
       if(type === 'calculator') {
-        openModal(`<div><h3>NeoCalc</h3><input id="calcScreen" readonly style="width:100%;margin-bottom:1rem;"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.7rem;">${[7,8,9,'/',4,5,6,'*',1,2,3,'-',0,'C','=','+'].map(v=>`<button class="calc-btn" data-val="${v}">${v}</button>`).join('')}</div></div>`);
+        openModalContent(`<div><h3>NEO Calculator</h3><input id="calcScreen" readonly style="width:100%;margin-bottom:1rem;"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.7rem;">${[7,8,9,'/',4,5,6,'*',1,2,3,'-',0,'C','=','+'].map(v=>`<button class="calc-btn" data-val="${v}">${v}</button>`).join('')}</div></div>`);
         setTimeout(() => {
           let cur = '';
           document.querySelectorAll('.calc-btn').forEach(b => {
@@ -855,31 +712,31 @@
               if(v === 'C') cur = '';
               else if(v === '=') { try { cur = eval(cur).toString(); } catch { cur = 'Error'; } }
               else cur += v;
-              document.getElementById('calcScreen').value = cur;
+              const screen = document.getElementById('calcScreen');
+              if(screen) screen.value = cur;
             });
           });
         }, 50);
       } else if(type === 'todo') {
-        openModal(`<div><h3>FlowSpace Todo</h3><div style="display:flex; gap:0.5rem;"><input id="todoInput" placeholder="Add task"><button id="addTodoBtn">Add</button></div><ul id="todoList" style="margin-top:1rem;"></ul></div>`);
+        openModalContent(`<div><h3>Flow Todo</h3><div style="display:flex; gap:0.5rem;"><input id="todoInput" placeholder="Add task"><button id="addTodoBtn">Add</button></div><ul id="todoList" style="margin-top:1rem;"></ul></div>`);
         let tasks = JSON.parse(localStorage.getItem('demo_tasks') || '[]');
         const renderTodo = () => {
           const list = document.getElementById('todoList');
-          if(list) list.innerHTML = tasks.map((t,i)=>`<li style="display:flex;justify-content:space-between; margin-bottom:0.6rem;">${t.text} <div><button data-idx="${i}" class="toggleTodo">✔️</button><button data-idx="${i}" class="delTodo">❌</button></div></li>`).join('');
+          if(list) list.innerHTML = tasks.map((t,i)=>`<li style="display:flex;justify-content:space-between;margin-bottom:0.6rem;">${t.text} <div><button data-idx="${i}" class="toggleTodo">✔️</button><button data-idx="${i}" class="delTodo">❌</button></div></li>`).join('');
           document.querySelectorAll('.toggleTodo').forEach(b=>b.addEventListener('click',()=>{ tasks[b.getAttribute('data-idx')].done = !tasks[b.getAttribute('data-idx')].done; localStorage.setItem('demo_tasks',JSON.stringify(tasks)); renderTodo(); }));
           document.querySelectorAll('.delTodo').forEach(b=>b.addEventListener('click',()=>{ tasks.splice(b.getAttribute('data-idx'),1); localStorage.setItem('demo_tasks',JSON.stringify(tasks)); renderTodo(); }));
         };
         renderTodo();
-        document.getElementById('addTodoBtn')?.addEventListener('click',()=>{ const inp = document.getElementById('todoInput'); if(inp.value.trim()){ tasks.push({text:inp.value.trim(),done:false}); localStorage.setItem('demo_tasks',JSON.stringify(tasks)); renderTodo(); inp.value=''; } });
+        document.getElementById('addTodoBtn')?.addEventListener('click',()=>{ const inp = document.getElementById('todoInput'); if(inp.value.trim()) { tasks.push({text:inp.value.trim(),done:false}); localStorage.setItem('demo_tasks',JSON.stringify(tasks)); renderTodo(); inp.value=''; } });
       } else {
-        openModal(`<div style="text-align:center"><h3>Landing X Horizon</h3><p>Futuristic product showcase template</p><button class="btn btn-primary" onclick="alert('Full code available on request.')">Explore</button></div>`);
+        openModalContent(`<div style="text-align:center"><h3>✦ Aether Landing ✦</h3><p>Immersive product showcase template ready for deployment.</p><button class="btn btn-primary" onclick="alert('Source code included. Contact for customization.')">Request Demo</button></div>`);
       }
     });
   });
-  
-  // Load products and init
-  renderProducts();
+
+  loadProducts();
   initContact();
-  observeCinematicCards();
+  observeProductCards();
 </script>
 </body>
 </html>
