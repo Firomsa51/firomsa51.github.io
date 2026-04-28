@@ -406,9 +406,18 @@ async def receive_description(
     service = context.user_data.get(KEY_SELECTED_SERVICE, "Unknown Service")
     cancel_text = _("cancel_button", lang)
 
-    # Check if user wants to cancel
-    if update.message.text and update.message.text.strip() == cancel_text:
-        return await handle_cancel(update, context)
+    # If the user sends a text message, check for cancel or contact/help buttons
+    if update.message.text:
+        text = update.message.text.strip()
+        if text == cancel_text:
+            return await handle_cancel(update, context)
+        # Handle contact/help even while awaiting description (safety)
+        if text in ["📞 Contact", "📞 ስልክ"]:
+            await contact_command(update, context)
+            return ConversationHandler.END
+        if text in ["ℹ️ Help", "ℹ️ እርዳታ"]:
+            await help_command(update, context)
+            return ConversationHandler.END
 
     # Extract description text and optional file
     description = ""
@@ -476,6 +485,14 @@ async def error_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
 # MAIN
 # ============================================================
 def main() -> None:
+    # Validate essential configuration
+    if not BOT_TOKEN or BOT_TOKEN == "YOUR_BOT_TOKEN_HERE":
+        logger.error("BOT_TOKEN is not set. Please edit the file and add your token.")
+        return
+    if not isinstance(ADMIN_CHAT_ID, int) or ADMIN_CHAT_ID == 0:
+        logger.error("ADMIN_CHAT_ID is invalid. Please set a valid integer chat ID.")
+        return
+
     app = ApplicationBuilder().token(BOT_TOKEN).build()
 
     conv_handler = ConversationHandler(
