@@ -67,14 +67,9 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Send welcome message with persistent main menu."""
     user = update.effective_user
     welcome_text = (
-        f"Welcome to Hanif Printing Services Bot 👋, {user.first_name}!"
-
-"
-        "Please choose a service from the menu below.
-
-"
-        "📞 *Contact*: +251962444622
-"
+        f"Welcome to Hanif Printing Services Bot 👋, {user.first_name}!\n\n"
+        "Please choose a service from the menu below.\n\n"
+        "📞 *Contact*: +251962444622\n"
         "📍 Addis Ababa, Ethiopia"
     )
     await update.message.reply_text(
@@ -88,17 +83,11 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Send help message."""
     help_text = (
-        "📌 *How to use this bot:*
-
-"
-        "• Tap any button to select a service.
-"
-        "• You will be asked to describe your requirements.
-"
-        "• After you reply, our admin will be notified and will contact you.
-"
-        "• Use /start to show the menu again.
-"
+        "📌 *How to use this bot:*\n\n"
+        "• Tap any button to select a service.\n"
+        "• You will be asked to describe your requirements.\n"
+        "• After you reply, our admin will be notified and will contact you.\n"
+        "• Use /start to show the menu again.\n"
         "• Use /contact for our phone and address (Oromo)."
     )
     await update.message.reply_text(help_text, parse_mode="Markdown", reply_markup=MAIN_MENU)
@@ -107,10 +96,8 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
 async def contact(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Send contact information in Oromo with a button to call."""
     contact_info = (
-        "📞 *Lakkoofsa Bilbilaa:* +251962444622
-"
-        "📍 *Teessoo:* Addis Ababa, Ethiopia
-"
+        "📞 *Lakkoofsa Bilbilaa:* +251962444622\n"
+        "📍 *Teessoo:* Addis Ababa, Ethiopia\n"
         "⏰ *Sa'aatii Hojiitti:* Wiixata – Sanbata, 9:00 – 18:00"
     )
     # Send inline button to call (if client supports it)
@@ -139,8 +126,7 @@ async def service_selected(update: Update, context: ContextTypes.DEFAULT_TYPE) -
 
     if text not in VALID_SERVICES:
         await update.message.reply_text(
-            "❓ Please use the menu buttons to select a valid service.
-"
+            "❓ Please use the menu buttons to select a valid service.\n"
             "Type /help for assistance.",
             reply_markup=MAIN_MENU,
         )
@@ -151,16 +137,10 @@ async def service_selected(update: Update, context: ContextTypes.DEFAULT_TYPE) -
 
     # Ask for description
     question = (
-        f"📝 *{text} Request*
-
-"
-        "Please describe what you need. Include:
-"
-        "• Colors, size, text, style
-"
-        "• Any reference or idea you have
-
-"
+        f"📝 *{text} Request*\n\n"
+        "Please describe what you need. Include:\n"
+        "• Colors, size, text, style\n"
+        "• Any reference or idea you have\n\n"
         "Send your description here 👇"
     )
     await update.message.reply_text(question, parse_mode="Markdown")
@@ -175,11 +155,8 @@ async def receive_description(update: Update, context: ContextTypes.DEFAULT_TYPE
 
     # Confirm to user
     await update.message.reply_text(
-        f"✅ Thank you! Your request for *{service}* has been received.
-
-"
-        "Our team will contact you within 24 hours.
-"
+        f"✅ Thank you! Your request for *{service}* has been received.\n\n"
+        "Our team will contact you within 24 hours.\n"
         "Use the menu below to do more:",
         reply_markup=MAIN_MENU,
         parse_mode="Markdown",
@@ -189,23 +166,13 @@ async def receive_description(update: Update, context: ContextTypes.DEFAULT_TYPE
     username_part = f"@{user.username}" if user.username else "No username"
     user_link = get_user_link(user)
     admin_message = (
-        f"🔔 <b>New Service Request</b>
-
-"
-        f"👤 <b>Name:</b> {html.escape(user.full_name)}
-"
-        f"🔗 <b>Username:</b> {username_part}
-"
-        f"🆔 <b>User ID:</b> <code>{user.id}</code>
-"
-        f"🛠 <b>Service:</b> {html.escape(service)}
-"
-        f"📝 <b>Description:</b>
-<code>{html.escape(description)}</code>
-
-"
-        f"📅 <b>Time:</b> {update.message.date}
-"
+        f"🔔 <b>New Service Request</b>\n\n"
+        f"👤 <b>Name:</b> {html.escape(user.full_name)}\n"
+        f"🔗 <b>Username:</b> {username_part}\n"
+        f"🆔 <b>User ID:</b> <code>{user.id}</code>\n"
+        f"🛠 <b>Service:</b> {html.escape(service)}\n"
+        f"📝 <b>Description:</b>\n<code>{html.escape(description)}</code>\n\n"
+        f"📅 <b>Time:</b> {update.message.date}\n"
         f"💬 <b>Message link:</b> {user_link}"
     )
 
@@ -244,8 +211,7 @@ async def error_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
     if update and update.effective_message:
         try:
             await update.effective_message.reply_text(
-                "An error occurred. Our team has been alerted. Please try again.
-"
+                "An error occurred. Our team has been alerted. Please try again.\n"
                 "Use /start to refresh the menu.",
                 reply_markup=MAIN_MENU,
             )
