@@ -67,7 +67,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Send welcome message with persistent main menu."""
     user = update.effective_user
     welcome_text = (
-        f"Welcome to Hanif Printing Services Bot 👋, {user.first_name}!
+        f"Welcome to Hanif Printing Services Bot 👋, {user.first_name}!"
 
 "
         "Please choose a service from the menu below.
