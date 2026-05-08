@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Firomsa Ahmed | Triple Skill Fusion</title>
+  <title>Firomsa Ahmed | Triple Skill Powerhouse</title>
   <!-- Google Fonts + Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -27,6 +27,7 @@
       --accent-blue: #0A84FF;
       --accent-gold: #FFD966;
       --accent-purple: #A855F7;
+      --telegram-blue: #26A5E4;
       
       --bg-light: #FBFBFD;
       --bg-light-rgb: 251, 251, 253;
@@ -247,8 +248,12 @@
       border: none;
     }
     .btn-fiverr:hover { background: #0f9d5e; transform: translateY(-3px); }
+    .btn-telegram {
+      background: var(--telegram-blue);
+      color: white;
+    }
     
-    /* Skills Grid - 3 Core Cards */
+    /* Skills Grid */
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -263,58 +268,44 @@
       padding: 2rem 1.8rem;
       text-align: center;
       transition: all 0.4s var(--transition);
-      backdrop-filter: blur(4px);
     }
-    
     .skill-card:hover {
       transform: translateY(-12px);
       border-color: var(--accent-blue);
       box-shadow: var(--shadow);
     }
+    .skill-icon { font-size: 3.5rem; background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 1.2rem; }
+    .skill-card h3 { font-size: 1.8rem; margin-bottom: 1rem; }
+    .skill-card p { color: var(--text-dark-secondary); margin: 1rem 0; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-top: 1rem; }
+    .skill-tags span { background: rgba(10,132,255,0.15); padding: 0.3rem 1rem; border-radius: 40px; font-size: 0.8rem; font-weight: 500; }
     
-    .skill-icon {
-      font-size: 3.5rem;
-      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 1.2rem;
+    /* Experience Snapshot - Visual skills image area */
+    .exp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 28px;
+      margin-top: 2rem;
     }
-    
-    .skill-card h3 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
+    .exp-card {
+      background: var(--card-dark);
+      border-radius: 28px;
+      padding: 1.8rem;
+      text-align: center;
+      border: 1px solid var(--border-dark);
+      transition: 0.2s;
     }
+    .exp-card i { font-size: 2.8rem; color: var(--accent-blue); margin-bottom: 1rem; }
+    .exp-card h4 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .exp-stats { font-size: 2rem; font-weight: 800; color: var(--accent-gold); margin-bottom: 0.3rem; }
     
-    .skill-card p {
-      color: var(--text-dark-secondary);
-      margin: 1rem 0;
-    }
-    
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      justify-content: center;
-      margin-top: 1rem;
-    }
-    
-    .skill-tags span {
-      background: rgba(10,132,255,0.15);
-      padding: 0.3rem 1rem;
-      border-radius: 40px;
-      font-size: 0.8rem;
-      font-weight: 500;
-    }
-    
-    /* Portfolio Previews (Design + Web + Bot) */
+    /* Showcase */
     .showcase-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 32px;
       margin-top: 2rem;
     }
-    
     .showcase-card {
       background: var(--card-dark);
       border-radius: 28px;
@@ -324,12 +315,7 @@
       cursor: pointer;
     }
     .showcase-card:hover { transform: translateY(-8px); border-color: var(--accent-blue); }
-    .showcase-card img {
-      width: 100%;
-      height: 240px;
-      object-fit: cover;
-      transition: transform 0.7s;
-    }
+    .showcase-card img { width: 100%; height: 240px; object-fit: cover; transition: transform 0.7s; }
     .showcase-card:hover img { transform: scale(1.02); }
     .showcase-info { padding: 1.5rem; text-align: center; }
     .demo-btn {
@@ -342,8 +328,6 @@
       font-weight: 600;
       cursor: pointer;
     }
-    
-    /* Telegram Bot Demo specific */
     .bot-demo-card {
       background: var(--card-dark);
       border-radius: 28px;
@@ -370,6 +354,7 @@
       border-radius: 32px;
       text-align: center;
     }
+    .contact-info a { color: var(--accent-blue); text-decoration: none; }
     .contact-form {
       background: var(--card-dark);
       padding: 2rem;
@@ -385,16 +370,14 @@
       margin-bottom: 1rem;
       font-family: inherit;
     }
-    input:focus, textarea:focus {
-      outline: none;
-      border-color: var(--accent-blue);
-    }
+    input:focus, textarea:focus { outline: none; border-color: var(--accent-blue); }
     
-    .float-wa {
+    /* Floating Telegram Button (replaces WhatsApp) */
+    .float-tg {
       position: fixed;
       bottom: 25px;
       left: 25px;
-      background: #25D366;
+      background: var(--telegram-blue);
       width: 55px;
       height: 55px;
       border-radius: 50%;
@@ -406,7 +389,9 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
       text-decoration: none;
       color: white;
+      transition: 0.2s;
     }
+    .float-tg:hover { transform: scale(1.08); background: #1e8bc9; }
     
     footer {
       background: rgba(0,0,0,0.3);
@@ -414,6 +399,14 @@
       text-align: center;
       border-top: 1px solid var(--border-dark);
     }
+    .social-links a {
+      color: var(--text-dark-secondary);
+      font-size: 1.7rem;
+      margin: 0 0.7rem;
+      transition: 0.2s;
+      display: inline-block;
+    }
+    .social-links a:hover { color: var(--accent-blue); }
     
     /* Modal */
     .modal {
@@ -490,13 +483,7 @@
         cursor: pointer;
         margin-left: 1rem;
       }
-      .bar {
-        width: 28px;
-        height: 3px;
-        background: var(--text-dark-primary);
-        margin: 3px 0;
-        border-radius: 6px;
-      }
+      .bar { width: 28px; height: 3px; background: var(--text-dark-primary); margin: 3px 0; border-radius: 6px; }
       .contact-grid { grid-template-columns: 1fr; }
       section { padding: 70px 0; }
     }
@@ -510,6 +497,7 @@
     <ul class="nav-menu" id="nav-menu">
       <li><a href="#home" class="nav-link">Home</a></li>
       <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#experience" class="nav-link">Experience</a></li>
       <li><a href="#showcase" class="nav-link">Showcase</a></li>
       <li><a href="#contact" class="nav-link">Contact</a></li>
     </ul>
@@ -563,36 +551,40 @@
   </div>
 </section>
 
+<!-- Experience Snapshot - Visual skills image / stats -->
+<section id="experience" class="container fade-up">
+  <h2>Experience <span>Snapshot</span></h2>
+  <div class="section-sub">Years of creative & technical impact — real numbers, real passion</div>
+  <div class="exp-grid">
+    <div class="exp-card"><i class="fas fa-palette"></i><div class="exp-stats">6+ Years</div><h4>Graphic Design</h4><p>Branding, print, digital assets</p></div>
+    <div class="exp-card"><i class="fas fa-globe"></i><div class="exp-stats">22+ Projects</div><h4>Full Stack Apps</h4><p>From startup dashboards to e‑commerce</p></div>
+    <div class="exp-card"><i class="fab fa-telegram"></i><div class="exp-stats">15+ Bots</div><h4>Telegram Bots</h4><p>Automation, AI, community tools</p></div>
+    <div class="exp-card"><i class="fas fa-trophy"></i><div class="exp-stats">100%</div><h4>Client Satisfaction</h4><p>Delivered on time, exceeded expectations</p></div>
+  </div>
+  <!-- Optional image representation (can be replaced with real certificate image) -->
+  <div style="text-align: center; margin-top: 2rem;">
+    <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=300&fit=crop" alt="Skills showcase" style="border-radius: 28px; max-width: 100%; border: 1px solid var(--border-dark);" onerror="this.style.display='none'">
+    <p class="section-sub" style="margin-top: 0.8rem;">🏆 Recognized for design & development excellence</p>
+  </div>
+</section>
+
 <section id="showcase" class="container fade-up">
   <h2>Live <span>Creations</span></h2>
   <div class="section-sub">Real demos that blend design, dev, and automation</div>
   <div class="showcase-grid">
-    <!-- Graphic Design Demo -->
     <div class="showcase-card" id="designDemo">
       <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&h=400&fit=crop" alt="Brand identity">
-      <div class="showcase-info">
-        <h3>Brand Alchemy</h3>
-        <p>Logo & identity design, visual storytelling.</p>
-        <button class="demo-btn" data-type="design">View Portfolio</button>
-      </div>
+      <div class="showcase-info"><h3>Brand Alchemy</h3><p>Logo & identity design, visual storytelling.</p><button class="demo-btn" data-type="design">View Portfolio</button></div>
     </div>
-    <!-- Full Stack Web Demo -->
     <div class="showcase-card" id="webDemo">
       <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=600&h=400&fit=crop" alt="Web App">
-      <div class="showcase-info">
-        <h3>Flow Dashboard</h3>
-        <p>Interactive full-stack micro-app (Task manager)</p>
-        <button class="demo-btn" data-type="web">Launch Demo</button>
-      </div>
+      <div class="showcase-info"><h3>Flow Dashboard</h3><p>Interactive full-stack micro-app (Task manager)</p><button class="demo-btn" data-type="web">Launch Demo</button></div>
     </div>
-    <!-- Telegram Bot Demo -->
     <div class="bot-demo-card">
-      <i class="fab fa-telegram" style="font-size: 3rem; color: var(--accent-blue);"></i>
+      <i class="fab fa-telegram" style="font-size: 3rem; color: var(--telegram-blue);"></i>
       <h3 style="margin: 1rem 0;">Telegram Bot Studio</h3>
-      <div class="bot-message">
-        <i class="fas fa-robot"></i> <strong>@FiromsaBot</strong> — AI assistant, commands, inline queries.
-      </div>
-      <button id="telegramBotDemo" class="demo-btn" style="background: #26A5E4;">Try Bot Simulation</button>
+      <div class="bot-message"><i class="fas fa-robot"></i> <strong>@FiromsaBot</strong> — AI assistant, commands, inline queries.</div>
+      <button id="telegramBotDemo" class="demo-btn" style="background: var(--telegram-blue);">Try Bot Simulation</button>
       <p style="margin-top: 1rem; font-size: 0.85rem;">Live bot integration ready for your custom needs</p>
     </div>
   </div>
@@ -603,21 +595,22 @@
   <div class="contact-grid">
     <div class="contact-info">
       <i class="fas fa-envelope fa-2x" style="color: var(--accent-blue);"></i>
-      <h3>Direct Connect</h3>
-      <p><a href="mailto:firomsaahmed51@gmail.com" style="color: var(--accent-blue);">firomsaahmed51@gmail.com</a></p>
+      <h3>Email Me</h3>
+      <p><a href="mailto:firomsaahmed51@gmail.com">firomsaahmed51@gmail.com</a></p>
       <hr style="margin: 1rem 0; border-color: var(--border-dark);">
-      <i class="fab fa-telegram fa-2x"></i>
+      <i class="fab fa-telegram fa-2x" style="color: var(--telegram-blue);"></i>
+      <h3>Telegram (Always online)</h3>
       <p><a href="https://t.me/Fira385508" target="_blank">@Fira385508</a></p>
-      <i class="fab fa-whatsapp fa-2x" style="margin-top: 1rem;"></i>
-      <p><a href="https://wa.me/251946004640">+251 94 600 4640</a></p>
-      <button id="fiverrSideBtn" class="btn btn-fiverr" style="margin-top: 1.5rem; width: 100%;"><i class="fab fa-fiverr"></i> Fiverr Gig</button>
+      <div style="margin: 1rem 0;">
+        <button id="fiverrSideBtn" class="btn btn-fiverr" style="width: 100%;"><i class="fab fa-fiverr"></i> Fiverr Gig</button>
+      </div>
     </div>
     <form class="contact-form" id="contactForm">
       <input type="text" placeholder="Your name" id="cname" required>
       <input type="email" placeholder="Email address" id="cemail" required>
       <textarea rows="4" placeholder="Describe your project idea (design, web app, or bot)..." id="cmsg" required></textarea>
       <button type="submit" class="btn btn-primary" style="width:100%"><i class="fas fa-paper-plane"></i> Send message</button>
-      <p class="section-sub" style="font-size: 0.8rem; margin-top: 1rem;">I'll reply within 24h</p>
+      <p class="section-sub" style="font-size: 0.8rem; margin-top: 1rem;">I'll reply within hours — Telegram preferred</p>
     </form>
   </div>
 </section>
@@ -625,21 +618,25 @@
 <footer>
   <div class="container">
     <p>© 2026 Firomsa Ahmed — Graphic Design • Full Stack • Telegram Bots</p>
-    <div class="social-links" style="margin-top: 1rem;">
-      <a href="https://t.me/Fira385508" target="_blank"><i class="fab fa-telegram"></i></a>
-      <a href="https://wa.me/251946004640" target="_blank"><i class="fab fa-whatsapp"></i></a>
-      <a href="#" id="footerFiverr"><i class="fab fa-fiverr"></i></a>
+    <div class="social-links" style="margin-top: 1.5rem;">
+      <a href="https://t.me/Fira385508" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+      <a href="https://www.facebook.com/firomsa.ahmed.501" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" id="footerFiverr" aria-label="Fiverr"><i class="fab fa-fiverr"></i></a>
+      <a href="https://github.com/firomsa" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
     </div>
   </div>
 </footer>
 
-<a href="https://wa.me/251946004640" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<!-- Floating Telegram button (replaces WhatsApp) -->
+<a href="https://t.me/Fira385508" class="float-tg" target="_blank"><i class="fab fa-telegram-plane"></i></a>
 
 <div id="globalModal" class="modal"><span class="close-modal">&times;</span><div class="modal-content" id="modalContent"></div></div>
 <div id="toastContainer" class="toast-container"></div>
 
 <script>
-  // ---------- Toast & Helpers ----------
+  // Fiverr Link (user provided)
+  const FIVERR_URL = "https://www.fiverr.com/s/pdKRbXo";
+  // Toast
   const toastContainer = document.getElementById('toastContainer');
   function showToast(msg, type = 'success') {
     const t = document.createElement('div');
@@ -677,32 +674,17 @@
         `);
       } else if (type === 'web') {
         openModal(`
-          <div>
-            <h3>📱 Full Stack Demo: TaskFlow</h3>
-            <div style="display:flex; gap:0.5rem; margin:1rem 0;"><input id="taskInput" placeholder="New task" style="flex:1"><button id="addTaskBtn" class="demo-btn">Add</button></div>
-            <ul id="taskList" style="list-style:none; margin-top:1rem;"></ul>
-            <button class="demo-btn" onclick="document.getElementById('globalModal').classList.remove('active');">Close</button>
-          </div>
+          <div><h3>📱 Full Stack Demo: TaskFlow</h3><div style="display:flex; gap:0.5rem; margin:1rem 0;"><input id="taskInput" placeholder="New task" style="flex:1"><button id="addTaskBtn" class="demo-btn">Add</button></div><ul id="taskList" style="list-style:none; margin-top:1rem;"></ul><button class="demo-btn" onclick="document.getElementById('globalModal').classList.remove('active');">Close</button></div>
         `);
         let tasks = JSON.parse(localStorage.getItem('fullstack_tasks') || '[]');
         const renderTasks = () => {
           const list = document.getElementById('taskList');
           if (!list) return;
           list.innerHTML = tasks.map((t, i) => `<li style="display:flex; justify-content:space-between; background: var(--surface-dark); padding:0.6rem 1rem; border-radius: 2rem; margin-bottom:0.5rem;"><span>${escapeHtml(t)}</span><button data-idx="${i}" class="delTaskBtn demo-btn" style="background:#FF3B30;">Delete</button></li>`).join('');
-          document.querySelectorAll('.delTaskBtn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-              const idx = btn.getAttribute('data-idx');
-              tasks.splice(idx, 1);
-              localStorage.setItem('fullstack_tasks', JSON.stringify(tasks));
-              renderTasks();
-            });
-          });
+          document.querySelectorAll('.delTaskBtn').forEach(btn => { btn.addEventListener('click', (e) => { const idx = btn.getAttribute('data-idx'); tasks.splice(idx, 1); localStorage.setItem('fullstack_tasks', JSON.stringify(tasks)); renderTasks(); }); });
         };
         renderTasks();
-        document.getElementById('addTaskBtn')?.addEventListener('click', () => {
-          const inp = document.getElementById('taskInput');
-          if (inp.value.trim()) { tasks.push(inp.value.trim()); localStorage.setItem('fullstack_tasks', JSON.stringify(tasks)); renderTasks(); inp.value = ''; }
-        });
+        document.getElementById('addTaskBtn')?.addEventListener('click', () => { const inp = document.getElementById('taskInput'); if (inp.value.trim()) { tasks.push(inp.value.trim()); localStorage.setItem('fullstack_tasks', JSON.stringify(tasks)); renderTasks(); inp.value = ''; } });
       }
     });
   });
@@ -712,19 +694,7 @@
   // Telegram Bot Simulator
   document.getElementById('telegramBotDemo')?.addEventListener('click', () => {
     openModal(`
-      <div style="text-align:center">
-        <i class="fab fa-telegram" style="font-size: 3rem; color: #26A5E4;"></i>
-        <h3>🤖 @FiromsaBot Simulation</h3>
-        <div class="bot-message" style="margin-top:1rem">
-          <p><strong>Bot:</strong> Hello! I'm Firomsa's Telegram bot. Use commands: /start, /skills, /portfolio</p>
-        </div>
-        <div style="display:flex; gap:0.5rem; margin: 1rem 0;">
-          <input id="botCommandInput" placeholder="Type /skills or /start" style="flex:1">
-          <button id="sendBotCmd" class="demo-btn">Send</button>
-        </div>
-        <div id="botReplyArea" style="background: rgba(10,132,255,0.1); border-radius:20px; padding:1rem; text-align:left;"></div>
-        <button class="btn btn-outline" style="margin-top:1rem;" onclick="document.getElementById('globalModal').classList.remove('active');">Close</button>
-      </div>
+      <div style="text-align:center"><i class="fab fa-telegram" style="font-size: 3rem; color: #26A5E4;"></i><h3>🤖 @FiromsaBot Simulation</h3><div class="bot-message" style="margin-top:1rem"><p><strong>Bot:</strong> Hello! I'm Firomsa's Telegram bot. Use commands: /start, /skills, /portfolio</p></div><div style="display:flex; gap:0.5rem; margin: 1rem 0;"><input id="botCommandInput" placeholder="Type /skills or /start" style="flex:1"><button id="sendBotCmd" class="demo-btn">Send</button></div><div id="botReplyArea" style="background: rgba(10,132,255,0.1); border-radius:20px; padding:1rem; text-align:left;"></div><button class="btn btn-outline" style="margin-top:1rem;" onclick="document.getElementById('globalModal').classList.remove('active');">Close</button></div>
     `);
     setTimeout(() => {
       const sendBtn = document.getElementById('sendBotCmd');
@@ -732,25 +702,18 @@
       const replyDiv = document.getElementById('botReplyArea');
       function processCommand(cmd) {
         const c = cmd.trim().toLowerCase();
-        if (c === '/start') return "✨ Welcome! I'm Firomsa's assistant. I showcase graphic design, full-stack web, and telegram bot services. Use /skills to explore.";
+        if (c === '/start') return "✨ Welcome! I'm Firomsa's assistant. I offer graphic design, full-stack web, and telegram bot services. Use /skills to explore.";
         if (c === '/skills') return "🎨 Graphic Design: Logos, posters.\n💻 Full Stack: React/Node, API.\n🤖 Telegram Bots: Aiogram automation, custom features.";
         if (c === '/portfolio') return "📁 Portfolio highlights: Brand identity, TaskFlow web app, and smart Telegram bots. Contact Firomsa for live demo.";
         return "❓ Unknown command. Try /start, /skills, or /portfolio.";
       }
       if (replyDiv && inputCmd && sendBtn) {
-        sendBtn.addEventListener('click', () => {
-          const val = inputCmd.value;
-          if (!val) return;
-          const reply = processCommand(val);
-          replyDiv.innerHTML += `<div><strong>You:</strong> ${escapeHtml(val)}</div><div><strong>Bot:</strong> ${escapeHtml(reply)}</div><hr style="opacity:0.3;">`;
-          inputCmd.value = '';
-          replyDiv.scrollTop = replyDiv.scrollHeight;
-        });
+        sendBtn.addEventListener('click', () => { const val = inputCmd.value; if (!val) return; const reply = processCommand(val); replyDiv.innerHTML += `<div><strong>You:</strong> ${escapeHtml(val)}</div><div><strong>Bot:</strong> ${escapeHtml(reply)}</div><hr style="opacity:0.3;">`; inputCmd.value = ''; replyDiv.scrollTop = replyDiv.scrollHeight; });
       }
     }, 30);
   });
 
-  // Contact form (local storage simulation)
+  // Contact form (local storage)
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
@@ -759,62 +722,37 @@
       const email = document.getElementById('cemail')?.value.trim();
       const msg = document.getElementById('cmsg')?.value.trim();
       if (!name || !email || !msg) { showToast('All fields required', 'info'); return; }
-      const messageObj = { name, email, msg, date: new Date().toLocaleString() };
       let stored = JSON.parse(localStorage.getItem('contact_messages') || '[]');
-      stored.push(messageObj);
+      stored.push({ name, email, msg, date: new Date().toLocaleString() });
       localStorage.setItem('contact_messages', JSON.stringify(stored));
-      showToast('✅ Message saved! I will reach out soon.');
+      showToast('✅ Message saved! I will reply soon via Telegram.');
       contactForm.reset();
     });
   }
 
-  // Fiverr links (replace # with actual Fiverr URL)
-  const fiverrUrl = "https://www.fiverr.com/firomsa_ahmed"; // Change to your real Fiverr profile
+  // Fiverr buttons
   const fiverrBtns = document.querySelectorAll('#fiverrLinkBtn, #fiverrSideBtn, #footerFiverr');
-  fiverrBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      window.open(fiverrUrl, '_blank');
-      showToast("Opening Fiverr profile — Let's create magic together!");
-    });
-  });
+  fiverrBtns.forEach(btn => { btn.addEventListener('click', (e) => { e.preventDefault(); window.open(FIVERR_URL, '_blank'); showToast("Opening Fiverr — let's create magic!"); }); });
 
-  // Lenis Smooth Scroll
+  // Lenis smooth scroll
   const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
   function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
   requestAnimationFrame(raf);
 
-  // Intersection Observer for fade-up
+  // Fade Up Observer
   const faders = document.querySelectorAll('.fade-up');
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
+  const obs = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
   faders.forEach(el => obs.observe(el));
 
-  // Dark Mode & Mobile menu
+  // Dark mode & mobile nav
   const toggle = document.getElementById('darkModeToggle');
   const icon = toggle?.querySelector('i');
   if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light-mode'); icon?.classList.replace('fa-moon','fa-sun'); }
-  toggle?.addEventListener('click', () => {
-    document.body.classList.toggle('light-mode');
-    const isLight = document.body.classList.contains('light-mode');
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    if (icon) icon.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
-  });
-  const hamburger = document.getElementById('hamburger');
-  const navMenu = document.getElementById('nav-menu');
+  toggle?.addEventListener('click', () => { document.body.classList.toggle('light-mode'); const isLight = document.body.classList.contains('light-mode'); localStorage.setItem('theme', isLight ? 'light' : 'dark'); if (icon) icon.className = isLight ? 'fas fa-sun' : 'fas fa-moon'; });
+  const hamburger = document.getElementById('hamburger'); const navMenu = document.getElementById('nav-menu');
   hamburger?.addEventListener('click', () => navMenu.classList.toggle('active'));
   document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => navMenu.classList.remove('active')));
-
-  // Anchor scroll with lenis
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const id = this.getAttribute('href');
-      if (id === '#') return;
-      const target = document.querySelector(id);
-      if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -80 }); }
-    });
-  });
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { const id = this.getAttribute('href'); if (id === '#') return; const target = document.querySelector(id); if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -80 }); } }); });
 </script>
 </body>
 </html>
