@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Firomsa Ahmed | Visionary Design & Code</title>
-  <!-- Google Fonts + Enhanced Fonts -->
+  <title>Firomsa Ahmed | Cinematic Design & Code</title>
+  <!-- Google Fonts + Enhanced -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Lenis for Ultra Smooth Scrolling (Cinematic) -->
+  <!-- Lenis Smooth Scroll -->
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
@@ -33,7 +33,7 @@
       --bg-light-rgb: 251, 251, 253;
       --surface-light: #FFFFFF;
       --card-light: #FFFFFF;
-      --border-light: rgba(0,0,0,0.1);
+      --border-light: rgba(0,0,0,0.08);
       --text-light-primary: #1D1D1F;
       --text-light-secondary: #6E6E73;
       
@@ -60,15 +60,9 @@
       --text-dark-secondary: var(--text-light-secondary);
     }
     
-    /* Smooth scrolling & lenis optimization */
-    html.lenis {
-      height: auto;
-    }
-    .lenis.lenis-smooth {
-      scroll-behavior: auto;
-    }
+    html.lenis { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto; }
     
-    /* Global Styling */
     .container {
       width: 90%;
       max-width: 1400px;
@@ -83,7 +77,6 @@
       z-index: 2;
     }
     
-    /* Apple-style Typography */
     h1, h2, h3 {
       font-weight: 700;
       letter-spacing: -0.02em;
@@ -108,7 +101,7 @@
       font-weight: 400;
     }
     
-    /* Premium Glass Navbar */
+    /* Navbar premium */
     .navbar {
       position: fixed;
       top: 0;
@@ -151,9 +144,7 @@
       font-size: 1rem;
     }
     
-    .nav-link:hover {
-      color: var(--accent-blue);
-    }
+    .nav-link:hover { color: var(--accent-blue); }
     
     .theme-toggle {
       background: transparent;
@@ -165,7 +156,7 @@
       transition: transform 0.2s;
     }
     
-    /* Hero Section - Apple meets Tesla */
+    /* Hero Cinematic */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -183,12 +174,7 @@
       pointer-events: none;
     }
     
-    .hero-content {
-      text-align: center;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    
+    .hero-content { text-align: center; max-width: 1100px; margin: 0 auto; }
     .hero-badge {
       display: inline-block;
       background: rgba(10,132,255,0.15);
@@ -201,18 +187,8 @@
       border: 1px solid rgba(10,132,255,0.3);
     }
     
-    .hero h1 {
-      font-size: clamp(3rem, 7vw, 5.5rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-    }
-    
-    .highlight {
-      background: linear-gradient(135deg, var(--accent-blue), var(--accent-gold));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
+    .hero h1 { font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 800; letter-spacing: -0.03em; }
+    .highlight { background: linear-gradient(135deg, var(--accent-blue), var(--accent-gold)); -webkit-background-clip: text; background-clip: text; color: transparent; }
     
     .hero-avatar {
       width: 140px;
@@ -226,20 +202,9 @@
       cursor: pointer;
     }
     
-    .hero-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .hero-avatar img { width: 100%; height: 100%; object-fit: cover; }
     
-    .btn-group {
-      display: flex;
-      gap: 1.2rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 1.5rem;
-    }
-    
+    .btn-group { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
     .btn {
       display: inline-flex;
       align-items: center;
@@ -259,27 +224,16 @@
       color: white;
       box-shadow: 0 4px 12px rgba(10,132,255,0.3);
     }
-    
-    .btn-primary:hover {
-      transform: translateY(-4px);
-      background: #0071e3;
-      box-shadow: 0 12px 25px rgba(10,132,255,0.4);
-    }
-    
+    .btn-primary:hover { transform: translateY(-4px); background: #0071e3; box-shadow: 0 12px 25px rgba(10,132,255,0.4); }
     .btn-outline {
       background: transparent;
       border: 1.5px solid var(--accent-blue);
       color: var(--accent-blue);
       backdrop-filter: blur(4px);
     }
+    .btn-outline:hover { background: var(--accent-blue); color: white; transform: translateY(-4px); }
     
-    .btn-outline:hover {
-      background: var(--accent-blue);
-      color: white;
-      transform: translateY(-4px);
-    }
-    
-    /* Cinematic Grids + Luxury Product Style */
+    /* Grids & Cards */
     .product-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -296,14 +250,9 @@
       transform: translateY(60px) scale(0.96);
       opacity: 0;
       will-change: transform, opacity;
-      backdrop-filter: blur(2px);
     }
     
-    .product-card.card--visible {
-      transform: translateY(0) scale(1);
-      opacity: 1;
-    }
-    
+    .product-card.card--visible { transform: translateY(0) scale(1); opacity: 1; }
     .product-card:hover {
       transform: translateY(-12px) scale(1.02);
       border-color: var(--accent-blue);
@@ -316,29 +265,12 @@
       object-fit: cover;
       transition: transform 1.2s var(--transition-smooth);
     }
+    .product-card:hover .product-img { transform: scale(1.05); }
     
-    .product-card:hover .product-img {
-      transform: scale(1.05);
-    }
+    .product-info { padding: 1.8rem; text-align: center; }
+    .product-info h3 { font-size: 1.6rem; font-weight: 600; }
+    .product-price { font-size: 1.7rem; font-weight: 800; margin: 0.7rem 0; color: var(--accent-gold); }
     
-    .product-info {
-      padding: 1.8rem;
-      text-align: center;
-    }
-    
-    .product-info h3 {
-      font-size: 1.6rem;
-      font-weight: 600;
-    }
-    
-    .product-price {
-      font-size: 1.7rem;
-      font-weight: 800;
-      margin: 0.7rem 0;
-      color: var(--accent-gold);
-    }
-    
-    /* Design Gallery and Projects - premium cards */
     .design-grid, .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -355,12 +287,7 @@
       cursor: pointer;
     }
     
-    .design-card:hover, .project-card:hover {
-      transform: translateY(-10px);
-      border-color: var(--accent-blue);
-      box-shadow: var(--shadow-elevation);
-    }
-    
+    .design-card:hover, .project-card:hover { transform: translateY(-10px); border-color: var(--accent-blue); box-shadow: var(--shadow-elevation); }
     .design-card img, .project-card img {
       width: 100%;
       height: 260px;
@@ -368,15 +295,8 @@
       transition: transform 0.7s;
       pointer-events: auto;
     }
-    
-    .design-card:hover img, .project-card:hover img {
-      transform: scale(1.03);
-    }
-    
-    .design-info, .project-content {
-      padding: 1.5rem;
-      text-align: center;
-    }
+    .design-card:hover img, .project-card:hover img { transform: scale(1.03); }
+    .design-info, .project-content { padding: 1.5rem; text-align: center; }
     
     .demo-btn {
       margin-top: 0.75rem;
@@ -389,11 +309,7 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
-    
-    .demo-btn:hover {
-      background: #0071e3;
-      transform: scale(0.98);
-    }
+    .demo-btn:hover { background: #0071e3; transform: scale(0.98); }
     
     .services-grid {
       display: grid;
@@ -409,14 +325,8 @@
       border: 1px solid var(--border-dark);
       backdrop-filter: blur(5px);
     }
+    .service-item i { font-size: 2.8rem; color: var(--accent-blue); margin-bottom: 1rem; }
     
-    .service-item i {
-      font-size: 2.8rem;
-      color: var(--accent-blue);
-      margin-bottom: 1rem;
-    }
-    
-    /* Contact form glassmorphic */
     .contact-container {
       display: grid;
       grid-template-columns: 1fr 1.3fr;
@@ -443,12 +353,7 @@
       font-family: inherit;
       transition: 0.2s;
     }
-    
-    input:focus, textarea:focus {
-      outline: none;
-      border-color: var(--accent-blue);
-      box-shadow: 0 0 0 3px rgba(10,132,255,0.2);
-    }
+    input:focus, textarea:focus { outline: none; border-color: var(--accent-blue); box-shadow: 0 0 0 3px rgba(10,132,255,0.2); }
     
     .float-wa {
       position: fixed;
@@ -468,31 +373,23 @@
       transition: transform 0.2s;
       text-decoration: none;
     }
+    .float-wa:hover { transform: scale(1.08); }
     
-    .float-wa:hover {
-      transform: scale(1.08);
-    }
-    
-    /* Footer */
     footer {
       background: rgba(0,0,0,0.3);
       padding: 2.5rem 0;
       text-align: center;
       border-top: 1px solid var(--border-dark);
     }
-    
     .social-links a {
       color: var(--text-dark-secondary);
       font-size: 1.5rem;
       margin: 0 0.6rem;
       transition: 0.2s;
     }
+    .social-links a:hover { color: var(--accent-blue); }
     
-    .social-links a:hover {
-      color: var(--accent-blue);
-    }
-    
-    /* Modal cinematic */
+    /* Modal */
     .modal {
       display: none;
       position: fixed;
@@ -506,11 +403,7 @@
       align-items: center;
       justify-content: center;
     }
-    
-    .modal.active {
-      display: flex;
-    }
-    
+    .modal.active { display: flex; }
     .modal-content {
       max-width: 80vw;
       max-height: 85vh;
@@ -522,6 +415,17 @@
       width: 600px;
       max-width: 90%;
     }
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      font-size: 40px;
+      cursor: pointer;
+      color: white;
+      z-index: 2001;
+      transition: 0.2s;
+    }
+    .close-modal:hover { color: var(--accent-blue); }
     
     .toast-container {
       position: fixed;
@@ -532,7 +436,6 @@
       flex-direction: column;
       gap: 12px;
     }
-    
     .toast {
       background: var(--card-dark);
       backdrop-filter: blur(12px);
@@ -542,18 +445,10 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
       border-left: 5px solid;
     }
+    .toast.success { border-left-color: #25D366; }
+    .toast.error { border-left-color: #FF3B30; }
+    .toast.info { border-left-color: var(--accent-blue); }
     
-    .toast.success {
-      border-left-color: #25D366;
-    }
-    .toast.error {
-      border-left-color: #FF3B30;
-    }
-    .toast.info {
-      border-left-color: var(--accent-blue);
-    }
-    
-    /* Spinner & Responsiveness */
     .spinner {
       width: 50px;
       height: 50px;
@@ -563,7 +458,6 @@
       animation: spin 1s infinite linear;
       margin: 2rem auto;
     }
-    
     @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     
     .fade-up {
@@ -571,11 +465,11 @@
       transform: translateY(40px);
       transition: opacity 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
     
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .demo-action-btn { background: var(--accent-blue); border: none; padding: 0.4rem 0.8rem; border-radius: 12px; color: white; cursor: pointer; margin: 0.2rem; font-weight: 500; }
+    .calc-btn { background: var(--surface-dark); border: 1px solid var(--border-dark); padding: 0.8rem; border-radius: 16px; font-size: 1.2rem; cursor: pointer; transition: 0.1s; color: inherit; }
+    .calc-btn:hover { background: var(--accent-blue); color: white; }
     
     @media (max-width: 768px) {
       .nav-menu {
@@ -592,45 +486,16 @@
         backdrop-filter: blur(20px);
         z-index: 999;
       }
-      .nav-menu.active {
-        left: 0;
-      }
-      .hamburger {
-        display: flex;
-        flex-direction: column;
-        cursor: pointer;
-        margin-left: 1rem;
-      }
-      .bar {
-        width: 28px;
-        height: 3px;
-        background: var(--text-dark-primary);
-        margin: 3px 0;
-        border-radius: 6px;
-      }
-      .contact-container {
-        grid-template-columns: 1fr;
-      }
-      section {
-        padding: 80px 0;
-      }
-      .modal-content {
-        width: 90vw;
-        padding: 1.5rem;
-      }
+      .nav-menu.active { left: 0; }
+      .hamburger { display: flex; flex-direction: column; cursor: pointer; margin-left: 1rem; }
+      .bar { width: 28px; height: 3px; background: var(--text-dark-primary); margin: 3px 0; border-radius: 6px; }
+      .contact-container { grid-template-columns: 1fr; }
+      section { padding: 80px 0; }
     }
     
-    /* custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--bg-dark);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--accent-blue);
-      border-radius: 10px;
-    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-dark); }
+    ::-webkit-scrollbar-thumb { background: var(--accent-blue); border-radius: 10px; }
   </style>
 </head>
 <body>
@@ -650,15 +515,13 @@
   </div>
 </nav>
 
-<!-- Hero Section -->
 <section id="home" class="hero">
   <div class="container hero-content">
     <div class="hero-badge"><i class="fas fa-bolt"></i> 3D Vision • Cinematic Design</div>
     <h1>I'm <span class="highlight">Firomsa Ahmed</span></h1>
     <div style="font-size: 1.6rem; font-weight: 500; margin-bottom: 1rem;">Graphic Designer & Futuristic Developer</div>
     <div class="hero-avatar" id="profileAvatar">
-      <!-- Updated avatar image with the user's provided URL -->
-      <img src="https://i.ibb.co/NdTVrLvF/file-00000000907071f786424554e7a32b58-jpg.png" alt="Firomsa Ahmed Avatar">
+      <img src="https://i.ibb.co/NdTVrLvF/file-00000000907071f786424554e7a32b58-jpg.png" alt="Firomsa Ahmed Avatar" onerror="this.src='https://placehold.co/400x400/0A84FF/white?text=F.A'">
     </div>
     <div class="btn-group">
       <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Start a Vision</a>
@@ -667,46 +530,41 @@
   </div>
 </section>
 
-<!-- Design Gallery -->
 <section id="design" class="container fade-up">
   <h2>Visual <span>Alchemy</span></h2>
   <div class="section-sub">Exquisite brand identities • cinematic posters • immersive social assets</div>
   <div class="design-grid">
-    <div class="design-card"><img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&h=500&fit=crop" alt="Logo"><div class="design-info"><h3>Nebula Identity</h3><p>Minimalist & Luxe</p></div></div>
-    <div class="design-card"><img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=600&h=500&fit=crop" alt="Poster"><div class="design-info"><h3>Cinematic Event</h3><p>High impact typography</p></div></div>
-    <div class="design-card"><img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&h=500&fit=crop" alt="Social"><div class="design-info"><h3>Social Kit Future</h3><p>AI-enhanced visuals</p></div></div>
+    <div class="design-card"><img loading="lazy" src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&h=500&fit=crop" alt="Logo"><div class="design-info"><h3>Nebula Identity</h3><p>Minimalist & Luxe</p></div></div>
+    <div class="design-card"><img loading="lazy" src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=600&h=500&fit=crop" alt="Poster"><div class="design-info"><h3>Cinematic Event</h3><p>High impact typography</p></div></div>
+    <div class="design-card"><img loading="lazy" src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&h=500&fit=crop" alt="Social"><div class="design-info"><h3>Social Kit Future</h3><p>AI-enhanced visuals</p></div></div>
   </div>
 </section>
 
-<!-- Luxury Cinematic Product Catalog with Supabase + Fallback -->
 <section id="catalog" class="container fade-up">
   <h2><span>✦ Cinema Collection ✦</span></h2>
   <div class="section-sub">Each product reveals like a film frame — scroll to experience luxury immersion</div>
   <div id="product-list" class="product-grid"><div class="spinner"></div></div>
 </section>
 
-<!-- Services -->
 <section id="services" class="container fade-up">
   <h2>Exceptional <span>Expertise</span></h2>
   <div class="services-grid">
     <div class="service-item"><i class="fas fa-gem"></i><h3>Luxury Branding</h3><p>Identity that resonates</p></div>
     <div class="service-item"><i class="fas fa-vr-cardboard"></i><h3>Immersive Web</h3><p>3D & cinematic UI</p></div>
-    <div class="service-item"><i class="fas fa-chart-line"></i><h3>Creative Direction</h3><p>Vision to execution</p></div>
+    <div class="service-item"><i class="fab fa-telegram"></i><h3>Telegram Bots</h3><p>AI-powered automation</p></div>
   </div>
 </section>
 
-<!-- Real Working Projects -->
 <section id="projects" class="container fade-up">
   <h2>Interactive <span>Innovations</span></h2>
   <div class="section-sub">Live demos — premium micro-apps</div>
   <div class="projects-grid">
-    <div class="project-card"><img src="https://images.unsplash.com/photo-1587145828966-31c4271e5ca4?w=600&h=400&fit=crop" alt="Calculator"><div class="project-content"><h3>Neo Calculator</h3><button class="demo-btn" data-demo="calculator">Launch Demo</button></div></div>
-    <div class="project-card"><img src="https://images.unsplash.com/photo-1540350394557-8d14678e7f91?w=600&h=400&fit=crop" alt="Todo"><div class="project-content"><h3>FlowSpace Todo</h3><button class="demo-btn" data-demo="todo">Launch Demo</button></div></div>
-    <div class="project-card"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" alt="Landing"><div class="project-content"><h3>Aether Landing</h3><button class="demo-btn" data-demo="landing">Launch Demo</button></div></div>
+    <div class="project-card"><img loading="lazy" src="https://images.unsplash.com/photo-1587145828966-31c4271e5ca4?w=600&h=400&fit=crop" alt="Calculator"><div class="project-content"><h3>Neo Calculator</h3><button class="demo-btn" data-demo="calculator">Launch Demo</button></div></div>
+    <div class="project-card"><img loading="lazy" src="https://images.unsplash.com/photo-1540350394557-8d14678e7f91?w=600&h=400&fit=crop" alt="Todo"><div class="project-content"><h3>FlowSpace Todo</h3><button class="demo-btn" data-demo="todo">Launch Demo</button></div></div>
+    <div class="project-card"><img loading="lazy" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" alt="Landing"><div class="project-content"><h3>Aether Landing</h3><button class="demo-btn" data-demo="landing">Launch Demo</button></div></div>
   </div>
 </section>
 
-<!-- Contact Section -->
 <section id="contact" class="container fade-up">
   <h2>Collide <span>Creativity</span></h2>
   <div class="contact-container">
@@ -714,6 +572,7 @@
       <div class="contact-card"><i class="fas fa-envelope fa-2x"></i><h3>Email</h3><p><a href="mailto:firomsaahmed51@gmail.com" style="color: var(--accent-blue);">firomsaahmed51@gmail.com</a></p></div>
       <div class="contact-card"><i class="fab fa-telegram fa-2x"></i><h3>Telegram</h3><p><a href="https://t.me/Fira385508" target="_blank">@Fira385508</a></p></div>
       <div class="contact-card"><i class="fab fa-whatsapp fa-2x"></i><h3>WhatsApp</h3><p><a href="https://wa.me/251946004640">+251 94 600 4640</a></p></div>
+      <button id="viewMessagesBtn" class="btn btn-outline" style="margin-top:1rem; width:100%"><i class="fas fa-inbox"></i> View Stored Messages</button>
     </div>
     <form class="contact-form" id="contactForm">
       <input type="text" placeholder="Full name" id="formName" required>
@@ -726,39 +585,21 @@
 
 <footer>
   <div class="container"><p>© 2026 Firomsa Ahmed — Futuristic Design & Engineering</p>
-  <div class="social-links"><a href="#"><i class="fab fa-github"></i></a><a href="#"><i class="fab fa-telegram"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div></div>
+  <div class="social-links"><a href="#"><i class="fab fa-github"></i></a><a href="https://t.me/Fira385508"><i class="fab fa-telegram"></i></a><a href="https://wa.me/251946004640"><i class="fab fa-whatsapp"></i></a></div></div>
 </footer>
-
 <a href="https://wa.me/251946004640" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
-<div id="globalModal" class="modal"><span class="close-modal" style="position:absolute;top:20px;right:35px;font-size:40px;cursor:pointer;color:white;z-index:2001;">&times;</span><div class="modal-content" id="modalDynamicContent"></div></div>
+<div id="globalModal" class="modal"><span class="close-modal">&times;</span><div class="modal-content" id="modalDynamicContent"></div></div>
 <div id="toastContainer" class="toast-container"></div>
 
 <script>
-  // ---------- Supabase config ----------
-  const SUPABASE_CONFIG = {
-    url: 'https://cvgterohigfjdkulmryb.supabase.co',
-    anonKey: 'sb_publishable_7-U83GJsOxTb8uLFG0ms4Q_2zIAQ2U1'
-  };
-  
-  const toastManager = {
-    container: document.getElementById('toastContainer'),
-    show(msg, type='info', duration=4000) {
-      const toast = document.createElement('div');
-      toast.className = `toast ${type}`;
-      toast.innerHTML = `<i class="fas ${type==='success'?'fa-check-circle':type==='error'?'fa-exclamation-circle':'fa-info-circle'}"></i> ${msg}`;
-      this.container.appendChild(toast);
-      setTimeout(() => toast.remove(), duration);
-    },
-    success(msg){ this.show(msg, 'success'); },
-    error(msg){ this.show(msg, 'error'); }
-  };
+  // --------------------- CONFIGURATION & GLOBALS ---------------------
+  const SUPABASE_CONFIG = { url: 'https://cvgterohigfjdkulmryb.supabase.co', anonKey: 'sb_publishable_7-U83GJsOxTb8uLFG0ms4Q_2zIAQ2U1' };
+  const toast = { container: document.getElementById('toastContainer'), show(msg, type='info', dur=4000) { const t = document.createElement('div'); t.className = `toast ${type}`; t.innerHTML = `<i class="fas ${type==='success'?'fa-check-circle':type==='error'?'fa-exclamation-circle':'fa-info-circle'}"></i> ${msg}`; this.container.appendChild(t); setTimeout(() => t.remove(), dur); }, success(m){ this.show(m,'success'); }, error(m){ this.show(m,'error'); } };
   
   let supabaseClient = null;
-  try {
-    if (window.supabase) supabaseClient = window.supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
-  } catch(e) { console.warn("Supabase init fail", e); }
+  try { if(window.supabase) supabaseClient = window.supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey); } catch(e){ console.warn("Supabase not loaded"); }
   
-  const FALLBACK_LUXURY_PRODUCTS = [
+  const FALLBACK_PRODUCTS = [
     { name: "Horizon Chronograph", price: 1899, image_url: "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?w=600&h=500&fit=crop" },
     { name: "Minimalist SoundWave", price: 499, image_url: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=500&fit=crop" },
     { name: "Aether Backpack", price: 329, image_url: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&h=500&fit=crop" },
@@ -767,28 +608,26 @@
     { name: "Neon Kinetic Sculpture", price: 1299, image_url: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=500&fit=crop" }
   ];
   
+  function escapeHtml(str) { return String(str).replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'})[m]); }
+  
   async function renderProducts() {
     const container = document.getElementById('product-list');
-    if (!container) return;
+    if(!container) return;
     container.innerHTML = '<div class="spinner"></div>';
     let products = [];
     try {
-      if (supabaseClient) {
+      if(supabaseClient) {
         const { data, error } = await supabaseClient.from('products').select('name, price, image_url').order('created_at', { ascending: false });
-        if (!error && data && data.length) products = data;
+        if(!error && data && data.length) products = data;
         else throw new Error('fallback');
       } else throw new Error('no supabase');
-    } catch(e) {
-      products = FALLBACK_LUXURY_PRODUCTS;
-      toastManager.success("✨ Showcasing luxury collection (cinema preview)");
-    }
-    if (!products.length) products = FALLBACK_LUXURY_PRODUCTS;
-    
+    } catch(e) { products = FALLBACK_PRODUCTS; toast.success("✨ Luxury preview loaded"); }
+    if(!products.length) products = FALLBACK_PRODUCTS;
     let html = '';
     products.forEach(p => {
       let imgUrl = p.image_url || 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=600&h=500&fit=crop';
-      if (imgUrl && !imgUrl.startsWith('http')) imgUrl = `${SUPABASE_CONFIG.url}/storage/v1/object/public/product-images/${imgUrl}`;
-      html += `<div class="product-card"><img class="product-img" src="${imgUrl}" alt="${escapeHtml(p.name)}" onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=500&fit=crop'"><div class="product-info"><h3>${escapeHtml(p.name)}</h3><div class="product-price">$${parseFloat(p.price).toFixed(2)}</div><button class="btn btn-outline" style="padding:0.4rem 1.2rem;" onclick="alert('Inquire about ${escapeHtml(p.name)} via WhatsApp/Telegram')">Inquire</button></div></div>`;
+      if(imgUrl && !imgUrl.startsWith('http')) imgUrl = `${SUPABASE_CONFIG.url}/storage/v1/object/public/product-images/${imgUrl}`;
+      html += `<div class="product-card"><img class="product-img" src="${imgUrl}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=500&fit=crop'"><div class="product-info"><h3>${escapeHtml(p.name)}</h3><div class="product-price">$${parseFloat(p.price).toFixed(2)}</div><button class="btn btn-outline" style="padding:0.4rem 1.2rem;" onclick="toast.success('✨ Inquire via WhatsApp/Telegram for ${escapeHtml(p.name)}')">Inquire</button></div></div>`;
     });
     container.innerHTML = html;
     observeCinematicCards();
@@ -796,67 +635,122 @@
   
   function observeCinematicCards() {
     const cards = document.querySelectorAll('.product-card');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('card--visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2, rootMargin: "0px 0px -40px 0px" });
-    cards.forEach(card => observer.observe(card));
+    const obs = new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('card--visible'); obs.unobserve(e.target); } }); }, { threshold: 0.2 });
+    cards.forEach(c => obs.observe(c));
   }
   
-  function escapeHtml(str) { return String(str).replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'})[m]); }
+  // CONTACT: Store messages locally (offline fallback + display)
+  let localMessages = JSON.parse(localStorage.getItem('portfolio_messages') || '[]');
+  async function handleContactSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('formName')?.value.trim();
+    const email = document.getElementById('formEmail')?.value.trim();
+    const message = document.getElementById('formMsg')?.value.trim();
+    if(!name || !email || !message) return toast.error("All fields required");
+    const btn = document.getElementById('contactSubmitBtn');
+    const original = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Sending...';
+    btn.disabled = true;
+    try {
+      let success = false;
+      if(supabaseClient) {
+        const { error } = await supabaseClient.from('messages').insert([{ name, email, message, created_at: new Date().toISOString() }]);
+        if(!error) success = true;
+        else throw new Error(error.message);
+      } else { success = true; }
+      if(success) {
+        const newMsg = { id: Date.now(), name, email, message, date: new Date().toLocaleString() };
+        localMessages.push(newMsg);
+        localStorage.setItem('portfolio_messages', JSON.stringify(localMessages));
+        toast.success("✅ Visionary message delivered! Stored locally.");
+        document.getElementById('contactForm').reset();
+      } else throw new Error("Failed");
+    } catch(err) { toast.error(`Error: ${err.message || 'network issue, but saved locally'}`); const newMsg = { id: Date.now(), name, email, message, date: new Date().toLocaleString() }; localMessages.push(newMsg); localStorage.setItem('portfolio_messages', JSON.stringify(localMessages)); toast.success("📦 Message saved locally (offline mode)"); }
+    finally { btn.innerHTML = original; btn.disabled = false; }
+  }
   
-  async function initContact() {
-    const form = document.getElementById('contactForm');
-    if (!form) return;
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const name = document.getElementById('formName')?.value.trim();
-      const email = document.getElementById('formEmail')?.value.trim();
-      const message = document.getElementById('formMsg')?.value.trim();
-      if (!name || !email || !message) return toastManager.error("All fields required");
-      const btn = document.getElementById('contactSubmitBtn');
-      const original = btn.innerHTML;
-      btn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Sending...';
-      btn.disabled = true;
-      try {
-        if (supabaseClient) {
-          const { error } = await supabaseClient.from('messages').insert([{ name, email, message, created_at: new Date().toISOString() }]);
-          if (error) throw new Error(error.message);
+  function showMessagesModal() {
+    const msgs = JSON.parse(localStorage.getItem('portfolio_messages') || '[]');
+    if(msgs.length === 0) { toast.info("No messages stored yet"); return; }
+    let html = `<h3>✉️ Stored Messages (${msgs.length})</h3><div style="max-height: 60vh; overflow-y: auto;">`;
+    msgs.slice().reverse().forEach(m => { html += `<div style="border-bottom:1px solid var(--border-dark); padding:1rem 0;"><strong>${escapeHtml(m.name)}</strong> (${escapeHtml(m.email)})<br><small>${m.date}</small><p style="margin-top:0.5rem;">${escapeHtml(m.message)}</p></div>`; });
+    html += `</div><button class="demo-action-btn" onclick="document.getElementById('globalModal').classList.remove('active');" style="margin-top:1rem;">Close</button>`;
+    openModal(html);
+  }
+  
+  // MODAL LOGIC
+  const modal = document.getElementById('globalModal');
+  const modalContent = document.getElementById('modalDynamicContent');
+  const closeModalBtn = document.querySelector('.close-modal');
+  function openModal(contentHTML) { modalContent.innerHTML = contentHTML; modal.classList.add('active'); }
+  closeModalBtn?.addEventListener('click', () => modal.classList.remove('active'));
+  modal?.addEventListener('click', (e) => { if(e.target === modal) modal.classList.remove('active'); });
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && modal.classList.contains('active')) modal.classList.remove('active'); });
+  
+  // DEMO APPS
+  function attachDemoEvents() {
+    document.querySelectorAll('.demo-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const type = btn.getAttribute('data-demo');
+        if(type === 'calculator') {
+          openModal(`<div><h3 style="margin-bottom:1rem;">NeoCalc ✦</h3><input id="calcScreen" readonly style="width:100%;margin-bottom:1rem; background:var(--bg-dark);"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.7rem;">${[7,8,9,'/',4,5,6,'*',1,2,3,'-',0,'C','=','+'].map(v=>`<button class="calc-btn demo-action-btn" data-val="${v}">${v}</button>`).join('')}</div></div>`);
+          setTimeout(() => {
+            let cur = '';
+            document.querySelectorAll('.calc-btn').forEach(b => {
+              b.addEventListener('click', () => {
+                let v = b.getAttribute('data-val');
+                if(v === 'C') cur = '';
+                else if(v === '=') { try { cur = eval(cur).toString(); } catch { cur = 'Error'; } }
+                else cur += v;
+                const screen = document.getElementById('calcScreen');
+                if(screen) screen.value = cur;
+              });
+            });
+          }, 20);
+        } else if(type === 'todo') {
+          openModal(`<div><h3>FlowSpace Todo</h3><div style="display:flex; gap:0.5rem; margin:1rem 0;"><input id="todoInput" placeholder="Add task" style="flex:1"><button id="addTodoBtn" class="demo-action-btn">Add</button></div><ul id="todoList" style="margin-top:1rem; list-style:none;"></ul></div>`);
+          let tasks = JSON.parse(localStorage.getItem('demo_tasks') || '[]');
+          const renderTodo = () => {
+            const list = document.getElementById('todoList');
+            if(list) list.innerHTML = tasks.map((t,i)=>`<li style="display:flex;justify-content:space-between; margin-bottom:0.6rem; background:var(--surface-dark); padding:0.5rem 1rem; border-radius:2rem;"><span>${escapeHtml(t.text)}</span> <div><button data-idx="${i}" class="toggleTodo demo-action-btn" style="margin-right:5px;">✔️</button><button data-idx="${i}" class="delTodo demo-action-btn">❌</button></div></li>`).join('');
+            document.querySelectorAll('.toggleTodo').forEach(b=>b.addEventListener('click',()=>{ tasks[b.getAttribute('data-idx')].done = !tasks[b.getAttribute('data-idx')].done; localStorage.setItem('demo_tasks',JSON.stringify(tasks)); renderTodo(); }));
+            document.querySelectorAll('.delTodo').forEach(b=>b.addEventListener('click',()=>{ tasks.splice(b.getAttribute('data-idx'),1); localStorage.setItem('demo_tasks',JSON.stringify(tasks)); renderTodo(); }));
+          };
+          renderTodo();
+          document.getElementById('addTodoBtn')?.addEventListener('click',()=>{ const inp = document.getElementById('todoInput'); if(inp.value.trim()){ tasks.push({text:inp.value.trim(),done:false}); localStorage.setItem('demo_tasks',JSON.stringify(tasks)); renderTodo(); inp.value=''; } });
         } else {
-          await new Promise(r => setTimeout(r, 500));
+          openModal(`<div style="text-align:center"><h3>Aether Landing</h3><p>Futuristic product showcase + dynamic particles concept.</p><button class="btn btn-primary" onclick="alert('Full demo & source available. Connect with Firomsa!')">Explore Vision</button></div>`);
         }
-        toastManager.success("✅ Visionary message delivered!");
-        form.reset();
-      } catch (err) { toastManager.error(`Error: ${err.message || 'network issue'}`); }
-      finally { btn.innerHTML = original; btn.disabled = false; }
+      });
     });
   }
   
-  // Lenis smooth scroll
+  // Interactions
+  document.querySelectorAll('.design-card, .project-card img').forEach(card => {
+    card.addEventListener('click', (e) => { const img = card.querySelector('img'); if(img?.src) openModal(`<img src="${img.src}" style="width:100%; border-radius:28px;">`); });
+  });
+  document.getElementById('profileAvatar')?.addEventListener('click', () => { openModal(`<div style="text-align:center"><i class="fas fa-user-astronaut" style="font-size:4rem; color:var(--accent-blue);"></i><h2>Firomsa Ahmed</h2><p>Visionary Designer & Futurist Developer</p><p>✦ Telegram bot architect | Graphic alchemist | Web immersive ✦</p></div>`); });
+  
+  // Lenis Scroll
   const lenis = new Lenis({ lerp: 0.08, wheelMultiplier: 1.2, smoothWheel: true });
   function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
   requestAnimationFrame(raf);
   
-  // Intersection: fade-up sections
+  // Section Fade Observer
   const faders = document.querySelectorAll('.fade-up');
-  const sectionObserver = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
+  const sectionObserver = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
   faders.forEach(el => sectionObserver.observe(el));
   
-  // Dark mode & mobile
-  const toggle = document.getElementById('darkModeToggle');
-  const icon = toggle?.querySelector('i');
-  if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light-mode'); icon?.classList.replace('fa-moon','fa-sun'); }
-  toggle?.addEventListener('click', () => {
+  // Dark Mode & Mobile Nav
+  const toggleBtn = document.getElementById('darkModeToggle');
+  const toggleIcon = toggleBtn?.querySelector('i');
+  if(localStorage.getItem('theme') === 'light') { document.body.classList.add('light-mode'); toggleIcon?.classList.replace('fa-moon','fa-sun'); }
+  toggleBtn?.addEventListener('click', () => {
     document.body.classList.toggle('light-mode');
     const isLight = document.body.classList.contains('light-mode');
     localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    if (icon) icon.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
+    if(toggleIcon) toggleIcon.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
   });
   const hamburger = document.getElementById('hamburger');
   const navMenu = document.getElementById('nav-menu');
@@ -865,71 +759,17 @@
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const id = this.getAttribute('href');
-      if (id === '#') return;
+      if(id === '#') return;
       const target = document.querySelector(id);
-      if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -80 }); }
+      if(target) { e.preventDefault(); lenis.scrollTo(target, { offset: -80 }); }
     });
   });
   
-  // MODAL Logic
-  const modal = document.getElementById('globalModal');
-  const modalContent = document.getElementById('modalDynamicContent');
-  const closeModal = document.querySelector('.close-modal');
-  const openModal = (contentHTML) => { modalContent.innerHTML = contentHTML; modal.classList.add('active'); };
-  closeModal?.addEventListener('click', () => modal.classList.remove('active'));
-  modal?.addEventListener('click', (e) => { if(e.target === modal) modal.classList.remove('active'); });
-  document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && modal.classList.contains('active')) modal.classList.remove('active'); });
-  
-  // open image from design-card / project-card img
-  document.querySelectorAll('.design-card, .project-card img').forEach(card => {
-    card.addEventListener('click', (e) => {
-      const img = card.querySelector('img');
-      if(img && img.src) openModal(`<img src="${img.src}" style="width:100%; border-radius:28px;">`);
-    });
-  });
-  document.getElementById('profileAvatar')?.addEventListener('click', () => {
-    openModal(`<div style="text-align:center"><i class="fas fa-user-astronaut" style="font-size:4rem; color:var(--accent-blue);"></i><h2>Firomsa Ahmed</h2><p>Visionary Designer & Futurist Developer</p><p style="margin-top:0.5rem;">✦ Creating immersive digital realities ✦</p></div>`);
-  });
-  
-  // Demo apps inside modal
-  document.querySelectorAll('.demo-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const type = btn.getAttribute('data-demo');
-      if(type === 'calculator') {
-        openModal(`<div><h3 style="margin-bottom:1rem;">NeoCalc ✦</h3><input id="calcScreen" readonly style="width:100%;margin-bottom:1rem; background:var(--bg-dark);"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.7rem;">${[7,8,9,'/',4,5,6,'*',1,2,3,'-',0,'C','=','+'].map(v=>`<button class="calc-btn demo-action-btn" data-val="${v}">${v}</button>`).join('')}</div></div>`);
-        setTimeout(() => {
-          let cur = '';
-          document.querySelectorAll('.calc-btn').forEach(b => {
-            b.addEventListener('click', () => {
-              let v = b.getAttribute('data-val');
-              if(v === 'C') cur = '';
-              else if(v === '=') { try { cur = eval(cur).toString(); } catch { cur = 'Error'; } }
-              else cur += v;
-              const screen = document.getElementById('calcScreen');
-              if(screen) screen.value = cur;
-            });
-          });
-        }, 20);
-      } else if(type === 'todo') {
-        openModal(`<div><h3>FlowSpace Todo</h3><div style="display:flex; gap:0.5rem; margin:1rem 0;"><input id="todoInput" placeholder="Add task" style="flex:1"><button id="addTodoBtn" class="demo-action-btn">Add</button></div><ul id="todoList" style="margin-top:1rem; list-style:none;"></ul></div>`);
-        let tasks = JSON.parse(localStorage.getItem('demo_tasks') || '[]');
-        const renderTodo = () => {
-          const list = document.getElementById('todoList');
-          if(list) list.innerHTML = tasks.map((t,i)=>`<li style="display:flex;justify-content:space-between; margin-bottom:0.6rem; background:var(--surface-dark); padding:0.5rem 1rem; border-radius:2rem;"><span>${escapeHtml(t.text)}</span> <div><button data-idx="${i}" class="toggleTodo demo-action-btn" style="margin-right:5px;">✔️</button><button data-idx="${i}" class="delTodo demo-action-btn">❌</button></div></li>`).join('');
-          document.querySelectorAll('.toggleTodo').forEach(b=>b.addEventListener('click',()=>{ tasks[b.getAttribute('data-idx')].done = !tasks[b.getAttribute('data-idx')].done; localStorage.setItem('demo_tasks',JSON.stringify(tasks)); renderTodo(); }));
-          document.querySelectorAll('.delTodo').forEach(b=>b.addEventListener('click',()=>{ tasks.splice(b.getAttribute('data-idx'),1); localStorage.setItem('demo_tasks',JSON.stringify(tasks)); renderTodo(); }));
-        };
-        renderTodo();
-        document.getElementById('addTodoBtn')?.addEventListener('click',()=>{ const inp = document.getElementById('todoInput'); if(inp.value.trim()){ tasks.push({text:inp.value.trim(),done:false}); localStorage.setItem('demo_tasks',JSON.stringify(tasks)); renderTodo(); inp.value=''; } });
-      } else {
-        openModal(`<div style="text-align:center"><h3>Aether Landing</h3><p>Futuristic product showcase + dynamic particles concept.</p><button class="btn btn-primary" onclick="alert('Full demo & source available. Connect with Firomsa!')">Explore Vision</button></div>`);
-      }
-    });
-  });
-  
+  // Initialization
   renderProducts();
-  initContact();
+  document.getElementById('contactForm')?.addEventListener('submit', handleContactSubmit);
+  document.getElementById('viewMessagesBtn')?.addEventListener('click', showMessagesModal);
+  attachDemoEvents();
   observeCinematicCards();
 </script>
 </body>
