@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Firomsa Ahmed | Cinematic Design & Code</title>
-  <!-- Google Fonts + Enhanced -->
+  <title>Firomsa Ahmed | Triple Skill Fusion</title>
+  <!-- Google Fonts + Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Lenis Smooth Scroll -->
+  <!-- Smooth Scroll -->
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     * {
       margin: 0;
@@ -27,7 +26,7 @@
       --text-dark-secondary: #A0AAB5;
       --accent-blue: #0A84FF;
       --accent-gold: #FFD966;
-      --accent-glow: rgba(10,132,255,0.4);
+      --accent-purple: #A855F7;
       
       --bg-light: #FBFBFD;
       --bg-light-rgb: 251, 251, 253;
@@ -37,9 +36,9 @@
       --text-light-primary: #1D1D1F;
       --text-light-secondary: #6E6E73;
       
-      --transition-smooth: cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      --shadow-elevation: 0 25px 35px -12px rgba(0,0,0,0.25);
-      --glass-blur: blur(20px);
+      --transition: cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      --shadow: 0 25px 35px -12px rgba(0,0,0,0.25);
+      --glass: blur(20px);
     }
     
     body {
@@ -65,16 +64,14 @@
     
     .container {
       width: 90%;
-      max-width: 1400px;
+      max-width: 1280px;
       margin: 0 auto;
       padding: 0 24px;
     }
     
     section {
-      padding: 120px 0;
-      scroll-margin-top: 100px;
-      position: relative;
-      z-index: 2;
+      padding: 100px 0;
+      scroll-margin-top: 90px;
     }
     
     h1, h2, h3 {
@@ -83,10 +80,10 @@
     }
     
     h2 {
-      font-size: clamp(2.8rem, 6vw, 4.2rem);
-      margin-bottom: 1.5rem;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      margin-bottom: 1rem;
       text-align: center;
-      background: linear-gradient(135deg, #fff 30%, var(--accent-blue) 80%);
+      background: linear-gradient(135deg, #fff 30%, var(--accent-blue) 70%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -95,13 +92,12 @@
     .section-sub {
       text-align: center;
       color: var(--text-dark-secondary);
-      font-size: 1.2rem;
-      max-width: 720px;
+      font-size: 1.1rem;
+      max-width: 680px;
       margin: -0.5rem auto 3rem;
-      font-weight: 400;
     }
     
-    /* Navbar premium */
+    /* Navbar */
     .navbar {
       position: fixed;
       top: 0;
@@ -109,9 +105,8 @@
       z-index: 1000;
       padding: 1rem 0;
       background: rgba(var(--bg-dark-rgb), 0.75);
-      backdrop-filter: var(--glass-blur);
+      backdrop-filter: var(--glass);
       border-bottom: 1px solid var(--border-dark);
-      transition: var(--transition-smooth);
     }
     
     .nav-container {
@@ -121,18 +116,17 @@
     }
     
     .logo {
-      font-size: 1.9rem;
+      font-size: 1.7rem;
       font-weight: 800;
       background: linear-gradient(135deg, var(--accent-blue), var(--accent-gold));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      letter-spacing: -0.02em;
     }
     
     .nav-menu {
       display: flex;
-      gap: 2.8rem;
+      gap: 2.2rem;
       list-style: none;
     }
     
@@ -140,83 +134,99 @@
       color: var(--text-dark-primary);
       font-weight: 500;
       text-decoration: none;
-      transition: 0.2s ease;
-      font-size: 1rem;
+      transition: 0.2s;
     }
-    
     .nav-link:hover { color: var(--accent-blue); }
     
     .theme-toggle {
-      background: transparent;
+      background: none;
       border: none;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       cursor: pointer;
       color: var(--text-dark-primary);
       margin-left: 1rem;
-      transition: transform 0.2s;
     }
     
-    /* Hero Cinematic */
+    /* Hero */
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
+      text-align: center;
       position: relative;
-      overflow: hidden;
     }
     
     .hero::before {
       content: "";
       position: absolute;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at 30% 20%, rgba(10,132,255,0.15), transparent 70%);
+      inset: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(10,132,255,0.12), transparent 70%);
       pointer-events: none;
     }
     
-    .hero-content { text-align: center; max-width: 1100px; margin: 0 auto; }
     .hero-badge {
-      display: inline-block;
       background: rgba(10,132,255,0.15);
       backdrop-filter: blur(4px);
-      padding: 0.5rem 1.2rem;
+      display: inline-block;
+      padding: 0.4rem 1.2rem;
       border-radius: 60px;
       font-size: 0.85rem;
-      font-weight: 500;
-      margin-bottom: 2rem;
+      margin-bottom: 1.8rem;
       border: 1px solid rgba(10,132,255,0.3);
     }
     
-    .hero h1 { font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 800; letter-spacing: -0.03em; }
-    .highlight { background: linear-gradient(135deg, var(--accent-blue), var(--accent-gold)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 800;
+    }
+    
+    .highlight {
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-gold));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .skill-tagline {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin: 1.2rem 0;
+      color: var(--text-dark-secondary);
+    }
     
     .hero-avatar {
-      width: 140px;
-      height: 140px;
-      margin: 2rem auto;
+      width: 130px;
+      height: 130px;
+      margin: 1.8rem auto;
       border-radius: 50%;
       overflow: hidden;
       border: 3px solid var(--accent-blue);
-      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
-      transition: all 0.4s var(--transition-smooth);
-      cursor: pointer;
+      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.4);
+    }
+    .hero-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     
-    .hero-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
     
-    .btn-group { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      padding: 1rem 2rem;
+      padding: 0.9rem 2rem;
       border-radius: 60px;
       font-weight: 600;
-      transition: all 0.3s var(--transition-smooth);
+      transition: 0.3s var(--transition);
       text-decoration: none;
       font-size: 1rem;
-      cursor: pointer;
-      border: none;
     }
     
     .btn-primary {
@@ -224,124 +234,147 @@
       color: white;
       box-shadow: 0 4px 12px rgba(10,132,255,0.3);
     }
-    .btn-primary:hover { transform: translateY(-4px); background: #0071e3; box-shadow: 0 12px 25px rgba(10,132,255,0.4); }
+    .btn-primary:hover { transform: translateY(-3px); background: #0071e3; }
     .btn-outline {
       background: transparent;
       border: 1.5px solid var(--accent-blue);
       color: var(--accent-blue);
-      backdrop-filter: blur(4px);
     }
-    .btn-outline:hover { background: var(--accent-blue); color: white; transform: translateY(-4px); }
-    
-    /* Grids & Cards */
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 40px;
-      margin-top: 2rem;
+    .btn-outline:hover { background: var(--accent-blue); color: white; transform: translateY(-3px); }
+    .btn-fiverr {
+      background: #1dbf73;
+      color: white;
+      border: none;
     }
+    .btn-fiverr:hover { background: #0f9d5e; transform: translateY(-3px); }
     
-    .product-card {
-      background: var(--card-dark);
-      border-radius: 32px;
-      overflow: hidden;
-      border: 1px solid var(--border-dark);
-      transition: all 0.5s cubic-bezier(0.2, 0.95, 0.4, 1.1);
-      transform: translateY(60px) scale(0.96);
-      opacity: 0;
-      will-change: transform, opacity;
-    }
-    
-    .product-card.card--visible { transform: translateY(0) scale(1); opacity: 1; }
-    .product-card:hover {
-      transform: translateY(-12px) scale(1.02);
-      border-color: var(--accent-blue);
-      box-shadow: 0 30px 40px -20px rgba(0,0,0,0.5);
-    }
-    
-    .product-img {
-      width: 100%;
-      height: 280px;
-      object-fit: cover;
-      transition: transform 1.2s var(--transition-smooth);
-    }
-    .product-card:hover .product-img { transform: scale(1.05); }
-    
-    .product-info { padding: 1.8rem; text-align: center; }
-    .product-info h3 { font-size: 1.6rem; font-weight: 600; }
-    .product-price { font-size: 1.7rem; font-weight: 800; margin: 0.7rem 0; color: var(--accent-gold); }
-    
-    .design-grid, .projects-grid {
+    /* Skills Grid - 3 Core Cards */
+    .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 32px;
-      margin-top: 1.5rem;
+      margin-top: 2rem;
     }
     
-    .design-card, .project-card {
+    .skill-card {
+      background: var(--card-dark);
+      border-radius: 32px;
+      border: 1px solid var(--border-dark);
+      padding: 2rem 1.8rem;
+      text-align: center;
+      transition: all 0.4s var(--transition);
+      backdrop-filter: blur(4px);
+    }
+    
+    .skill-card:hover {
+      transform: translateY(-12px);
+      border-color: var(--accent-blue);
+      box-shadow: var(--shadow);
+    }
+    
+    .skill-icon {
+      font-size: 3.5rem;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1.2rem;
+    }
+    
+    .skill-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    
+    .skill-card p {
+      color: var(--text-dark-secondary);
+      margin: 1rem 0;
+    }
+    
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    
+    .skill-tags span {
+      background: rgba(10,132,255,0.15);
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    
+    /* Portfolio Previews (Design + Web + Bot) */
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin-top: 2rem;
+    }
+    
+    .showcase-card {
       background: var(--card-dark);
       border-radius: 28px;
-      border: 1px solid var(--border-dark);
       overflow: hidden;
-      transition: all 0.4s var(--transition-smooth);
+      border: 1px solid var(--border-dark);
+      transition: 0.3s;
       cursor: pointer;
     }
-    
-    .design-card:hover, .project-card:hover { transform: translateY(-10px); border-color: var(--accent-blue); box-shadow: var(--shadow-elevation); }
-    .design-card img, .project-card img {
+    .showcase-card:hover { transform: translateY(-8px); border-color: var(--accent-blue); }
+    .showcase-card img {
       width: 100%;
-      height: 260px;
+      height: 240px;
       object-fit: cover;
       transition: transform 0.7s;
-      pointer-events: auto;
     }
-    .design-card:hover img, .project-card:hover img { transform: scale(1.03); }
-    .design-info, .project-content { padding: 1.5rem; text-align: center; }
-    
+    .showcase-card:hover img { transform: scale(1.02); }
+    .showcase-info { padding: 1.5rem; text-align: center; }
     .demo-btn {
-      margin-top: 0.75rem;
+      margin-top: 0.8rem;
       background: var(--accent-blue);
       border: none;
-      padding: 0.6rem 1.2rem;
+      padding: 0.5rem 1.2rem;
       border-radius: 40px;
       color: white;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .demo-btn:hover { background: #0071e3; transform: scale(0.98); }
-    
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 32px;
     }
     
-    .service-item {
+    /* Telegram Bot Demo specific */
+    .bot-demo-card {
       background: var(--card-dark);
-      padding: 2rem;
       border-radius: 28px;
+      padding: 2rem;
       text-align: center;
       border: 1px solid var(--border-dark);
-      backdrop-filter: blur(5px);
     }
-    .service-item i { font-size: 2.8rem; color: var(--accent-blue); margin-bottom: 1rem; }
+    .bot-message {
+      background: rgba(10,132,255,0.1);
+      border-radius: 20px;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
     
-    .contact-container {
+    /* Contact */
+    .contact-grid {
       display: grid;
-      grid-template-columns: 1fr 1.3fr;
+      grid-template-columns: 1fr 1.2fr;
       gap: 40px;
     }
-    
-    .contact-card, .contact-form {
+    .contact-info {
       background: var(--card-dark);
       padding: 2rem;
       border-radius: 32px;
-      border: 1px solid var(--border-dark);
       text-align: center;
-      backdrop-filter: blur(4px);
     }
-    
+    .contact-form {
+      background: var(--card-dark);
+      padding: 2rem;
+      border-radius: 32px;
+    }
     input, textarea {
       width: 100%;
       padding: 1rem;
@@ -351,18 +384,19 @@
       color: var(--text-dark-primary);
       margin-bottom: 1rem;
       font-family: inherit;
-      transition: 0.2s;
     }
-    input:focus, textarea:focus { outline: none; border-color: var(--accent-blue); box-shadow: 0 0 0 3px rgba(10,132,255,0.2); }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent-blue);
+    }
     
     .float-wa {
       position: fixed;
-      bottom: 30px;
-      left: 30px;
+      bottom: 25px;
+      left: 25px;
       background: #25D366;
-      color: white;
-      width: 58px;
-      height: 58px;
+      width: 55px;
+      height: 55px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -370,34 +404,23 @@
       font-size: 2rem;
       z-index: 99;
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      transition: transform 0.2s;
       text-decoration: none;
+      color: white;
     }
-    .float-wa:hover { transform: scale(1.08); }
     
     footer {
       background: rgba(0,0,0,0.3);
-      padding: 2.5rem 0;
+      padding: 2rem 0;
       text-align: center;
       border-top: 1px solid var(--border-dark);
     }
-    .social-links a {
-      color: var(--text-dark-secondary);
-      font-size: 1.5rem;
-      margin: 0 0.6rem;
-      transition: 0.2s;
-    }
-    .social-links a:hover { color: var(--accent-blue); }
     
     /* Modal */
     .modal {
       display: none;
       position: fixed;
       z-index: 2000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       background: rgba(0,0,0,0.85);
       backdrop-filter: blur(15px);
       align-items: center;
@@ -405,27 +428,22 @@
     }
     .modal.active { display: flex; }
     .modal-content {
-      max-width: 80vw;
-      max-height: 85vh;
       background: var(--card-dark);
       border-radius: 32px;
       padding: 2rem;
-      overflow: auto;
-      border: 1px solid rgba(255,255,255,0.2);
+      max-width: 90vw;
       width: 600px;
-      max-width: 90%;
+      max-height: 85vh;
+      overflow: auto;
     }
     .close-modal {
       position: absolute;
       top: 20px;
       right: 35px;
-      font-size: 40px;
+      font-size: 38px;
       cursor: pointer;
       color: white;
-      z-index: 2001;
-      transition: 0.2s;
     }
-    .close-modal:hover { color: var(--accent-blue); }
     
     .toast-container {
       position: fixed;
@@ -439,43 +457,24 @@
     .toast {
       background: var(--card-dark);
       backdrop-filter: blur(12px);
-      padding: 1rem 1.8rem;
+      padding: 0.8rem 1.5rem;
       border-radius: 60px;
-      font-weight: 500;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      border-left: 5px solid;
+      border-left: 4px solid;
     }
     .toast.success { border-left-color: #25D366; }
-    .toast.error { border-left-color: #FF3B30; }
-    .toast.info { border-left-color: var(--accent-blue); }
-    
-    .spinner {
-      width: 50px;
-      height: 50px;
-      border: 4px solid rgba(10,132,255,0.2);
-      border-top: 4px solid var(--accent-blue);
-      border-radius: 50%;
-      animation: spin 1s infinite linear;
-      margin: 2rem auto;
-    }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     
     .fade-up {
       opacity: 0;
       transform: translateY(40px);
-      transition: opacity 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      transition: opacity 0.8s ease, transform 0.8s ease;
     }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
-    
-    .demo-action-btn { background: var(--accent-blue); border: none; padding: 0.4rem 0.8rem; border-radius: 12px; color: white; cursor: pointer; margin: 0.2rem; font-weight: 500; }
-    .calc-btn { background: var(--surface-dark); border: 1px solid var(--border-dark); padding: 0.8rem; border-radius: 16px; font-size: 1.2rem; cursor: pointer; transition: 0.1s; color: inherit; }
-    .calc-btn:hover { background: var(--accent-blue); color: white; }
     
     @media (max-width: 768px) {
       .nav-menu {
         position: fixed;
         left: -100%;
-        top: 80px;
+        top: 70px;
         flex-direction: column;
         background: var(--card-dark);
         width: 100%;
@@ -483,19 +482,24 @@
         padding: 2rem;
         gap: 1.5rem;
         transition: 0.3s;
-        backdrop-filter: blur(20px);
-        z-index: 999;
       }
       .nav-menu.active { left: 0; }
-      .hamburger { display: flex; flex-direction: column; cursor: pointer; margin-left: 1rem; }
-      .bar { width: 28px; height: 3px; background: var(--text-dark-primary); margin: 3px 0; border-radius: 6px; }
-      .contact-container { grid-template-columns: 1fr; }
-      section { padding: 80px 0; }
+      .hamburger {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        margin-left: 1rem;
+      }
+      .bar {
+        width: 28px;
+        height: 3px;
+        background: var(--text-dark-primary);
+        margin: 3px 0;
+        border-radius: 6px;
+      }
+      .contact-grid { grid-template-columns: 1fr; }
+      section { padding: 70px 0; }
     }
-    
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg-dark); }
-    ::-webkit-scrollbar-thumb { background: var(--accent-blue); border-radius: 10px; }
   </style>
 </head>
 <body>
@@ -505,9 +509,8 @@
     <a href="#" class="logo">Firomsa ◇ Studio</a>
     <ul class="nav-menu" id="nav-menu">
       <li><a href="#home" class="nav-link">Home</a></li>
-      <li><a href="#design" class="nav-link">Design</a></li>
-      <li><a href="#catalog" class="nav-link">Cinema Catalog</a></li>
-      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#showcase" class="nav-link">Showcase</a></li>
       <li><a href="#contact" class="nav-link">Contact</a></li>
     </ul>
     <button class="theme-toggle" id="darkModeToggle"><i class="fas fa-moon"></i></button>
@@ -516,261 +519,302 @@
 </nav>
 
 <section id="home" class="hero">
-  <div class="container hero-content">
-    <div class="hero-badge"><i class="fas fa-bolt"></i> 3D Vision • Cinematic Design</div>
-    <h1>I'm <span class="highlight">Firomsa Ahmed</span></h1>
-    <div style="font-size: 1.6rem; font-weight: 500; margin-bottom: 1rem;">Graphic Designer & Futuristic Developer</div>
-    <div class="hero-avatar" id="profileAvatar">
-      <img src="https://i.ibb.co/NdTVrLvF/file-00000000907071f786424554e7a32b58-jpg.png" alt="Firomsa Ahmed Avatar" onerror="this.src='https://placehold.co/400x400/0A84FF/white?text=F.A'">
+  <div class="container">
+    <div class="hero-badge"><i class="fas fa-crown"></i> Triple Threat Creative</div>
+    <h1>Firomsa <span class="highlight">Ahmed</span></h1>
+    <div class="skill-tagline">
+      <span>🎨 Graphic Designer</span> &nbsp;|&nbsp; 
+      <span>💻 Full Stack Dev</span> &nbsp;|&nbsp; 
+      <span>🤖 Telegram Bot Dev</span>
+    </div>
+    <div class="hero-avatar">
+      <img src="https://i.ibb.co/NdTVrLvF/file-00000000907071f786424554e7a32b58-jpg.png" alt="Firomsa" onerror="this.src='https://placehold.co/300x300/0A84FF/white?text=FA'">
     </div>
     <div class="btn-group">
-      <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Start a Vision</a>
-      <a href="#catalog" class="btn btn-outline"><i class="fas fa-crown"></i> Explore Luxury</a>
+      <a href="#contact" class="btn btn-primary"><i class="fas fa-bolt"></i> Collaborate</a>
+      <a href="#skills" class="btn btn-outline"><i class="fas fa-code"></i> Core Expertise</a>
+      <a href="#" id="fiverrLinkBtn" class="btn btn-fiverr"><i class="fab fa-fiverr"></i> Hire on Fiverr</a>
     </div>
   </div>
 </section>
 
-<section id="design" class="container fade-up">
-  <h2>Visual <span>Alchemy</span></h2>
-  <div class="section-sub">Exquisite brand identities • cinematic posters • immersive social assets</div>
-  <div class="design-grid">
-    <div class="design-card"><img loading="lazy" src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&h=500&fit=crop" alt="Logo"><div class="design-info"><h3>Nebula Identity</h3><p>Minimalist & Luxe</p></div></div>
-    <div class="design-card"><img loading="lazy" src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=600&h=500&fit=crop" alt="Poster"><div class="design-info"><h3>Cinematic Event</h3><p>High impact typography</p></div></div>
-    <div class="design-card"><img loading="lazy" src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&h=500&fit=crop" alt="Social"><div class="design-info"><h3>Social Kit Future</h3><p>AI-enhanced visuals</p></div></div>
+<section id="skills" class="container fade-up">
+  <h2>My <span>Mastery</span></h2>
+  <div class="section-sub">Three disciplines — one visionary approach</div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon"><i class="fas fa-pen-fancy"></i></div>
+      <h3>Graphic Designer</h3>
+      <p>Visual identity, cinematic posters, brand assets & social media designs that resonate luxury and emotion.</p>
+      <div class="skill-tags"><span>Adobe Suite</span><span>Figma</span><span>Typography</span><span>Motion</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon"><i class="fas fa-layer-group"></i></div>
+      <h3>Full Stack Dev</h3>
+      <p>Scalable web apps, modern frontends, API integrations, and database architecture. Performance-first mindset.</p>
+      <div class="skill-tags"><span>React/Next</span><span>Node.js</span><span>Python</span><span>Supabase</span><span>Tailwind</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon"><i class="fab fa-telegram"></i></div>
+      <h3>Telegram Bot Dev</h3>
+      <p>Custom AI-powered bots, automation, payment gateways, and interactive experiences on Telegram.</p>
+      <div class="skill-tags"><span>Python Aiogram</span><span>Node.js</span><span>Webhooks</span><span>OpenAI API</span></div>
+    </div>
   </div>
 </section>
 
-<section id="catalog" class="container fade-up">
-  <h2><span>✦ Cinema Collection ✦</span></h2>
-  <div class="section-sub">Each product reveals like a film frame — scroll to experience luxury immersion</div>
-  <div id="product-list" class="product-grid"><div class="spinner"></div></div>
-</section>
-
-<section id="services" class="container fade-up">
-  <h2>Exceptional <span>Expertise</span></h2>
-  <div class="services-grid">
-    <div class="service-item"><i class="fas fa-gem"></i><h3>Luxury Branding</h3><p>Identity that resonates</p></div>
-    <div class="service-item"><i class="fas fa-vr-cardboard"></i><h3>Immersive Web</h3><p>3D & cinematic UI</p></div>
-    <div class="service-item"><i class="fab fa-telegram"></i><h3>Telegram Bots</h3><p>AI-powered automation</p></div>
-  </div>
-</section>
-
-<section id="projects" class="container fade-up">
-  <h2>Interactive <span>Innovations</span></h2>
-  <div class="section-sub">Live demos — premium micro-apps</div>
-  <div class="projects-grid">
-    <div class="project-card"><img loading="lazy" src="https://images.unsplash.com/photo-1587145828966-31c4271e5ca4?w=600&h=400&fit=crop" alt="Calculator"><div class="project-content"><h3>Neo Calculator</h3><button class="demo-btn" data-demo="calculator">Launch Demo</button></div></div>
-    <div class="project-card"><img loading="lazy" src="https://images.unsplash.com/photo-1540350394557-8d14678e7f91?w=600&h=400&fit=crop" alt="Todo"><div class="project-content"><h3>FlowSpace Todo</h3><button class="demo-btn" data-demo="todo">Launch Demo</button></div></div>
-    <div class="project-card"><img loading="lazy" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" alt="Landing"><div class="project-content"><h3>Aether Landing</h3><button class="demo-btn" data-demo="landing">Launch Demo</button></div></div>
+<section id="showcase" class="container fade-up">
+  <h2>Live <span>Creations</span></h2>
+  <div class="section-sub">Real demos that blend design, dev, and automation</div>
+  <div class="showcase-grid">
+    <!-- Graphic Design Demo -->
+    <div class="showcase-card" id="designDemo">
+      <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&h=400&fit=crop" alt="Brand identity">
+      <div class="showcase-info">
+        <h3>Brand Alchemy</h3>
+        <p>Logo & identity design, visual storytelling.</p>
+        <button class="demo-btn" data-type="design">View Portfolio</button>
+      </div>
+    </div>
+    <!-- Full Stack Web Demo -->
+    <div class="showcase-card" id="webDemo">
+      <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=600&h=400&fit=crop" alt="Web App">
+      <div class="showcase-info">
+        <h3>Flow Dashboard</h3>
+        <p>Interactive full-stack micro-app (Task manager)</p>
+        <button class="demo-btn" data-type="web">Launch Demo</button>
+      </div>
+    </div>
+    <!-- Telegram Bot Demo -->
+    <div class="bot-demo-card">
+      <i class="fab fa-telegram" style="font-size: 3rem; color: var(--accent-blue);"></i>
+      <h3 style="margin: 1rem 0;">Telegram Bot Studio</h3>
+      <div class="bot-message">
+        <i class="fas fa-robot"></i> <strong>@FiromsaBot</strong> — AI assistant, commands, inline queries.
+      </div>
+      <button id="telegramBotDemo" class="demo-btn" style="background: #26A5E4;">Try Bot Simulation</button>
+      <p style="margin-top: 1rem; font-size: 0.85rem;">Live bot integration ready for your custom needs</p>
+    </div>
   </div>
 </section>
 
 <section id="contact" class="container fade-up">
-  <h2>Collide <span>Creativity</span></h2>
-  <div class="contact-container">
-    <div>
-      <div class="contact-card"><i class="fas fa-envelope fa-2x"></i><h3>Email</h3><p><a href="mailto:firomsaahmed51@gmail.com" style="color: var(--accent-blue);">firomsaahmed51@gmail.com</a></p></div>
-      <div class="contact-card"><i class="fab fa-telegram fa-2x"></i><h3>Telegram</h3><p><a href="https://t.me/Fira385508" target="_blank">@Fira385508</a></p></div>
-      <div class="contact-card"><i class="fab fa-whatsapp fa-2x"></i><h3>WhatsApp</h3><p><a href="https://wa.me/251946004640">+251 94 600 4640</a></p></div>
-      <button id="viewMessagesBtn" class="btn btn-outline" style="margin-top:1rem; width:100%"><i class="fas fa-inbox"></i> View Stored Messages</button>
+  <h2>Start a <span>Vision</span></h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <i class="fas fa-envelope fa-2x" style="color: var(--accent-blue);"></i>
+      <h3>Direct Connect</h3>
+      <p><a href="mailto:firomsaahmed51@gmail.com" style="color: var(--accent-blue);">firomsaahmed51@gmail.com</a></p>
+      <hr style="margin: 1rem 0; border-color: var(--border-dark);">
+      <i class="fab fa-telegram fa-2x"></i>
+      <p><a href="https://t.me/Fira385508" target="_blank">@Fira385508</a></p>
+      <i class="fab fa-whatsapp fa-2x" style="margin-top: 1rem;"></i>
+      <p><a href="https://wa.me/251946004640">+251 94 600 4640</a></p>
+      <button id="fiverrSideBtn" class="btn btn-fiverr" style="margin-top: 1.5rem; width: 100%;"><i class="fab fa-fiverr"></i> Fiverr Gig</button>
     </div>
     <form class="contact-form" id="contactForm">
-      <input type="text" placeholder="Full name" id="formName" required>
-      <input type="email" placeholder="Email address" id="formEmail" required>
-      <textarea rows="4" placeholder="Describe your visionary project..." id="formMsg" required></textarea>
-      <button type="submit" class="btn btn-primary" style="width:100%" id="contactSubmitBtn"><i class="fas fa-paper-plane"></i> Send Message</button>
+      <input type="text" placeholder="Your name" id="cname" required>
+      <input type="email" placeholder="Email address" id="cemail" required>
+      <textarea rows="4" placeholder="Describe your project idea (design, web app, or bot)..." id="cmsg" required></textarea>
+      <button type="submit" class="btn btn-primary" style="width:100%"><i class="fas fa-paper-plane"></i> Send message</button>
+      <p class="section-sub" style="font-size: 0.8rem; margin-top: 1rem;">I'll reply within 24h</p>
     </form>
   </div>
 </section>
 
 <footer>
-  <div class="container"><p>© 2026 Firomsa Ahmed — Futuristic Design & Engineering</p>
-  <div class="social-links"><a href="#"><i class="fab fa-github"></i></a><a href="https://t.me/Fira385508"><i class="fab fa-telegram"></i></a><a href="https://wa.me/251946004640"><i class="fab fa-whatsapp"></i></a></div></div>
+  <div class="container">
+    <p>© 2026 Firomsa Ahmed — Graphic Design • Full Stack • Telegram Bots</p>
+    <div class="social-links" style="margin-top: 1rem;">
+      <a href="https://t.me/Fira385508" target="_blank"><i class="fab fa-telegram"></i></a>
+      <a href="https://wa.me/251946004640" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="#" id="footerFiverr"><i class="fab fa-fiverr"></i></a>
+    </div>
+  </div>
 </footer>
+
 <a href="https://wa.me/251946004640" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
-<div id="globalModal" class="modal"><span class="close-modal">&times;</span><div class="modal-content" id="modalDynamicContent"></div></div>
+
+<div id="globalModal" class="modal"><span class="close-modal">&times;</span><div class="modal-content" id="modalContent"></div></div>
 <div id="toastContainer" class="toast-container"></div>
 
 <script>
-  // --------------------- CONFIGURATION & GLOBALS ---------------------
-  const SUPABASE_CONFIG = { url: 'https://cvgterohigfjdkulmryb.supabase.co', anonKey: 'sb_publishable_7-U83GJsOxTb8uLFG0ms4Q_2zIAQ2U1' };
-  const toast = { container: document.getElementById('toastContainer'), show(msg, type='info', dur=4000) { const t = document.createElement('div'); t.className = `toast ${type}`; t.innerHTML = `<i class="fas ${type==='success'?'fa-check-circle':type==='error'?'fa-exclamation-circle':'fa-info-circle'}"></i> ${msg}`; this.container.appendChild(t); setTimeout(() => t.remove(), dur); }, success(m){ this.show(m,'success'); }, error(m){ this.show(m,'error'); } };
-  
-  let supabaseClient = null;
-  try { if(window.supabase) supabaseClient = window.supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey); } catch(e){ console.warn("Supabase not loaded"); }
-  
-  const FALLBACK_PRODUCTS = [
-    { name: "Horizon Chronograph", price: 1899, image_url: "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?w=600&h=500&fit=crop" },
-    { name: "Minimalist SoundWave", price: 499, image_url: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=500&fit=crop" },
-    { name: "Aether Backpack", price: 329, image_url: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&h=500&fit=crop" },
-    { name: "Lunar Glass Edition", price: 799, image_url: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&h=500&fit=crop" },
-    { name: "Carbon Fiber Frame", price: 2450, image_url: "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=600&h=500&fit=crop" },
-    { name: "Neon Kinetic Sculpture", price: 1299, image_url: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=500&fit=crop" }
-  ];
-  
-  function escapeHtml(str) { return String(str).replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'})[m]); }
-  
-  async function renderProducts() {
-    const container = document.getElementById('product-list');
-    if(!container) return;
-    container.innerHTML = '<div class="spinner"></div>';
-    let products = [];
-    try {
-      if(supabaseClient) {
-        const { data, error } = await supabaseClient.from('products').select('name, price, image_url').order('created_at', { ascending: false });
-        if(!error && data && data.length) products = data;
-        else throw new Error('fallback');
-      } else throw new Error('no supabase');
-    } catch(e) { products = FALLBACK_PRODUCTS; toast.success("✨ Luxury preview loaded"); }
-    if(!products.length) products = FALLBACK_PRODUCTS;
-    let html = '';
-    products.forEach(p => {
-      let imgUrl = p.image_url || 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=600&h=500&fit=crop';
-      if(imgUrl && !imgUrl.startsWith('http')) imgUrl = `${SUPABASE_CONFIG.url}/storage/v1/object/public/product-images/${imgUrl}`;
-      html += `<div class="product-card"><img class="product-img" src="${imgUrl}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=500&fit=crop'"><div class="product-info"><h3>${escapeHtml(p.name)}</h3><div class="product-price">$${parseFloat(p.price).toFixed(2)}</div><button class="btn btn-outline" style="padding:0.4rem 1.2rem;" onclick="toast.success('✨ Inquire via WhatsApp/Telegram for ${escapeHtml(p.name)}')">Inquire</button></div></div>`;
-    });
-    container.innerHTML = html;
-    observeCinematicCards();
+  // ---------- Toast & Helpers ----------
+  const toastContainer = document.getElementById('toastContainer');
+  function showToast(msg, type = 'success') {
+    const t = document.createElement('div');
+    t.className = `toast ${type}`;
+    t.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-info-circle'}"></i> ${msg}`;
+    toastContainer.appendChild(t);
+    setTimeout(() => t.remove(), 4000);
   }
-  
-  function observeCinematicCards() {
-    const cards = document.querySelectorAll('.product-card');
-    const obs = new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('card--visible'); obs.unobserve(e.target); } }); }, { threshold: 0.2 });
-    cards.forEach(c => obs.observe(c));
-  }
-  
-  // CONTACT: Store messages locally (offline fallback + display)
-  let localMessages = JSON.parse(localStorage.getItem('portfolio_messages') || '[]');
-  async function handleContactSubmit(e) {
-    e.preventDefault();
-    const name = document.getElementById('formName')?.value.trim();
-    const email = document.getElementById('formEmail')?.value.trim();
-    const message = document.getElementById('formMsg')?.value.trim();
-    if(!name || !email || !message) return toast.error("All fields required");
-    const btn = document.getElementById('contactSubmitBtn');
-    const original = btn.innerHTML;
-    btn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Sending...';
-    btn.disabled = true;
-    try {
-      let success = false;
-      if(supabaseClient) {
-        const { error } = await supabaseClient.from('messages').insert([{ name, email, message, created_at: new Date().toISOString() }]);
-        if(!error) success = true;
-        else throw new Error(error.message);
-      } else { success = true; }
-      if(success) {
-        const newMsg = { id: Date.now(), name, email, message, date: new Date().toLocaleString() };
-        localMessages.push(newMsg);
-        localStorage.setItem('portfolio_messages', JSON.stringify(localMessages));
-        toast.success("✅ Visionary message delivered! Stored locally.");
-        document.getElementById('contactForm').reset();
-      } else throw new Error("Failed");
-    } catch(err) { toast.error(`Error: ${err.message || 'network issue, but saved locally'}`); const newMsg = { id: Date.now(), name, email, message, date: new Date().toLocaleString() }; localMessages.push(newMsg); localStorage.setItem('portfolio_messages', JSON.stringify(localMessages)); toast.success("📦 Message saved locally (offline mode)"); }
-    finally { btn.innerHTML = original; btn.disabled = false; }
-  }
-  
-  function showMessagesModal() {
-    const msgs = JSON.parse(localStorage.getItem('portfolio_messages') || '[]');
-    if(msgs.length === 0) { toast.info("No messages stored yet"); return; }
-    let html = `<h3>✉️ Stored Messages (${msgs.length})</h3><div style="max-height: 60vh; overflow-y: auto;">`;
-    msgs.slice().reverse().forEach(m => { html += `<div style="border-bottom:1px solid var(--border-dark); padding:1rem 0;"><strong>${escapeHtml(m.name)}</strong> (${escapeHtml(m.email)})<br><small>${m.date}</small><p style="margin-top:0.5rem;">${escapeHtml(m.message)}</p></div>`; });
-    html += `</div><button class="demo-action-btn" onclick="document.getElementById('globalModal').classList.remove('active');" style="margin-top:1rem;">Close</button>`;
-    openModal(html);
-  }
-  
-  // MODAL LOGIC
+
+  // Modal
   const modal = document.getElementById('globalModal');
-  const modalContent = document.getElementById('modalDynamicContent');
-  const closeModalBtn = document.querySelector('.close-modal');
-  function openModal(contentHTML) { modalContent.innerHTML = contentHTML; modal.classList.add('active'); }
-  closeModalBtn?.addEventListener('click', () => modal.classList.remove('active'));
-  modal?.addEventListener('click', (e) => { if(e.target === modal) modal.classList.remove('active'); });
-  document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && modal.classList.contains('active')) modal.classList.remove('active'); });
-  
-  // DEMO APPS
-  function attachDemoEvents() {
-    document.querySelectorAll('.demo-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const type = btn.getAttribute('data-demo');
-        if(type === 'calculator') {
-          openModal(`<div><h3 style="margin-bottom:1rem;">NeoCalc ✦</h3><input id="calcScreen" readonly style="width:100%;margin-bottom:1rem; background:var(--bg-dark);"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.7rem;">${[7,8,9,'/',4,5,6,'*',1,2,3,'-',0,'C','=','+'].map(v=>`<button class="calc-btn demo-action-btn" data-val="${v}">${v}</button>`).join('')}</div></div>`);
-          setTimeout(() => {
-            let cur = '';
-            document.querySelectorAll('.calc-btn').forEach(b => {
-              b.addEventListener('click', () => {
-                let v = b.getAttribute('data-val');
-                if(v === 'C') cur = '';
-                else if(v === '=') { try { cur = eval(cur).toString(); } catch { cur = 'Error'; } }
-                else cur += v;
-                const screen = document.getElementById('calcScreen');
-                if(screen) screen.value = cur;
-              });
+  const modalContentDiv = document.getElementById('modalContent');
+  const closeModal = document.querySelector('.close-modal');
+  function openModal(html) { modalContentDiv.innerHTML = html; modal.classList.add('active'); }
+  closeModal?.addEventListener('click', () => modal.classList.remove('active'));
+  modal?.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
+
+  // Demo handlers
+  document.querySelectorAll('.demo-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const type = btn.getAttribute('data-type');
+      if (type === 'design') {
+        openModal(`
+          <div style="text-align:center">
+            <h3>🎨 Graphic Portfolio</h3>
+            <div style="display:flex; flex-wrap:wrap; gap:1rem; margin:1.5rem 0;">
+              <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=300" style="border-radius:20px; width:100%; max-width:260px;">
+              <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=300" style="border-radius:20px; width:100%; max-width:260px;">
+              <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=300" style="border-radius:20px; width:100%; max-width:260px;">
+            </div>
+            <p>Logos, posters, UI kits, social media templates — bespoke visual identity.</p>
+            <button class="btn btn-primary" onclick="document.getElementById('globalModal').classList.remove('active');">Close</button>
+          </div>
+        `);
+      } else if (type === 'web') {
+        openModal(`
+          <div>
+            <h3>📱 Full Stack Demo: TaskFlow</h3>
+            <div style="display:flex; gap:0.5rem; margin:1rem 0;"><input id="taskInput" placeholder="New task" style="flex:1"><button id="addTaskBtn" class="demo-btn">Add</button></div>
+            <ul id="taskList" style="list-style:none; margin-top:1rem;"></ul>
+            <button class="demo-btn" onclick="document.getElementById('globalModal').classList.remove('active');">Close</button>
+          </div>
+        `);
+        let tasks = JSON.parse(localStorage.getItem('fullstack_tasks') || '[]');
+        const renderTasks = () => {
+          const list = document.getElementById('taskList');
+          if (!list) return;
+          list.innerHTML = tasks.map((t, i) => `<li style="display:flex; justify-content:space-between; background: var(--surface-dark); padding:0.6rem 1rem; border-radius: 2rem; margin-bottom:0.5rem;"><span>${escapeHtml(t)}</span><button data-idx="${i}" class="delTaskBtn demo-btn" style="background:#FF3B30;">Delete</button></li>`).join('');
+          document.querySelectorAll('.delTaskBtn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              const idx = btn.getAttribute('data-idx');
+              tasks.splice(idx, 1);
+              localStorage.setItem('fullstack_tasks', JSON.stringify(tasks));
+              renderTasks();
             });
-          }, 20);
-        } else if(type === 'todo') {
-          openModal(`<div><h3>FlowSpace Todo</h3><div style="display:flex; gap:0.5rem; margin:1rem 0;"><input id="todoInput" placeholder="Add task" style="flex:1"><button id="addTodoBtn" class="demo-action-btn">Add</button></div><ul id="todoList" style="margin-top:1rem; list-style:none;"></ul></div>`);
-          let tasks = JSON.parse(localStorage.getItem('demo_tasks') || '[]');
-          const renderTodo = () => {
-            const list = document.getElementById('todoList');
-            if(list) list.innerHTML = tasks.map((t,i)=>`<li style="display:flex;justify-content:space-between; margin-bottom:0.6rem; background:var(--surface-dark); padding:0.5rem 1rem; border-radius:2rem;"><span>${escapeHtml(t.text)}</span> <div><button data-idx="${i}" class="toggleTodo demo-action-btn" style="margin-right:5px;">✔️</button><button data-idx="${i}" class="delTodo demo-action-btn">❌</button></div></li>`).join('');
-            document.querySelectorAll('.toggleTodo').forEach(b=>b.addEventListener('click',()=>{ tasks[b.getAttribute('data-idx')].done = !tasks[b.getAttribute('data-idx')].done; localStorage.setItem('demo_tasks',JSON.stringify(tasks)); renderTodo(); }));
-            document.querySelectorAll('.delTodo').forEach(b=>b.addEventListener('click',()=>{ tasks.splice(b.getAttribute('data-idx'),1); localStorage.setItem('demo_tasks',JSON.stringify(tasks)); renderTodo(); }));
-          };
-          renderTodo();
-          document.getElementById('addTodoBtn')?.addEventListener('click',()=>{ const inp = document.getElementById('todoInput'); if(inp.value.trim()){ tasks.push({text:inp.value.trim(),done:false}); localStorage.setItem('demo_tasks',JSON.stringify(tasks)); renderTodo(); inp.value=''; } });
-        } else {
-          openModal(`<div style="text-align:center"><h3>Aether Landing</h3><p>Futuristic product showcase + dynamic particles concept.</p><button class="btn btn-primary" onclick="alert('Full demo & source available. Connect with Firomsa!')">Explore Vision</button></div>`);
-        }
-      });
+          });
+        };
+        renderTasks();
+        document.getElementById('addTaskBtn')?.addEventListener('click', () => {
+          const inp = document.getElementById('taskInput');
+          if (inp.value.trim()) { tasks.push(inp.value.trim()); localStorage.setItem('fullstack_tasks', JSON.stringify(tasks)); renderTasks(); inp.value = ''; }
+        });
+      }
+    });
+  });
+
+  function escapeHtml(str) { return String(str).replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'})[m]); }
+
+  // Telegram Bot Simulator
+  document.getElementById('telegramBotDemo')?.addEventListener('click', () => {
+    openModal(`
+      <div style="text-align:center">
+        <i class="fab fa-telegram" style="font-size: 3rem; color: #26A5E4;"></i>
+        <h3>🤖 @FiromsaBot Simulation</h3>
+        <div class="bot-message" style="margin-top:1rem">
+          <p><strong>Bot:</strong> Hello! I'm Firomsa's Telegram bot. Use commands: /start, /skills, /portfolio</p>
+        </div>
+        <div style="display:flex; gap:0.5rem; margin: 1rem 0;">
+          <input id="botCommandInput" placeholder="Type /skills or /start" style="flex:1">
+          <button id="sendBotCmd" class="demo-btn">Send</button>
+        </div>
+        <div id="botReplyArea" style="background: rgba(10,132,255,0.1); border-radius:20px; padding:1rem; text-align:left;"></div>
+        <button class="btn btn-outline" style="margin-top:1rem;" onclick="document.getElementById('globalModal').classList.remove('active');">Close</button>
+      </div>
+    `);
+    setTimeout(() => {
+      const sendBtn = document.getElementById('sendBotCmd');
+      const inputCmd = document.getElementById('botCommandInput');
+      const replyDiv = document.getElementById('botReplyArea');
+      function processCommand(cmd) {
+        const c = cmd.trim().toLowerCase();
+        if (c === '/start') return "✨ Welcome! I'm Firomsa's assistant. I showcase graphic design, full-stack web, and telegram bot services. Use /skills to explore.";
+        if (c === '/skills') return "🎨 Graphic Design: Logos, posters.\n💻 Full Stack: React/Node, API.\n🤖 Telegram Bots: Aiogram automation, custom features.";
+        if (c === '/portfolio') return "📁 Portfolio highlights: Brand identity, TaskFlow web app, and smart Telegram bots. Contact Firomsa for live demo.";
+        return "❓ Unknown command. Try /start, /skills, or /portfolio.";
+      }
+      if (replyDiv && inputCmd && sendBtn) {
+        sendBtn.addEventListener('click', () => {
+          const val = inputCmd.value;
+          if (!val) return;
+          const reply = processCommand(val);
+          replyDiv.innerHTML += `<div><strong>You:</strong> ${escapeHtml(val)}</div><div><strong>Bot:</strong> ${escapeHtml(reply)}</div><hr style="opacity:0.3;">`;
+          inputCmd.value = '';
+          replyDiv.scrollTop = replyDiv.scrollHeight;
+        });
+      }
+    }, 30);
+  });
+
+  // Contact form (local storage simulation)
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('cname')?.value.trim();
+      const email = document.getElementById('cemail')?.value.trim();
+      const msg = document.getElementById('cmsg')?.value.trim();
+      if (!name || !email || !msg) { showToast('All fields required', 'info'); return; }
+      const messageObj = { name, email, msg, date: new Date().toLocaleString() };
+      let stored = JSON.parse(localStorage.getItem('contact_messages') || '[]');
+      stored.push(messageObj);
+      localStorage.setItem('contact_messages', JSON.stringify(stored));
+      showToast('✅ Message saved! I will reach out soon.');
+      contactForm.reset();
     });
   }
-  
-  // Interactions
-  document.querySelectorAll('.design-card, .project-card img').forEach(card => {
-    card.addEventListener('click', (e) => { const img = card.querySelector('img'); if(img?.src) openModal(`<img src="${img.src}" style="width:100%; border-radius:28px;">`); });
+
+  // Fiverr links (replace # with actual Fiverr URL)
+  const fiverrUrl = "https://www.fiverr.com/firomsa_ahmed"; // Change to your real Fiverr profile
+  const fiverrBtns = document.querySelectorAll('#fiverrLinkBtn, #fiverrSideBtn, #footerFiverr');
+  fiverrBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.open(fiverrUrl, '_blank');
+      showToast("Opening Fiverr profile — Let's create magic together!");
+    });
   });
-  document.getElementById('profileAvatar')?.addEventListener('click', () => { openModal(`<div style="text-align:center"><i class="fas fa-user-astronaut" style="font-size:4rem; color:var(--accent-blue);"></i><h2>Firomsa Ahmed</h2><p>Visionary Designer & Futurist Developer</p><p>✦ Telegram bot architect | Graphic alchemist | Web immersive ✦</p></div>`); });
-  
-  // Lenis Scroll
-  const lenis = new Lenis({ lerp: 0.08, wheelMultiplier: 1.2, smoothWheel: true });
+
+  // Lenis Smooth Scroll
+  const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
   function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
   requestAnimationFrame(raf);
-  
-  // Section Fade Observer
+
+  // Intersection Observer for fade-up
   const faders = document.querySelectorAll('.fade-up');
-  const sectionObserver = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
-  faders.forEach(el => sectionObserver.observe(el));
-  
-  // Dark Mode & Mobile Nav
-  const toggleBtn = document.getElementById('darkModeToggle');
-  const toggleIcon = toggleBtn?.querySelector('i');
-  if(localStorage.getItem('theme') === 'light') { document.body.classList.add('light-mode'); toggleIcon?.classList.replace('fa-moon','fa-sun'); }
-  toggleBtn?.addEventListener('click', () => {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  faders.forEach(el => obs.observe(el));
+
+  // Dark Mode & Mobile menu
+  const toggle = document.getElementById('darkModeToggle');
+  const icon = toggle?.querySelector('i');
+  if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light-mode'); icon?.classList.replace('fa-moon','fa-sun'); }
+  toggle?.addEventListener('click', () => {
     document.body.classList.toggle('light-mode');
     const isLight = document.body.classList.contains('light-mode');
     localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    if(toggleIcon) toggleIcon.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
+    if (icon) icon.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
   });
   const hamburger = document.getElementById('hamburger');
   const navMenu = document.getElementById('nav-menu');
   hamburger?.addEventListener('click', () => navMenu.classList.toggle('active'));
   document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => navMenu.classList.remove('active')));
+
+  // Anchor scroll with lenis
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const id = this.getAttribute('href');
-      if(id === '#') return;
+      if (id === '#') return;
       const target = document.querySelector(id);
-      if(target) { e.preventDefault(); lenis.scrollTo(target, { offset: -80 }); }
+      if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -80 }); }
     });
   });
-  
-  // Initialization
-  renderProducts();
-  document.getElementById('contactForm')?.addEventListener('submit', handleContactSubmit);
-  document.getElementById('viewMessagesBtn')?.addEventListener('click', showMessagesModal);
-  attachDemoEvents();
-  observeCinematicCards();
 </script>
 </body>
 </html>
