@@ -3,52 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Firomsa Ahmed — AI Systems Engineer & SaaS Builder</title>
-  <meta name="description" content="AI Systems Engineer building advanced AI Agents, Voice AI, Automation Systems, and production-grade SaaS products. Founder of SmartSupport AI.">
+  <title>Firomsa Ahmed — AI Systems Engineer & SaaS Builder | SmartSupport AI</title>
+  <meta name="description" content="AI Systems Engineer building AI Agents, Voice AI, Automation Systems, and production-grade SaaS. Creator of SmartSupport AI.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     :root {
-      --bg: #02040A;
-      --surface: #080E17;
-      --card: #0C1422;
-      --card-hover: #111C2E;
-      --border: rgba(79, 172, 254, 0.08);
-      --border-glow: rgba(79, 172, 254, 0.25);
-      --text: #EDF4FF;
-      --muted: #8BA3C4;
-      --dim: #3F5575;
-      --accent: #3E9EFF;
-      --accent2: #2CEAA3;
-      --accent3: #B48CFF;
-      --accent-warm: #FACC15;
+      --bg: #010409;
+      --surface: #0a0f1a;
+      --card: #0f1622;
+      --card-hover: #16202e;
+      --border: rgba(62, 158, 255, 0.08);
+      --border-glow: rgba(62, 158, 255, 0.25);
+      --text: #edf4ff;
+      --muted: #8ba3c4;
+      --dim: #3f5575;
+      --accent: #3e9eff;
+      --accent2: #2ceaa3;
+      --accent3: #b48cff;
       --font-display: 'DM Serif Display', serif;
       --font-sans: 'Syne', sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
       --glow: 0 0 32px rgba(62, 158, 255, 0.2);
-      --glow-sm: 0 0 20px rgba(62, 158, 255, 0.12);
     }
-
-    html { scroll-behavior: smooth; }
 
     body {
       background: var(--bg);
       color: var(--text);
       font-family: var(--font-sans);
       overflow-x: hidden;
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
-    /* premium noise + gradient orbs */
+    /* texture overlay */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at 20% 30%, rgba(62,158,255,0.06) 0%, transparent 60%),
-                  radial-gradient(circle at 80% 70%, rgba(180,140,255,0.04) 0%, transparent 70%);
+      background: radial-gradient(circle at 20% 30%, rgba(62,158,255,0.05) 0%, transparent 60%),
+                  radial-gradient(circle at 80% 70%, rgba(180,140,255,0.03) 0%, transparent 70%);
       pointer-events: none;
       z-index: 0;
     }
@@ -61,18 +61,22 @@
       z-index: 2;
     }
 
-    /* glass nav */
+    /* glass navbar */
     nav {
       position: fixed;
       top: 0;
       width: 100%;
       z-index: 1000;
       padding: 1rem 0;
-      background: rgba(2, 4, 10, 0.68);
+      background: rgba(1, 4, 9, 0.75);
       backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(79, 172, 254, 0.12);
+      border-bottom: 1px solid rgba(62,158,255,0.1);
     }
-    .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
     .logo {
       font-family: var(--font-display);
       font-size: 1.5rem;
@@ -81,44 +85,77 @@
       background-clip: text;
       color: transparent;
       text-decoration: none;
-      letter-spacing: -0.02em;
     }
-    .nav-links { display: flex; gap: 2.8rem; list-style: none; }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
     .nav-links a {
       font-family: var(--font-mono);
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 500;
       color: var(--muted);
       text-decoration: none;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      transition: all 0.2s;
+      transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover {
+      color: var(--accent);
+    }
     .nav-cta {
       background: rgba(62,158,255,0.08);
       border: 1px solid var(--border-glow);
       padding: 0.5rem 1.4rem;
       border-radius: 40px;
       font-family: var(--font-mono);
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       color: var(--accent);
       text-decoration: none;
-      transition: all 0.3s;
-      backdrop-filter: blur(4px);
+      transition: all 0.2s;
     }
-    .nav-cta:hover { background: rgba(62,158,255,0.2); border-color: var(--accent); transform: translateY(-1px); }
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .hamburger span { width: 24px; height: 2px; background: var(--muted); transition: 0.3s; border-radius: 2px; }
+    .nav-cta:hover {
+      background: rgba(62,158,255,0.15);
+      border-color: var(--accent);
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--muted);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
     .mobile-menu {
-      display: none; position: fixed; top: 68px; left: 0; width: 100%;
-      background: rgba(8, 14, 23, 0.98); backdrop-filter: blur(32px);
-      padding: 2rem; border-bottom: 1px solid var(--border); z-index: 999;
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      background: rgba(10, 15, 26, 0.98);
+      backdrop-filter: blur(24px);
+      padding: 2rem;
+      border-bottom: 1px solid var(--border);
+      z-index: 999;
     }
-    .mobile-menu.open { display: flex; flex-direction: column; gap: 1.5rem; }
-    .mobile-menu a { color: var(--text); text-decoration: none; font-size: 1rem; font-weight: 500; }
+    .mobile-menu.open {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .mobile-menu a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+    }
 
-    /* hero - product landing style */
+    /* hero section - product landing vibe */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -126,72 +163,89 @@
       padding-top: 100px;
       position: relative;
     }
-    .hero-content { max-width: 800px; }
     .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
       background: rgba(62,158,255,0.08);
       border: 1px solid rgba(62,158,255,0.2);
-      padding: 0.35rem 1.2rem;
+      padding: 0.3rem 1.2rem;
       border-radius: 40px;
       font-family: var(--font-mono);
       font-size: 0.7rem;
       color: var(--accent2);
-      letter-spacing: 0.08em;
-      margin-bottom: 2rem;
-      backdrop-filter: blur(4px);
+      margin-bottom: 1.8rem;
     }
-    .hero-badge i { font-size: 0.7rem; }
     .hero-sub {
       font-family: var(--font-mono);
       font-size: 0.8rem;
       color: var(--accent);
-      text-transform: uppercase;
       letter-spacing: 0.2em;
       margin-bottom: 1rem;
     }
     .hero h1 {
       font-family: var(--font-display);
-      font-size: clamp(3rem, 8vw, 5.8rem);
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
       line-height: 1.05;
-      letter-spacing: -0.02em;
       margin-bottom: 1.2rem;
     }
     .gradient-text {
-      background: linear-gradient(135deg, #FFFFFF, var(--accent), var(--accent2));
+      background: linear-gradient(135deg, #fff, var(--accent), var(--accent2));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
     .hero-description {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: var(--muted);
       max-width: 620px;
       margin-bottom: 2rem;
-      line-height: 1.7;
     }
-    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
     .btn-primary {
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      padding: 0.9rem 2rem; border-radius: 40px;
-      background: linear-gradient(105deg, var(--accent), #1A5CFF);
-      color: white; font-weight: 700; text-decoration: none;
-      transition: all 0.3s; box-shadow: 0 6px 18px rgba(62,158,255,0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.85rem 2rem;
+      border-radius: 40px;
+      background: linear-gradient(105deg, var(--accent), #1a5cff);
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 4px 14px rgba(62,158,255,0.3);
     }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(62,158,255,0.4); gap: 0.8rem; }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      gap: 0.8rem;
+    }
     .btn-ghost {
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      padding: 0.9rem 2rem; border-radius: 40px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.85rem 2rem;
+      border-radius: 40px;
       background: rgba(255,255,255,0.02);
       border: 1px solid var(--border-glow);
-      color: var(--text); font-weight: 600; text-decoration: none;
-      transition: all 0.3s;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s;
     }
-    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: rgba(62,158,255,0.08); gap: 0.8rem; }
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(62,158,255,0.05);
+    }
 
-    /* section styles */
-    section { padding: 110px 0; }
+    section {
+      padding: 100px 0;
+    }
     .section-tag {
       font-family: var(--font-mono);
       font-size: 0.7rem;
@@ -203,15 +257,16 @@
     }
     .section-title {
       font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-size: clamp(2rem, 5vw, 3rem);
       line-height: 1.2;
-      letter-spacing: -0.02em;
       margin-bottom: 1rem;
     }
-    .section-title em { color: var(--accent); font-style: italic; }
-    .section-desc { color: var(--muted); max-width: 560px; margin-bottom: 2rem; }
+    .section-title em {
+      color: var(--accent);
+      font-style: italic;
+    }
 
-    /* projects grid — premium cards */
+    /* projects premium grid */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
@@ -221,9 +276,9 @@
     .project-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 28px;
+      border-radius: 32px;
       overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
       text-decoration: none;
       display: block;
     }
@@ -233,46 +288,69 @@
       background: var(--card-hover);
       box-shadow: var(--glow);
     }
-    .project-card.featured { grid-column: span 7; }
-    .project-card.secondary { grid-column: span 5; }
-    .project-card.full-secondary { grid-column: span 6; }
-
+    .project-card.featured {
+      grid-column: span 7;
+    }
+    .project-card.secondary {
+      grid-column: span 5;
+    }
+    .project-card.full-secondary {
+      grid-column: span 6;
+    }
     .project-visual {
-      height: 280px;
-      position: relative;
+      height: 260px;
       background: #03070f;
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
     }
-    .project-card.secondary .project-visual { height: 230px; }
-    /* smart support UI mockup */
-    .ss-mockup {
+    /* dashboard mockup */
+    .dashboard-mock {
       width: 90%;
-      max-width: 360px;
-      background: rgba(12, 20, 34, 0.9);
+      background: rgba(15, 22, 34, 0.9);
       border-radius: 20px;
       padding: 1rem;
       border: 1px solid rgba(62,158,255,0.2);
       backdrop-filter: blur(4px);
     }
-    .voice-pulse {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(180,140,255,0.3), transparent);
+    .stats-row {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      animation: pulseRing 3s infinite;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 0.8rem 0;
     }
-    @keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(180,140,255,0.4); } 70% { box-shadow: 0 0 0 20px rgba(180,140,255,0); } 100% { box-shadow: 0 0 0 0 rgba(180,140,255,0); } }
-    .project-info { padding: 1.8rem; }
-    .project-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1rem; }
+    .stat-pill {
+      background: rgba(62,158,255,0.08);
+      border-radius: 30px;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+    }
+    .code-snip {
+      background: #010409;
+      border-radius: 12px;
+      padding: 0.6rem;
+      font-family: monospace;
+      font-size: 0.65rem;
+      color: var(--accent2);
+    }
+    .project-info {
+      padding: 1.5rem;
+    }
+    .project-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.8rem;
+    }
     .tag {
-      font-family: var(--font-mono); font-size: 0.6rem;
-      background: rgba(62,158,255,0.08); border: 1px solid rgba(62,158,255,0.15);
-      padding: 0.2rem 0.7rem; border-radius: 20px;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      background: rgba(62,158,255,0.08);
+      border: 1px solid rgba(62,158,255,0.15);
+      padding: 0.2rem 0.7rem;
+      border-radius: 20px;
       color: var(--accent);
     }
     .project-name {
@@ -280,30 +358,31 @@
       font-size: 1.6rem;
       margin-bottom: 0.5rem;
     }
-    .project-desc { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.2rem; }
-    .project-link {
-      font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent);
-      text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;
-      transition: gap 0.2s;
+    .project-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
     }
-    .project-link:hover { gap: 0.7rem; }
 
-    /* AI assistant upgrade */
-    .assistant-section { background: var(--surface); position: relative; }
+    /* AI Assistant chat (premium) */
+    .assistant-section {
+      background: var(--surface);
+    }
     .assistant-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 50px;
     }
-    .chat-widget {
+    .chat-card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 32px;
       overflow: hidden;
-      backdrop-filter: blur(8px);
-      transition: box-shadow 0.3s;
+      transition: box-shadow 0.2s;
     }
-    .chat-widget:hover { box-shadow: var(--glow-sm); }
+    .chat-card:hover {
+      box-shadow: var(--glow);
+    }
     .chat-header {
       padding: 1rem 1.5rem;
       background: rgba(62,158,255,0.04);
@@ -313,7 +392,8 @@
       gap: 1rem;
     }
     .chat-avatar {
-      width: 44px; height: 44px;
+      width: 44px;
+      height: 44px;
       background: linear-gradient(145deg, var(--accent), var(--accent3));
       border-radius: 18px;
       display: flex;
@@ -322,20 +402,22 @@
       font-size: 1.3rem;
     }
     .chat-messages {
-      height: 380px;
+      height: 360px;
       overflow-y: auto;
-      padding: 1.5rem;
+      padding: 1.2rem;
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
     .message {
       display: flex;
-      gap: 0.8rem;
-      max-width: 88%;
-      animation: fadeSlideUp 0.2s ease;
+      gap: 0.7rem;
+      max-width: 90%;
     }
-    .message.user { margin-left: auto; flex-direction: row-reverse; }
+    .message.user {
+      margin-left: auto;
+      flex-direction: row-reverse;
+    }
     .msg-bubble {
       background: rgba(62,158,255,0.08);
       border: 1px solid rgba(62,158,255,0.1);
@@ -348,11 +430,32 @@
       background: rgba(180,140,255,0.12);
       border-color: rgba(180,140,255,0.2);
     }
+    .quick-row {
+      padding: 0.5rem 1rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .quick-chip {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      background: rgba(62,158,255,0.05);
+      border: 1px solid rgba(62,158,255,0.15);
+      border-radius: 30px;
+      padding: 0.3rem 0.9rem;
+      cursor: pointer;
+      transition: 0.2s;
+      color: var(--muted);
+    }
+    .quick-chip:hover {
+      background: rgba(62,158,255,0.12);
+      color: var(--accent);
+    }
     .chat-input-area {
-      padding: 1rem 1.2rem 1.2rem;
-      border-top: 1px solid var(--border);
       display: flex;
       gap: 0.8rem;
+      padding: 0.8rem 1rem 1.2rem;
+      border-top: 1px solid var(--border);
     }
     .chat-input {
       flex: 1;
@@ -364,39 +467,20 @@
       font-family: var(--font-sans);
       outline: none;
     }
-    .chat-input:focus { border-color: var(--accent); }
     .chat-send {
       background: var(--accent);
       border: none;
-      width: 42px;
+      width: 44px;
       border-radius: 40px;
       color: white;
       cursor: pointer;
       transition: 0.2s;
     }
-    .quick-replies {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      padding: 0 1rem 1rem;
-    }
-    .quick-btn {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      background: rgba(62,158,255,0.05);
-      border: 1px solid rgba(62,158,255,0.15);
-      padding: 0.3rem 0.9rem;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: 0.2s;
-      color: var(--muted);
-    }
-    .quick-btn:hover { background: rgba(62,158,255,0.15); border-color: var(--accent); color: var(--accent); }
 
-    /* stack and services */
+    /* stack & services grid */
     .stack-grid, .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 24px;
       margin-top: 2rem;
     }
@@ -405,9 +489,8 @@
       border: 1px solid var(--border);
       border-radius: 24px;
       padding: 1.5rem;
-      transition: all 0.3s;
+      transition: 0.2s;
     }
-    .stack-card:hover, .service-card:hover { border-color: var(--border-glow); transform: translateY(-4px); background: var(--card-hover); }
     .service-icon {
       width: 48px;
       height: 48px;
@@ -418,15 +501,21 @@
       justify-content: center;
       font-size: 1.3rem;
       margin-bottom: 1rem;
-      color: var(--accent);
     }
-    .contact-section { background: var(--surface); }
+    .contact-section {
+      background: var(--surface);
+    }
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1.2fr;
-      gap: 50px;
+      gap: 48px;
     }
-    .contact-links { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
     .contact-item {
       display: flex;
       align-items: center;
@@ -434,50 +523,59 @@
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 1rem 1.2rem;
+      padding: 1rem;
       text-decoration: none;
       transition: 0.2s;
+      color: var(--text);
     }
-    .contact-item:hover { border-color: var(--accent); background: var(--card-hover); }
+    .contact-item:hover {
+      border-color: var(--accent);
+      background: var(--card-hover);
+    }
     .form-card {
       background: var(--card);
       border-radius: 28px;
       padding: 2rem;
       border: 1px solid var(--border);
     }
-    input, select, textarea {
+    input, textarea, select {
       width: 100%;
-      padding: 0.8rem 1rem;
+      padding: 0.8rem;
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 16px;
       color: var(--text);
-      font-family: var(--font-sans);
-      margin-top: 0.3rem;
+      margin-top: 0.5rem;
     }
     .btn-submit {
-      background: linear-gradient(135deg, var(--accent), #1A5CFF);
+      background: linear-gradient(135deg, var(--accent), #1a5cff);
       width: 100%;
-      padding: 0.9rem;
+      padding: 0.85rem;
       border: none;
       border-radius: 40px;
       color: white;
       font-weight: bold;
       cursor: pointer;
-      transition: 0.2s;
+      margin-top: 1rem;
     }
     footer {
-      padding: 3rem 0;
+      padding: 2rem 0;
       border-top: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 1rem;
     }
-    .float-telegram {
+    .float-buttons {
       position: fixed;
       bottom: 24px;
       right: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 900;
+    }
+    .float-icon {
       width: 52px;
       height: 52px;
       background: linear-gradient(145deg, #26A5E4, #1E7BA6);
@@ -487,23 +585,40 @@
       justify-content: center;
       color: white;
       font-size: 1.5rem;
-      box-shadow: 0 8px 20px rgba(38,165,228,0.4);
-      z-index: 900;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
       transition: 0.2s;
+      text-decoration: none;
     }
-    .toast { position: fixed; bottom: 20px; left: 20px; background: var(--card); border-left: 3px solid var(--accent2); padding: 0.8rem 1.2rem; border-radius: 12px; z-index: 9999; animation: fadeIn 0.2s; }
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .float-icon.phone {
+      background: linear-gradient(145deg, #2ceaa3, #1b9e6b);
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
     @media (max-width: 1024px) {
-      .project-card.featured, .project-card.secondary, .project-card.full-secondary { grid-column: span 12; }
-      .assistant-grid, .contact-grid { grid-template-columns: 1fr; }
+      .projects-grid .project-card {
+        grid-column: span 12 !important;
+      }
+      .assistant-grid, .contact-grid {
+        grid-template-columns: 1fr;
+      }
     }
     @media (max-width: 768px) {
-      .nav-links, .nav-cta { display: none; }
-      .hamburger { display: flex; }
-      .hero h1 { font-size: 2.5rem; }
-      section { padding: 70px 0; }
+      .nav-links, .nav-cta {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+      section {
+        padding: 70px 0;
+      }
     }
   </style>
 </head>
@@ -517,143 +632,287 @@
       <li><a href="#assistant">AI Assistant</a></li>
       <li><a href="#stack">Stack</a></li>
       <li><a href="#services">Services</a></li>
-      <li><a href="#contact">Connect</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="https://smart-support-ai-firo.vercel.app/" class="nav-cta" target="_blank"><i class="fas fa-arrow-up-right-from-squares"></i> SmartSupport AI</a>
+    <a href="https://smart-support-ai-firo.vercel.app/" target="_blank" class="nav-cta"><i class="fas fa-external-link-alt"></i> SmartSupport AI</a>
     <div class="hamburger"><span></span><span></span><span></span></div>
   </div>
 </nav>
 <div class="mobile-menu">
-  <a href="#projects">Products</a><a href="#assistant">AI Assistant</a><a href="#stack">Stack</a><a href="#services">Services</a><a href="#contact">Connect</a>
-  <a href="https://smart-support-ai-firo.vercel.app/" target="_blank">SmartSupport AI ↗</a>
+  <a href="#projects">Products</a><a href="#assistant">AI Assistant</a><a href="#stack">Stack</a>
+  <a href="#services">Services</a><a href="#contact">Contact</a>
+  <a href="https://smart-support-ai-firo.vercel.app/">SmartSupport AI →</a>
 </div>
 
-<!-- Hero: Product landing vibe -->
 <section class="hero">
-  <div class="container hero-content">
-    <div class="hero-badge"><i class="fas fa-bolt"></i> AI Systems Engineer & SaaS Builder</div>
-    <div class="hero-sub">Crafting autonomous AI agents</div>
-    <h1><span class="gradient-text">Firomsa Ahmed</span><br>building the next-gen AI economy</h1>
-    <p class="hero-description">I design and deploy AI Agents, Voice AI, Automation Systems, and complete SaaS products. Founder of <strong>SmartSupport AI</strong> — enterprise-grade AI support platform.</p>
+  <div class="container">
+    <div class="hero-badge"><i class="fas fa-bolt"></i> AI Systems Engineer & SaaS Founder</div>
+    <div class="hero-sub">Building autonomous AI agents & voice systems</div>
+    <h1><span class="gradient-text">Firomsa Ahmed</span><br>ship AI products that scale</h1>
+    <p class="hero-description">I design, build and deploy AI Agents, Voice AI, and complete SaaS platforms. Founder of <strong>SmartSupport AI</strong> — AI customer support used by growing businesses.</p>
     <div class="hero-cta">
       <a href="https://smart-support-ai-firo.vercel.app/" target="_blank" class="btn-primary"><i class="fas fa-rocket"></i> Explore SmartSupport AI</a>
-      <a href="#contact" class="btn-ghost"><i class="fas fa-comment"></i> Collaborate</a>
+      <a href="#contact" class="btn-ghost"><i class="fas fa-comment-dots"></i> Partner with me</a>
     </div>
   </div>
 </section>
 
-<!-- Projects: SmartSupport flagship -->
+<!-- Projects: SmartSupport flagship + Voice Agent + Telegram -->
 <section id="projects">
   <div class="container">
-    <div class="reveal"><span class="section-tag">// FLAGSHIP PRODUCTS</span><h2 class="section-title">Production AI <em>Systems</em><br>that drive real ROI</h2></div>
+    <div class="reveal"><span class="section-tag">// FLAGSHIP PRODUCTS</span><h2 class="section-title">Production-ready <em>AI systems</em><br>already deployed</h2></div>
     <div class="projects-grid reveal">
+      <!-- SmartSupport AI (primary) with dashboard mockup from screenshot -->
       <a href="https://smart-support-ai-firo.vercel.app/" target="_blank" class="project-card featured">
-        <div class="project-visual" style="background: linear-gradient(145deg, #021220, #00132a);">
-          <div class="ss-mockup"><i class="fas fa-headset" style="color:var(--accent2)"></i> <span style="font-size:0.6rem">SmartSupport AI — live analytics</span>
-          <div style="margin-top:10px"><div style="background:rgba(62,158,255,0.2); border-radius:12px; padding:6px;">💬 "Refund policy?" → AI resolved in 1.2s</div></div>
-          <div style="display:flex; gap:8px; margin-top:8px"><span style="background:#1a2c3f; border-radius:20px; padding:2px 8px; font-size:0.6rem;">98% accuracy</span><span style="background:#1a2c3f; border-radius:20px; padding:2px 8px; font-size:0.6rem;">2.4k tickets/mo</span></div></div>
+        <div class="project-visual" style="background: linear-gradient(145deg, #011222, #00152a);">
+          <div class="dashboard-mock">
+            <div style="font-weight:bold; font-size:0.7rem;"><i class="fas fa-robot"></i> SmartSupport Dashboard</div>
+            <div class="stats-row">
+              <span class="stat-pill">📊 TOTAL CHATBOTS: 3</span>
+              <span class="stat-pill">✅ ACTIVE: 3</span>
+              <span class="stat-pill">💬 CONVERSATIONS: 29</span>
+              <span class="stat-pill">📄 DOCS INDEXED: 6</span>
+            </div>
+            <div class="code-snip">&lt;script src="https://smart-support.ai/embed.js"&gt;&lt;/script&gt;</div>
+            <div style="font-size:0.6rem; margin-top:8px; color:var(--accent2);">✨ Train on your docs → embed in seconds</div>
+          </div>
         </div>
-        <div class="project-info"><div class="project-tags"><span class="tag">RAG</span><span class="tag">OpenAI</span><span class="tag">Next.js</span></div><div class="project-name">SmartSupport AI</div><p class="project-desc">AI-first customer support automation with knowledge base, real-time analytics, and custom workflows. Deployed for e-commerce & SaaS businesses.</p><span class="project-link">Live Demo →</span></div>
+        <div class="project-info">
+          <div class="project-tags"><span class="tag">RAG</span><span class="tag">GPT-4o</span><span class="tag">Next.js</span></div>
+          <div class="project-name">SmartSupport AI</div>
+          <p class="project-desc">Enterprise-grade AI support platform: train custom chatbots on your knowledge base, get context-aware answers, embed with one line. Analytics, no hallucinations, built for scale.</p>
+          <span class="project-link">Live demo →</span>
+        </div>
       </a>
+      <!-- AI Voice Agent secondary -->
       <div class="project-card secondary">
-        <div class="project-visual"><div class="voice-pulse"><i class="fas fa-microphone-alt fa-2x" style="color: var(--accent3);"></i></div><div style="margin-top:10px; font-size:0.7rem; font-family:monospace">Listening... <span style="color:var(--accent2)">● Active</span></div></div>
-        <div class="project-info"><div class="project-tags"><span class="tag">Voice AI</span><span class="tag">Agentic</span></div><div class="project-name">AI Voice Agent</div><p class="project-desc">Conversational voice AI for business phone automation, natural language understanding, real-time human-like responses.</p><span class="project-link">Early Access →</span></div>
+        <div class="project-visual">
+          <div style="text-align:center;"><i class="fas fa-microphone-alt fa-3x" style="color:var(--accent3)"></i><div style="margin-top:12px"><div class="stat-pill">🎙️ voice processing</div><div class="stat-pill">real-time AI</div></div></div>
+        </div>
+        <div class="project-info">
+          <div class="project-tags"><span class="tag">Voice AI</span><span class="tag">Agentic</span></div>
+          <div class="project-name">AI Voice Agent</div>
+          <p class="project-desc">Conversational voice AI for business phone automation, natural language understanding, 24/7 customer calls. Reduces human agent load by 65%.</p>
+          <span class="project-link">Request early access →</span>
+        </div>
       </div>
+      <!-- Telegram bots (automation) -->
       <div class="project-card full-secondary">
-        <div class="project-visual"><i class="fab fa-telegram fa-3x" style="color:#26A5E4"></i><div style="display:flex; gap:12px; margin-top:12px"><span class="tag" style="background:#1e2f3f">15+ bots</span><span class="tag">Payments</span></div></div>
-        <div class="project-info"><div class="project-tags"><span class="tag">Python</span><span class="tag">Aiogram</span></div><div class="project-name">Telegram Automation Suite</div><p class="project-desc">AI-powered Telegram bots for community, payments, and automation. 15+ production deployments.</p><a href="https://t.me/Fira385508" target="_blank" class="project-link">Request demo →</a></div>
+        <div class="project-visual">
+          <i class="fab fa-telegram fa-3x" style="color:#26A5E4"></i>
+          <div style="margin-left:12px;"><span class="stat-pill">15+ bots deployed</span><span class="stat-pill">Payments + AI</span></div>
+        </div>
+        <div class="project-info">
+          <div class="project-tags"><span class="tag">Python</span><span class="tag">Aiogram</span></div>
+          <div class="project-name">Telegram AI Suite</div>
+          <p class="project-desc">Custom Telegram bots with AI integration, payment workflows, and automated community management. Built for creators & businesses.</p>
+          <a href="https://t.me/Fira385508" target="_blank" class="project-link">Contact for demo →</a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- AI Assistant with intelligent mock + UI polish -->
+<!-- AI Assistant section (interactive, matches screenshot style) -->
 <section id="assistant" class="assistant-section">
   <div class="container assistant-grid">
-    <div class="reveal"><span class="section-tag">// 24/7 AI CONCIERGE</span><h2 class="section-title">Ask my <em>AI Agent</em><br>anything about my work</h2><p class="section-desc">Trained on my stack, products, and services — get instant answers on how to collaborate.</p></div>
-    <div class="reveal chat-widget">
-      <div class="chat-header"><div class="chat-avatar">🤖</div><div><strong>Firomsa AI</strong><div style="font-size:0.7rem; color:var(--accent2)">online · ready</div></div></div>
-      <div class="chat-messages" id="chatMessages"><div class="message"><div class="msg-bubble">Hello! I'm Firomsa's AI assistant. Ask me about SmartSupport AI, voice agents, services, or pricing — let's talk business. 👋</div></div></div>
-      <div class="quick-replies" id="quickReplies"><button class="quick-btn" data-q="What is SmartSupport AI?">SmartSupport AI</button><button class="quick-btn" data-q="Tell me about AI Voice Agent">AI Voice Agent</button><button class="quick-btn" data-q="What services do you offer?">Services & pricing</button><button class="quick-btn" data-q="How can I hire you?">Hire me</button></div>
-      <div class="chat-input-area"><input type="text" class="chat-input" id="chatInput" placeholder="Ask about AI, SaaS, collaboration..."><button class="chat-send" id="chatSendBtn"><i class="fas fa-paper-plane"></i></button></div>
+    <div class="reveal">
+      <span class="section-tag">// 24/7 AI CONCIERGE</span>
+      <h2 class="section-title">Ask my <em>AI assistant</em><br>anything about my work</h2>
+      <p class="section-desc">Powered by SmartSupport AI logic — knows my products, stack, and how to collaborate. Trained on real project data.</p>
+      <div style="margin-top: 1.5rem;">
+        <div><i class="fas fa-check-circle" style="color:var(--accent2)"></i> Answers about AI Voice, SaaS, pricing</div>
+        <div><i class="fas fa-check-circle" style="color:var(--accent2); margin-top:0.5rem"></i> Explains SmartSupport AI architecture</div>
+        <div><i class="fas fa-check-circle" style="color:var(--accent2); margin-top:0.5rem"></i> Direct contact & availability</div>
+      </div>
+    </div>
+    <div class="reveal chat-card">
+      <div class="chat-header">
+        <div class="chat-avatar">🤖</div>
+        <div><strong>Firomsa AI</strong><div style="font-size:0.7rem; color:var(--accent2)">Active · trained on portfolio</div></div>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="message">
+          <div class="msg-bubble">Hello! I'm Firomsa's AI assistant. I can tell you about SmartSupport AI, Voice Agent, services, pricing, or how to hire him. What would you like to know?</div>
+        </div>
+      </div>
+      <div class="quick-row" id="quickRow">
+        <span class="quick-chip" data-q="Tell me about SmartSupport AI">📌 SmartSupport AI</span>
+        <span class="quick-chip" data-q="What is AI Voice Agent?">🎙️ AI Voice Agent</span>
+        <span class="quick-chip" data-q="What services do you offer and pricing?">💼 Services & pricing</span>
+        <span class="quick-chip" data-q="How can I contact Firomsa?">📞 Contact info</span>
+        <span class="quick-chip" data-q="What is your tech stack?">⚙️ Tech stack</span>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" class="chat-input" id="chatInput" placeholder="Ask about AI projects, collaboration...">
+        <button class="chat-send" id="chatSend"><i class="fas fa-paper-plane"></i></button>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- Stack & Services -->
-<section id="stack"><div class="container"><div class="reveal"><span class="section-tag">// ENGINEERING TOOLKIT</span><h2 class="section-title">Modern <em>AI Stack</em></h2></div><div class="stack-grid reveal"><div class="stack-card"><i class="fas fa-brain"></i> <strong>AI/LLM</strong><br>OpenAI, RAG, LangChain, Voice AI</div><div class="stack-card"><i class="fas fa-code"></i> <strong>Frontend</strong><br>React, Next.js, TypeScript, Tailwind</div><div class="stack-card"><i class="fas fa-database"></i> <strong>Backend</strong><br>Node.js, Python, Supabase, PostgreSQL</div><div class="stack-card"><i class="fas fa-cloud"></i> <strong>Deployment</strong><br>Vercel, Docker, CI/CD, GitHub Actions</div></div></div></section>
+<section id="stack">
+  <div class="container">
+    <div class="reveal"><span class="section-tag">// ENGINEERING DNA</span><h2 class="section-title">Modern <em>AI Stack</em></h2></div>
+    <div class="stack-grid reveal">
+      <div class="stack-card"><i class="fas fa-brain"></i> <strong>AI/LLM</strong><br>OpenAI, LangChain, RAG, Voice AI, Embeddings</div>
+      <div class="stack-card"><i class="fas fa-code"></i> <strong>Frontend</strong><br>React, Next.js, TypeScript, Tailwind</div>
+      <div class="stack-card"><i class="fas fa-database"></i> <strong>Backend</strong><br>Node.js, Python, Supabase, PostgreSQL</div>
+      <div class="stack-card"><i class="fas fa-cloud"></i> <strong>Infra</strong><br>Vercel, Docker, CI/CD, Cloudflare</div>
+    </div>
+  </div>
+</section>
 
-<section id="services" style="background: var(--surface);"><div class="container"><div class="reveal"><span class="section-tag">// EXPERTISE</span><h2 class="section-title">AI Engineering <em>Services</em></h2></div><div class="services-grid reveal"><div class="service-card"><div class="service-icon"><i class="fas fa-robot"></i></div><h3>AI Agent Development</h3><p>Custom reasoning agents, workflow automation, decision-making bots.</p></div><div class="service-card"><div class="service-icon"><i class="fas fa-microphone"></i></div><h3>Voice AI Systems</h3><p>Conversational voice agents for telephony & customer interaction.</p></div><div class="service-card"><div class="service-icon"><i class="fas fa-headset"></i></div><h3>AI Support Automation</h3><p>Full RAG pipelines + knowledge base (SmartSupport AI blueprint).</p></div><div class="service-card"><div class="service-icon"><i class="fab fa-telegram"></i></div><h3>Telegram Bots</h3><p>Scalable bots with AI & payment integration.</p></div><div class="service-card"><div class="service-icon"><i class="fas fa-cubes"></i></div><h3>SaaS Product Dev</h3><p>From MVP to launch: auth, billing, AI features, analytics.</p></div></div></div></section>
+<section id="services" style="background: var(--surface);">
+  <div class="container">
+    <div class="reveal"><span class="section-tag">// EXPERTISE</span><h2 class="section-title">What I <em>build</em> for founders</h2></div>
+    <div class="services-grid reveal">
+      <div class="service-card"><div class="service-icon"><i class="fas fa-robot"></i></div><h3>AI Agent Development</h3><p>Autonomous agents, workflow automation, decision-making systems.</p></div>
+      <div class="service-card"><div class="service-icon"><i class="fas fa-microphone"></i></div><h3>Voice AI Systems</h3><p>Conversational voice agents for telephony & support.</p></div>
+      <div class="service-card"><div class="service-icon"><i class="fas fa-headset"></i></div><h3>AI Support Automation</h3><p>Custom RAG pipelines (SmartSupport AI blueprint).</p></div>
+      <div class="service-card"><div class="service-icon"><i class="fab fa-telegram"></i></div><h3>Telegram Bots</h3><p>Scalable bots with AI & payments.</p></div>
+      <div class="service-card"><div class="service-icon"><i class="fas fa-cubes"></i></div><h3>SaaS Product Dev</h3><p>From MVP to launch: auth, billing, AI features.</p></div>
+    </div>
+  </div>
+</section>
 
-<!-- Contact -->
-<section id="contact" class="contact-section"><div class="container contact-grid"><div class="reveal"><span class="section-tag">// LET'S BUILD</span><h2 class="section-title">Turn <em>ideas</em><br>into AI products</h2><div class="contact-links"><a href="mailto:firomsaahmed51@gmail.com" class="contact-item"><i class="fas fa-envelope fa-lg"></i><div>firomsaahmed51@gmail.com</div></a><a href="https://t.me/Fira385508" target="_blank" class="contact-item"><i class="fab fa-telegram fa-lg"></i><div>@Fira385508 (fastest)</div></a><a href="https://github.com/Firomsa51" target="_blank" class="contact-item"><i class="fab fa-github"></i><div>github/Firomsa51</div></a></div></div><div class="reveal"><div class="form-card"><h3 style="margin-bottom:1rem">Start a conversation</h3><input type="text" id="nameField" placeholder="Name"><input type="email" id="emailField" placeholder="Email" style="margin-top:1rem"><textarea id="msgField" rows="3" placeholder="Project idea / collaboration..."></textarea><button class="btn-submit" id="submitMsgBtn"><i class="fas fa-paper-plane"></i> Send inquiry</button><p style="font-size:0.7rem; margin-top:1rem; color:var(--dim)">I reply within hours on Telegram</p></div></div></div></section>
+<!-- Contact with phone number -->
+<section id="contact" class="contact-section">
+  <div class="container contact-grid">
+    <div class="reveal">
+      <span class="section-tag">// LET'S CONNECT</span>
+      <h2 class="section-title">Build your next <em>AI product</em><br>with me</h2>
+      <div class="contact-links">
+        <a href="mailto:firomsaahmed51@gmail.com" class="contact-item"><i class="fas fa-envelope fa-lg"></i> firomsaahmed51@gmail.com</a>
+        <a href="https://t.me/Fira385508" target="_blank" class="contact-item"><i class="fab fa-telegram fa-lg"></i> Telegram: @Fira385508 (fastest)</a>
+        <a href="tel:+251946004640" class="contact-item"><i class="fas fa-phone-alt fa-lg"></i> +251 94 600 4640</a>
+        <a href="https://github.com/Firomsa51" target="_blank" class="contact-item"><i class="fab fa-github"></i> GitHub / Firomsa51</a>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="form-card">
+        <h3>Send a quick message</h3>
+        <input type="text" id="contactName" placeholder="Name">
+        <input type="email" id="contactEmail" placeholder="Email" style="margin-top:1rem">
+        <textarea id="contactMsg" rows="3" placeholder="Tell me about your project / AI idea..."></textarea>
+        <button class="btn-submit" id="submitContact"><i class="fas fa-paper-plane"></i> Send inquiry</button>
+        <p style="font-size:0.7rem; margin-top:1rem; color:var(--dim)">I reply within a few hours via Telegram or phone.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<footer><div class="logo-sm">Firomsa Ahmed · AI Engineer</div><div>© 2026 — Building AI-first future</div></footer>
-<a href="https://t.me/Fira385508" class="float-telegram"><i class="fab fa-telegram-plane"></i></a>
-<div id="toastRoot"></div>
+<footer>
+  <div>Firomsa Ahmed — AI Systems Engineer & SaaS Builder</div>
+  <div>© 2026 • Building AI-first future</div>
+</footer>
+
+<div class="float-buttons">
+  <a href="https://t.me/Fira385508" class="float-icon" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+  <a href="tel:+251946004640" class="float-icon phone"><i class="fas fa-phone-alt"></i></a>
+</div>
 
 <script>
-// premium AI assistant (smart intent matching)
-const knowledgeBase = {
-  "smart support ai": "SmartSupport AI is my flagship product — an AI-powered customer support platform using RAG, knowledge base, analytics, and automated resolution. It reduces ticket volume by 80%. Live at https://smart-support-ai-firo.vercel.app/",
-  "voice agent": "AI Voice Agent is a next-gen conversational voice AI for businesses: natural language calls, appointment scheduling, and 24/7 phone support. Demo ready for enterprise.",
-  "services": "I offer: AI Agent Development, Voice AI Systems, Support Automation (RAG), Telegram Bots, Full SaaS development. Pricing starts from $1.5k per MVP. Contact for custom quote.",
-  "hire": "You can hire me via Telegram @Fira385508 or email firomsaahmed51@gmail.com. I'm available for freelance, consulting, or long-term partnerships.",
-  "telegram": "I've built 15+ production Telegram bots with AI, payments, and automation. I can build any custom bot for your business.",
-  "stack": "My tech stack includes OpenAI API, LangChain, React, Next.js, Node.js, Python, Supabase, PostgreSQL, Tailwind, Vercel.",
-  "pricing": "Pricing depends on scope. AI Agents start at $1.2k, full SaaS products $3k+. Contact for accurate estimation."
-};
+  // Knowledge base for AI assistant (realistic)
+  const assistantKB = {
+    "smartsupport ai": "SmartSupport AI is my flagship SaaS product: an AI customer support platform that lets businesses train chatbots on their own docs (PDFs, websites, FAQ). Uses RAG + GPT-4o, provides analytics dashboard, and embeds with one line of code. Live at https://smart-support-ai-firo.vercel.app/",
+    "voice agent": "AI Voice Agent is a next-gen conversational voice AI for business phone automation. It handles inbound/outbound calls, understands natural language, and integrates with CRM. Reduces operational costs by 60%.",
+    "services": "I offer: AI Agent Development (starting $1.5k), Voice AI Systems, Customer Support Automation (SmartSupport clone), Telegram Bots ($500+), Full SaaS development ($3k+). Contact me for custom quote.",
+    "pricing": "Pricing depends on scope: AI chatbots from $1.2k, Voice AI from $2k, complete SaaS from $4k. Reach out via Telegram @Fira385508 for an accurate estimate.",
+    "contact": "You can reach me via Telegram @Fira385508, phone +251946004640, or email firomsaahmed51@gmail.com. I'm available for freelance & long-term contracts.",
+    "tech stack": "My stack: OpenAI API, LangChain, React/Next.js, Node.js, Python, Supabase, PostgreSQL, Tailwind, Vercel. I also build RAG pipelines and vector databases.",
+    "who created you": "I'm an AI assistant built by Firomsa Ahmed, representing his portfolio and products. I'm powered by a custom knowledge base trained on his work.",
+  };
+  function getAssistantReply(message) {
+    let m = message.toLowerCase();
+    if (m.includes("smartsupport") || m.includes("smart support")) return assistantKB["smartsupport ai"];
+    if (m.includes("voice agent") || m.includes("voice ai")) return assistantKB["voice agent"];
+    if (m.includes("service") || m.includes("offer") || m.includes("pricing") || m.includes("price")) return assistantKB["services"];
+    if (m.includes("contact") || m.includes("phone") || m.includes("number")) return assistantKB["contact"];
+    if (m.includes("stack") || m.includes("technology") || m.includes("tech")) return assistantKB["tech stack"];
+    if (m.includes("who created") || m.includes("creator")) return assistantKB["who created you"];
+    return "I'm Firomsa's AI assistant. I can answer questions about SmartSupport AI, Voice Agent, tech stack, pricing, or how to hire him. Could you specify which area you're interested in? Or you can directly message him on Telegram @Fira385508.";
+  }
 
-function getAIResponse(message) {
-  const msg = message.toLowerCase();
-  if (msg.includes("smart support") || msg.includes("smartsupport")) return knowledgeBase["smart support ai"];
-  if (msg.includes("voice agent") || msg.includes("voice ai")) return knowledgeBase["voice agent"];
-  if (msg.includes("service") || msg.includes("offer")) return knowledgeBase["services"];
-  if (msg.includes("hire") || msg.includes("collaborate") || msg.includes("work with")) return knowledgeBase["hire"];
-  if (msg.includes("telegram") && msg.includes("bot")) return knowledgeBase["telegram"];
-  if (msg.includes("stack") || msg.includes("technology") || msg.includes("tech")) return knowledgeBase["stack"];
-  if (msg.includes("price") || msg.includes("cost") || msg.includes("budget")) return knowledgeBase["pricing"];
-  return "I'm Firomsa's AI — I can share details about SmartSupport AI, voice agents, services, or booking a call. Could you specify which area you're interested in? Or reach out on Telegram @Fira385508 for direct answers.";
-}
+  const chatMessagesDiv = document.getElementById('chatMessages');
+  const chatInput = document.getElementById('chatInput');
+  const chatSendBtn = document.getElementById('chatSend');
+  function addMessage(role, text) {
+    const msgDiv = document.createElement('div');
+    msgDiv.className = `message ${role}`;
+    msgDiv.innerHTML = `<div class="msg-bubble">${text.replace(/\n/g, '<br>')}</div>`;
+    chatMessagesDiv.appendChild(msgDiv);
+    chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
+  }
+  function showTypingAndReply(userMsg) {
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'message';
+    typingDiv.id = 'typingIndicator';
+    typingDiv.innerHTML = `<div class="msg-bubble"><i class="fas fa-ellipsis-h"></i> thinking...</div>`;
+    chatMessagesDiv.appendChild(typingDiv);
+    chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
+    setTimeout(() => {
+      document.getElementById('typingIndicator')?.remove();
+      const reply = getAssistantReply(userMsg);
+      addMessage('assistant', reply);
+    }, 500);
+  }
+  function sendUserMessage() {
+    const text = chatInput.value.trim();
+    if (!text) return;
+    addMessage('user', text);
+    chatInput.value = '';
+    showTypingAndReply(text);
+  }
+  chatSendBtn.addEventListener('click', sendUserMessage);
+  chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendUserMessage(); });
+  document.querySelectorAll('.quick-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const q = chip.getAttribute('data-q');
+      chatInput.value = q;
+      sendUserMessage();
+    });
+  });
 
-const chatMessagesDiv = document.getElementById('chatMessages');
-const chatInput = document.getElementById('chatInput');
-const sendBtn = document.getElementById('chatSendBtn');
-function addMessage(role, text) {
-  const div = document.createElement('div');
-  div.className = `message ${role}`;
-  div.innerHTML = `<div class="msg-bubble">${text.replace(/\n/g, '<br>')}</div>`;
-  chatMessagesDiv.appendChild(div);
-  chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
-}
-function simulateTyping(callback) {
-  const typingDiv = document.createElement('div'); typingDiv.className = 'message'; typingDiv.id = 'typingIndicator';
-  typingDiv.innerHTML = `<div class="msg-bubble"><i class="fas fa-ellipsis-h"></i> thinking</div>`;
-  chatMessagesDiv.appendChild(typingDiv); chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
-  setTimeout(() => { document.getElementById('typingIndicator')?.remove(); callback(); }, 400);
-}
-function sendMessage() {
-  const text = chatInput.value.trim();
-  if (!text) return;
-  addMessage('user', text);
-  chatInput.value = '';
-  simulateTyping(() => { const reply = getAIResponse(text); addMessage('assistant', reply); });
-}
-sendBtn.addEventListener('click', sendMessage);
-chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
-document.querySelectorAll('.quick-btn').forEach(btn => { btn.addEventListener('click', () => { chatInput.value = btn.getAttribute('data-q'); sendMessage(); }); });
+  // contact form toast
+  function showToast(msg) {
+    const toast = document.createElement('div');
+    toast.style.position = 'fixed';
+    toast.style.bottom = '20px';
+    toast.style.left = '20px';
+    toast.style.background = '#0f1622';
+    toast.style.color = '#2ceaa3';
+    toast.style.padding = '10px 18px';
+    toast.style.borderRadius = '30px';
+    toast.style.borderLeft = '3px solid #2ceaa3';
+    toast.style.zIndex = '9999';
+    toast.innerText = msg;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+  }
+  document.getElementById('submitContact').addEventListener('click', () => {
+    const name = document.getElementById('contactName').value;
+    if (!name) { showToast("Please enter your name."); return; }
+    showToast("✓ Thanks! I'll reach out within hours via Telegram.");
+    document.getElementById('contactName').value = '';
+    document.getElementById('contactEmail').value = '';
+    document.getElementById('contactMsg').value = '';
+  });
 
-// contact form demo with toast
-function showToast(msg) { const toast = document.createElement('div'); toast.className = 'toast'; toast.innerText = msg; document.body.appendChild(toast); setTimeout(() => toast.remove(), 3000); }
-document.getElementById('submitMsgBtn')?.addEventListener('click', () => { const name = document.getElementById('nameField')?.value; if(!name) { showToast("Please enter your name"); return; } showToast("✓ Message received! I'll reach out on Telegram within hours."); document.getElementById('nameField').value = ''; document.getElementById('emailField').value = ''; document.getElementById('msgField').value = ''; });
+  // scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// scroll reveal
-const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// mobile nav toggle
-document.querySelector('.hamburger').addEventListener('click', () => document.querySelector('.mobile-menu').classList.toggle('open'));
-document.querySelectorAll('.mobile-menu a').forEach(a => a.addEventListener('click', () => document.querySelector('.mobile-menu').classList.remove('open')));
+  // mobile menu
+  document.querySelector('.hamburger').addEventListener('click', () => {
+    document.querySelector('.mobile-menu').classList.toggle('open');
+  });
+  document.querySelectorAll('.mobile-menu a').forEach(a => {
+    a.addEventListener('click', () => document.querySelector('.mobile-menu').classList.remove('open'));
+  });
 </script>
 </body>
 </html>
